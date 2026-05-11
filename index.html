@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Hyper-Focus 기출유형 Answer Key</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --cream: #faf8f3;
+            --red: #c0392b;
+            --border: #e5e7eb;
+            --text-main: #1f2937;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            background-color: var(--cream); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* --- Login Page --- */
+        #login-page {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, var(--navy) 0%, #000 100%);
+            padding: 20px;
+        }
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-card h1 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--navy);
+            word-break: keep-all;
+        }
+        .login-card p { font-size: 0.9rem; color: #666; margin-bottom: 30px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 5px; color: var(--navy); }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .input-group input:focus { border-color: var(--gold); }
+        
+        /* Error Message Box */
+        #error-msg {
+            display: none;
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-login:hover { background: #1a2e44; }
+
+        /* --- Main Content --- */
+        #content-page { display: none; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid var(--navy); padding-bottom: 20px; }
+        header h1 { font-family: 'Noto Serif KR', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 15px; }
+        
+        .top-actions { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-youtube { background: var(--red); color: white; }
+        .btn-print { background: var(--navy); color: white; }
+        .btn-kakao { background: #FEE500; color: #3C1E1E; }
+        .btn-action:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .answer-container { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        .category-title {
+            background: #f3f4f6;
+            padding: 10px 20px;
+            border-left: 5px solid var(--gold);
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            color: var(--navy);
+        }
+
+        .answer-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .answer-item:last-child { border-bottom: none; }
+        .q-header { display: flex; align-items: flex-start; gap: 10px; }
+        .q-num {
+            background: var(--navy);
+            color: var(--gold);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .q-text { font-weight: 600; font-size: 1rem; color: var(--navy); }
+        .q-ans { font-weight: 700; color: var(--red); font-size: 1.05rem; margin-left: 38px; padding: 5px 12px; background: #fff5f5; border-radius: 4px; display: inline-block; width: fit-content; }
+        
+        .q-details { margin-left: 38px; font-size: 0.9rem; color: #4b5563; background: #f9fafb; padding: 15px; border-radius: 8px; border-left: 3px solid #d1d5db; }
+        .q-details strong { color: var(--navy); display: block; margin-bottom: 4px; }
+        
+        .btn-video-small {
+            margin-left: 38px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--red);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        footer { text-align: center; margin-top: 50px; padding: 30px; color: #6b7280; font-size: 0.85rem; }
+
+        @media print {
+            #login-page, .top-actions, .btn-video-small { display: none !important; }
+            #content-page { display: block !important; padding: 0; }
+            .answer-container { box-shadow: none; border: none; }
+            .answer-item { page-break-inside: avoid; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); }, false);
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode === 123 || 
+           (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+           (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+            e.preventDefault();
+            return false;
+        }
+    }, false);
+</script>
+
+<div id="login-page">
+    <div class="login-card">
+        <h1>Premier Hyper-Focus 기출유형 Answer Key</h1>
+        <p>교재 소지자 전용 답안지 사이트입니다.</p>
+        <div class="input-group">
+            <label>승인 번호</label>
+            <input type="password" id="authCode" placeholder="승인번호를 입력하세요">
+        </div>
+        <div id="error-msg">승인번호가 올바르지 않습니다.</div>
+        <button class="btn-login" onclick="checkAuth()">답안 확인하기</button>
+    </div>
+</div>
+
+<div id="content-page">
+    <header>
+        <p style="color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 5px;">G-FIELD GIFTED EDUCATION</p>
+        <h1>Premier Hyper-Focus 기출유형 Answer Key</h1>
+    </header>
+
+    <div class="top-actions">
+        <a href="https://youtu.be/8l-YgY8LZzk" target="_blank" class="btn-action btn-youtube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            선생님 해설 영상 전체보기
+        </a>
+        <button onclick="window.print()" class="btn-action btn-print">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="white"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+            답안지 인쇄하기
+        </button>
+        <a href="https://open.kakao.com/me/gfield" target="_blank" class="btn-action btn-kakao">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-5.523 0-10 3.5-10 7.828 0 2.748 1.76 5.166 4.417 6.44-.22.842-.796 3.016-.814 3.125-.025.15.05.228.163.155.116-.076 3.65-2.457 4.296-2.923.63.084 1.28.129 1.938.129 5.523 0 10-3.5 10-7.828S17.523 3 12 3z"/></svg>
+            선생님에게 질문하기
+        </a>
+    </div>
+
+    <div id="answer-list" class="answer-container"></div>
+
+    <footer>
+        &copy; 지필드 영재교육. 성공하는 공부습관을 응원합니다.
+    </footer>
+</div>
+
+<script>
+    const data = [
+        {
+            categoryTitle: "공간 지각력 (쌓기나무와 입체도형)",
+            items: [
+                { id: 1, text: "앞과 뒤에서 본 모양을 보고 전체 쌓기나무 개수 맞히기", ans: "11개", tTip: "뒤에서 봤을 때 3층인 것을 확인하고, 겹치는 부분 8개에 뒤에 숨겨진 3개를 더해서 11개를 찾아요.", video: "https://youtu.be/8l-YgY8LZzk?t=23" },
+                { id: 2, text: "상자를 꽉 채우기 위해 큐브가 몇 개 더 필요한지 찾기", ans: "16개", tTip: "전체 상자에 들어가는 개수를 먼저 구한 뒤, 지금 있는 11개를 빼해서 16개를 찾습니다.", video: "https://youtu.be/8l-YgY8LZzk?t=82" },
+                { id: 3, text: "검은색, 흰색이 교대로 쌓인 블록의 색깔별 개수 세기", ans: "흰색 14개, 검은색 15개", tTip: "2층, 4층 같은 짝수 층은 두 색깔 개수가 똑같고, 1층, 3층 같은 홀수 층은 맨 위에 있는 색깔이 하나 더 많다는 규칙을 이용해요.", video: "https://youtu.be/8l-YgY8LZzk?t=152" },
+                { id: 4, text: "반대편까지 구멍이 뻥 뚫린 블록에서 남은 개수 구하기", ans: "79개", tTip: "전체 100개(20칸 × 5층)에서 구멍 때문에 완전히 사라진 기둥의 블록 수 21개를 빼서 79개를 구합니다.", video: "https://youtu.be/8l-YgY8LZzk?t=297" },
+                { id: 5, text: "전체 16개일 때, 그림에서 안 보이는 블록 개수 찾기", ans: "5개", tTip: "눈에 확실히 보이는 11개를 전체 개수 16개에서 빼서 숨어있는 5개를 찾습니다.", video: "https://youtu.be/8l-YgY8LZzk?t=382" },
+                { id: 6, text: "블록 모양을 여러 방향에서 관찰했을 때 절대 나올 수 없는 모습 고르기", ans: "4번, 6번", tTip: "시선을 돌려보며 특정 각도에서 색깔의 위치가 맞지 않는 보기를 찾아냅니다.", video: "https://youtu.be/8l-YgY8LZzk?t=447" },
+                { id: 7, text: "전개도를 접어서 완성된 주사위 모양 찾기", ans: "2번, 4번, 5번", tTip: "전개도에 '더하기' 모양이 1개뿐인데 보기에 더하기가 2개 있다면 절대 안 되겠죠? 아닌 것부터 지웁니다.", video: "https://youtu.be/8l-YgY8LZzk?t=607" },
+                { id: 8, text: "주사위를 화살표 방향으로 굴렸을 때 바닥에 닿는 숫자 맞히기", ans: "5", tTip: "주사위는 마주 보는 두 면의 숫자를 더하면 항상 '7'이 된다는 성질을 이용해 바닥 숫자를 따라갑니다.", video: "https://youtu.be/8l-YgY8LZzk?t=772" },
+                { id: 9, text: "위, 앞, 옆에서 본 그림을 바탕으로 전체 블록 수 구하기", ans: "6개", tTip: "위에서 본 바닥 그림 위에 최대 몇 층까지 쌓을 수 있는지 숫자를 써가며 확인합니다.", video: "https://youtu.be/8l-YgY8LZzk?t=887" },
+                { id: 18, text: "블록 4개를 모두 써서 만들 수 있는 서로 다른 입체 모양 개수 찾기", ans: "8개", tTip: "블록 3개를 바닥에 'ㄱ'자나 일자로 고정해두고, 남은 1개를 이리저리 돌아가며 붙여봅니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1252" }
+            ]
+        },
+        {
+            categoryTitle: "평면 지각력 (도형과 색종이)",
+            items: [
+                { id: 10, text: "규칙에 따라 빈칸에 색종이가 몇 장 겹쳐 있는지 맞히기", ans: "4장", tTip: "안 겹친 곳(1장)부터 시작해서, 2장, 3장 겹친 곳으로 좁혀가며 마지막에 4장이 겹쳤음을 찾아요.", video: "https://youtu.be/8l-YgY8LZzk?t=937" },
+                { id: 11, text: "숫자가 적힌 종이를 두 번 접었을 때, 가장 위로 올라오는 숫자들의 합 구하기", ans: "22", tTip: "아래로 한 번, 옆으로 한 번 접었을 때 바닥에 있던 숫자들이 위로 올라와 대칭을 이룹니다 (8, 7, 3, 4).", video: "https://youtu.be/8l-YgY8LZzk?t=967" },
+                { id: 12, text: "두 번 접은 종이에 구멍을 하나 뚫고 펼쳤을 때 총 구멍 수 맞히기", ans: "8개", tTip: "접힌 선을 기준으로 구멍이 데칼코마니처럼 반대쪽에 똑같이 찍히며 늘어납니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1022" },
+                { id: 13, text: "5개의 블록 조각 중 4개를 써서 네모난 빈칸을 꽉 채우기", ans: "(배치 완료)", tTip: "덩치가 크거나 'ㄷ'자처럼 모양이 특이한 조각부터 네모의 모서리에 먼저 끼워 넣습니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1057" },
+                { id: 14, text: "도형을 빈틈없이 자르되, 가장 적은 개수의 정사각형으로 만들기", ans: "6개", tTip: "가장 크게 만들 수 있는 네모부터 큼직하게 잘라내고, 남은 공간을 쪼개어 6조각을 만듭니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1079" },
+                { id: 15, text: "U자 모양 도형에 선 딱 2개만 그어서 6조각으로 만들기", ans: "(교차선)", tTip: "도형의 양쪽 기둥을 한 번의 선으로 자르고, 나머지 선으로 교차점을 만들어 6조각을 완성해요.", video: "https://youtu.be/8l-YgY8LZzk?t=1117" },
+                { id: 16, text: "선을 따라 그릴 수 있는 크고 작은 정사각형 모두 세기", ans: "10개", tTip: "1칸짜리 작은 것부터 다 세고, 그다음 4칸짜리 묶음, 9칸짜리 묶음으로 차례차례 합칩니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1137" },
+                { id: 17, text: "크기별로 정사각형 개수 모두 찾아 더하기", ans: "10개", tTip: "기준 모양을 옆에 그려놓고 크기를 키워가며 꼼꼼히 셉니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1187" },
+                { id: 19, text: "점판 위의 점을 이어 그릴 수 있는 정삼각형 모두 찾기", ans: "12개", tTip: "바닥이 평평한 기본 세모와 큰 세모 10개를 찾고, 살짝 기울어진 모양 세모 2개를 더 찾습니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1382" },
+                { id: 32, text: "거울에 비쳐서 잘못된 디지털 숫자 모양을 보고 원래 올바른 수 맞히기", ans: "94", tTip: "거울에 비치면 좌우가 바뀌어서 '2'가 '5'로 보인다는 사실을 거꾸로 돌려 알아냅니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1987" },
+                { id: 38, text: "10명이 둥글게 앉았을 때, 오른쪽으로 2칸 간 후 마주 보는 사람 찾기", ans: "3번째 인물", tTip: "기준점에서 오른쪽 2칸 이동한 뒤, 원의 중심을 가로지르는 선을 그어 마주 보는 사람을 찾아요.", video: "https://youtu.be/8l-YgY8LZzk?t=2394" }
+            ]
+        },
+        {
+            categoryTitle: "수와 연산 및 논리",
+            items: [
+                { id: 22, text: "잘못된 뺄셈식에서 숫자 2개 자리를 바꿔서 올바른 식 만들기", ans: "38-16=22", tTip: "양쪽의 차이가 얼마나 나는지 확인한 후, 그 차이를 줄일 수 있는 숫자를 맞바꿉니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1572" },
+                { id: 21, text: "4가지 힌트를 만족하는 네 자리 자물쇠 비밀번호 풀기", ans: "3845", tTip: "천의 자리에 3 고정, '3700보다 크다' 힌트로 백의 자리 8 결정 후 나머지를 맞춥니다.", video: "https://youtu.be/8l-YgY8LZzk?t=1532" },
+                { id: 34, text: "숫자 카드로 두 자리 수 뺄셈 결과가 가장 작게 나오도록 배치하기", ans: "6", tTip: "십의 자리를 1차이 나게(3, 4) 두고, 일의 자리는 앞을 작게 해서 받아내림을 만듭니다.", video: "https://youtu.be/8l-YgY8LZzk?t=2147" },
+                { id: 54, text: "패턴 규칙에서 40번째까지 홀수 개수 찾기", ans: "27개", tTip: "홀-홀-짝 3개씩 묶여 반복되는 패턴을 찾아 40번째까지의 개수를 계산합니다.", video: "https://youtu.be/8l-YgY8LZzk?t=3643" }
+            ]
+        }
+    ];
+
+    function checkAuth() {
+        const code = document.getElementById('authCode').value;
+        const errorMsg = document.getElementById('error-msg');
+        if (code.startsWith('777200')) {
+            errorMsg.style.display = 'none';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('content-page').style.display = 'block';
+            renderAnswers();
+        } else {
+            errorMsg.style.display = 'block';
+        }
+    }
+
+    function renderAnswers() {
+        const list = document.getElementById('answer-list');
+        let html = '';
+        data.forEach(cat => {
+            html += `<div class="category-title">${cat.categoryTitle}</div>`;
+            cat.items.forEach(item => {
+                html += `
+                <div class="answer-item">
+                    <div class="q-header">
+                        <div class="q-num">${item.id}</div>
+                        <div class="q-text">${item.text}</div>
+                    </div>
+                    <div class="q-ans">정답: ${item.ans}</div>
+                    <div class="q-details">
+                        <strong>👨‍🏫 선생님 해설:</strong>
+                        ${item.tTip}
+                    </div>
+                    <a href="${item.video}" target="_blank" class="btn-video-small">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        해설 영상 보기
+                    </a>
+                </div>`;
+            });
+        });
+        list.innerHTML = html;
+    }
+
+    document.getElementById('authCode').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') { checkAuth(); }
+    });
+</script>
+</body>
+</html>
