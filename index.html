@@ -36,7 +36,6 @@
             user-select: text;
         }
 
-        /* --- Login Page --- */
         #login-page {
             height: 100vh;
             display: flex;
@@ -74,7 +73,6 @@
         }
         .input-group input:focus { border-color: var(--gold); }
         
-        /* Error Message Box */
         #error-msg {
             display: none;
             color: var(--red);
@@ -97,7 +95,6 @@
         }
         .btn-login:hover { background: #1a2e44; }
 
-        /* --- Main Content --- */
         #content-page { display: none; max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
         header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid var(--navy); padding-bottom: 20px; }
@@ -129,7 +126,7 @@
             padding: 10px 20px;
             border-left: 5px solid var(--gold);
             font-weight: 700;
-            margin: 30px 0 15px 0;
+            margin: 0 0 15px 0;
             color: var(--navy);
         }
 
@@ -145,8 +142,9 @@
         .q-num {
             background: var(--navy);
             color: var(--gold);
-            width: 28px;
+            min-width: 38px;
             height: 28px;
+            padding: 0 8px;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -155,14 +153,16 @@
             font-size: 0.85rem;
             flex-shrink: 0;
         }
+        .q-text-wrap { display: flex; flex-direction: column; gap: 3px; }
         .q-text { font-weight: 600; font-size: 1rem; color: var(--navy); }
-        .q-ans { font-weight: 700; color: var(--red); font-size: 1.05rem; margin-left: 38px; padding: 5px 12px; background: #fff5f5; border-radius: 4px; display: inline-block; width: fit-content; }
+        .q-meta { font-size: 0.78rem; color: #6b7280; font-weight: 500; }
+        .q-ans { font-weight: 700; color: var(--red); font-size: 1.05rem; margin-left: 48px; padding: 5px 12px; background: #fff5f5; border-radius: 4px; display: inline-block; width: fit-content; }
         
-        .q-details { margin-left: 38px; font-size: 0.9rem; color: #4b5563; background: #f9fafb; padding: 15px; border-radius: 8px; border-left: 3px solid #d1d5db; }
+        .q-details { margin-left: 48px; font-size: 0.9rem; color: #4b5563; background: #f9fafb; padding: 15px; border-radius: 8px; border-left: 3px solid #d1d5db; }
         .q-details strong { color: var(--navy); display: block; margin-bottom: 4px; }
         
         .btn-video-small {
-            margin-left: 38px;
+            margin-left: 48px;
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -298,15 +298,20 @@
 
     function renderAnswers() {
         const list = document.getElementById('answer-list');
-        let html = '';
-        data.forEach(cat => {
-            html += `<div class="category-title">${cat.categoryTitle}</div>`;
-            cat.items.forEach(item => {
-                html += `
+        const allItems = data
+            .flatMap(cat => cat.items.map(item => ({ ...item, categoryTitle: cat.categoryTitle })))
+            .sort((a, b) => a.id - b.id);
+
+        let html = '<div class="category-title">문항 번호순 답안</div>';
+        allItems.forEach(item => {
+            html += `
                 <div class="answer-item">
                     <div class="q-header">
-                        <div class="q-num">${item.id}</div>
-                        <div class="q-text">${item.text}</div>
+                        <div class="q-num">${item.id}번</div>
+                        <div class="q-text-wrap">
+                            <div class="q-text">${item.text}</div>
+                            <div class="q-meta">${item.categoryTitle}</div>
+                        </div>
                     </div>
                     <div class="q-ans">정답: ${item.ans}</div>
                     <div class="q-details">
@@ -318,7 +323,6 @@
                         해설 영상 보기
                     </a>
                 </div>`;
-            });
         });
         list.innerHTML = html;
     }
