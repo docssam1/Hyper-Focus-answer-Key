@@ -1,0 +1,87 @@
+name: Render Premier Hyper Focus Book Pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/render-premier-book-pages.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  render-book-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pymupdf pillow requests
+
+      - name: Download source PDF from Google Drive
+        run: |
+          python - <<'PY'
+          import requests
+          file_id = "1uC-GzImbSwbYKIOtwmvmnrrBGDv2JkIx"
+          url = f"https://drive.google.com/uc?export=download&id={file_id}"
+          session = requests.Session()
+          response = session.get(url, stream=True)
+          response.raise_for_status()
+          # Handle Google Drive confirm token if needed
+          token = None
+          for key, value in response.cookies.items():
+              if key.startswith("download_warning"):
+                  token = value
+                  break
+          if token:
+              response = session.get(url + f"&confirm={token}", stream=True)
+              response.raise_for_status()
+          with open("premier_hyper_focus.pdf", "wb") as f:
+              for chunk in response.iter_content(1024 * 1024):
+                  if chunk:
+                      f.write(chunk)
+          print("Downloaded premier_hyper_focus.pdf")
+          PY
+
+      - name: Render PDF pages to JPG
+        run: |
+          python - <<'PY'
+          import os
+          import fitz
+          from PIL import Image
+
+          pdf_path = "premier_hyper_focus.pdf"
+          out_dir = "premier-hyper-focus/assets/book"
+          os.makedirs(out_dir, exist_ok=True)
+
+          doc = fitz.open(pdf_path)
+          for idx, page in enumerate(doc, start=1):
+              pix = page.get_pixmap(matrix=fitz.Matrix(1.6, 1.6), alpha=False)
+              img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+              out_path = os.path.join(out_dir, f"page-{idx:02d}.jpg")
+              img.save(out_path, "JPEG", quality=78, optimize=True, progressive=True)
+              print(idx, img.size, out_path)
+
+          if doc.page_count != 29:
+              raise SystemExit(f"Expected 29 pages, got {doc.page_count}")
+          PY
+
+      - name: Commit rendered pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add premier-hyper-focus/assets/book/page-*.jpg
+          if git diff --cached --quiet; then
+            echo "No rendered page changes."
+          else
+            git commit -m "Render premier hyper focus book pages [skip ci]"
+            git push
+          fi
