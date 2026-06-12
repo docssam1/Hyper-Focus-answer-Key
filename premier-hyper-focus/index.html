@@ -1,1 +1,113 @@
-PLACEHOLDER_TOO_LARGE_WILL_BE_REPLACED
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지필드 영재교육 — 프리미어 하이퍼 포커스 교재 인쇄</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    :root{--navy:#0d1b2a;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#faf8f3;--red:#c0392b;--text:#2c2c2c;}
+    *{box-sizing:border-box;margin:0;padding:0} body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+    #loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 50%,#1a2e44 0%,var(--navy) 100%);padding:40px 20px;}
+    .login-card{width:100%;max-width:460px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.25);border-radius:18px;padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.25);backdrop-filter:blur(8px)}
+    .brand{text-align:center;color:var(--gold-light);font-size:.78rem;letter-spacing:.2em;font-weight:700;margin-bottom:12px}.login-card h1{text-align:center;color:#fff;font-family:'Noto Serif KR',serif;font-size:1.55rem;line-height:1.45;margin-bottom:12px}.login-card p{color:rgba(255,255,255,.66);font-size:.9rem;line-height:1.7;text-align:center;margin-bottom:26px}.input-group{margin-bottom:16px}.input-group label{display:block;color:rgba(255,255,255,.55);font-size:.78rem;font-weight:600;margin-bottom:7px}.input-group input{width:100%;padding:14px 15px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;font-size:.95rem;outline:none}.input-group input:focus{border-color:var(--gold);background:rgba(255,255,255,.13)}.btn-primary{width:100%;border:0;border-radius:9px;background:var(--gold);color:var(--navy);padding:15px;font-size:1rem;font-weight:800;cursor:pointer;margin-top:8px}.btn-primary:hover{background:var(--gold-light)}
+    #mainPage{display:none;min-height:100vh}.header{background:var(--navy);color:white;text-align:center;padding:36px 20px}.header .tag{display:inline-block;color:var(--gold);border:1px solid var(--gold);font-size:.75rem;letter-spacing:.16em;padding:4px 14px;margin-bottom:12px}.header h1{font-family:'Noto Serif KR',serif;font-size:1.8rem;margin-bottom:10px}.header #studentInfo{font-size:.9rem;color:rgba(255,255,255,.66)}.body{max-width:900px;margin:0 auto;padding:36px 20px 80px}.notice{background:white;border:1px solid rgba(201,168,76,.28);border-radius:14px;padding:22px;line-height:1.8;margin-bottom:22px;box-shadow:0 8px 24px rgba(13,27,42,.08)}.notice strong{color:var(--red)}.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:24px 0}.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;padding:13px 18px;font-weight:800;font-size:.92rem;cursor:pointer;text-decoration:none}.btn-book{background:var(--navy);color:white}.btn-book:hover{background:#1a2e44}.btn-drive{background:white;color:var(--navy);border:2px solid var(--navy)}.btn-kakao{background:#FEE500;color:#3C1E1E}.viewer-box{background:#fff;border:1px solid #eee;border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(13,27,42,.08)}.viewer-box iframe{width:100%;height:72vh;border:1px solid #ddd;border-radius:10px;background:#fff}.small{font-size:.84rem;color:#6b7280;line-height:1.7;margin-top:12px;text-align:center}
+    #printStatus{display:none;position:fixed;inset:0;z-index:9999;background:rgba(13,27,42,.86);color:#fff;align-items:center;justify-content:center;text-align:center;padding:24px;line-height:1.85}#printStatus.active{display:flex}.spinner{width:34px;height:34px;border-radius:50%;border:4px solid rgba(255,255,255,.28);border-top-color:var(--gold);margin:0 auto 14px;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    #bookPrintArea{display:none}.book-page{position:relative;width:210mm;min-height:297mm;background:#fff;page-break-after:always;break-after:page;margin:0 auto;display:flex;align-items:center;justify-content:center;overflow:hidden}.book-page canvas{width:210mm!important;height:auto!important;display:block}.book-watermark{position:absolute;left:50%;top:50%;width:150mm;transform:translate(-50%,-50%) rotate(-32deg);text-align:center;font-family:'Noto Sans KR',sans-serif;font-size:18pt;font-weight:800;line-height:1.45;letter-spacing:.03em;color:rgba(70,70,70,.075)!important;pointer-events:none;z-index:5;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.book-cover{page-break-after:always;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:2px solid #111;padding:40px;background:#fff}.book-cover .brand2{letter-spacing:2px;font-weight:800;color:var(--navy);margin-bottom:18px}.book-cover h2{font-family:'Noto Serif KR',serif;font-size:2rem;line-height:1.45;margin-bottom:28px}.book-cover .meta{font-size:1.05rem;line-height:1.8}
+    @media print{body{background:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body.book-print-mode #loginPage,body.book-print-mode #mainPage,body.book-print-mode #printStatus{display:none!important}body.book-print-mode #bookPrintArea{display:block!important;background:white!important}@page{size:A4;margin:0}}
+  </style>
+</head>
+<body>
+  <section id="loginPage">
+    <div class="login-card">
+      <div class="brand">G-FIELD GIFTED EDUCATION</div>
+      <h1>프리미어 하이퍼 포커스<br>교재 인쇄 페이지</h1>
+      <p>학생 이름과 승인번호를 입력하면 교재 보기 및 워터마크 인쇄 기능을 사용할 수 있습니다.</p>
+      <div class="input-group"><label>학생 이름</label><input id="studentName" type="text" placeholder="이름을 입력하세요"></div>
+      <div class="input-group"><label>학부모 연락처</label><input id="parentPhone" type="tel" placeholder="010-0000-0000"></div>
+      <div class="input-group"><label>승인 번호</label><input id="authCode" type="password" placeholder="승인번호를 입력하세요"></div>
+      <button class="btn-primary" onclick="checkAuth()">입장하기 →</button>
+    </div>
+  </section>
+
+  <section id="mainPage">
+    <div class="header">
+      <div class="tag">지필드 영재교육</div>
+      <h1>프리미어 하이퍼 포커스 기출 유형 점검</h1>
+      <div id="studentInfo"></div>
+    </div>
+    <div class="body">
+      <div class="notice">
+        <strong>교재 인쇄하기</strong>를 누르면 PDF 각 페이지를 인쇄용으로 렌더링하고, 입력한 학생 이름과 승인번호가 중앙 대각선 워터마크로 연하게 들어갑니다. 문제를 가리지 않도록 워터마크 농도는 낮게 설정했습니다.
+      </div>
+      <div class="actions">
+        <button class="btn btn-book" onclick="printBookPdf()">📘 교재 인쇄하기</button>
+        <a class="btn btn-drive" href="https://drive.google.com/file/d/1uC-GzImbSwbYKIOtwmvmnrrBGDv2JkIx/view" target="_blank">원본 PDF 열기</a>
+        <a class="btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank">💬 지필드 상담</a>
+      </div>
+      <div class="viewer-box">
+        <iframe src="https://drive.google.com/file/d/1uC-GzImbSwbYKIOtwmvmnrrBGDv2JkIx/preview"></iframe>
+        <div class="small">미리보기는 구글드라이브 PDF 뷰어입니다. 워터마크 인쇄는 위의 <b>교재 인쇄하기</b> 버튼을 사용하세요.</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="printStatus"><div><div class="spinner"></div><strong>교재 인쇄본을 준비하고 있습니다.</strong><br><span id="printStatusText">PDF 페이지를 불러오는 중입니다.</span></div></div>
+  <div id="bookPrintArea" aria-hidden="true"></div>
+
+  <script>
+    const PDF_URL = 'https://drive.google.com/uc?export=download&id=1uC-GzImbSwbYKIOtwmvmnrrBGDv2JkIx';
+    const PDF_NAME = '프리미어 하이퍼 포커스 기출 유형 점검.pdf';
+    function escapeHTML(value){return String(value ?? '').replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));}
+    function checkAuth(){
+      const name=document.getElementById('studentName').value.trim();
+      const phone=document.getElementById('parentPhone').value.trim();
+      const code=document.getElementById('authCode').value.trim();
+      if(!name||!phone){alert('이름과 연락처를 모두 입력해 주세요.');return;}
+      if(!code.includes('777200')){alert('승인번호가 올바르지 않습니다.');return;}
+      document.getElementById('loginPage').style.display='none';
+      document.getElementById('mainPage').style.display='block';
+      document.getElementById('studentInfo').textContent=`학생: ${name}  |  연락처: ${phone}`;
+      window.scrollTo(0,0);
+    }
+    async function printBookPdf(){
+      const name=document.getElementById('studentName').value.trim()||'학생';
+      const phone=document.getElementById('parentPhone').value.trim()||'';
+      const code=document.getElementById('authCode').value.trim()||'승인번호 미입력';
+      const watermarkText=`${name} · ${code}`;
+      const area=document.getElementById('bookPrintArea');
+      const status=document.getElementById('printStatus');
+      const statusText=document.getElementById('printStatusText');
+      area.innerHTML=`<section class="book-cover"><div class="brand2">G-FIELD GIFTED EDUCATION</div><h2>프리미어 하이퍼 포커스<br>기출 유형 점검 교재</h2><div class="meta"><div><strong>${escapeHTML(name)}</strong> 학생</div><div>승인번호: <strong>${escapeHTML(code)}</strong></div>${phone?`<div>연락처: ${escapeHTML(phone)}</div>`:''}<div>${escapeHTML(PDF_NAME)}</div></div></section>`;
+      try{
+        status.classList.add('active');
+        statusText.textContent='PDF 데이터를 읽고 있습니다.';
+        if(!window.pdfjsLib) throw new Error('PDF 렌더링 라이브러리를 불러오지 못했습니다.');
+        pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        const pdf=await pdfjsLib.getDocument({url:PDF_URL,disableRange:true,disableStream:true}).promise;
+        for(let pageNum=1;pageNum<=pdf.numPages;pageNum++){
+          statusText.textContent=`${pdf.numPages}쪽 중 ${pageNum}쪽을 인쇄용으로 준비하고 있습니다.`;
+          const page=await pdf.getPage(pageNum);
+          const viewport=page.getViewport({scale:2.0});
+          const wrap=document.createElement('section');wrap.className='book-page';
+          const canvas=document.createElement('canvas');
+          canvas.width=Math.floor(viewport.width);canvas.height=Math.floor(viewport.height);
+          const wm=document.createElement('div');wm.className='book-watermark';wm.textContent=watermarkText;
+          wrap.appendChild(canvas);wrap.appendChild(wm);area.appendChild(wrap);
+          await page.render({canvasContext:canvas.getContext('2d',{alpha:false}),viewport}).promise;
+        }
+        status.classList.remove('active');
+        document.body.classList.add('book-print-mode');
+        setTimeout(()=>window.print(),250);
+        setTimeout(()=>document.body.classList.remove('book-print-mode'),1400);
+      }catch(err){
+        status.classList.remove('active');
+        alert('교재 인쇄 준비 중 문제가 발생했습니다. 구글드라이브 PDF 접근이 브라우저에서 차단될 수 있습니다. 원본 PDF를 GitHub 저장소에 직접 올리면 100% 안정형으로 바꿀 수 있습니다.\n\n오류: '+err.message);
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
