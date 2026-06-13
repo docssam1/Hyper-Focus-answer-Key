@@ -18,9 +18,9 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 <style id="premier-phase1-css">
 #G_FIELD_PAGE_READY_MARKER{display:none}
 #gfieldIntro .intro-scene{transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1),filter .82s ease!important;filter:blur(5px)}
-#gfieldIntroScene3 .type-tunnel{display:block!important;opacity:.72!important;z-index:1!important}
-#gfieldIntroScene3 .type-line{display:block!important;opacity:.50!important;font-size:clamp(13px,1.6vw,22px)!important}
-#gfieldIntroScene3:before{content:"";position:absolute;left:20%;right:20%;top:27%;bottom:27%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.88),rgba(2,5,11,.60) 55%,transparent 80%);pointer-events:none}
+#gfieldIntroScene3 .type-tunnel{display:block!important;opacity:.9!important;z-index:1!important}
+#gfieldIntroScene3 .type-line{display:block!important;opacity:.68!important;font-size:clamp(14px,1.75vw,24px)!important;filter:blur(.1px)!important;text-shadow:0 0 10px rgba(232,201,122,.25)!important}
+#gfieldIntroScene3:before{content:"";position:absolute;left:25%;right:25%;top:31%;bottom:31%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.74),rgba(2,5,11,.38) 58%,transparent 82%);pointer-events:none}
 #gfieldIntroScene3>div:not(.type-tunnel){position:relative;z-index:3}.btn-action-dark{background:#0d1b2a!important;color:#fff!important;border:2px solid #0d1b2a!important}.quick-download-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.quick-download-actions button{width:100%;padding:13px 12px;border-radius:8px;font-weight:800;font-family:'Noto Sans KR',sans-serif;cursor:pointer}.quick-download-actions .dark{background:#000;color:#fff;border:1px solid #000}.quick-download-actions .light{background:#fff;color:#0d1b2a;border:1px solid rgba(201,168,76,.55)}
 </style>`;
   const PATCH_JS=`
@@ -33,8 +33,12 @@ function replaceIntroWording(){
     }
   });
 }
+function forceCountdownThree(){
+  const cd=document.querySelector('#gfieldIntroCountdown');
+  if(cd && !cd.dataset.countThree){cd.dataset.countThree='1';cd.textContent='3';}
+}
 function readyPatch(){
-  replaceIntroWording();
+  replaceIntroWording();forceCountdownThree();
   var logo=document.querySelector('#gfieldIntro .intro-logo');if(logo){logo.src='${LOGO_URL}';}
   var login=document.querySelector('.login-card');if(login&&!login.querySelector('.quick-download-actions')){login.insertAdjacentHTML('beforeend','<div class="quick-download-actions"><button class="dark" type="button">📘 교재 다운로드</button><button class="light" type="button">🧾 전체 답안 다운로드</button></div>');}
   document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark">📘 교재 다운로드</button><button class="btn-action btn-action-outline">🧾 전체 답안 다운로드</button><button class="btn-action btn-action-outline">📊 종합 진단 결과 분석</button>';});
@@ -51,9 +55,10 @@ setInterval(readyPatch,500);readyPatch();
   html=html.replace('transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1),filter 1s ease;','transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1),filter .82s ease;');
   html=html.replace(/filter:blur\(10px\);/g,'filter:blur(5px);');
   html=html.replace(/animation:introSuck 3\.2s linear infinite;/g,'animation:introSuck 3s linear infinite;');
+  html=html.replace(/let c=5;/g,'let c=3;');
   html=html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,'const scenes=[\'gfieldIntroScene0\',\'gfieldIntroScene1\',\'gfieldIntroScene2\',\'gfieldIntroScene3\',\'gfieldIntroScene4\',\'gfieldIntroScene5\'],times=[0,2400,6500,8800,11000,13200]');
   html=html.replace(/\},900\);/g,'},850);');
-  html=html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,'setTimeout(()=>window.gfieldIntroGoDiagnosis(),17500)');
+  html=html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,'setTimeout(()=>window.gfieldIntroGoDiagnosis(),16500)');
   html=html.replace('</head>',PATCH_CSS+'</head>');
   html=html.replace('</body>',PATCH_JS+'<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();document.write(html);document.close();
