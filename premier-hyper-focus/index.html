@@ -3,55 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지필드 영재교육 — 프리미어 합격 진단 리포트</title>
+<title>지필드 영재교육 - 프리미어 합격 진단 리포트</title>
 <style>
-html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#02050b}.spin{width:28px;height:28px;border:2px solid rgba(255,255,255,.12);border-top-color:rgba(212,175,55,.7);border-radius:50%;animation:s .8s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
+html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:#02050b}
+.spin{width:28px;height:28px;border:2px solid rgba(255,255,255,.12);border-top-color:rgba(212,175,55,.7);border-radius:50%;animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div id="boot"><div class="spin"></div></div>
 <script>
 (async function(){
-  const BASE_URL='https://raw.githubusercontent.com/docssam1/Hyper-Focus-answer-Key/ebcbacd3ef208a8ba2de36babc35a3858e08e23d/premier-hyper-focus/index.html';
-  const LOGO_URL='https://lh3.googleusercontent.com/d/1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL';
-  const SCOREBOARD_DATA="const recordData={left:[{title:'생각하는 황소 경시합격',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'대치 소마 프리미어',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'대치 필즈 더 클래식 TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'영재원 & 성대경시',years:[['교육청 영재원',89],['대학부설 영재원',78],['성대경시 대상',13]],total:180}],grand:400};";
-  const PATCH_CSS=`
+  const BASE_URL = "https://raw.githubusercontent.com/docssam1/Hyper-Focus-answer-Key/ebcbacd3ef208a8ba2de36babc35a3858e08e23d/premier-hyper-focus/index.html";
+  const LOGO_URL = "https://lh3.googleusercontent.com/d/1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL";
+  const SCOREBOARD_DATA = "const recordData={left:[{title:'생각하는 황소 경시합격',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'대치 소마 프리미어',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'대치 필즈 더 클래식 TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'영재원 & 성대경시',years:[['교육청 영재원',89],['대학부설 영재원',78],['성대경시 대상',13]],total:180}],grand:400};";
+  const PATCH_CSS = `
 <style id="premier-phase1-css">
 #G_FIELD_PAGE_READY_MARKER{display:none}
 #gfieldIntro .intro-scene{transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1),filter .82s ease!important;filter:blur(5px)}
-#gfieldIntro .records{width:min(1180px,94vw)!important;display:grid!important;grid-template-columns:1fr minmax(150px,210px) 1fr!important;gap:12px!important;align-items:center!important}#gfieldIntro .stack{display:flex!important;flex-direction:column!important;gap:9px!important}#gfieldIntro .record{padding:9px 11px!important;border-radius:14px!important;min-height:0!important}#gfieldIntro .recordTitle{margin-bottom:5px!important;font-size:clamp(12px,1.25vw,15px)!important;line-height:1.2!important}#gfieldIntro .recordTitle small{font-size:9px!important}#gfieldIntro .year{display:grid!important;grid-template-columns:minmax(54px,74px) 1fr 34px!important;gap:7px!important;align-items:center!important;margin:3px 0!important;min-height:18px!important;font-size:clamp(10px,1.05vw,13px)!important;line-height:1.1!important}#gfieldIntro .year span:first-child{white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important}#gfieldIntro .bar{height:8px!important;border-radius:999px!important;overflow:hidden!important}#gfieldIntro .ynum{font-size:clamp(10px,1.05vw,13px)!important;text-align:right!important}#gfieldIntro .total{margin-top:5px!important;padding-top:5px!important;font-size:clamp(12px,1.2vw,15px)!important}#gfieldIntro .grand{padding:14px 10px!important;border-radius:18px!important}#gfieldIntro .glabel{font-size:11px!important}#gfieldIntro .gnum{font-size:clamp(74px,9.5vw,124px)!important}#gfieldIntro .gunit{font-size:22px!important}#gfieldIntro .gnote{font-size:10px!important;margin-top:7px!important}
-#gfieldIntro .type-tunnel{display:block!important;position:absolute;inset:0;perspective:760px;overflow:hidden;opacity:.95;z-index:1!important}#gfieldIntro .type-line{position:absolute;left:50%;top:50%;white-space:nowrap;color:rgba(248,221,131,.72);font-weight:900;letter-spacing:-.04em;font-size:clamp(15px,3.2vw,32px);text-shadow:0 10px 28px rgba(0,0,0,.6);animation:introSuck 3s linear infinite;opacity:.66;filter:blur(.35px)}#gfieldIntro .type-line:nth-child(2n){color:rgba(255,255,255,.62);opacity:.56}#gfieldIntro .type-line:nth-child(3n){color:rgba(248,221,131,.55);opacity:.46;filter:blur(1px)}@keyframes introSuck{0%{transform:translate3d(var(--x),var(--y),220px) rotateX(62deg) rotateZ(var(--r)) scale(1.2);opacity:0}12%{opacity:.78}60%{opacity:.42}100%{transform:translate3d(-50%,-50%,-520px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.05);opacity:0;filter:blur(6px)}}#gfieldIntroScene3:before{content:"";position:absolute;left:25%;right:25%;top:31%;bottom:31%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.74),rgba(2,5,11,.38) 58%,transparent 82%);pointer-events:none}#gfieldIntroScene3>div:not(.type-tunnel){position:relative;z-index:3}
-.pre-login-brief{max-width:920px;margin:28px auto;padding:28px;border:1px solid rgba(212,175,55,.38);border-radius:22px;background:linear-gradient(135deg,rgba(4,12,24,.96),rgba(10,20,38,.92));box-shadow:0 18px 55px rgba(0,0,0,.28);color:#fff}.pre-login-brief .eyebrow{color:#d4af37;font-weight:900;letter-spacing:.12em;font-size:13px;margin-bottom:10px}.pre-login-brief h2{font-size:clamp(26px,4vw,44px);line-height:1.13;margin:0 0 12px;letter-spacing:-.06em}.pre-login-brief p{color:#cbd5e1;line-height:1.7;margin:8px 0}.pre-login-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.pre-login-grid div{border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:15px;background:rgba(255,255,255,.045)}.pre-login-grid b{display:block;color:#f8dd83;margin-bottom:7px}.pre-login-start{width:100%;margin-top:12px;border:0;border-radius:14px;padding:17px 18px;background:linear-gradient(135deg,#d4af37,#f8dd83);color:#111;font-size:18px;font-weight:900;cursor:pointer}.prelogin-locked{display:none!important}.action-btns .download-book-btn{background:#020b14!important;color:#fff!important;border:2px solid #d4af37!important}.action-btns .download-answer-btn{background:#020b14!important;color:#fff!important;border:2px solid #d4af37!important}.login-card .quick-download-actions{display:none!important}@media(max-width:760px){#gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}#gfieldIntro .grand{order:-1}#gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}.pre-login-grid{grid-template-columns:1fr}.pre-login-brief{margin:18px 12px;padding:22px}}
+#gfieldIntro .records{width:min(1180px,94vw)!important;display:grid!important;grid-template-columns:1fr minmax(150px,210px) 1fr!important;gap:12px!important;align-items:center!important}
+#gfieldIntro .stack{display:flex!important;flex-direction:column!important;gap:9px!important}
+#gfieldIntro .record{padding:9px 11px!important;border-radius:14px!important;min-height:0!important}
+#gfieldIntro .recordTitle{margin-bottom:5px!important;font-size:clamp(12px,1.25vw,15px)!important;line-height:1.2!important}
+#gfieldIntro .recordTitle small{font-size:9px!important}
+#gfieldIntro .year{display:grid!important;grid-template-columns:minmax(54px,74px) 1fr 34px!important;gap:7px!important;align-items:center!important;margin:3px 0!important;min-height:18px!important;font-size:clamp(10px,1.05vw,13px)!important;line-height:1.1!important}
+#gfieldIntro .year span:first-child{white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important}
+#gfieldIntro .bar{height:8px!important;border-radius:999px!important;overflow:hidden!important}
+#gfieldIntro .ynum{font-size:clamp(10px,1.05vw,13px)!important;text-align:right!important}
+#gfieldIntro .total{margin-top:5px!important;padding-top:5px!important;font-size:clamp(12px,1.2vw,15px)!important}
+#gfieldIntro .grand{padding:14px 10px!important;border-radius:18px!important}
+#gfieldIntro .glabel{font-size:11px!important}
+#gfieldIntro .gnum{font-size:clamp(74px,9.5vw,124px)!important}
+#gfieldIntro .gunit{font-size:22px!important}
+#gfieldIntro .gnote{font-size:10px!important;margin-top:7px!important}
+#gfieldIntro .type-tunnel{display:block!important;position:absolute;inset:0;perspective:760px;overflow:hidden;opacity:.95;z-index:1!important}
+#gfieldIntro .type-line{position:absolute;left:50%;top:50%;white-space:nowrap;color:rgba(248,221,131,.72);font-weight:900;letter-spacing:-.04em;font-size:clamp(15px,3.2vw,32px);text-shadow:0 10px 28px rgba(0,0,0,.6);animation:introSuck 3s linear infinite;opacity:.66;filter:blur(.35px)}
+#gfieldIntro .type-line:nth-child(2n){color:rgba(255,255,255,.62);opacity:.56}
+#gfieldIntro .type-line:nth-child(3n){color:rgba(248,221,131,.55);opacity:.46;filter:blur(1px)}
+@keyframes introSuck{0%{transform:translate3d(var(--x),var(--y),220px) rotateX(62deg) rotateZ(var(--r)) scale(1.2);opacity:0}12%{opacity:.78}60%{opacity:.42}100%{transform:translate3d(-50%,-50%,-520px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.05);opacity:0;filter:blur(6px)}}
+#gfieldIntroScene3:before{content:"";position:absolute;left:25%;right:25%;top:31%;bottom:31%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.74),rgba(2,5,11,.38) 58%,transparent 82%);pointer-events:none}
+#gfieldIntroScene3>div:not(.type-tunnel){position:relative;z-index:3}
+.pre-login-brief{max-width:920px;margin:28px auto;padding:28px;border:1px solid rgba(212,175,55,.38);border-radius:22px;background:linear-gradient(135deg,rgba(4,12,24,.96),rgba(10,20,38,.92));box-shadow:0 18px 55px rgba(0,0,0,.28);color:#fff}
+.pre-login-brief .eyebrow{color:#d4af37;font-weight:900;letter-spacing:.12em;font-size:13px;margin-bottom:10px}
+.pre-login-brief h2{font-size:clamp(26px,4vw,44px);line-height:1.13;margin:0 0 12px;letter-spacing:-.06em}
+.pre-login-brief p{color:#cbd5e1;line-height:1.7;margin:8px 0}
+.pre-login-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.pre-login-grid div{border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:15px;background:rgba(255,255,255,.045)}
+.pre-login-grid b{display:block;color:#f8dd83;margin-bottom:7px}
+.pre-login-start{width:100%;margin-top:12px;border:0;border-radius:14px;padding:17px 18px;background:linear-gradient(135deg,#d4af37,#f8dd83);color:#111;font-size:18px;font-weight:900;cursor:pointer}
+.prelogin-locked{display:none!important}
+.action-btns .download-book-btn,.action-btns .download-answer-btn,.action-btns .download-report-btn{background:#020b14!important;color:#fff!important;border:2px solid #d4af37!important}
+.btn-action-dark{background:#0d1b2a!important;color:#fff!important;border:2px solid #c9a84c!important}
+.btn-action-dark:hover{background:#c9a84c!important;color:#0d1b2a!important}
+.pdf-export-root{position:fixed;left:-99999px;top:0;width:794px;background:#fff;z-index:-1}
+.pdf-sheet{position:relative;background:#fff;color:#111;overflow:hidden}
+.pdf-sheet.report-sheet{padding:24px 22px 26px}
+.pdf-watermark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-28deg);transform-origin:center;opacity:.035;color:#8f959d;font-weight:800;letter-spacing:.08em;white-space:nowrap;pointer-events:none;user-select:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.pdf-sheet .pdf-watermark{font-size:42px}
+.pdf-sheet .export-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:16px;margin-bottom:16px;break-inside:avoid;page-break-inside:avoid}
+.pdf-sheet .export-card h3{margin:0 0 10px;font-size:18px;color:#0d1b2a}
+.pdf-sheet .export-card p,.pdf-sheet .export-card li{font-size:13px;line-height:1.7;color:#1f2937}
+.pdf-sheet .export-card ul{margin:0;padding-left:18px}
+.pdf-sheet .export-header{margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #0d1b2a}
+.pdf-sheet .export-header h1{margin:0 0 6px;font-size:28px;color:#0d1b2a}
+.pdf-sheet .export-header p{margin:0;font-size:13px;color:#475569}
+.pdf-report-clone{width:100%;background:#fff}
+.pdf-report-clone #result-area{display:block!important;margin:0!important;border:none!important;box-shadow:none!important;border-radius:0!important}
+.pdf-report-clone .result-body{padding:18px 0 0!important}
+.pdf-report-clone .result-actions,.pdf-report-clone .res-video-btn,.pdf-report-clone .res-card-toggle,.pdf-report-clone .btn-action,.pdf-report-clone .tab-bar,.pdf-report-clone .attempt-menu,.pdf-report-clone .action-btns,.pdf-report-clone .helper-text,.pdf-report-clone .submit-area{display:none!important}
+.pdf-report-clone canvas{max-width:100%!important;height:auto!important}
+.login-card .quick-download-actions{display:none!important}
+@media(max-width:760px){
+  #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
+  #gfieldIntro .grand{order:-1}
+  #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
+  .pre-login-grid{grid-template-columns:1fr}
+  .pre-login-brief{margin:18px 12px;padding:22px}
+}
 </style>`;
-  const PATCH_JS=`
+
+  const PATCH_JS = `
 <script id="premier-phase1-js">
 (function(){
-const typeTexts=['쌓기나무와 입체도형','전개도와 주사위','색종이 접기와 펀칭','도형 개수 세기','수와 연산 퍼즐','논리표 조건 추론','최단 거리 가짓수','양팔저울 무게 비교','규칙 찾기','암호 풀기','거울과 디지털 수','달력과 시계','조건에 알맞은 수','평면도형 분할','입체도형 관찰','도형 회전','경우의 수','분수 조건','나머지 규칙','도형 겹치기','거리와 위치','쌍과 짝짓기','색칠 논리','입체 단면','수 배열','문장제 추론','숫자 카드'];
+const TYPE_TEXTS=['쌓기나무와 입체도형','전개도와 주사위','색종이 접기와 펀칭','도형 개수 세기','수와 연산 퍼즐','논리표 조건 추론','최단 거리 가짓수','양팔저울 무게 비교','규칙 찾기','암호 풀기','거울과 디지털 수','달력과 시계','조건에 알맞은 수','평면도형 분할','입체도형 관찰','도형 회전','경우의 수','분수 조건','나머지 규칙','도형 겹치기','거리와 위치','쌍과 짝짓기','색칠 논리','입체 단면','수 배열','문장제 추론','숫자 카드'];
+const BOOK_IMAGE_URLS=${JSON.stringify(Array.from({length:29},(_,i)=>`./assets/book/book_${String(i+1).padStart(3,"0")}.jpg`))};
 function replaceIntroWording(){document.querySelectorAll('#gfieldIntroScene3 *').forEach(function(el){if(el.children.length===0&&el.textContent){el.textContent=el.textContent.replace(/대표\\s*유형/g,'심화 대표 유형').replace(/빠르게\\s*점검합니다/g,'약점유형을 진단합니다')}})}
-function runTypes(){if(window.gfieldIntroTypesStarted)return;window.gfieldIntroTypesStarted=true;const box=document.getElementById('gfieldIntroTypeTunnel');if(!box)return;box.innerHTML='';for(let i=0;i<32;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];const side=i%4;let x,y;if(side===0){x=(-92-Math.random()*28)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===1){x=(68+Math.random()*38)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===2){x=(Math.random()*130-65)+'vw';y=(-68-Math.random()*18)+'vh'}else{x=(Math.random()*130-65)+'vw';y=(50+Math.random()*28)+'vh'}el.style.setProperty('--x',x);el.style.setProperty('--y',y);el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.09)+'s';box.appendChild(el)}}
-function patchActions(){document.querySelectorAll('.login-card .quick-download-actions').forEach(el=>el.remove());const top=document.querySelector('.action-btns');if(top&&!top.dataset.downloadPatched){top.dataset.downloadPatched='1';top.innerHTML='<a class="video-btn btn-youtube" href="#" onclick="return false">▶ 설명회 영상</a><a class="video-btn btn-youtube" href="#" onclick="return false">▶ 풀이 영상 전체보기</a><button class="video-btn download-book-btn" type="button" onclick="downloadBookPdf()">📘 교재 다운로드</button><button class="video-btn download-answer-btn" type="button" onclick="downloadAnswerPdf()">🧾 전체 답안 다운로드</button><a class="video-btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank">💬 유사문제/상담 신청하기</a>'}document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark" onclick="downloadBookPdf()">📘 교재 다운로드</button><button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">🧾 전체 답안 다운로드</button><button class="btn-action btn-action-outline">📊 종합 진단 결과 분석</button>'})}
+function runTypes(){if(window.gfieldIntroTypesStarted)return;window.gfieldIntroTypesStarted=true;const box=document.getElementById('gfieldIntroTypeTunnel');if(!box)return;box.innerHTML='';for(let i=0;i<32;i++){const el=document.createElement('div');el.className='type-line';el.textContent=TYPE_TEXTS[i%TYPE_TEXTS.length];const side=i%4;let x,y;if(side===0){x=(-92-Math.random()*28)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===1){x=(68+Math.random()*38)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===2){x=(Math.random()*130-65)+'vw';y=(-68-Math.random()*18)+'vh'}else{x=(Math.random()*130-65)+'vw';y=(50+Math.random()*28)+'vh'}el.style.setProperty('--x',x);el.style.setProperty('--y',y);el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.09)+'s';box.appendChild(el)}}
+function patchActions(){document.querySelectorAll('.login-card .quick-download-actions').forEach(el=>el.remove());const top=document.querySelector('.action-btns');if(top&&!top.dataset.downloadPatched){top.dataset.downloadPatched='1';top.innerHTML='<a class="video-btn btn-youtube" href="#" onclick="return false">설명회 영상</a><a class="video-btn btn-youtube" href="#" onclick="return false">풀이 영상 전체보기</a><button class="video-btn download-book-btn" type="button" onclick="downloadBookPdf()">교재 다운로드</button><button class="video-btn download-answer-btn" type="button" onclick="downloadAnswerPdf()">전체 답안 다운로드</button><button class="video-btn download-report-btn" type="button" onclick="downloadReportPdf()">종합 리포트 다운받기</button><a class="video-btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank" rel="noopener">신청/문의하기</a>'}document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark" onclick="downloadBookPdf()">교재 다운로드</button><button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">전체 답안 다운로드</button><button class="btn-action btn-action-outline" onclick="downloadReportPdf()">종합 리포트 다운받기</button>'})}
 function patchPreLogin(){const login=document.querySelector('.login-card');if(!login)return;let brief=document.getElementById('preLoginBrief');if(!brief){brief=document.createElement('section');brief.id='preLoginBrief';brief.className='pre-login-brief';brief.innerHTML='<div class="eyebrow">PREMIER HYPER FOCUS</div><h2>진단 전에, 오늘 무엇을 확인하는지 먼저 안내드립니다.</h2><p>이 검사는 소마 프리미어(대치) 대비 과정에서 자주 흔들리는 심화 대표 유형을 빠르게 점검하고, 아이의 약점 유형을 확인하기 위한 진단입니다.</p><div class="pre-login-grid"><div><b>1. 대표 유형 점검</b><span>쌓기나무, 전개도, 경우의 수, 논리 조건 등 핵심 유형을 확인합니다.</span></div><div><b>2. 약점 유형 확인</b><span>맞고 틀림보다 어떤 유형에서 시간이 걸리는지 보는 것이 중요합니다.</span></div><div><b>3. 결과 해석</b><span>진단 후 보완해야 할 유형과 학습 방향을 확인합니다.</span></div></div><p>준비가 되면 아래 버튼을 눌러 이름과 승인번호를 입력해 주세요.</p><button type="button" class="pre-login-start">진단 시작하기</button>';login.parentNode.insertBefore(brief,login);brief.querySelector('.pre-login-start').onclick=function(){sessionStorage.setItem('gfieldPreLoginBriefDone','1');brief.style.display='none';login.classList.remove('prelogin-locked');login.scrollIntoView({behavior:'smooth',block:'center'});};}if(sessionStorage.getItem('gfieldPreLoginBriefDone')==='1'){brief.style.display='none';login.classList.remove('prelogin-locked')}else{brief.style.display='block';login.classList.add('prelogin-locked')}}
-function loadScript(src){return new Promise(function(resolve,reject){if(document.querySelector('script[src="'+src+'"]'))return resolve();const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=reject;document.head.appendChild(s);})}
-function stampText(){const n=(document.getElementById('studentName')?.value||'학생').trim()||'학생';const c=(document.getElementById('authCode')?.value||'승인번호').trim()||'승인번호';return n+' · '+c}
-async function ensurePdfLib(){if(!window.html2pdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')}
-async function downloadAnswerPdf(){await ensurePdfLib();if(typeof printAllAnswers!=='function'){alert('답안 생성 함수를 찾지 못했습니다.');return}const oldPrint=window.print;window.print=function(){};printAllAnswers();window.print=oldPrint;setTimeout(async function(){const area=document.getElementById('allAnswerPrint');if(!area){alert('답안 영역을 찾지 못했습니다.');return}const opt={margin:8,filename:'프리미어_전체답안_'+stampText().replace(/[\\/:*?"<>|]/g,'_')+'.pdf',image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#ffffff'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}};await html2pdf().set(opt).from(area).save();document.body.classList.remove('answer-print-mode')},220)}
-function bookImages(){const arr=[];['BOOK_IMAGES','bookImages','bookImageUrls','BOOK_IMAGE_URLS'].forEach(k=>{if(Array.isArray(window[k]))arr.push(...window[k])});document.querySelectorAll('[data-book-src],img[data-book-page],.book-page img,#bookPages img,img[src*="book"],img[src*="교재"],a[href$=".jpg"],a[href$=".jpeg"],a[href$=".png"]').forEach(el=>{arr.push(el.dataset?.bookSrc||el.currentSrc||el.src||el.href)});return [...new Set(arr)].filter(Boolean)}
-async function imagePdf(urls){await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');const jsPDF=window.jspdf.jsPDF;const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const stamp=stampText();for(let i=0;i<urls.length;i++){if(i)pdf.addPage();await new Promise(function(resolve){const img=new Image();img.crossOrigin='anonymous';img.onload=function(){const w=210,h=297;pdf.addImage(img,'JPEG',0,0,w,h);pdf.setTextColor(80,80,80);if(pdf.setGState)pdf.setGState(new pdf.GState({opacity:.16}));pdf.setFontSize(28);pdf.text(stamp,105,285,{align:'center'});if(pdf.setGState)pdf.setGState(new pdf.GState({opacity:1}));resolve()};img.onerror=function(){resolve()};img.src=urls[i]})}pdf.save('프리미어_교재_'+stamp.replace(/[\\/:*?"<>|]/g,'_')+'.pdf')}
-async function downloadBookPdf(){const urls=bookImages();if(!urls.length){if(typeof window.printBookPdf==='function')return window.printBookPdf();alert('교재 JPG 이미지 목록을 찾지 못했습니다. 기존 교재 이미지 배열 또는 data-book-src가 필요합니다.');return}await imagePdf(urls)}
-window.downloadBookPdf=downloadBookPdf;window.downloadAnswerPdf=downloadAnswerPdf;
+function loadScript(src){return new Promise(function(resolve,reject){if(document.querySelector('script[src="'+src+'"]'))return resolve();const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=function(){reject(new Error('스크립트를 불러오지 못했습니다: '+src))};document.head.appendChild(s);})}
+async function ensureHtml2Pdf(){if(!window.html2pdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')}
+async function ensureJsPdf(){if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')}
+function sanitizeFilename(text){return String(text).replace(/[\\\\/:*?"<>|]/g,'_').replace(/\\s+/g,' ').trim()}
+function stampText(){const n=(document.getElementById('studentName')?.value||'학생이름').trim()||'학생이름';const c=(document.getElementById('authCode')?.value||'승인번호').trim()||'승인번호';return n+' · '+c}
+function ensureStudentInfo(){const name=(document.getElementById('studentName')?.value||'').trim();const code=(document.getElementById('authCode')?.value||'').trim();if(!name||!code){alert('학생 이름과 승인번호를 먼저 입력해 주세요.');return false}return true}
+function fitContain(sw,sh,tw,th){const sr=sw/sh;const tr=tw/th;return sr>tr?{width:tw,height:tw/sr}:{width:th*sr,height:th}}
+function addPdfWatermark(pdf,pageWidth,pageHeight,text){pdf.saveGraphicsState();if(pdf.setGState&&pdf.GState)pdf.setGState(new pdf.GState({opacity:.035}));pdf.setTextColor(140,145,155);pdf.setFontSize(32);pdf.text(text,pageWidth/2,pageHeight/2,{align:'center',angle:315});pdf.restoreGraphicsState()}
+function createExportRoot(){const old=document.getElementById('pdfExportRoot');if(old)old.remove();const root=document.createElement('div');root.id='pdfExportRoot';root.className='pdf-export-root';document.body.appendChild(root);return root}
+function cloneWithCanvas(node){const clone=node.cloneNode(true);const sourceCanvases=node.querySelectorAll('canvas');const targetCanvases=clone.querySelectorAll('canvas');sourceCanvases.forEach(function(sourceCanvas,index){const targetCanvas=targetCanvases[index];if(!targetCanvas)return;targetCanvas.width=sourceCanvas.width;targetCanvas.height=sourceCanvas.height;const ctx=targetCanvas.getContext('2d');if(ctx)ctx.drawImage(sourceCanvas,0,0)});return clone}
+async function exportHtmlToPdf(element,filename){await ensureHtml2Pdf();const opt={margin:[6,6,6,6],filename,image:{type:'jpeg',quality:.96},html2canvas:{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#ffffff',scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}};await html2pdf().set(opt).from(element).save();setTimeout(function(){element.remove()},50)}
+async function loadImage(src){return await new Promise(function(resolve,reject){const img=new Image();img.crossOrigin='anonymous';img.decoding='async';img.onload=function(){resolve(img)};img.onerror=function(){reject(new Error('이미지를 불러오지 못했습니다: '+src))};img.src=src})}
+async function downloadBookPdf(){if(!ensureStudentInfo())return;await ensureJsPdf();const urls=BOOK_IMAGE_URLS.slice();if(!urls.length){alert('이미지 목록을 찾지 못했습니다.');return}const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});const pageWidth=210;const pageHeight=297;const watermark=stampText();for(let i=0;i<urls.length;i++){const img=await loadImage(urls[i]);if(i>0)pdf.addPage('a4','portrait');const box=fitContain(img.naturalWidth,img.naturalHeight,pageWidth,pageHeight);const x=(pageWidth-box.width)/2;const y=(pageHeight-box.height)/2;pdf.addImage(img,'JPEG',x,y,box.width,box.height,undefined,'FAST');addPdfWatermark(pdf,pageWidth,pageHeight,watermark)}pdf.save(sanitizeFilename('프리미어_교재_'+watermark)+'.pdf')}
+async function downloadAnswerPdf(){if(!ensureStudentInfo())return;await ensureHtml2Pdf();if(typeof printAllAnswers!=='function'){alert('답안 생성 함수를 찾지 못했습니다.');return}const oldPrint=window.print;window.print=function(){};try{printAllAnswers()}finally{window.print=oldPrint}await new Promise(function(resolve){setTimeout(resolve,260)});const area=document.getElementById('allAnswerPrint');if(!area||!area.innerHTML.trim()){alert('답안 영역을 찾지 못했습니다.');return}const root=createExportRoot();const sheet=document.createElement('section');sheet.className='pdf-sheet';sheet.innerHTML='<div class="pdf-watermark"><span>'+escapeHtml(stampText())+'</span></div>'+area.innerHTML;root.appendChild(sheet);await exportHtmlToPdf(root,sanitizeFilename('프리미어_전체답안_'+stampText())+'.pdf');document.body.classList.remove('answer-print-mode')}
+async function downloadReportPdf(){if(!ensureStudentInfo())return;await ensureHtml2Pdf();const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none'){alert('진단 결과가 아직 생성되지 않았습니다.');return}const root=createExportRoot();const sheet=document.createElement('section');sheet.className='pdf-sheet report-sheet';const header=document.createElement('div');header.className='export-header';header.innerHTML='<h1>프리미어 하이퍼 포커스 종합 리포트</h1><p>'+escapeHtml(stampText())+' · 생성일 '+escapeHtml(new Date().toLocaleDateString('ko-KR'))+'</p>';sheet.appendChild(header);const summary=document.createElement('div');summary.className='export-card';summary.innerHTML='<h3>다운로드 정보</h3><ul><li>교재 이미지 경로는 <code>./assets/book/book_001.jpg</code> 형식으로 고정됩니다.</li><li>브라우저 인쇄창 대신 PDF 파일 다운로드로 저장합니다.</li><li>워터마크는 페이지 중앙 대각선, 투명도 0.035로 적용됩니다.</li></ul>';sheet.appendChild(summary);const cloneWrap=document.createElement('div');cloneWrap.className='pdf-report-clone';cloneWrap.appendChild(cloneWithCanvas(resultArea));sheet.appendChild(cloneWrap);const watermark=document.createElement('div');watermark.className='pdf-watermark';watermark.innerHTML='<span>'+escapeHtml(stampText())+'</span>';sheet.appendChild(watermark);root.appendChild(sheet);await exportHtmlToPdf(root,sanitizeFilename('프리미어_종합리포트_'+stampText())+'.pdf')}
+function escapeHtml(value){return String(value).replace(/[&<>"]/g,function(ch){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[ch]})}
+window.BOOK_IMAGE_URLS=BOOK_IMAGE_URLS;
+window.downloadBookPdf=downloadBookPdf;
+window.downloadAnswerPdf=downloadAnswerPdf;
+window.downloadReportPdf=downloadReportPdf;
 function readyPatch(){replaceIntroWording();patchActions();patchPreLogin();const logo=document.querySelector('#gfieldIntro .intro-logo');if(logo)logo.src='${LOGO_URL}';if(document.querySelector('#gfieldIntroScene3.on'))runTypes()}
 setInterval(readyPatch,350);readyPatch();
 })();
 <\/script>`;
-  let html=await fetch(BASE_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('base fetch failed '+r.status);return r.text();});
-  html=html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="'+LOGO_URL+'" alt="GFIELD">');
-  html=html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');html=html.replace(/대표\s*유형/g,'심화 대표 유형');html=html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');html=html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');html=html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
-  const rs=html.indexOf('const recordData=');const re=rs>-1?html.indexOf(';',rs):-1;if(rs>-1&&re>-1)html=html.slice(0,rs)+SCOREBOARD_DATA+html.slice(re+1);
-  html=html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,'const scenes=[\'gfieldIntroScene0\',\'gfieldIntroScene1\',\'gfieldIntroScene2\',\'gfieldIntroScene3\',\'gfieldIntroScene4\',\'gfieldIntroScene5\'],times=[0,2300,5000,7200,9600,11800]');
-  html=html.replace(/let c=5;/g,'let c=3;');html=html.replace(/let n=5;/g,'let n=3;');html=html.replace(/\},900\);/g,'},850);');html=html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,'setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)');
-  html=html.replace('</head>',PATCH_CSS+'</head>');html=html.replace('</body>',PATCH_JS+'<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
-  document.open();document.write(html);document.close();
-})().catch(err=>{document.getElementById('boot').style.display='none';document.open();document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">페이지 로딩 오류: '+err.message+'</body>');document.close();});
+
+  let html = await fetch(BASE_URL, { cache: "no-store" }).then(r => {
+    if (!r.ok) throw new Error("base fetch failed " + r.status);
+    return r.text();
+  });
+  html = html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="' + LOGO_URL + '" alt="GFIELD">');
+  html = html.replace(/대표\\s*유형을<br>빠르게\\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
+  html = html.replace(/대표\\s*유형/g,'심화 대표 유형');
+  html = html.replace(/빠르게\\s*점검합니다/g,'약점유형을 진단합니다');
+  html = html.replace(/영재\\s*클래스/g,'필즈 TOPCLASS');
+  html = html.replace(/테마\\s*프리미어/g,'소마 프리미어(대치)');
+  const rs = html.indexOf("const recordData=");
+  const re = rs > -1 ? html.indexOf(";", rs) : -1;
+  if (rs > -1 && re > -1) html = html.slice(0, rs) + SCOREBOARD_DATA + html.slice(re + 1);
+  html = html.replace(/const scenes=\\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\\],times=\\[[^\\]]+\\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
+  html = html.replace(/let c=5;/g,"let c=3;");
+  html = html.replace(/let n=5;/g,"let n=3;");
+  html = html.split("},900);").join("},850);");
+  html = html.replace(/setTimeout\\(\\(\\)=>window\\.gfieldIntroGoDiagnosis\\(\\),20300\\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
+  html = html.replace("</head>", PATCH_CSS + "</head>");
+  html = html.replace("</body>", PATCH_JS + '<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
+  document.open();
+  document.write(html);
+  document.close();
+})().catch(function(err){
+  document.getElementById('boot').style.display='none';
+  document.open();
+  document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">페이지 로딩 오류: '+err.message+'</body>');
+  document.close();
+});
 </script>
 </body>
 </html>
