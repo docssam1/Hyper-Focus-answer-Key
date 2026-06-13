@@ -1,1 +1,1223 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>프리미어 하이퍼 포커스 | 지필드 영재교육</title><style>@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');*{box-sizing:border-box}html,body{margin:0;font-family:Pretendard,sans-serif;background:#02050b;color:#fff}:root{--gold:#d4af37;--gold2:#f8dd83;--navy:#07111f}.hide{display:none!important}.gold{color:var(--gold);text-shadow:0 0 32px rgba(212,175,55,.35)}button,input{font-family:inherit}.intro{height:100dvh;min-height:100vh;position:relative;overflow:hidden;background:#02050b;display:grid;place-items:center}.bg{position:absolute;inset:0;background:radial-gradient(circle at 18% 12%,rgba(22,65,124,.62),transparent 34%),radial-gradient(circle at 82% 18%,rgba(212,175,55,.25),transparent 30%),linear-gradient(135deg,#02050b,#07111f 60%,#010205)}.intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}.intro:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(2,5,11,.05),rgba(2,5,11,.58) 56%,rgba(2,5,11,.94));pointer-events:none}.skip{position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;z-index:50;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);backdrop-filter:blur(14px);color:#fff;border-radius:999px;padding:10px 16px;font-size:12px;font-weight:1000;letter-spacing:.14em;cursor:pointer}.scene{position:absolute;inset:0;z-index:10;display:grid;place-items:center;text-align:center;padding:70px 20px 28px;opacity:0;transform:translateY(26px) scale(.975);filter:blur(10px);transition:opacity 1s,transform 1s,filter 1s;pointer-events:none}.scene.on{opacity:1;transform:none;filter:none}.kicker{font-size:12px;font-weight:1000;letter-spacing:.28em;color:var(--gold2)}.title{font-size:clamp(44px,9vw,118px);font-weight:1000;line-height:.9;letter-spacing:-.085em}.subtitle{font-size:clamp(26px,5vw,60px);font-weight:1000;line-height:1.14;letter-spacing:-.068em}.mt{margin-top:20px}.logo{width:min(130px,30vw);margin-bottom:20px}.records{width:min(1120px,calc(100% - 32px));margin:0 auto;display:grid;grid-template-columns:1fr minmax(270px,.8fr) 1fr;gap:16px;align-items:center;justify-items:center}.stack{display:grid;gap:12px;width:100%;max-width:330px}.record{width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(2,6,23,.52);backdrop-filter:blur(16px);border-radius:26px;padding:18px;text-align:left;box-shadow:0 24px 70px rgba(0,0,0,.36);opacity:0;transform:translateY(16px) scale(.97);transition:.52s}.record.on{opacity:1;transform:translateY(0) scale(1);border-color:rgba(212,175,55,.38)}.record.pop{animation:pop .36s}@keyframes pop{45%{transform:scale(1.055);box-shadow:0 0 60px rgba(212,175,55,.24)}}.recordTitle{display:flex;justify-content:space-between;gap:10px;font-size:15px;font-weight:1000;letter-spacing:-.045em}.recordTitle small{font-size:10px;color:#d4af37;letter-spacing:.08em}.year{display:grid;grid-template-columns:52px 1fr 46px;gap:8px;align-items:center;margin-top:8px;color:#cbd5e1;font-size:12px}.bar{height:6px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#60a5fa,#d4af37);border-radius:999px;transition:.55s}.ynum{text-align:right;color:white;font-weight:1000}.total{text-align:right;margin-top:12px;color:#d4af37;font-weight:1000;letter-spacing:-.06em}.total b{font-size:34px}.grand{width:100%;max-width:360px;min-height:330px;border:1px solid rgba(212,175,55,.28);border-radius:36px;background:radial-gradient(circle at 50% 45%,rgba(212,175,55,.24),transparent 64%),rgba(0,0,0,.26);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 100px rgba(212,175,55,.13);position:relative;overflow:hidden}.grand:before{content:"";position:absolute;inset:14px;border-radius:28px;border:1px solid rgba(255,255,255,.08)}.glabel,.gnum,.gunit,.gnote{position:relative}.glabel{color:#e5e7eb;font-size:15px;font-weight:1000}.gnum{margin-top:8px;font-size:clamp(86px,12vw,152px);line-height:.82;font-weight:1000;letter-spacing:-.095em;transition:.34s}.gnum.hit{transform:scale(1.1);color:#d4af37;text-shadow:0 0 52px rgba(212,175,55,.38)}.gunit{margin-top:10px;font-size:28px;font-weight:1000;color:#d4af37}.gnote{margin-top:12px;color:#cbd5e1;font-size:12px;line-height:1.55}.pang-strip{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px auto 0}.pang{opacity:0;transform:translateY(12px) scale(.92);border:1px solid rgba(212,175,55,.28);background:rgba(212,175,55,.1);color:#fde68a;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:1000}.pang.on{animation:pang .46s forwards}@keyframes pang{60%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:1;transform:translateY(0) scale(1)}}.type-tunnel{position:absolute;inset:0;perspective:760px;overflow:hidden}.type-line{position:absolute;left:50%;top:50%;white-space:nowrap;color:rgba(255,255,255,.74);font-weight:1000;font-size:clamp(16px,3.5vw,40px);text-shadow:0 12px 32px rgba(0,0,0,.6);animation:suck 3.2s linear infinite;filter:blur(1.4px);opacity:.68}.type-line:nth-child(2n){color:rgba(248,221,131,.72);filter:blur(2.2px)}.type-line:nth-child(3n){opacity:.43;filter:blur(3.3px)}@keyframes suck{0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.35);opacity:0}14%{opacity:.85}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}}.count-label{font-size:clamp(20px,4vw,38px);font-weight:1000;margin-bottom:16px}.count-num{font-size:clamp(90px,24vw,220px);font-weight:1000;color:var(--gold2);line-height:.8;text-shadow:0 0 68px rgba(212,175,55,.42);animation:countPop .7s}@keyframes countPop{0%{transform:scale(.65);opacity:0}55%{transform:scale(1.12);opacity:1}}.landing{background:#f8fafc;color:#111827;min-height:100vh}.topbar{position:sticky;top:0;z-index:100;background:rgba(2,5,11,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}.topbar-in{width:min(1120px,100%);margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px}.topbrand{font-weight:1000;color:#fff;letter-spacing:-.04em}.top-actions{display:flex;gap:8px}.top-actions button,.top-actions a,.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:1000;text-decoration:none;font-size:13px;cursor:pointer}.btn-yellow{background:#FEE500;color:#3C1E1E}.btn-gold{background:linear-gradient(135deg,#d4af37,#f8dd83);color:#02050b}.hero{background:linear-gradient(135deg,#07111f,#0d1b2a);color:#fff;text-align:center;padding:72px 20px 34px}.hero h1{font-size:clamp(34px,7vw,78px);line-height:1.05;letter-spacing:-.08em;margin:12px 0}.hero p{color:#d1d5db;line-height:1.8;font-weight:800}.intro-images{width:min(920px,100%);margin:0 auto;padding:28px 16px 80px;display:grid;gap:18px}.intro-images img{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 18px 50px rgba(7,17,31,.16);background:#fff}.login{min-height:100vh;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 50%,#1a2e44 0%,#07111f 100%);padding:40px 20px;color:#fff}.login-card{width:100%;max-width:460px;background:rgba(255,255,255,.06);border:1px solid rgba(212,175,55,.25);border-radius:22px;padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.25);backdrop-filter:blur(8px)}.login-card h1{text-align:center;font-size:1.55rem;line-height:1.45;margin:10px 0}.login-subtitle{text-align:center;color:rgba(255,255,255,.86);font-size:.94rem;line-height:1.65;font-weight:800;margin-bottom:26px}.input-group{margin-bottom:16px}.input-group label{display:block;color:rgba(255,255,255,.66);font-size:.78rem;font-weight:800;margin-bottom:7px}.input-group input{width:100%;padding:14px 15px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;font-size:.95rem;outline:none}.book{display:none;min-height:100vh;background:#faf8f3;color:#222}.header{background:#07111f;color:white;text-align:center;padding:36px 20px}.header .tag{display:inline-block;color:var(--gold);border:1px solid var(--gold);font-size:.75rem;letter-spacing:.16em;padding:4px 14px;margin-bottom:12px}.body{max-width:1000px;margin:0 auto;padding:36px 20px 80px}.notice,.viewer-box{background:white;border:1px solid rgba(201,168,76,.28);border-radius:14px;padding:22px;line-height:1.8;margin-bottom:22px;box-shadow:0 8px 24px rgba(13,27,42,.08)}.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:24px 0}.btn-book{background:#07111f;color:white;border-radius:10px}.book-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.preview-page{border:1px solid #ddd;border-radius:10px;background:#fff;padding:8px;box-shadow:0 3px 10px rgba(0,0,0,.06)}.preview-page img{width:100%;display:block;border-radius:6px}.small{font-size:.84rem;color:#6b7280;line-height:1.7;margin-top:10px;text-align:center}#bookPrintArea{display:none}.book-sheet{position:relative;width:210mm;min-height:297mm;background:#fff;page-break-after:always;margin:0 auto;display:flex;align-items:center;justify-content:center;overflow:hidden}.book-sheet img{width:210mm;height:auto;display:block}.wm{position:absolute;left:50%;top:50%;width:165mm;transform:translate(-50%,-50%) rotate(-32deg);text-align:center;font-size:18pt;font-weight:900;line-height:1.45;color:rgba(45,45,45,.06)!important;pointer-events:none;z-index:5;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@media print{body.book-print-mode main,body.book-print-mode section,body.book-print-mode .topbar{display:none!important}body.book-print-mode #bookPrintArea{display:block!important}@page{size:A4;margin:0}}@media(max-width:960px){.records{grid-template-columns:1fr}.grand{order:-1;min-height:250px}.record{padding:14px;border-radius:20px}.title{font-size:clamp(42px,15vw,86px)}.subtitle{font-size:clamp(26px,9vw,46px)}.type-line{font-size:clamp(15px,5.2vw,30px)}.top-actions button,.top-actions a{padding:9px 11px;font-size:12px}.intro-images{gap:14px}}</style></head><body><main class="intro" id="introPage"><div class="bg"></div><video id="introVideo" autoplay muted playsinline preload="auto" poster="https://drive.google.com/uc?export=view&id=1PXJ2SfpDHl2xoWNrzluxPWlPuHS0UbfE"><source src="https://drive.google.com/uc?export=download&id=1D36lFjE2Ha1u7N2FV5H0tGgIQlsleL3u" type="video/mp4"></video><button class="skip" onclick="goLanding()">SKIP</button><section class="scene on" id="scene0"><div><img class="logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL"><h1 class="subtitle">실적으로 입증된<br>성공하는 공부습관을<br>만드는<br><span class="gold">지필드 영재교육</span></h1></div></section><section class="scene" id="scene1"><div style="width:100%"><div class="records"><div class="stack" id="leftStack"></div><div class="grand"><div class="glabel">연도별 누적 실적</div><div class="gnum" id="grandNum">0</div><div class="gunit">명</div><div class="gnote">대표 실적은 일부입니다.<br>가운데 숫자는 실제 전체 누적 실적입니다.</div></div><div class="stack" id="rightStack"></div></div><div class="pang-strip"><span class="pang">영재</span><span class="pang">테마</span><span class="pang">황소 경시</span><span class="pang">영재원</span><span class="pang">특목 경시</span><span class="pang">누적 실적</span></div></div></section><section class="scene" id="scene2"><div><p class="kicker">PREMIER DIAGNOSIS</p><h2 class="subtitle mt">소마 프리미어 합격을 위한<br>대표 심화 유형 진단</h2></div></section><section class="scene" id="scene3"><div class="type-tunnel" id="typeTunnel"></div><div style="position:relative;z-index:2"><p class="kicker">54 REPRESENTATIVE TYPES</p><h2 class="subtitle mt">대표 유형을<br>압축 점검합니다</h2></div></section><section class="scene" id="scene4"><div><p class="kicker">G-FIELD SPECIAL PROGRAM</p><h2 class="title mt">프리미어<br><span class="gold">하이퍼 포커스</span></h2></div></section><section class="scene" id="scene5"><div><div class="count-label">진단 시작까지</div><div class="count-num" id="countNum">5</div></div></section></main><section class="landing hide" id="landingPage"><div class="topbar"><div class="topbar-in"><div class="topbrand">프리미어 하이퍼 포커스</div><div class="top-actions"><a class="btn-yellow" href="https://open.kakao.com/me/gfield" target="_blank">문의하기</a><button class="btn-gold" onclick="showLogin()">로그인</button></div></div></div><div class="hero"><p class="kicker">G-FIELD GIFTED EDUCATION</p><h1>프리미어 합격을 위한<br>대표 심화 유형 진단</h1><p>처음 보는 학부모도 자료의 목적을 먼저 이해하고,<br>승인번호가 있는 학부모는 바로 로그인해 교재를 확인합니다.</p></div><div class="intro-images"><img src="https://drive.google.com/uc?export=view&id=1hb-tOIQBuLLtTCNJlRBBBQoJBt_S9X65"><img src="https://drive.google.com/uc?export=view&id=1iWoaPqGytFaHYCp5KaSglow6UhoJRgBp"><img src="https://drive.google.com/uc?export=view&id=1_MQ-hvRTnC2Hmc2fjCVQE-N-QwIRXUA3"><img src="https://drive.google.com/uc?export=view&id=1aGp6xE7qv7TyvvobINFd6jWdH_ME3J5x"></div></section><section class="login" id="loginPage"><div class="login-card"><div class="kicker gold" style="text-align:center">G-FIELD GIFTED EDUCATION</div><h1>프리미어 하이퍼 포커스<br>교재 인쇄 페이지</h1><div class="login-subtitle">프리미어 합격을 위한 심화 대표 유형 진단<br>프리미어 하이퍼 포커스</div><div class="input-group"><label>학생 이름</label><input id="studentName" type="text" placeholder="이름을 입력하세요"></div><div class="input-group"><label>학부모 연락처</label><input id="parentPhone" type="tel" placeholder="010-0000-0000"></div><div class="input-group"><label>승인 번호</label><input id="authCode" type="password" placeholder="승인번호를 입력하세요"></div><button class="btn btn-gold" style="width:100%" onclick="checkAuth()">입장하기 →</button><a class="btn btn-yellow" style="display:flex;justify-content:center;margin-top:12px" href="https://open.kakao.com/me/gfield" target="_blank">신청/문의하기</a></div></section><section class="book" id="bookPage"><div class="header"><div class="tag">지필드 영재교육</div><h1>프리미어 하이퍼 포커스</h1><div id="studentInfo"></div></div><div class="body"><div class="notice"><strong>교재 인쇄하기</strong>를 누르면 학생 이름과 승인번호가 각 페이지 중앙에 아주 연한 대각선 워터마크로 들어갑니다.</div><div class="actions"><button class="btn btn-book" onclick="printBook()">📘 교재 인쇄하기</button><a class="btn btn-yellow" href="https://open.kakao.com/me/gfield" target="_blank">💬 신청/문의하기</a></div><div class="viewer-box"><h3 style="text-align:center;margin-top:0">교재 보기</h3><div id="preview" class="book-preview"></div><div class="small">화면에서는 축소 미리보기로 보이고, 인쇄는 <b>교재 인쇄하기</b> 버튼을 사용하세요.</div></div></div></section><div id="bookPrintArea"></div><script>const BOOK_PAGES=Array.from({length:29},(_,i)=>`assets/book/page-${String(i+1).padStart(2,'0')}.jpg`);const scenes=['scene0','scene1','scene2','scene3','scene4','scene5'],times=[0,2600,7600,10300,13200,15600];const recordData={left:[{title:'영재 클래스',years:[['2023',6],['2024',4],['2025',6]],total:40},{title:'생각하는 황소 경시',years:[['2021',15],['2022',14],['2023',18],['2024',15]],total:62}],right:[{title:'테마 프리미어',years:[['2023',6],['2024',4],['2025',4]],total:87},{title:'영재원ㆍ특목 경시',years:[['대비',8],['누적',12]],total:120}],grand:400};const typeTexts=['특정 모양과 똑같이 만들기 위해 추가로 필요한 쌓기나무의 개수 구하기','정육면체를 완성하기 위해 채우기 위해 필요한 쌓기 나무의 개수 구하기','조건이 있는 쌓기나무에서 특정 색상의 개수 구하기','쌓기나무 구멍 뚫기','보이지 않는 쌓기 나무의 개수 구하기','레고 블록이나 쌓기나무를 여러 방향에서 본 모습 찾기','전개도로 만들 수 있는 정육면체 모양 찾기','주사위를 규칙에 따라 굴렸을 때 윗면 구하기','색종이 접기와 펀칭','펜토미노로 직사각형 채우기','복잡한 도형 안에서 사각형 삼각형 세기','성냥개비를 옮겨 올바른 연산식 만들기','벌집 모양 수 배열 규칙','거울에 비친 디지털 수','논리표 조건 추론','암호 풀기 유형','최단 거리 가짓수','양팔저울 무게 비교','피보나치 수열 규칙'];function showScene(n){scenes.forEach((id,i)=>document.getElementById(id).classList.toggle('on',i===n));if(n===1)runRecords();if(n===3)runTypes();if(n===5)runCountdown()}function panel(item){const max=Math.max(...item.years.map(y=>y[1]),1);return `<div class="record"><div class="recordTitle"><span>${item.title}</span><small>RECORD</small></div>${item.years.map(y=>`<div class="year" data-count="${y[1]}" data-max="${max}"><span>${y[0]}</span><div class="bar"><span></span></div><b class="ynum">0</b></div>`).join('')}<div class="total"><b data-total="${item.total}">0</b><span>명</span></div></div>`}function countTo(el,target,duration=700){const start=performance.now(),from=parseInt((el.textContent||'0').replace(/[^0-9]/g,''),10)||0,diff=target-from;function frame(now){const p=Math.min((now-start)/duration,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(from+diff*e).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(frame)}requestAnimationFrame(frame)}function runRecords(){if(window.recordsStarted)return;window.recordsStarted=true;leftStack.innerHTML=recordData.left.map(panel).join('');rightStack.innerHTML=recordData.right.map(panel).join('');[...document.querySelectorAll('.record')].forEach((card,i)=>setTimeout(()=>{card.classList.add('on','pop');card.querySelectorAll('.year').forEach((row,j)=>setTimeout(()=>{const c=+row.dataset.count,m=+row.dataset.max;row.querySelector('.bar span').style.width=Math.max(18,Math.round(c/m*100))+'%';countTo(row.querySelector('.ynum'),c,430)},j*135));setTimeout(()=>countTo(card.querySelector('[data-total]'),+card.querySelector('[data-total]').dataset.total,720),420);setTimeout(()=>card.classList.remove('pop'),500)},i*360));setTimeout(()=>countTo(grandNum,recordData.grand,1850),680);setTimeout(()=>grandNum.classList.add('hit'),2600);setTimeout(()=>grandNum.classList.remove('hit'),3200);[...document.querySelectorAll('.pang')].forEach((p,i)=>setTimeout(()=>p.classList.add('on'),1900+i*120))}function runTypes(){if(window.typesStarted)return;window.typesStarted=true;for(let i=0;i<44;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];el.style.setProperty('--x',(Math.random()*160-80)+'vw');el.style.setProperty('--y',(Math.random()*120-60)+'vh');el.style.setProperty('--r',(Math.random()*90-45)+'deg');el.style.animationDelay=(i*.075)+'s';typeTunnel.appendChild(el)}}function runCountdown(){if(window.countStarted)return;window.countStarted=true;let n=5;countNum.textContent=n;const timer=setInterval(()=>{n--;if(n<=0){clearInterval(timer);goLanding();return}countNum.textContent=n;countNum.style.animation='none';countNum.offsetHeight;countNum.style.animation='countPop .7s'},900)}function goLanding(){introPage.classList.add('hide');landingPage.classList.remove('hide');scrollTo(0,0)}function showLogin(){landingPage.classList.add('hide');loginPage.style.display='flex';scrollTo(0,0)}function checkAuth(){const name=studentName.value.trim(),phone=parentPhone.value.trim(),code=authCode.value.trim();if(!name||!phone||!code)return alert('학생 이름, 연락처, 승인번호를 모두 입력해 주세요.');if(!code.includes('777200'))return alert('승인번호가 올바르지 않습니다.');loginPage.style.display='none';bookPage.style.display='block';studentInfo.textContent=`${name} 학생 · 승인번호 ${code}`;renderPreview();scrollTo(0,0)}function renderPreview(){preview.innerHTML=BOOK_PAGES.map((src,i)=>`<div class="preview-page"><img loading="lazy" src="${src}" onerror="this.parentElement.style.display='none'"><div class="small">${i+1} / ${BOOK_PAGES.length}</div></div>`).join('')}function printBook(){const name=studentName.value.trim(),code=authCode.value.trim(),wm=`${name} · ${code}`;bookPrintArea.innerHTML=BOOK_PAGES.map(src=>`<div class="book-sheet"><img src="${src}"><div class="wm">${wm}</div></div>`).join('');document.body.classList.add('book-print-mode');setTimeout(()=>print(),300)}onafterprint=()=>document.body.classList.remove('book-print-mode');times.forEach((t,i)=>setTimeout(()=>showScene(i),t));setTimeout(goLanding,20300);introVideo.addEventListener('error',()=>introVideo.style.display='none');</script></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지필드 영재교육 — 프리미어 합격 진단 리포트</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1a2e44;
+            --navy-light: #243b55;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --cream: #faf8f3;
+            --cream-dark: #f0ece0;
+            --red: #c0392b;
+            --red-light: #e74c3c;
+            --blue: #2980b9;
+            --purple: #8e44ad;
+            --text: #2c2c2c;
+            --text-light: #6b7280;
+            --border: rgba(201,168,76,0.25);
+            --shadow: 0 20px 60px rgba(13,27,42,0.12);
+        }
+
+        /* ── 보안 스크립트 대응 CSS ── */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── PAGE 1 ── */
+        #page1 {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 50%, var(--navy-mid) 0%, var(--navy) 100%);
+            position: relative;
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+
+        #page1::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(201, 168, 76, 0.15) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(201, 168, 76, 0.1) 1.5px, transparent 1.5px),
+                radial-gradient(circle at 40% 80%, rgba(232, 201, 122, 0.08) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, rgba(201, 168, 76, 0.12) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: particlesMove 20s linear infinite;
+        }
+
+        @keyframes particlesMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        #page1::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .p1-inner { width: 100%; max-width: 480px; position: relative; z-index: 2; text-align: center; }
+
+        @keyframes customFadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .p1-slogan-wrap { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; animation: customFadeUp 0.8s ease 0.1s both; }
+        .p1-slogan-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .p1-slogan-text { font-size: 0.8rem; font-weight: 500; color: var(--gold-light); letter-spacing: 0.15em; text-transform: uppercase; }
+
+        .p1-title { font-family: 'Noto Sans KR', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 40px; font-weight: 400; word-break: keep-all; animation: customFadeUp 0.8s ease 0.3s both; }
+        .p1-title .habit-text { display: block; margin-bottom: 8px; }
+        .p1-title .brand-name { font-family: 'DM Serif Display', 'Noto Serif KR', serif; font-size: 2.8rem; color: #fff; font-weight: 700; letter-spacing: -0.02em; }
+        .p1-title span.premier { color: var(--gold-light); font-weight: 700;}
+
+        .notice-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 24px; margin-bottom: 32px; text-align: left; backdrop-filter: blur(5px); animation: customFadeUp 0.8s ease 0.5s both; }
+        .notice-card p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 14px; }
+        .notice-card ul { list-style: none; padding: 0; }
+        .notice-card ul li { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.75; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); padding-left: 16px; position: relative; }
+        .notice-card ul li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.75rem; }
+        .notice-card ul li:last-child { border-bottom: none; }
+        .highlight { color: var(--gold-light); font-weight: 600; }
+
+        .login-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; backdrop-filter: blur(10px); text-align: left; animation: customFadeUp 0.8s ease 0.7s both; }
+        .login-card h3 { font-family: 'Noto Serif KR', serif; font-size: 1.1rem; color: #fff; margin-bottom: 24px; text-align: center; font-weight: 600; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 7px; }
+        .input-group input { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.9rem; font-family: 'Noto Sans KR', sans-serif; transition: all 0.2s; outline: none; }
+        .input-group input::placeholder { color: rgba(255,255,255,0.25); }
+        .input-group input:focus { border-color: var(--gold); background: rgba(255,255,255,0.12); box-shadow: 0 0 10px rgba(201,168,76,0.1); }
+
+        .btn-primary { width: 100%; padding: 15px; background: var(--gold); color: var(--navy); border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; font-family: 'Noto Sans KR', sans-serif; cursor: pointer; margin-top: 8px; transition: all 0.2s; letter-spacing: 0.04em; }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(201,168,76,0.2); }
+
+        /* ── PAGE 2 ── */
+        #page2 { display: none; min-height: 100vh; }
+
+        .p2-header { background: var(--navy); padding: 40px 20px 60px; text-align: center; position: relative; overflow: hidden; }
+        .p2-header::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 50px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+        .p2-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+        .p2-header .brand-tag-p2 { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; color: var(--gold); border: 1px solid var(--gold); padding: 4px 14px; border-radius: 2px; margin-bottom: 14px; text-transform: uppercase; }
+        .p2-header h1 { font-family: 'DM Serif Display', 'Noto Serif KR', serif; font-size: clamp(1.6rem, 4vw, 2.2rem); color: #fff; margin-bottom: 10px; }
+
+        #studentInfoDisplay { display: inline-block; font-size: 0.82rem; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.07); padding: 6px 18px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); margin-top: 8px; }
+
+        .p2-body { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+
+        .action-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+        .video-btn { display: flex; align-items: center; gap: 8px; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; transition: background 0.2s, transform 0.15s; }
+        .video-btn:hover { transform: translateY(-1px); }
+        .video-btn svg { flex-shrink: 0; }
+        .btn-youtube { background: var(--red); color: white; }
+        .btn-youtube:hover { background: var(--red-light); }
+        .btn-kakao { background: #FEE500; color: #3C1E1E; }
+        .btn-kakao:hover { background: #F4DC00; }
+
+        .helper-text { text-align: center; font-size: 0.95rem; color: var(--text); margin-bottom: 20px; line-height: 1.6; background: #fff; padding: 16px; border-radius: 10px; border: 1px solid var(--border); }
+        
+        .attempt-menu { text-align: center; margin-bottom: 36px; padding: 16px; background: rgba(255, 255, 255, 0.6); border-radius: 12px; }
+        .attempt-menu span { font-weight: 600; color: var(--navy); font-size: 0.95rem; margin-right: 10px; }
+        .attempt-btn { border: none; padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin: 0 4px; transition: all 0.2s; }
+        .attempt-btn.completed { background: var(--red); color: white; cursor: pointer; border: 2px solid var(--red); }
+        .attempt-btn.completed:hover { background: var(--red-light); border-color: var(--red-light); transform: translateY(-1px); }
+        .attempt-btn.disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; border: 2px solid #e5e7eb; }
+
+        .tab-bar { display: flex; gap: 0; background: var(--navy); border-radius: 10px; padding: 5px; margin-bottom: 36px; width: fit-content; margin-left: auto; margin-right: auto; }
+        .tab-btn { padding: 10px 24px; border: none; background: transparent; color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 500; border-radius: 7px; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .tab-btn.active { background: var(--gold); color: var(--navy); font-weight: 700; }
+
+        .checklist-section { display: none; }
+        .checklist-section.active { display: block; }
+        .category-block { margin-bottom: 36px; }
+        .category-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .category-num { width: 36px; height: 36px; background: var(--navy); color: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 1rem; flex-shrink: 0; }
+        
+        .category-title { font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--navy); letter-spacing: -0.01em; }
+        
+        .category-divider { flex: 1; height: 1px; background: var(--border); }
+        .items-grid { display: grid; gap: 8px; }
+        .number-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; margin-top: 10px; }
+        .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid transparent; border-radius: 10px; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+        .num-item { padding: 12px; justify-content: center; align-items: center; }
+        .num-item .list-num { font-size: 1.1rem !important; margin: 0 !important; }
+        .num-item .custom-check { display: none; }
+        .check-item:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(201,168,76,0.15); }
+        .check-item.checked { background: #fffbef; border-color: var(--red); box-shadow: 0 2px 12px rgba(192, 57, 43, 0.15); }
+        .num-item.checked { background: var(--red); color: #fff; border-color: var(--red); }
+        .num-item.checked .list-num { color: #fff !important; }
+        .check-item input[type="checkbox"] { display: none; }
+        .custom-check { width: 20px; height: 20px; border: 2px solid #d1d5db; border-radius: 5px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+        .check-item.checked .custom-check { background: var(--red); border-color: var(--red); }
+        .custom-check svg { display: none; }
+        .check-item.checked .custom-check svg { display: block; }
+        .check-item span { flex: 1; font-size: 0.88rem; line-height: 1.65; color: #374151; }
+        .check-item.checked span { color: var(--navy); font-weight: 500; }
+        .list-num { font-size: 0.85rem !important; color: var(--gold) !important; font-weight: 700 !important; min-width: 24px; font-family: 'DM Serif Display', serif; flex: none !important; }
+
+        .submit-area { text-align: center; margin-top: 48px; }
+        .counter-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: rgba(255,255,255,0.6); font-size: 0.82rem; padding: 8px 20px; border-radius: 20px; margin-bottom: 20px; }
+        .counter-badge strong { color: var(--red-light); font-size: 1rem; }
+        .btn-submit { background: var(--navy); color: #fff; border: 2px solid var(--gold); padding: 16px 48px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; letter-spacing: 0.04em; }
+        .btn-submit:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+
+        #result-area { display: none; margin-top: 48px; background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); animation: customFadeUp 0.5s ease both; }
+        .result-header { background: var(--navy); padding: 28px 32px; display: flex; align-items: center; gap: 16px; }
+        .result-icon { width: 48px; height: 48px; background: rgba(201,168,76,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .result-header-text h2 { font-family: 'Noto Serif KR', serif; font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+        .result-header-text p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+        .result-header-text strong { color: var(--gold-light); }
+        .result-body { padding: 32px; }
+
+        .diagnosis-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+        .chart-container { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 12px; padding: 20px; display: flex; align-items: center; justify-content: center; height: 350px; }
+        .diagnosis-text-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .diag-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+
+        .diag-card.prediction { background: var(--navy); border-color: var(--navy); text-align: center; }
+        .diag-card.prediction h3 { color: var(--gold); justify-content: center; font-size: 1.4rem; margin-bottom: 8px; }
+        .diag-card.prediction h3::before { content: '🎯'; }
+        .diag-card.prediction p { color: #fff; font-size: 1.1rem; word-break: keep-all; line-height:1.6;}
+        .diag-card.prediction .highlight-msg { color: var(--gold-light); font-weight: 700; font-size: 1.25rem; }
+
+        .diag-card.diff-card { border-left: 4px solid var(--gold); background: #fffbef; }
+        .diag-card.overall { background: #fffbef; border-color: var(--gold); }
+        .diag-card.strength { border-left: 4px solid var(--blue); }
+        .diag-card.weakness { border-left: 4px solid var(--red); }
+
+        .diag-card h3 { font-family: 'Noto Serif KR', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .diag-card.overall h3::before { content: '💡'; }
+        .diag-card.strength h3::before { content: '⭐'; }
+        .diag-card.weakness h3::before { content: '⚠️'; }
+
+        .diagnosis-desc { font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+        .badge-strength { color: var(--blue); font-weight: 700; background: rgba(41, 128, 185, 0.1); padding: 2px 6px; border-radius: 4px; }
+        .badge-weakness { color: var(--red); font-weight: 700; background: rgba(192, 57, 43, 0.1); padding: 2px 6px; border-radius: 4px; }
+
+        .result-list-box { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; }
+        
+        /* ── 아코디언 카드 스타일 ── */
+        .res-card {
+            background: #fff;
+            border: 1px solid var(--cream-dark);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+        }
+        .res-card:hover { border-color: var(--gold); box-shadow: 0 3px 10px rgba(201,168,76,0.1); }
+        .res-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            cursor: pointer;
+            background: #fff;
+            user-select: none;
+        }
+        .res-card-header:hover { background: #fafafa; }
+        .res-card-title { display: flex; align-items: flex-start; gap: 10px; flex: 1; font-size: 0.88rem; font-weight: 500; color: var(--text); line-height: 1.5; }
+        .res-card-toggle { font-size: 0.75rem; color: #9ca3af; font-weight: 600; white-space: nowrap; margin-left: 10px; transition: transform 0.2s; }
+        
+        .res-card.open .res-card-toggle { transform: rotate(180deg); color: var(--gold); }
+        .res-card.open .res-card-header { background: #fffbef; border-bottom: 1px dashed var(--border); }
+        
+        .res-card-body {
+            display: none;
+            padding: 20px 16px;
+            background: #fff;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        .res-card.open .res-card-body { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .res-ans-box { background: rgba(41, 128, 185, 0.05); border-left: 3px solid var(--blue); padding: 10px 14px; margin-bottom: 12px; font-weight: 600; color: var(--navy); border-radius: 0 6px 6px 0; }
+        .res-tip-box { margin-bottom: 12px; }
+        .res-tip-box strong { color: var(--navy); display: block; margin-bottom: 4px; font-size: 0.82rem; }
+        
+        .res-badge { font-size: 0.7rem; background: var(--red); color: white; padding: 3px 8px; border-radius: 4px; white-space: nowrap; font-weight: 500; margin-top: 1px; }
+        .res-num { font-family: 'DM Serif Display', serif; color: var(--red); font-weight: 700; font-size: 0.85rem; min-width: 20px; margin-top: 1px; }
+
+        .res-video-btn { display: inline-flex; align-items: center; gap: 4px; background: var(--red); color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; transition: all 0.2s; box-shadow: 0 2px 4px rgba(192,57,43,0.2); margin-top: 10px; width: fit-content;}
+        .res-video-btn:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(192,57,43,0.3); }
+        .res-video-btn svg { width: 14px; height: 14px; }
+
+        .academy-pledge { text-align: center; font-family: 'Noto Serif KR', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--border); }
+        .result-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+        .btn-action { flex: 1; min-width: 140px; padding: 13px 20px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .btn-action-outline { background: #fff; color: var(--navy); border: 2px solid var(--navy); }
+        .btn-action-outline:hover { background: var(--navy); color: #fff; }
+        .btn-action-fill { background: #FEE500; color: #3C1E1E; border: 2px solid #FEE500; }
+        .btn-action-fill:hover { background: #F4DC00; }
+
+
+
+        .btn-answer-print { background: var(--navy); color: #fff; border: 1px solid var(--gold); font-family: 'Noto Sans KR', sans-serif; cursor: pointer; }
+        .btn-answer-print:hover { background: var(--gold); color: var(--navy); }
+        #allAnswerPrint { display: none; }
+
+        /* ── 인쇄 전용 표지 및 스타일 ── */
+        .print-only { display: none; }
+
+        @media print {
+            body { 
+                background: white; color: black; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            #page1, .action-btns, .helper-text, .attempt-menu, .tab-bar, .checklist-section, .submit-area, .result-actions, .res-video-btn, .res-card-toggle { 
+                display: none !important; 
+            }
+            
+            /* 인쇄 표지 설정 */
+            .print-only { display: flex !important; }
+            #printCover {
+                background-color: var(--navy) !important;
+                color: #ffffff !important;
+                height: 100vh !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                page-break-after: always !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            #page2 { display: block !important; padding: 0 !important; margin: 0 !important; }
+            .p2-header { display: none !important; } /* 표지 사용하므로 기본 헤더 숨김 */
+            
+            #result-area { display: block !important; box-shadow: none !important; border: none !important; margin: 0 !important; padding: 0 !important; page-break-inside: avoid; }
+            .result-body { padding: 0 !important; }
+            .result-header { background: transparent !important; padding: 0 0 10px 0 !important; border-bottom: 2px solid var(--navy) !important; margin-bottom: 15px !important; }
+            .result-header h2, .result-header p, .result-header strong { color: black !important; }
+            .result-icon { display: none !important; }
+            
+            .diagnosis-grid { display: block !important; break-inside: avoid; margin-bottom: 15px !important; }
+            .chart-container { height: 250px !important; margin-bottom: 15px !important; border: 1px solid #ccc !important; break-inside: avoid; padding: 10px !important; }
+            .diag-card { border: 1px solid #ccc !important; break-inside: avoid; margin-bottom: 15px !important; padding: 15px !important; }
+            .diag-card.prediction { background: white !important; border: 1px solid var(--navy) !important; }
+            .diag-card.prediction h3, .diag-card.prediction p, .diag-card.prediction .highlight-msg { color: black !important; }
+            
+            .result-list-box { border: none !important; background: transparent !important; padding: 0 !important; margin-top: 15px !important; }
+            
+            /* 인쇄 시 아코디언은 무조건 펼쳐지게 설정 */
+            .res-card { border: 1px solid #ccc !important; margin-bottom: 15px !important; break-inside: avoid !important; }
+            .res-card-header { background: #f9f9f9 !important; border-bottom: 1px dashed #ccc !important; padding: 10px !important;}
+            .res-card-body { display: block !important; padding: 10px !important;}
+            .res-badge { border: 1px solid var(--red) !important; color: var(--red) !important; background: transparent !important; }
+
+            body.answer-print-mode #page1,
+            body.answer-print-mode #page2,
+            body.answer-print-mode #printCover { display: none !important; }
+            body.answer-print-mode #allAnswerPrint { display: block !important; position: relative; padding: 0 !important; }
+            body.answer-print-mode .print-only { display: none !important; }
+            .answer-print-cover { page-break-after: always; min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid #111; padding: 40px; }
+            .answer-print-cover .brand { letter-spacing: 2px; font-weight: 800; color: var(--navy); margin-bottom: 18px; }
+            .answer-print-cover h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; line-height: 1.45; margin-bottom: 28px; }
+            .answer-print-cover .meta { font-size: 1.05rem; line-height: 1.8; }
+            .answer-print-section { page-break-before: auto; margin-bottom: 22px; }
+            .answer-print-section h2 { font-family: 'Noto Serif KR', serif; font-size: 1.1rem; color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 8px; margin-bottom: 10px; }
+            .answer-print-item { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ddd; border-radius: 8px; padding: 10px 12px; margin-bottom: 9px; background: #fff; }
+            .answer-print-item h3 { font-size: 0.92rem; color: #111; margin-bottom: 6px; }
+            .answer-print-item p { font-size: 0.82rem; line-height: 1.55; margin: 4px 0; }
+            .answer-print-item .answer-line { font-weight: 800; color: var(--red); }
+            .print-watermark { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-28deg); width: 110%; text-align: center; font-size: 3.1rem; font-weight: 800; color: rgba(13, 27, 42, 0.075); letter-spacing: 0.08em; z-index: 9999; pointer-events: none; white-space: nowrap; }
+            @page { margin: 14mm; }
+
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if (e.key === 'F12' || 
+           (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+           (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 'U') ||
+           (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+           (e.ctrlKey && e.shiftKey && e.key === 'J')) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+<div id="printCover" class="print-only">
+    <div style="border: 2px solid var(--gold); padding: 60px; text-align: center; border-radius: 20px; background: rgba(0,0,0,0.2); width: 80%; max-width: 600px;">
+        <div style="color: var(--gold); font-weight: bold; letter-spacing: 3px; margin-bottom: 24px;">G-FIELD GIFTED EDUCATION</div>
+        <h1 style="font-family: 'DM Serif Display', 'Noto Serif KR', serif; line-height: 1.4; margin-bottom: 0;">
+            성공하는 공부습관을 만드는<br>지필드 영재교육<br>
+            <span style="color: var(--gold-light); font-size: 2.2rem; display:inline-block; margin-top:10px;">소마 프리미어 합격 진단 프로그램</span>
+        </h1>
+        <div style="margin-top: 60px; border-top: 1px solid rgba(201,168,76,0.5); padding-top: 40px;">
+            <h2 style="margin-bottom: 10px;"><strong id="printStudentName" style="color: white; font-size:2rem;"></strong> 학생</h2>
+            <h3 style="font-weight: 300; opacity: 0.9;">제 <span id="printAttempt" style="font-weight:700;"></span>회차 결과 분석 리포트</h3>
+        </div>
+    </div>
+</div>
+
+<div id="page1">
+    <div class="p1-inner">
+        <div class="p1-slogan-wrap">
+            <div class="p1-slogan-line"></div>
+            <div class="p1-slogan-text">압도적 실적으로 입증된</div>
+            <div class="p1-slogan-line"></div>
+        </div>
+        
+        <h1 class="p1-title">
+            <span class="habit-text">성공하는 공부습관을 만드는</span>
+            <span class="brand-name">지필드 영재교육</span><br>
+            <span class="premier">프리미어 합격 체크리스트</span>
+        </h1>
+
+        <div class="notice-card">
+            <p>얼마 남지 않은 프리미어 시험 준비로 힘써주시는 학부모님께 마무리 점검 체크리스트를 준비했습니다. 아래 유의사항을 먼저 확인해 주세요.</p>
+            <ul>
+                <li><span class="highlight">성냥개비 문제</span>는 6년간 1반 시험에 출제된 적이 없습니다. 바로 풀리지 않으면 지금 힘쓰지 마세요.</li>
+                <li><span class="highlight">도형 세기</span>: 크고 작은 것인지, 자른 개수인지, 구멍인지, 서로 다른 모양 가짓수인지 조건을 꼭 확인하세요.</li>
+                <li><span class="highlight">달력·시계 문제</span>는 작년에 출제되지 않았습니다. 지문을 이해하고 나열할 수 있는 수준이면 충분합니다.</li>
+                <li><span class="highlight">쌓기나무 구멍 뚫기</span>는 2·3학년도 자주 틀리는 고난도 유형입니다.</li>
+            </ul>
+        </div>
+
+        <div class="login-card">
+            <h3>진단 시작하기</h3>
+            <div class="input-group">
+                <label>학생 이름</label>
+                <input type="text" id="studentName" placeholder="이름을 입력하세요">
+            </div>
+            <div class="input-group">
+                <label>학부모 연락처</label>
+                <input type="tel" id="parentPhone" placeholder="010-0000-0000">
+            </div>
+            <div class="input-group">
+                <label>승인 번호</label>
+                <input type="password" id="authCode" placeholder="승인번호를 입력하세요">
+            </div>
+            <button class="btn-primary" onclick="checkAuth()">약점 유형 진단하기 →</button>
+            
+            <a href="https://open.kakao.com/me/gfield" target="_blank" class="btn-primary" style="background: #FEE500; color: #3C1E1E; display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none; margin-top: 12px; border: 1px solid #FEE500;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-5.523 0-10 3.5-10 7.828 0 2.748 1.76 5.166 4.417 6.44-.22.842-.796 3.016-.814 3.125-.025.15.05.228.163.155.116-.076 3.65-2.457 4.296-2.923.63.084 1.28.129 1.938.129 5.523 0 10-3.5 10-7.828S17.523 3 12 3z"/></svg>
+                문제집 및 상담 신청하기
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="page2">
+    <div class="p2-header">
+        <div class="brand-tag-p2">지필드 영재교육</div>
+        <h1>프리미어 유형 체크리스트</h1>
+        <div id="studentInfoDisplay"></div>
+    </div>
+
+    <div class="p2-body">
+        
+        <div class="action-btns">
+            <a href="https://youtu.be/OkkrvK9ZxMI?si=_POQwsA-hhrw-vCN&t=786" target="_blank" class="video-btn btn-youtube">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                설명회 영상
+            </a>
+            <a href="https://youtu.be/8l-YgY8LZzk" target="_blank" class="video-btn btn-youtube">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                풀이 영상 전체보기
+            </a>
+            <button type="button" class="video-btn btn-answer-print" onclick="printAllAnswers()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 9V2h12v7h1a3 3 0 0 1 3 3v6h-4v4H6v-4H2v-6a3 3 0 0 1 3-3h1zm2-5v5h8V4H8zm0 12v4h8v-4H8zm11-4a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+                전체 답안 인쇄하기
+            </button>
+            <a href="https://open.kakao.com/me/gfield" target="_blank" class="video-btn btn-kakao">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-5.523 0-10 3.5-10 7.828 0 2.748 1.76 5.166 4.417 6.44-.22.842-.796 3.016-.814 3.125-.025.15.05.228.163.155.116-.076 3.65-2.457 4.296-2.923.63.084 1.28.129 1.938.129 5.523 0 10-3.5 10-7.828S17.523 3 12 3z"/></svg>
+                유사문제/상담 신청하기
+            </a>
+        </div>
+
+        <div class="helper-text">
+            자녀가 어려워하거나 자주 틀리는 유형의 항목을 선택해 주세요.<br>
+            <strong style="color: var(--red); font-size: 1rem;">(이미 완벽하게 알고 있는 유형은 체크하지 마세요)</strong><br>
+            <strong style="color: var(--navy); font-size: 0.95rem; display:inline-block; margin-top:8px;">총 3회까지 응시 가능합니다.</strong>
+        </div>
+
+        <div class="attempt-menu" id="attemptMenu">
+            <span>이전 결과 불러오기 : </span>
+            <button class="attempt-btn" id="btn-att-0" onclick="loadAttempt(0)">1회차</button>
+            <button class="attempt-btn" id="btn-att-1" onclick="loadAttempt(1)">2회차</button>
+            <button class="attempt-btn" id="btn-att-2" onclick="loadAttempt(2)">3회차</button>
+        </div>
+
+        <div class="tab-bar">
+            <button class="tab-btn" id="btn-quick" onclick="setView('quick')">번호만 체크하기</button>
+            <button class="tab-btn active" id="btn-area" onclick="setView('area')">영역별로 보기</button>
+            <button class="tab-btn" id="btn-list" onclick="setView('list')">목록으로 보기</button>
+        </div>
+
+        <div id="view-quick" class="checklist-section">
+            <div class="category-block">
+                <div class="category-header">
+                    <div class="category-title">정답(번호)만 체크하기</div>
+                    <div class="category-divider"></div>
+                </div>
+                <p style="text-align:center; margin-bottom:16px; font-weight:600; color:var(--navy);">
+                    ✔️ 1번부터 54번까지 <span style="color:var(--red);">틀린 문제 번호</span>만 체크하세요.
+                </p>
+                <div class="number-grid" id="quick-grid"></div>
+            </div>
+        </div>
+
+        <div id="view-area" class="checklist-section active"></div>
+
+        <div id="view-list" class="checklist-section">
+            <div class="category-block">
+                <div class="category-header">
+                    <div class="category-title">전체 문항 리스트 (1~54)</div>
+                    <div class="category-divider"></div>
+                </div>
+                <div class="items-grid" id="list-grid"></div>
+            </div>
+        </div>
+
+        <div class="submit-area">
+            <div class="counter-badge">선택한 오답(약점) 유형 <strong id="checkCount">0</strong>개</div><br>
+            <button class="btn-submit" onclick="submitNewAttempt()">새로운 응시 결과 제출 및 확인 →</button>
+        </div>
+
+        <div id="result-area">
+            <div class="result-header">
+                <div class="result-icon">📊</div>
+                <div class="result-header-text">
+                    <h2 id="reportTitle">프리미어 전문 진단 리포트</h2>
+                    <p><strong id="resName"></strong> 학생 · 선택된 오답 유형 <strong id="resCount"></strong>개</p>
+                </div>
+            </div>
+            
+            <div class="result-body">
+                <div class="diagnosis-grid">
+                    <div class="chart-container">
+                        <canvas id="diagnosisChart"></canvas>
+                    </div>
+                    <div class="diagnosis-text-container" id="diagnosisContent">
+                        </div>
+                </div>
+                
+                <h3 style="font-family: 'Noto Serif KR', serif; color: var(--navy); margin-bottom: 12px; font-size:1.1rem; display:flex; align-items:center; gap:8px;"><span style="font-size:1.3rem;">📋</span> 오답 문항 상세 분석</h3>
+                
+                <div class="result-list-box" id="resultListBox">
+                    </div>
+                
+                <div class="academy-pledge">
+                    지필드 영재교육은 성공하는 공부습관을 만들기 위해 최선의 노력을 다하겠습니다.
+                </div>
+                
+                <div class="result-actions">
+                    <button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button>
+                    <button class="btn-action btn-action-outline" onclick="window.print()">📄 진단 결과 PDF 저장 / 인쇄</button>
+                    <button class="btn-action btn-action-fill" onclick="window.open('https://open.kakao.com/me/gfield', '_blank')">💬 지필드 카톡 맞춤 상담</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="allAnswerPrint" aria-hidden="true"></div>
+
+<script>
+    // 모든 문항 데이터를 포함하는 배열
+    const data = [
+        {
+            categoryNum: "1", categoryTitle: "공간 지각력 (쌓기나무와 입체도형)", shortName: "공간 지각", total: 10,
+            strength: "보이지 않는 사각지대의 블록을 정확히 유추하고, 입체도형의 회전 및 전개도 변환 과정을 머릿속으로 시뮬레이션하는 '3D 공간 구조화 직관력'이 최상위권 수준입니다.",
+            weakness: "복잡하게 구멍이 뚫린 블록이나 조건부 주사위 굴리기 등 고난도 공간 지각 문제에서 실수가 발생합니다. 눈으로만 풀기보다 층별 단면도(1층, 2층, 3층...)를 직접 그리거나, 기준면을 잡아 회전 경로를 추적하는 '시각적 구조화' 훈련이 꼭 필요합니다.",
+            items: [
+                { id: 1, text: "앞과 뒤에서 본 모양을 보고 전체 쌓기나무 개수 맞히기", ans: "11개", tTip: "뒤에서 봤을 때 3층인 것을 확인하고, 겹치는 부분 8개에 뒤에 숨겨진 3개를 더해서 11개를 찾아요.", mTip: "앞뒤 방향이 바뀌면 좌우도 바뀐다는 걸 아이들이 아주 자주 헷갈려요. 눈대중으로 세지 말고, 위에서 본 칸마다 '3, 2, 1'처럼 숫자를 직접 쓰도록 펜을 쥐여주세요!", video: "https://youtu.be/8l-YgY8LZzk?si=JiYe_Jm791CtnxKN&t=23" },
+                { id: 2, text: "상자를 꽉 채우기 위해 큐브가 몇 개 더 필요한지 찾기", ans: "16개", tTip: "전체 상자에 들어가는 개수를 먼저 구한 뒤, 지금 있는 11개를 빼서 16개를 찾습니다.", mTip: "빈 곳을 눈으로 하나씩 세면서 채우려 하면 꼭 구석이나 맨 윗부분을 까먹고 덜 세게 됩니다. 반드시 '전체 꽉 찬 개수'에서 '지금 있는 개수'를 빼는 방법으로 풀게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=ezgwd5S2rlc9s_kf&t=82" },
+                { id: 3, text: "검은색, 흰색이 교대로 쌓인 블록의 색깔별 개수 세기", ans: "흰색 14개, 검은색 15개", tTip: "2층, 4층 같은 짝수 층은 두 색깔 개수가 똑같고, 1층, 3층 같은 홀수 층은 맨 위에 있는 색깔이 하나 더 많다는 규칙을 이용해요.", mTip: "다 센 다음에는 꼭 \"두 개를 더하면 29개인데, 원래 전체 블록 수도 29개가 맞나?\" 하고 확인(검산)하는 습관을 들여주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=4L9afIXflo3m0DEu&t=152" },
+                { id: 4, text: "반대편까지 구멍이 뻥 뚫린 블록에서 남은 개수 구하기", ans: "79개", tTip: "전체 100개(20칸 × 5층)에서 구멍 때문에 완전히 사라진 기둥의 블록 수 21개를 빼서 79개를 구합니다.", mTip: "겉에 보이는 까만색 블록 1개만 쏙 빠졌다고 착각하기 쉬워요. \"아래층까지 기둥 전체가 뻥 뚫린 거야~\"라고 상황을 정확히 인지시켜 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=glKWcD7JQ-OJfY3p&t=297" },
+                { id: 5, text: "전체 16개일 때, 그림에서 안 보이는 블록 개수 찾기", ans: "5개", tTip: "눈에 확실히 보이는 11개를 전체 개수 16개에서 빼서 숨어있는 5개를 찾습니다.", mTip: "만약 문제에 '전체 16개'라는 말이 없다면, 위에 떠 있는 블록이 무너지지 않으려면 바닥에 최소 몇 개가 받쳐주고 있어야 할지 생각해보게 하는 훈련이 필요해요.", video: "https://youtu.be/8l-YgY8LZzk?si=uvIzjhuR7B2JBulu&t=382" },
+                { id: 6, text: "블록 모양을 여러 방향에서 관찰했을 때 절대 나올 수 없는 모습 고르기", ans: "4번, 6번", tTip: "시선을 돌려보며 특정 각도에서 색깔의 위치가 맞지 않는 보기를 찾아냅니다.", mTip: "아이가 도형의 뒤로 돌아갔다고 상상할 때 좌우가 뒤바뀌는 걸 놓치기 쉬워요. 머릿속으로만 생각하게 두지 마시고 시험지 위에 화살표로 시선 방향을 직접 그리게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=aNlI9drYP-TBV-Hc&t=447" },
+                { id: 7, text: "전개도를 접어서 완성된 주사위 모양 찾기", ans: "2번, 4번, 5번", tTip: "전개도에 '더하기' 모양이 1개뿐인데 보기에 더하기가 2개 있다면 절대 안 되겠죠? 이런 식으로 확실히 아닌 것부터 지워나갑니다.", mTip: "'X' 문양이 그려진 면이 옆으로 또르르 굴러가서 붙으면, 그 모양의 방향이 어떻게 90도로 꺾이는지 직접 색종이를 오려 확인시켜 주시면 이해가 아주 빠릅니다.", video: "https://youtu.be/8l-YgY8LZzk?si=3V56jjEUMXZpQILy&t=607" },
+                { id: 8, text: "주사위를 화살표 방향으로 굴렸을 때 바닥에 닿는 숫자 맞히기", ans: "5", tTip: "주사위는 마주 보는 두 면의 숫자를 더하면 항상 '7'이 된다는 성질을 이용해 바닥 숫자를 계속 따라갑니다.", mTip: "머릿속으로만 주사위를 굴리면 꼭 헷갈립니다. 주사위가 굴러가는 길바닥 위에 숫자를 직접 전개도처럼 펼쳐서 쓰도록 지도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=C49gqY5kFgLZVBiv&t=772" },
+                { id: 9, text: "위, 앞, 옆에서 본 그림을 바탕으로 전체 블록 수 구하기", ans: "6개", tTip: "위에서 본 바닥 그림 위에 최대 몇 층까지 쌓을 수 있는지 숫자를 써가며 확인합니다.", mTip: "옆이나 앞에서 봤을 때 '1층'이라고 적힌 줄이 있다면, 그 줄에는 절대 2층 이상의 블록이 올라갈 수 없어요! 이 규칙으로 불가능한 자리를 지워나가면 매우 쉽습니다.", video: "https://youtu.be/8l-YgY8LZzk?si=we1jfgLNvgJWNV61&t=887" },
+                { id: 18, text: "블록 4개를 모두 써서 만들 수 있는 서로 다른 입체 모양 개수 찾기", ans: "8개", tTip: "블록 3개를 바닥에 'ㄱ'자나 일자로 딱 고정해두고, 남은 1개를 이리저리 돌아가며 붙여보는 체계적인 방법으로 8개를 찾습니다.", mTip: "새로 만든 모양을 이리저리 굴리거나 뒤집었을 때 아까 만든 모양과 겹쳐지면 똑같은 모양으로 쳐야 해요. 이걸 놓치면 개수가 너무 많아집니다.", video: "https://youtu.be/8l-YgY8LZzk?si=cY_B09rzpAF61fSi&t=1252" }
+            ]
+        },
+        {
+            categoryNum: "2", categoryTitle: "평면 지각력 (도형과 색종이)", shortName: "평면 지각", total: 11,
+            strength: "색종이의 대칭축(데칼코마니)을 꿰뚫어 보고, 복잡하게 분할된 평면도형 속에서 중복 없이 숨은 도형을 찾아내는 '기하학적 분석력'이 매우 우수합니다.",
+            weakness: "색종이를 여러 번 접어 자르거나 복잡한 도형 개수 세기에서 누락이나 중복이 종종 발생합니다. 대칭축을 기준으로 역추적하며 전개도를 그리거나, 작은 기본 도형에 번호를 매겨 조합하는 '분류적 카운팅' 기법을 체화해야 합니다.",
+            items: [
+                { id: 10, text: "규칙에 따라 빈칸에 색종이가 몇 장 겹쳐 있는지 맞히기", ans: "4장", tTip: "안 겹친 곳(1장)부터 시작해서, 2장 겹친 곳, 3장 겹친 곳으로 차근차근 영역을 좁혀가며 마지막에 4장이 겹쳤음을 찾아요.", mTip: "선이 복잡해서 눈으로만 보면 어지럽습니다. 색연필을 쥐여주고 색종이 하나하나의 테두리를 따라 그려보며 몇 번 색칠되는지 세도록 도와주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=fDW9iBDO_Sgzy-sK&t=937" },
+                { id: 11, text: "숫자가 적힌 종이를 두 번 접었을 때, 가장 위로 올라오는 숫자들의 합 구하기", ans: "22", tTip: "아래로 한 번, 옆으로 한 번 접었을 때 바닥에 있던 숫자들이 위로 올라와 대칭을 이루는 걸 파악해 8, 7, 3, 4를 찾아 모두 더합니다.", mTip: "종이를 접는다고 해서 숫자 모양 자체가 거울처럼 뒤집히는 게 아니라, 숫자가 들어있는 '네모 칸' 전체가 옆으로 이동해서 덮인다는 것을 확실히 구분해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=SQ2bVRTpZdjGGTNw&t=967" },
+                { id: 12, text: "두 번 접은 종이에 구멍을 하나 뚫고 펼쳤을 때 총 구멍 수 맞히기", ans: "8개", tTip: "접힌 선을 기준으로 구멍이 데칼코마니처럼 반대쪽에 똑같이 찍히며 늘어나는 것을 확인합니다.", mTip: "접은 횟수만 보고 무작정 '곱하기 2'를 하면 안 돼요. 구멍이 접은 선 한가운데를 물고 뚫리면 개수가 달라질 수 있으니, 꼭 점선을 긋고 반사되는 점을 직접 찍어보게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=kQdU0xZ4qvk8qCVq&t=1022" },
+                { id: 13, text: "5개의 블록 조각 중 4개를 써서 네모난 빈칸을 꽉 채우기", ans: "(다양한 배치 가능)", tTip: "덩치가 크거나 'ㄷ'자처럼 모양이 특이한 조각부터 네모의 모서리(구석)에 먼저 끼워 넣습니다.", mTip: "아이가 이리저리 끼워보다가 막혀서 짜증을 낼 수 있어요. 그럴 땐 억지로 끼워 넣지 말고, 방금 놓은 조각을 180도 뒤집어보도록 유연한 생각을 유도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=BELfXthzg23Lcc8X&t=1057" },
+                { id: 14, text: "도형을 빈틈없이 자르되, 가장 적은 개수의 정사각형으로 만들기", ans: "6개", tTip: "개수가 가장 적어지려면 정사각형 하나의 크기가 아주 커야 해요. 가장 크게 만들 수 있는 네모부터 큼직하게 잘라내고, 남은 자투리 공간을 쪼개어 6조각을 만듭니다.", mTip: "아이들은 무의식적으로 모든 네모를 '똑같은 크기'로 예쁘게 잘라야 한다고 생각해요. 큰 네모, 작은 네모 섞여도 괜찮다는 걸 꼭 알려주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=1l4urECku0xySLmB&t=1079" },
+                { id: 15, text: "U자 모양 도형에 선 딱 2개만 그어서 6조각으로 만들기", ans: "(과감한 교차선 긋기)", tTip: "도형의 양쪽 기둥을 한 번의 선으로 시원하게 잘라 3조각을 내고, 나머지 선으로 교차점을 만들어 6조각을 완성해요.", mTip: "자를 때 선이 꼭 도형 색칠된 곳 안에서만 움직일 필요는 없어요. 비어있는 허공을 뚫고 지나가 반대편까지 한 번에 쭉 긋도록 과감한 선 긋기를 가르쳐 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=gmU39kUBvDj1Rdwv&t=1117" },
+                { id: 16, text: "선을 따라 그릴 수 있는 크고 작은 정사각형 모두 세기", ans: "10개", tTip: "1칸짜리 작은 것부터 다 세고, 그다음 4칸짜리 묶음, 9칸짜리 묶음으로 크기별로 차례차례 세어 합칩니다.", mTip: "도형 중간에 선이 끊어져서 네모가 완성되지 않은 모양을 무심코 정상적인 네모로 세어버리는 실수가 잦아요. 뚫린 곳이 없는지 주의를 주셔야 합니다.", video: "https://youtu.be/8l-YgY8LZzk?si=gCLgWHwG4ECMnPKX&t=1137" },
+                { id: 17, text: "크기별로 정사각형 개수 모두 찾아 더하기", ans: "10개", tTip: "역시 기준 모양을 옆에 작게 그려놓고 크기를 키워가며 셉니다.", mTip: "눈대중으로 대충 세면 100% 빠뜨리거나 중복해서 셉니다. 시험지 구석에 1칸짜리=몇 개, 4칸짜리=몇 개 이렇게 식처럼 적어가며 세도록 지도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=oz8ClUdAxp97RIRb&t=1187" },
+                { id: 19, text: "점판 위의 점을 이어 그릴 수 있는 정삼각형 모두 찾기", ans: "12개", tTip: "바닥이 평평한 기본 세모와 큰 세모를 10개 찾고, 살짝 기울어진 모양의 세모 2개를 마저 찾아냅니다.", mTip: "아이들은 종이 바닥과 나란하게 반듯하게 서 있는 세모만 눈에 들어와요. 삐딱하게 대각선으로 기울어진 세모도 있다는 걸 알려주기 위해 종이를 살짝 틀어서 보게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=VlHDCWoNxOzGaTUh&t=1382" },
+                { id: 32, text: "거울에 비쳐서 잘못된 디지털 숫자 모양을 보고 원래 올바른 수 맞히기", ans: "94", tTip: "거울에 비치면 좌우가 바뀌어서 '2'가 '5'로 보인다는 사실을 거꾸로 돌려 원래 숫자를 알아냅니다.", mTip: "숫자 낱개의 모양만 반대로 뒤집는 것에 집중하다가, 수식 전체가 써 있는 순서(글 읽는 방향)까지 통째로 거꾸로 뒤집혀 있다는 사실을 놓치기 쉬우니 꼭 짚어주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=nf7BBUiIumkIp8Gm&t=1987" },
+                { id: 38, text: "10명이 둥글게 앉았을 때, 오른쪽으로 2칸 간 후 마주 보는 사람 찾기", ans: "3번째 인물", tTip: "기준점에서 오른쪽 2칸 이동한 뒤, 원의 중심을 가로지르는 선을 그어 마주 보는 사람의 위치를 찾아요.", mTip: "자리가 비어있다고 원을 대충 찌그러지게 그리면 마주 보는 대칭선이 빗나가서 아예 엉뚱한 사람을 가리키게 돼요. 시계판처럼 10명 자리를 예쁜 간격으로 정확히 그리게 지도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=m_5DhQ0wKn6Z9MFy&t=2394" }
+            ]
+        },
+        {
+            categoryNum: "3", categoryTitle: "수와 연산 퍼즐", shortName: "수와 연산", total: 7,
+            strength: "수의 기본 성질(자릿값, 홀짝 등)을 깊이 이해하고 있으며, 다중 조건이 얽힌 수 배열에서 숨겨진 연산 규칙을 유추하는 '수리 논리력'이 탁월합니다.",
+            weakness: "벌집 퍼즐이나 벤다이어그램 수 넣기 등 복합 조건의 연산 퍼즐에서 시간이 지체되는 경향이 있습니다. 무작정 숫자를 대입하기보다는 가장 제약이 강한 조건(큰 자릿수, 교집합 등)을 먼저 고정하고, 후보군을 좁혀가는 '전략적 추론' 연습이 요구됩니다.",
+            items: [
+                { id: 22, text: "잘못된 뺄셈식에서 숫자 2개 자리를 쏙 바꿔서 올바른 식 만들기", ans: "38-16=22", tTip: "먼저 양쪽의 차이가 얼마나 나는지 확인한 후, 그 차이를 줄일 수 있는 숫자를 서로 맞바꿉니다.", mTip: "아무 숫자나 찔러보듯 바꾸면 시간이 너무 오래 걸려요. '일의 자리' 숫자들끼리 먼저 빼기 계산을 해봐서 양쪽 끝자리가 똑같아지는 짝꿍부터 찾으라고 요령을 알려주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=dOrrDjPcy4ovA861&t=1572" },
+                { id: 23, text: "숫자들 사이에 더하기(+)나 빼기(-)를 넣어서 정답 27 만들기", ans: "(예: 5+4-3+21 = 27)", tTip: "앞부분에서 덩어리가 큰 수를 미리 만들어 두고, 뒷부분의 작은 숫자로 살짝 더하고 빼며 목표 숫자에 맞춥니다.", mTip: "식은 괄호가 없으면 무조건 왼쪽에서 오른쪽으로 계산된다는 점을 상기시켜 주시고, 처음부터 수의 크기를 확 키워놓는 방향으로 유도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=fT95gnmnZfeeRpfz&t=1594" },
+                { id: 24, text: "1부터 9까지 다 더한 식에서 + 하나를 -로 바꿔서 답 29 만들기", ans: "8 앞의 부호", tTip: "원래 다 더하면 45인데 29가 되려면 16이 줄어야 하죠. 16의 절반인 8 앞의 더하기를 빼기로 바꿉니다.", mTip: "더하기를 빼기로 바꾸면, 딱 그 숫자만큼만 줄어드는 게 아니라 '그 숫자의 2배'만큼 점수가 훅 깎인다는 대수학의 마법을 아이가 직접 깨닫게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=GyJHnAQz7wG5ZmW6&t=1619" },
+                { id: 25, text: "위, 아래 두 가지 힌트 칸에 '공통으로' 들어갈 수 있는 숫자 찾아 다 더하기", ans: "21", tTip: "위쪽 힌트에 맞는 숫자(1~6)와 아래쪽 힌트에 맞는 숫자를 비교해 양쪽 다 통과하는 숫자들을 찾아요.", mTip: "아이들은 문제에서 '공통으로'라는 말을 잘 빼먹고 읽어요. 위쪽 힌트만 보고 성급하게 7 같은 숫자를 넣어버리지 않도록 문제를 또박또박 읽는 연습이 필요합니다.", video: "https://youtu.be/8l-YgY8LZzk?si=-JWjNMIdWkAhK7PI&t=1661" },
+                { id: 27, text: "숫자 미로의 기호를 하나도 빠짐없이 한 번씩 다 밟고 지나가며 올바른 식 만들기", ans: "(예: 8+4=12-9=3)", tTip: "8+4=12 처럼 앞부분부터 꼬리를 물듯 순서대로 식을 연결해 나갑니다.", mTip: "눈으로만 길을 찾으면 100% 꼬입니다. 자기가 한 번 밟고 지나간 숫자와 기호는 연필로 빗금을 쫙쫙 그어 지워야, 두 번 쓰거나 빼먹는 실수를 막을 수 있어요.", video: "https://youtu.be/8l-YgY8LZzk?si=vwykSbGuy0bmFX17&t=1723" },
+                { id: 34, text: "숫자 카드로 두 자리 수 뺄셈을 만들 때 결과가 가장 작게 나오도록 배치하기", ans: "6", tTip: "빼서 가장 작은 수가 되려면, 십의 자리 숫자를 1밖에 차이 안 나는 3과 4로 나란히 두고, 일의 자리는 앞 수를 더 작게 엇갈리게 둬서 받아내림이 생기게 만들어요.", mTip: "\"그냥 제일 작은 숫자 만들어서 빼면 되는 거 아니야?\"라고 직관적으로만 생각하면 오답을 내요. '십의 자리 숫자가 수직선에서 제일 가까워야 한다'는 원리를 보여주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=xdJwAffOxBuQyTnD&t=2147" },
+                { id: 40, text: "네모 모서리에 있는 숫자들의 합 규칙을 파악해서 빈칸 채우기", ans: "3", tTip: "왼쪽은 14, 오른쪽은 11로 부분합이 일정하다는 규칙을 찾아내어 마지막 빈칸에 3을 넣습니다.", mTip: "한두 개의 합만 더해보고 \"아하, 이런 규칙이네!\" 하고 끝까지 확인 안 하는 성급함이 가장 큰 적입니다. 모든 칸이 똑같은 규칙으로 말이 되는지 꼭 끝까지 더해보게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=GLWFHQ_NdtDc-4lB&t=2604" }
+            ]
+        },
+        {
+            categoryNum: "4", categoryTitle: "논리 추리", shortName: "논리 추리", total: 7,
+            strength: "복잡하게 얽힌 단서들 사이의 핵심 모순을 짚어내고, 참/거짓을 판별하여 빈틈없이 결론을 도출하는 '연역적 추론 능력'이 매우 완성도 높습니다.",
+            weakness: "정보량이 많은 추리 문제(원탁 앉기, 순서 정하기 등)에서 단서 정리가 누락되는 경우가 있습니다. 머릿속으로만 풀지 말고, O/X 매트릭스(논리표)를 그리거나 수직선/빈칸을 그려 확정된 조건부터 채워 넣는 '정보의 시각화' 습관이 필수적입니다.",
+            items: [
+                { id: 21, text: "4가지 힌트를 모두 만족하는 네 자리 자물쇠 비밀번호 풀기", ans: "3845", tTip: "천의 자리에 3을 고정하고, '3700보다 크다'는 힌트를 써서 백의 자리를 8로 결정한 뒤 나머지 숫자를 끼워 맞춥니다.", mTip: "머릿속으로 힌트 4개를 한꺼번에 섞어버리면 아이가 혼란스러워해요. 시험지에 밑줄 4칸 ( _ _ _ _ )을 큼지막하게 그려놓고 힌트를 하나씩 지워가며 빈칸을 채우게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=lYLKdmwOsPhx7xSu&t=1532" },
+                { id: 29, text: "가로, 세로로 변하는 숫자 규칙을 찾아서 물음표 빈칸 채우기", ans: "19, 23, 30", tTip: "가로로는 2씩 커지고(+2), 세로로는 7씩 커지는(+7) 규칙을 발견하여 남은 칸들을 착착 채웁니다.", mTip: "가로줄 하나만 보고 \"아하, 이거네!\" 하고 성급하게 단정 지으면 안 됩니다. 찾은 규칙이 세로줄에도 똑같이 잘 맞는지 꼭 크로스 체크(교차 확인)를 하라고 당부해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=OM-xdX56LHw9bA6V&t=1815" },
+                { id: 31, text: "0부터 8까지의 숫자를 알파벳 식에 하나씩 대입해서 암호 해독하기", ans: "A=4, G=0 등", tTip: "A + G = A 라는 식을 보고, \"어? 더했는데도 자기 자신이 그대로 나오네? 그럼 G는 아무것도 없는 '0'이구나!\"라는 가장 결정적인 힌트부터 찾아냅니다.", mTip: "복잡해 보이는 식 중간부터 아무 숫자나 찍어서 넣어보게 하지 마세요. '0'이나 '1'이 가질 수 있는 특별한 성질을 가진 식부터 공략해야 연산 지옥을 피할 수 있어요.", video: "https://youtu.be/8l-YgY8LZzk?si=J4s5FjcitCMeBuNy&t=1932" },
+                { id: 35, text: "달리기하는 5명의 앞뒤 힌트를 읽고 4등이 누구인지 이름 맞히기", ans: "민호", tTip: "\"호진이의 앞뒤 사람 수가 같다\"는 결정적 힌트를 보면 호진이가 무조건 정중앙 3등이라는 걸 알 수 있어요. 이를 축으로 나머지 사람을 줄 세웁니다.", mTip: "확실하게 자기 자리가 정해진 친구(호진이)를 먼저 가운데 고정해 놓고, 나머지 친구들의 이름표를 앞뒤 빈칸에 이리저리 옮기며 퍼즐 맞추듯 풀게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=kPu1SFf7I1_RRF3I&t=2193" },
+                { id: 37, text: "5명이 둥근 원탁에 둘러앉은 힌트를 보고 각자 자리 이름 쓰기", ans: "(자리 배치 완료)", tTip: "'무겸이는 아영이 바로 옆에 앉는다'처럼 둘이 찰싹 붙어있는 강력한 힌트부터 원탁에 자리를 선점해 줍니다.", mTip: "아이가 시험지를 쳐다보는 시점에서의 '오른쪽'이 아니라, 원탁 의자에 직접 앉아있는 당사자 몸 기준에서의 '오른쪽/왼쪽'을 상상하도록 아이가 의자를 돌려앉아 보는 시늉을 하게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=rgfOjHi5oKncb4PL&t=2320" },
+                { id: 39, text: "4명이 좋아하는 과일에 대한 힌트를 읽고 B가 좋아하는 과일 2개 맞히기", ans: "사과, 귤", tTip: "'딸기는 C만 좋아한다'는 독점 힌트를 보면, 다른 사람 칸의 딸기는 싹 다 가위표(X)를 칠 수 있어서 표가 금방 채워집니다.", mTip: "이걸 머릿속으로만 기억하려고 하면 어른도 헷갈려요. 귀찮더라도 사람 이름과 과일 이름이 교차하는 '바둑판 모양의 표'를 큼지막하게 그리도록 단호하게 훈련시켜 주셔야 해요.", video: "https://youtu.be/8l-YgY8LZzk?si=LPdnK7lGq8iW6Fgq&t=2452" },
+                { id: 41, text: "버튼을 누를 때마다 모양과 색깔이 바뀌는 규칙을 찾아 마지막 모습 그리기", ans: "노란/주황 바뀐 별", tTip: "가, 나, 다 버튼이 각각 '색깔 교체', '모양 뒤집기' 등의 어떤 마법을 부리는지 하나씩 분석해서 순서대로 적용합니다.", mTip: "색깔이 바뀌는 것과 도형이 뒤집히는 복합적인 명령이 한 번에 일어나면 머리가 하얘져요. 화살표 위쪽에 '색깔 체인지', '위아래 휙' 처럼 아이만의 쉬운 한글 힌트를 적어두라고 꿀팁을 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=Mtl-6FiDVxmhkomN&t=2624" }
+            ]
+        },
+        {
+            categoryNum: "5", categoryTitle: "경우의 수 (조합)", shortName: "경우의 수", total: 6,
+            strength: "제한된 제약 조건 속에서 상황을 정확히 인지하고, 빠짐이나 중복 없이 가능한 모든 경우를 찾아내는 '체계적 분류 능력'이 돋보입니다.",
+            weakness: "도형 색칠하기나 최단 거리 구하기에서 기준을 잘못 세워 카운팅 오류가 생깁니다. '가장 인접한 면이 많은 곳'이나 '가장 큰 자릿수' 등 우선순위 기준을 명확히 잡고, 수형도(나뭇가지 그림)나 체계적인 표를 그려 기계적으로 분류하는 훈련이 필요합니다.",
+            items: [
+                { id: 20, text: "1, 2, 4, 8cm 막대를 겹치지 않게 이어 붙여 만들 수 있는 길이의 가짓수 구하기", ans: "15가지", tTip: "막대기 1개만 쓸 때, 2개 쓸 때, 3개 쓸 때, 다 쓸 때로 경우를 쪼개어 1부터 15까지 빠짐없이 만들 수 있다는 걸 확인해요.", mTip: "무작위로 막 더해보게 하지 마세요. 제일 짧은 길이(1)와 다 합친 제일 긴 길이(15)를 먼저 써놓고, 그 사이 숫자들이 다 만들어지는지 징검다리 건너듯 꼼꼼히 확인하게 해주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=Q5U-QXdOBYtgBb5K&t=1427" },
+                { id: 30, text: "3점, 2점, 1점 과녁에 화살을 3번 쏴서 나올 수 있는 서로 다른 점수 개수 찾기", ans: "7가지", tTip: "다 3점을 맞춘 최고점(9점)과 다 1점을 맞춘 최하점(3점)을 먼저 구하고, 그사이에 나올 수 있는 점수들을 하나씩 그물망처럼 찾아내요.", mTip: "무작위로 생각나는 대로 적으면 무조건 빠뜨리는 점수가 생겨요. \"3점짜리를 3번 맞췄을 때, 2번 맞췄을 때...\" 이렇게 큰 점수부터 차례대로 표를 예쁘게 그리도록 지도해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=Y0KkNAUueiTP8waC&t=1857" },
+                { id: 42, text: "7칸 중 3칸을 칠하는데 서로 옆에 딱 붙지 않게 색칠하는 가짓수 찾기", ans: "8가지", tTip: "첫 번째 색칠을 윗줄에 하는 그룹과 아랫줄에 하는 그룹으로 상황을 두 덩어리로 나누어(경우의 수 쪼개기) 차근차근 셉니다.", mTip: "아이들은 보통 '이웃한다'는 말을 좌우 양옆만 조심하면 된다고 생각해요. 대각선으로 붙는 경우나 위아래로 붙는 것도 모두 이웃하는 것이니 칠하면 안 된다고 영역을 확실히 그어주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=Wr1aiQX8xHoIsjUN&t=2749" },
+                { id: 43, text: "4가지 색 중 3개를 골라 둥근 원탁 빈칸에 색칠하는 모든 경우 찾기", ans: "12가지", tTip: "색깔을 빙글빙글 돌렸을 때 결국 똑같은 배치가 되면 그건 '한 가지'로만 친다는 원순열의 규칙을 적용합니다.", mTip: "머릿속으로 식탁을 돌려보는 건 어려워요. R(빨강), B(파랑)처럼 앞글자를 써두고 종이를 살살 돌려보면서 \"어? 아까 썼던 거랑 똑같네?\" 하는 건 과감하게 엑스표로 지우는 연습을 시켜주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=KZq3x_WVXmo-pmbO&t=2899" },
+                { id: 44, text: "백의 자리 숫자가 일의 자리보다 작고, 합이 13이며 숫자 0이 꼭 들어가는 세 자리 수 모두 찾기", ans: "409, 508, 607", tTip: "\"0은 세 자리 수의 맨 앞(백의 자리)에 올 수 없다\"는 제일 강력한 절대 규칙을 이용해서, 숫자 0을 가운데 십의 자리에 딱 고정해두고 풀기를 시작합니다.", mTip: "힌트 3개를 한 번에 만족하게 하려 들면 머리가 꼬여요. 움직이지 않는 가장 강력한 기준점(0의 위치)을 먼저 못 박아두고, 나머지 빈칸을 채우는 순서로 접근하는 사고방식을 길러주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=pJzNFB3_2P9PqBmu&t=3002" },
+                { id: 45, text: "미술관에서 동물원으로 가는 가장 가까운 길 가짓수 구하기", ans: "16가지", tTip: "모든 교차로 꼭짓점 위에 이전 길에서 올 수 있는 숫자들을 더해서 1, 2, 3... 써가며 목적지까지 도착합니다.", mTip: "가다 보면 장애물이나 호수 때문에 뚝 끊긴 길이 있어요. 이런 '유령 길'에서 무심코 숫자를 더해버리지 못하도록, 통과 못 하는 길목은 펜으로 두껍게 찌익 그어 막아두게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=jwylkuyic--gCnnO&t=3037" }
+            ]
+        },
+        {
+            categoryNum: "6", categoryTitle: "문제 해결력 (수리/응용)", shortName: "문제 해결", total: 7,
+            strength: "긴 문장으로 구성된 문제 상황의 핵심을 파악하고, 이를 수학적 모델(비례식, 등식화)로 완벽하게 변환하여 식을 세우는 능력이 뛰어납니다.",
+            weakness: "단위가 다르거나 양팔저울처럼 여러 조건이 얽힌 문장제에서 식 세우기를 다소 어려워합니다. 문장을 끊어 읽으며 '구하려는 것'을 기호화하고 단순화하는 연습에 집중해야 합니다.",
+            items: [
+                { id: 26, text: "성냥개비 3개를 다른 곳으로 옮겨서 틀린 식을 올바르게 고치기", ans: "ㅁ ㅁ ㅁ", tTip: "성냥개비 3개를 뗴내어 U모양의 네모 대래를 만듭니다.", mTip: "성냥개비를 아예 빼서 '쓰레기통에 버리는' 것이 아니라, 다른 곳으로 '이사'시켜야 하므로 전체 성냥개비 개수는 처음이나 끝이나 똑같아야 한다고 짚어주세요.그리고 ㅁ_처럼 옆으로 선이 나오면 안된다는 것도 알려주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=nrvKTkcEFzLWKDmE&t=1704" },
+                { id: 28, text: "동그라미 여러 개가 겹친 곳에서 안의 네 숫자 합이 97이 되도록 빈칸 구하기", ans: "85", tTip: "복잡한 가운데 겹친 숫자를 몰라도, 양쪽 바깥 부분의 숫자들의 합이 서로 같다는 원리를 이용해 한 번에 85를 찾아냅니다.", mTip: "모르는 빈칸이 많다고 덜컥 겁먹지 않게 해주세요. \"굳이 안쪽 숫자를 하나하나 다 구하지 않아도 바깥 덩어리끼리 같다는 마법을 부려보자\"고 격려해 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=pp8Sa6Ats2NLjTe6&t=1763" },
+                { id: 36, text: "지민이와 지수 사이에 6명이 있을 때, 줄을 선 전체 인원이 가장 많을 때와 가장 적을 때 구하기", ans: "최소 18명, 최대 32명", tTip: "양쪽 바깥으로 길게 퍼져 섰을 때가 최대(32명), 서로 안쪽으로 엇갈리게 서서 사람들을 겹쳐서 세었을 때가 최소(18명)입니다.", mTip: "인원이 제일 적을 때를 계산할 때, 지수나 지민이 본인을 이미 앞사람/뒷사람 숫자에 중복해서 세진 않았는지 꼭 종이에 선분(줄)을 그려가며 눈으로 확인해야 실수가 없어요.", video: "https://youtu.be/8l-YgY8LZzk?si=8InH5BNcypdqFpg_&t=2237" },
+                { id: 50, text: "지우개(4cm)와 맞물려 있는 여러 학용품의 길이를 비교해서 각각의 치수 구하기", ans: "연필8, 크레파스6, 클립3", tTip: "전체 길이를 지우개 몇 개가 들어가는 길이인지 하나의 기준으로 통일한 다음, 연필과 크레파스가 차지하는 비율만큼 나누어 가집니다.", mTip: "여러 물건이 겹쳐 있으면 뭐부터 봐야 할지 몰라요. \"우선 이 책상 전체 길이가 지우개 몇 개랑 똑같을까?\" 하고 전체를 하나의 단위를 기준으로 보게 하는 '기준 통일' 연습이 필요합니다.", video: "https://youtu.be/8l-YgY8LZzk?si=qlcGrEvNsSgWpeUS&t=3362" },
+                { id: 51, text: "정각마다 그 시간만큼 치고 30분마다 한 번 치는 시계가 7시부터 2시까지 친 횟수", ans: "60번", tTip: "8시부터 12시까지 종 치는 횟수를 쭉 더하고, 1시와 2시에 치는 횟수를 더한 뒤, 중간중간 30분에 친 7번을 빠뜨리지 않고 얹어서 총 60번을 구합니다.", mTip: "12시 다음이 13시라서 13번 치는 게 아니라, 다시 오후 1시로 리셋되어서 1번을 친다는 시간 문제만의 아주 특별한 규칙을 깜빡하지 않게 꼭 한 번 더 확인시켜 주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=_45FkNzQgTo67E7v&t=3422" },
+                { id: 52, text: "평형을 이룬 여러 양팔 저울 그림을 보고 도형 간의 무게 비율 알아내기", ans: "10개", tTip: "저울 양쪽 접시에 똑같이 올라가 있는 도형 모양을 지우개로 슥슥 지워내면, 네모 1개가 동그라미 2개랑 무개가 같다는 알짜배기 정보만 쏙 남게 돼요.", mTip: "머릿속으로만 \"대충 얘가 더 무겁겠지?\" 하고 눈대중으로 풀게 두면 안 됩니다. 직접 연필을 들고 양쪽에서 똑같은 물건을 짝지어 엑스표(X)로 지워보게 하는 물리적인 행동을 시켜주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=DQBCT57qesb4NxAc&t=3508" },
+                { id: 54, text: "1, 1, 2, 3, 5... 규칙으로 40번째까지 숫자를 쓸 때 홀수는 몇 개인지 찾기", ans: "27개", tTip: "숫자를 계속 더하는 게 아니라 홀수와 짝수가 '홀-홀-짝' 3개씩 묶여서 반복된다는 마법의 3박자 패턴을 발견해내서 27개를 찾습니다.", mTip: "무식하게 40번째 숫자까지 하나하나 더하다가는 시험 시간이 다 끝나버려요! \"마법의 규칙(패턴)이 숨어있을 거야\"라고 생각의 방향을 틀어주시는 게 영재 교육의 핵심입니다.", video: "https://youtu.be/8l-YgY8LZzk?si=_hqwuCBRgszajsdv&t=3643" }
+            ]
+        },
+        {
+            categoryNum: "7", categoryTitle: "지문 이해 (독해/추론)", shortName: "지문 이해", total: 6,
+            strength: "긴 글의 맥락과 수학적 조건을 정확히 파악하여, 서사를 시간 순서대로 재구성하고 수식으로 완벽하게 변환하는 독해 능력이 뛰어납니다.",
+            weakness: "서술형 문장이 길어지면 조건이 헷갈려 연산 실수가 발생할 수 있습니다. 문장을 끊어 읽고 시간/순서의 흐름을 시간순 다이어그램이나 화살표로 그려 시각화하는 연습이 필수적입니다.",
+            items: [
+                { id: 33, text: "이기면 2칸 위로, 지면 1칸 아래로 가는 가위바위보 게임에서 최종 위치 차이 구하기", ans: "3계단", tTip: "제이는 위로 4칸, 지용이는 위로 1칸. 그래서 둘의 차이는 3계단이 됩니다.", mTip: "뒤로 내려간다는 말 때문에 아이들이 머리에 쥐가 나기 쉬워요. \"우리가 10번째 계단에서 같이 출발했다고 치자\"하고 가짜 시작점을 정해주면 빼기 계산을 편안해합니다.", video: "https://youtu.be/8l-YgY8LZzk?si=Yului5AcM-SWQAj0&t=2032" },
+                { id: 46, text: "\"사탕 반을 주고 남은 것 반을 먹어 2개가 남았다\"를 보고 처음 사탕 개수 구하기", ans: "8개", tTip: "맨 끝에 남은 2개에서 출발해 타임머신을 타고 과거로 가듯 거꾸로 생각해요. 반을 먹기 전엔 4개, 반을 주기 전엔 8개입니다.", mTip: "\"먹었다\", \"주었다\"라는 말이 나오면 반사적으로 빼기(-)를 써요. \"우리는 거꾸로 시간 여행을 하는 거니까 행동도 반대로 더하기(+)나 곱하기(×)를 해야 해!\"라고 알려주세요.", video: "https://youtu.be/8l-YgY8LZzk?si=CLoUiYWFOSWAwpar&t=3097" },
+                { id: 47, text: "아이들이 카드를 이리저리 바꾸고 전학생이 온 서사를 거꾸로 돌려 처음 학생 수 맞히기", ans: "9명", tTip: "전학생이 와서 전체가 28명이 되었고 반반 나누어졌다는 결말 시점을 기준 삼아, 누가 카드를 바꿨는지 화살표 역순으로 거슬러 올라가며 셉니다.", mTip: "사건이 많아서 글만 읽으면 헷갈려요. 사건이 벌어진 순서대로 시간순 화살표 다이어그램을 쭉 그려놓은 다음, 맨 끝에서부터 반대로 타고 넘어오는 놀이처럼 풀게 하세요.", video: "https://youtu.be/8l-YgY8LZzk?si=atApkrUMT2jRPwcs&t=3132" },
+                { id: 48, text: "혼자 하면 6일 걸리는 민수와 12일 걸리는 철수가 같이 레고를 조립할 때 걸리는 기간", ans: "4일", tTip: "전체 레고 개수를 '12개짜리 세트'라고 내 맘대로 정해버리고, 민수는 하루에 2개, 철수는 하루에 1개 만든다고 생각해서 합치면 3개니까 총 4일이 걸린다고 쉽게 구합니다.", mTip: "아이들에게 1/6 + 1/12 같은 분수 개념은 인지적으로 너무 버거워요. 전체 일의 양을 아이가 계산하기 편한 '정수 조각'으로 구체화하는 테크닉이 아주 강력한 무기가 됩니다.", video: "https://youtu.be/8l-YgY8LZzk?si=cApDnnv9ut5DUMzF&t=3227" },
+                { id: 49, text: "3마리가 3일에 45개 줍는 도토리를, 10마리가 100개 주울 때 걸리는 시간", ans: "2일", tTip: "한꺼번에 변하는 숫자를 보지 않고, 먼저 다람쥐 '1마리가 하루에 몇 개 줍는지(5개)' 가장 기본적인 단위 효율을 찾아낸 뒤 10마리 버전에 대입합니다.", mTip: "다람쥐 마리 수랑 날짜가 둘 다 변하니까 당황해요. 한 번에 여러 개를 건드리지 말고, 먼저 '1마리만 일했을 때'로 좁혀서 생각하라고 변수를 고정해 주시면 마법처럼 술술 풀립니다.", video: "https://youtu.be/8l-YgY8LZzk?si=4nL68VLnrOcJeRwU&t=3292" },
+                { id: 53, text: "글을 읽고 지우개 1개가 클립 몇 개인지 알아내기", ans: "12개", tTip: "길고 어지러운 문장을 기호식으로 딱 바꿔 적은 다음, 양쪽에 똑같이 들어있는 지우개와 클립을 지워내서 '지우개 1개=클립 2개'라는 걸 찾아냅니다.", mTip: "서술형으로 줄글이 길어지면 지쳐요. 글을 읽자마자 바로 \"지우개4+클립7 = 지우개6+클립3\" 이렇게 깔끔한 수학 나라 언어로 번역해 적는 연습이 마스터키입니다.", video: "https://youtu.be/8l-YgY8LZzk?si=tHGK1V2dQaE5k24X&t=3532" }
+            ]
+        }
+    ];
+
+    const selectedSet = new Set();
+    const checkSVG = `<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#0d1b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    let myChart = null; 
+    let diffChart = null;
+
+    let currentUserKey = "";
+    let studentHistory = []; 
+
+    window.onload = function () {
+        const viewArea = document.getElementById('view-area');
+        const listGrid = document.getElementById('list-grid');
+        const quickGrid = document.getElementById('quick-grid');
+
+        let allItems = []; 
+
+        data.forEach(cat => {
+            let blockHTML = `<div class="category-block"><div class="category-header"><div class="category-num">${cat.categoryNum}</div><div class="category-title">유형 ${cat.categoryNum}. ${cat.categoryTitle}</div><div class="category-divider"></div></div><div class="items-grid">`;
+            
+            cat.items.forEach(item => {
+                blockHTML += `<label class="check-item" data-id="${item.id}" onclick="toggleItem(event, ${item.id})"><div class="custom-check">${checkSVG}</div><span class="list-num">${String(item.id).padStart(2,'0')}</span><span>${item.text}</span></label>`;
+                allItems.push(item);
+            });
+
+            blockHTML += `</div></div>`;
+            viewArea.innerHTML += blockHTML;
+        });
+
+        // 리스트 보기와 빠른 번호 보기는 번호순으로 정렬
+        allItems.sort((a, b) => a.id - b.id);
+
+        allItems.forEach(item => {
+            const listLbl = document.createElement('label');
+            listLbl.className = 'check-item';
+            listLbl.setAttribute('data-id', item.id);
+            listLbl.onclick = (e) => toggleItem(e, item.id);
+            listLbl.innerHTML = `<div class="custom-check">${checkSVG}</div><span class="list-num">${String(item.id).padStart(2,'0')}</span><span>${item.text}</span>`;
+            listGrid.appendChild(listLbl);
+
+            const quickLbl = document.createElement('label');
+            quickLbl.className = 'check-item num-item';
+            quickLbl.setAttribute('data-id', item.id);
+            quickLbl.onclick = (e) => toggleItem(e, item.id);
+            quickLbl.innerHTML = `<span class="list-num">${String(item.id).padStart(2,'0')}</span>`;
+            quickGrid.appendChild(quickLbl);
+        });
+    };
+
+    function toggleItem(e, id) {
+        e.preventDefault(); 
+        if (selectedSet.has(id)) { selectedSet.delete(id); } else { selectedSet.add(id); }
+        updateChecksUI();
+    }
+
+    function updateChecksUI() {
+        document.querySelectorAll(`.check-item`).forEach(el => {
+            const elId = parseInt(el.getAttribute('data-id'));
+            el.classList.toggle('checked', selectedSet.has(elId));
+        });
+        document.getElementById('checkCount').textContent = selectedSet.size;
+    }
+
+    function checkAuth() {
+        const name = document.getElementById('studentName').value.trim();
+        const phone = document.getElementById('parentPhone').value.trim();
+        const code = document.getElementById('authCode').value;
+        if (!name || !phone) { alert('이름과 연락처를 모두 입력해 주세요.'); return; }
+        if (!code.includes('777200')) { alert('승인번호가 올바르지 않습니다.'); return; }
+        
+        currentUserKey = `gfield_${name}_${phone}`;
+        const stored = localStorage.getItem(currentUserKey);
+        studentHistory = stored ? JSON.parse(stored) : [];
+
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('page2').style.display = 'block';
+        document.getElementById('studentInfoDisplay').textContent = `학생: ${name}  |  연락처: ${phone}`;
+        
+        updateAttemptButtons();
+        
+        if (studentHistory.length >= 3) {
+            alert('이미 최대 응시 횟수(3회)를 모두 완료하셨습니다. 이전 결과를 불러와 확인해 주세요.');
+        }
+
+        setView('quick'); 
+        window.scrollTo(0, 0);
+    }
+
+    function updateAttemptButtons() {
+        for(let i=0; i<3; i++) {
+            const btn = document.getElementById(`btn-att-${i}`);
+            if(i < studentHistory.length) {
+                btn.className = 'attempt-btn completed';
+                btn.disabled = false;
+            } else {
+                btn.className = 'attempt-btn disabled';
+                btn.disabled = true;
+            }
+        }
+    }
+
+    function loadAttempt(index) {
+        if(index >= studentHistory.length) return;
+        
+        selectedSet.clear();
+        studentHistory[index].wrongIds.forEach(id => selectedSet.add(id));
+        updateChecksUI();
+        
+        renderResultUI(index);
+    }
+
+    function submitNewAttempt() {
+        if (selectedSet.size === 0) { alert('틀린(약점) 유형을 최소 하나 이상 체크해 주세요.'); return; }
+        
+        if (studentHistory.length >= 3) {
+            alert('총 3회 응시 제한을 초과했습니다. 제출할 수 없으며 이전 결과만 확인 가능합니다.');
+            return;
+        }
+
+        const sortedIds = Array.from(selectedSet).sort((a, b) => a - b);
+        const name = document.getElementById('studentName').value.trim();
+        const phone = document.getElementById('parentPhone').value.trim();
+        
+        const totalItems = 54;
+        const correctCount = totalItems - sortedIds.length;
+        const rate = Math.round((correctCount / totalItems) * 100);
+
+        studentHistory.push({
+            attempt: studentHistory.length + 1,
+            wrongIds: sortedIds,
+            rate: rate
+        });
+        localStorage.setItem(currentUserKey, JSON.stringify(studentHistory));
+        updateAttemptButtons();
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwtu2FOu_rmqT-pyhwakl0EYrkbdUHUwTYnxB0GBlLcZlgXqmxTJfObeKQHx8Tu_FZsA/exec';
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                wrongIds: sortedIds.join(', '),
+                rate: rate
+            })
+        }).then(() => console.log('데이터 전송 완료')).catch(err => console.error(err));
+
+        renderResultUI(studentHistory.length - 1);
+    }
+
+    function setView(v) {
+        document.getElementById('view-quick').classList.toggle('active', v === 'quick');
+        document.getElementById('view-area').classList.toggle('active', v === 'area');
+        document.getElementById('view-list').classList.toggle('active', v === 'list');
+        
+        document.getElementById('btn-quick').classList.toggle('active', v === 'quick');
+        document.getElementById('btn-area').classList.toggle('active', v === 'area');
+        document.getElementById('btn-list').classList.toggle('active', v === 'list');
+    }
+
+    function toggleAllAccordions() {
+        const cards = document.querySelectorAll('#resultListBox .res-card');
+        let allOpen = true;
+        cards.forEach(card => {
+            if (!card.classList.contains('open')) {
+                allOpen = false;
+            }
+        });
+        
+        cards.forEach(card => {
+            if (allOpen) {
+                card.classList.remove('open');
+            } else {
+                card.classList.add('open');
+            }
+        });
+    }
+
+
+
+    function escapeHTML(value) {
+        return String(value ?? '').replace(/[&<>"]/g, ch => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}[ch]));
+    }
+
+    function getAllAnswerItems() {
+        const allItems = [];
+        data.forEach(cat => {
+            cat.items.forEach(item => allItems.push({ ...item, categoryNum: cat.categoryNum, categoryTitle: cat.categoryTitle }));
+        });
+        return allItems.sort((a, b) => a.id - b.id);
+    }
+
+    function printAllAnswers() {
+        const name = document.getElementById('studentName').value.trim() || '학생';
+        const phone = document.getElementById('parentPhone').value.trim() || '';
+        const code = document.getElementById('authCode').value.trim() || '승인번호 미입력';
+        const allItems = getAllAnswerItems();
+        const printArea = document.getElementById('allAnswerPrint');
+        const watermarkText = `${name} · ${code}`;
+        let html = `
+            <div class="print-watermark">${escapeHTML(watermarkText)}</div>
+            <section class="answer-print-cover">
+                <div class="brand">G-FIELD GIFTED EDUCATION</div>
+                <h1>소마 프리미어<br>전체 답안·해설 인쇄본</h1>
+                <div class="meta">
+                    <div><strong>${escapeHTML(name)}</strong> 학생</div>
+                    <div>승인번호: <strong>${escapeHTML(code)}</strong></div>
+                    ${phone ? `<div>연락처: ${escapeHTML(phone)}</div>` : ''}
+                    <div>총 ${allItems.length}문제 답안과 해설</div>
+                </div>
+            </section>`;
+
+        data.forEach(cat => {
+            const items = cat.items.slice().sort((a, b) => a.id - b.id);
+            html += `<section class="answer-print-section"><h2>유형 ${escapeHTML(cat.categoryNum)}. ${escapeHTML(cat.categoryTitle)}</h2>`;
+            items.forEach(item => {
+                html += `
+                    <article class="answer-print-item">
+                        <h3>${String(item.id).padStart(2, '0')}번. ${escapeHTML(item.text)}</h3>
+                        <p class="answer-line">정답: ${escapeHTML(item.ans)}</p>
+                        <p><strong>해설 핵심:</strong> ${escapeHTML(item.tTip)}</p>
+                        <p><strong>지도 포인트:</strong> ${escapeHTML(item.mTip)}</p>
+                    </article>`;
+            });
+            html += `</section>`;
+        });
+
+        printArea.innerHTML = html;
+        document.body.classList.add('answer-print-mode');
+        setTimeout(() => window.print(), 100);
+    }
+
+    window.addEventListener('afterprint', () => {
+        document.body.classList.remove('answer-print-mode');
+    });
+
+    function renderResultUI(historyIndex) {
+        const attemptData = studentHistory[historyIndex];
+        const name = document.getElementById('studentName').value.trim();
+        
+        document.getElementById('printStudentName').textContent = name;
+        document.getElementById('printAttempt').textContent = historyIndex + 1;
+
+        document.getElementById('reportTitle').textContent = `프리미어 전문 진단 리포트 (${historyIndex + 1}회차)`;
+        document.getElementById('resName').textContent = name;
+        document.getElementById('resCount').textContent = attemptData.wrongIds.length;
+        
+        const listBox = document.getElementById('resultListBox');
+        listBox.innerHTML = ''; 
+        
+        let weakCounts = [0, 0, 0, 0, 0, 0, 0]; 
+        let strengthCounts = [0, 0, 0, 0, 0, 0, 0]; 
+        let totalCounts = data.map(d => d.total);
+        
+        attemptData.wrongIds.forEach(id => {
+            let itemData = null;
+            let categoryName = "";
+
+            data.forEach((cat, index) => {
+                const found = cat.items.find(i => i.id === id);
+                if (found) {
+                    itemData = found;
+                    categoryName = cat.shortName;
+                    weakCounts[index]++; 
+                }
+            });
+            
+            if(itemData) {
+                const card = document.createElement('div');
+                card.className = 'res-card';
+                card.innerHTML = `
+                    <div class="res-card-header" onclick="this.parentElement.classList.toggle('open')">
+                        <div class="res-card-title">
+                            <span class="res-badge">${categoryName}</span>
+                            <span class="res-num">${String(id).padStart(2,'0')}</span>
+                            <span>${itemData.text}</span>
+                        </div>
+                        <span class="res-card-toggle">상세 분석 및 풀이 ▼</span>
+                    </div>
+                    <div class="res-card-body" onclick="event.stopPropagation()">
+                        <div class="res-ans-box">정답: ${itemData.ans}</div>
+                        <div class="res-tip-box">
+                            <strong>👨‍🏫 선생님의 풀이 비법</strong>
+                            ${itemData.tTip}
+                        </div>
+                        <div class="res-tip-box">
+                            <strong>💡 우리 아이 실수 방지 팁</strong>
+                            ${itemData.mTip}
+                        </div>
+                        <a href="${itemData.video}" target="_blank" class="res-video-btn">
+                            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg> 
+                            선생님 해설 영상 확인하기
+                        </a>
+                    </div>
+                `;
+                listBox.appendChild(card);
+            }
+        });
+
+        totalCounts.forEach((tot, i) => { strengthCounts[i] = tot - weakCounts[i]; });
+        
+        renderChart(strengthCounts, weakCounts);
+        generateDiagnosis(weakCounts, totalCounts, name, attemptData.wrongIds.length, historyIndex);
+
+        const ra = document.getElementById('result-area');
+        ra.style.display = 'block';
+        ra.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderChart(strengths, weaknesses) {
+        const ctx = document.getElementById('diagnosisChart').getContext('2d');
+        const labels = data.map(d => d.shortName);
+        
+        if (myChart) { myChart.destroy(); }
+        
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: '강점 (정답 수)', data: strengths, backgroundColor: '#2980b9', borderRadius: 4 },
+                    { label: '약점 (오답 수)', data: weaknesses, backgroundColor: '#c0392b', borderRadius: 4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { 
+                        stacked: true,
+                        ticks: {
+                            font: { family: "'Noto Sans KR', sans-serif", weight: 'bold', size: 12 },
+                            color: '#0d1b2a'
+                        }
+                    },
+                    y: { stacked: true, beginAtZero: true, ticks: { stepSize: 2 } }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: '영역별 강약점 분석 (전체 문항 대비 비율)', font: { size: 15 } }
+                }
+            }
+        });
+    }
+
+    function generateDiagnosis(weakCounts, totalCounts, studentName, wrongCount, historyIndex) {
+        const totalItems = 54;
+        const rate = studentHistory[historyIndex].rate;
+
+        let predictionMsg = "";
+        if (rate >= 75) predictionMsg = "프리미어 1 합격 가능성 높음";
+        else if (rate >= 65) predictionMsg = "프리미어 1,2 합격 가능성 높음";
+        else if (rate >= 55) predictionMsg = "챌린지 합격 가능성 높음";
+        else if (rate >= 40) predictionMsg = "약점 보완 후 챌린지 합격 도전";
+        else predictionMsg = "약점 및 보완 상담 필요";
+
+        let studentText = `${studentName} 학생은`;
+        if (studentName === "노관호") studentText = "노관호 학생는";
+
+        let weakRates = weakCounts.map((w, i) => w / totalCounts[i]);
+        let maxRate = Math.max(...weakRates);
+        let minRate = Math.min(...weakRates);
+        let weakIndexes = [];
+        let strongIndexes = [];
+
+        weakRates.forEach((r, i) => {
+            if (r === maxRate && maxRate > 0) weakIndexes.push(i);
+            if (r === minRate && minRate < 1) strongIndexes.push(i);
+        });
+
+        const diagContainer = document.getElementById('diagnosisContent');
+        let weakAreaNames = weakIndexes.map(i => `<span class="badge-weakness">${data[i].shortName}</span>`).join(' · ');
+        let strongAreaNames = strongIndexes.length > 0 ? strongIndexes.map(i => `<span class="badge-strength">${data[i].shortName}</span>`).join(' · ') : "";
+
+        let html = `<div class="diag-card prediction">
+                        <h3>정답률(수행률) ${rate}%</h3>
+                        <div class="diagnosis-desc">
+                            <p>${studentText} <span class="highlight-msg">${predictionMsg}</span> 수준입니다.</p>
+                        </div>
+                    </div>`;
+
+        let renderDiffChart = false;
+        let domainResolved = [[], [], [], [], [], [], []];
+        let domainNewWrong = [[], [], [], [], [], [], []];
+
+        if (historyIndex > 0) {
+            renderDiffChart = true;
+            const prevData = studentHistory[historyIndex - 1];
+            const currData = studentHistory[historyIndex];
+            
+            const prevIds = prevData.wrongIds;
+            const currIds = currData.wrongIds;
+            
+            const resolvedIds = prevIds.filter(id => !currIds.includes(id));
+            const newWrongIds = currIds.filter(id => !prevIds.includes(id));
+
+            resolvedIds.forEach(id => {
+                data.forEach((cat, idx) => { if (cat.items.some(item => item.id === id)) domainResolved[idx].push(id); });
+            });
+            newWrongIds.forEach(id => {
+                data.forEach((cat, idx) => { if (cat.items.some(item => item.id === id)) domainNewWrong[idx].push(id); });
+            });
+            
+            const rateDiff = currData.rate - prevData.rate;
+            let rateDiffText = rateDiff >= 0 ? `▲ ${rateDiff}% 상승` : `▼ ${Math.abs(rateDiff)}% 하락`;
+            let diffColor = rateDiff >= 0 ? 'var(--blue)' : 'var(--red)';
+
+            let resolvedText = resolvedIds.length > 0 
+                ? `이전 시험에서 틀렸으나 <strong style="color:var(--blue);">${resolvedIds.length}개의 약점을 완벽히 보완</strong>했습니다! 👏` 
+                : `추가로 해결된 약점 유형이 없습니다.`;
+                
+            let newWrongText = newWrongIds.length > 0 
+                ? `이번에 <strong style="color:var(--red);">${newWrongIds.length}개의 오답이 새롭게 발생</strong>했습니다. 일시적 실수인지 점검이 필요합니다.` 
+                : `새롭게 추가된 오답이 없습니다. 훌륭합니다!`;
+
+            html += `<div class="diag-card diff-card">
+                        <h3>📈 이전 차시(${historyIndex}회차) 대비 변화도</h3>
+                        <div class="diagnosis-desc">
+                            <p style="margin-bottom:10px;">▪ <strong>수행률 변화:</strong> ${prevData.rate}% → <strong>${currData.rate}%</strong> (<span style="color:${diffColor}; font-weight:700;">${rateDiffText}</span>)</p>
+                            <p style="margin-bottom:10px;">▪ <strong>해결된 문항:</strong> ${resolvedText}</p>
+                            <p>▪ <strong>새롭게 틀린 문항:</strong> ${newWrongText}</p>
+                        </div>
+                        
+                        <div class="diff-chart-container" style="margin-top: 24px; height: 250px; position: relative;">
+                            <canvas id="diffChartCanvas"></canvas>
+                        </div>
+                        <div style="text-align: center; margin-top: 10px; font-size: 0.82rem;">
+                            <span style="color: var(--purple); font-weight: 700;">■ 보라색 막대 내부 번호: 해결된 문항</span>
+                            <span style="color: #000; font-weight: 700; margin-left: 15px;">■ 검은색 막대 내부 번호: 새롭게 틀린 문항</span>
+                        </div>
+                    </div>`;
+        }
+
+        html += `<div class="diag-card overall">
+                    <h3>종합 진단 결과 및 분석</h3>
+                    <div class="diagnosis-desc">
+                        <p style="margin-bottom: 12px; color: var(--navy); font-weight: 600; line-height: 1.6;">본 진단 리포트는 7세 최상위권 학생들이 소마 프리미어 시험에서 흔히 겪는 인지적 어려움을 정밀 분석한 '맞춤형 오답 지도 가이드'입니다.</p>
+                        <p style="margin-bottom: 8px;"><strong>${studentName}</strong> 학생의 성취도 분석 결과, 특히 ${strongAreaNames ? strongAreaNames + ' 영역에서 뛰어난 수학적 통찰력과 논리적 사고를 보여주고 있습니다.' : '전반적인 연산 및 기본기가 탄탄하게 형성되어 있습니다.'}</p>
+                        <p>반면, 최상위권 1반 진입을 위해서는 ${weakAreaNames} 영역에서 발생하는 오답의 근본적 원인을 파악해야 합니다. 이는 단순 연산 실수가 아닌 다중 조건의 해석이나 공간의 시각적 구조화 과정에서 오는 '인지적 허들'입니다. 아래 제공되는 영역별 솔루션과 '선생님의 풀이 비법', '실수 방지 팁'을 적극 활용하여 가정에서 완벽히 보완해 주시기 바랍니다.</p>
+                    </div>
+                </div>`;
+
+        if (strongIndexes.length > 0) {
+            html += `<div class="diag-card strength"><h3>우수 영역 심층 분석</h3><div class="diagnosis-desc">`;
+            strongIndexes.forEach(i => html += `<p>▪ <strong>[${data[i].shortName}]</strong> ${data[i].strength}</p>`);
+            html += `</div></div>`;
+        }
+
+        html += `<div class="diag-card weakness"><h3>취약 영역 맞춤 솔루션</h3><div class="diagnosis-desc">`;
+        weakIndexes.forEach(i => html += `<p>▪ <strong>[${data[i].shortName}]</strong> ${data[i].weakness}</p>`);
+        html += `</div></div>`;
+
+        diagContainer.innerHTML = html;
+
+        if (renderDiffChart) {
+            setTimeout(() => {
+                const diffCtx = document.getElementById('diffChartCanvas').getContext('2d');
+                if (diffChart) diffChart.destroy();
+
+                diffChart = new Chart(diffCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d.shortName),
+                        datasets: [
+                            {
+                                label: '해결됨 (오답 감소)',
+                                data: domainResolved.map(arr => arr.length),
+                                backgroundColor: 'rgba(142, 68, 173, 0.8)',
+                                borderColor: 'var(--purple)',
+                                borderWidth: 1,
+                                borderRadius: 4
+                            },
+                            {
+                                label: '새롭게 틀림 (오답 증가)',
+                                data: domainNewWrong.map(arr => -arr.length),
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                borderColor: '#000',
+                                borderWidth: 1,
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: { padding: { top: 20, bottom: 20 } },
+                        scales: {
+                            x: { 
+                                stacked: true,
+                                ticks: {
+                                    font: { family: "'Noto Sans KR', sans-serif", weight: 'bold', size: 12 },
+                                    color: '#0d1b2a'
+                                }
+                            },
+                            y: {
+                                stacked: true,
+                                beginAtZero: false,
+                                suggestedMin: -1,
+                                suggestedMax: 1,  
+                                ticks: {
+                                    stepSize: 1,
+                                    callback: function(value) { return Math.abs(value); } 
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + Math.abs(context.raw) + '개';
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    plugins: [{
+                        id: 'diffLabels',
+                        afterDatasetsDraw(chart) {
+                            const { ctx, scales: { y } } = chart;
+                            ctx.font = 'bold 12px "Noto Sans KR", sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+
+                            chart.getDatasetMeta(0).data.forEach((datapoint, index) => {
+                                let ids = domainResolved[index];
+                                if(ids.length > 0) {
+                                    ctx.fillStyle = '#ffffff'; 
+                                    let centerY = (datapoint.base + datapoint.y) / 2;
+                                    ctx.fillText(ids.join(','), datapoint.x, centerY);
+                                }
+                            });
+
+                            chart.getDatasetMeta(1).data.forEach((datapoint, index) => {
+                                let ids = domainNewWrong[index];
+                                if(ids.length > 0) {
+                                    ctx.fillStyle = '#ffffff'; 
+                                    let centerY = (datapoint.base + datapoint.y) / 2;
+                                    ctx.fillText(ids.join(','), datapoint.x, centerY);
+                                }
+                            });
+                        }
+                    }]
+                });
+            }, 100);
+        }
+    }
+</script>
+</body>
+</html>
