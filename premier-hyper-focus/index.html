@@ -191,6 +191,15 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   #gfieldIntro .gunit{font-size:16px!important}
   #gfieldIntro .total{font-size:11px!important}
   .plb-area-grid{grid-template-columns:1fr}
+  #resultListBox .res-card-header{display:grid!important;grid-template-columns:auto auto minmax(0,1fr)!important;align-items:start!important;column-gap:10px!important;row-gap:8px!important}
+  #resultListBox .res-card-title,
+  #resultListBox .res-card-header p,
+  #resultListBox .res-card-body,
+  #resultListBox .res-card td,
+  #resultListBox .res-card th{min-width:0!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:break-word!important;line-height:1.5!important;writing-mode:horizontal-tb!important}
+  #resultListBox .res-card-toggle,
+  #resultListBox .res-video-btn,
+  #resultListBox .btn-action{grid-column:1 / -1!important;justify-self:end!important;margin-top:2px!important}
 }
 </style>`;
 
