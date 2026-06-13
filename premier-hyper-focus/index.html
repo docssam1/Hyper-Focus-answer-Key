@@ -44,17 +44,46 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 @keyframes introSuck{0%{transform:translate3d(var(--x),var(--y),220px) rotateX(62deg) rotateZ(var(--r)) scale(1.2);opacity:0}12%{opacity:.78}60%{opacity:.42}100%{transform:translate3d(-50%,-50%,-520px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.05);opacity:0;filter:blur(6px)}}
 #gfieldIntroScene3:before{content:"";position:absolute;left:25%;right:25%;top:31%;bottom:31%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.74),rgba(2,5,11,.38) 58%,transparent 82%);pointer-events:none}
 #gfieldIntroScene3>div:not(.type-tunnel){position:relative;z-index:3}
-.pre-login-brief{max-width:920px;margin:28px auto;padding:28px;border:1px solid rgba(212,175,55,.38);border-radius:22px;background:linear-gradient(135deg,rgba(4,12,24,.96),rgba(10,20,38,.92));box-shadow:0 18px 55px rgba(0,0,0,.28);color:#fff}
-.pre-login-brief .eyebrow{color:#d4af37;font-weight:900;letter-spacing:.12em;font-size:13px;margin-bottom:10px}
-.pre-login-brief h2{font-size:clamp(26px,4vw,44px);line-height:1.13;margin:0 0 12px;letter-spacing:-.06em}
-.pre-login-brief p{color:#cbd5e1;line-height:1.7;margin:8px 0}
-.pre-login-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
-.pre-login-grid div{border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:15px;background:rgba(255,255,255,.045)}
-.pre-login-grid b{display:block;color:#f8dd83;margin-bottom:7px}
-.pre-login-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
-.pre-login-actions a,.pre-login-actions button{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;border-radius:14px;padding:17px 18px;font-size:18px;font-weight:900;cursor:pointer}
-.pre-login-consult{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.24)}
-.pre-login-start{border:0;background:linear-gradient(135deg,#d4af37,#f8dd83);color:#111}
+
+/* ── 고급 소개 화면 ── */
+#preLoginBrief{font-family:'Noto Sans KR',system-ui,sans-serif;word-break:keep-all;background:#02050b;color:#fff}
+#preLoginBrief *{box-sizing:border-box}
+.plb-wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.plb-hero{min-height:72vh;display:flex;align-items:center;background:radial-gradient(circle at 16% 18%,rgba(212,175,55,.2),transparent 28%),linear-gradient(135deg,#07101d,#0f1c2c 60%,#030712)}
+.plb-eyebrow{display:inline-block;border:1px solid rgba(248,221,131,.75);color:#f8dd83;padding:7px 14px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.14em;margin-bottom:22px}
+.plb-hero h1{font-size:clamp(36px,7vw,76px);line-height:1.08;letter-spacing:-.07em;margin:0 0 20px}
+.plb-hero h1 strong{color:#f8dd83}
+.plb-hero p{font-size:clamp(17px,2.4vw,24px);line-height:1.58;color:#dbe4f0;max-width:820px;margin:0 0 34px}
+.plb-cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.plb-cta{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:900;font-size:18px;padding:18px 28px;border-radius:14px;transition:.2s;cursor:pointer;border:0}
+.plb-cta.primary{background:linear-gradient(135deg,#d4af37,#f8dd83);color:#111;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.plb-cta.dark{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28)}
+.plb-cta:hover{transform:translateY(-2px)}
+.plb-subnote{margin-top:14px;color:#b9c5d6;font-size:14px}
+.plb-section{padding:78px 0}
+.plb-section h2{font-size:clamp(28px,4.4vw,46px);line-height:1.2;letter-spacing:-.05em;margin:0 0 16px;color:#e8edf4}
+.plb-lead{font-size:18px;line-height:1.75;color:#8ea0b8;max-width:760px;margin:0}
+.plb-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.plb-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:26px}
+.plb-num{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;background:#0f1c2c;color:#f8dd83;border-radius:10px;font-weight:900;margin-bottom:18px}
+.plb-card h3{margin:0 0 10px;font-size:22px;color:#e8edf4}
+.plb-card p{margin:0;color:#8ea0b8;line-height:1.7}
+.plb-ad{background:#07101d}
+.plb-ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.plb-ad h2{color:#fff}
+.plb-ad p{color:#cbd5e1;line-height:1.75}
+.plb-video-card{position:relative;border:1px solid rgba(248,221,131,.25);border-radius:24px;overflow:hidden;background:#050a12;box-shadow:0 22px 60px rgba(0,0,0,.32);min-height:280px}
+.plb-video-card video{display:block;width:100%;height:100%;min-height:280px;object-fit:cover}
+.plb-areas{background:#0a1628}
+.plb-areas h2{color:#fff;text-align:center}
+.plb-areas .plb-lead{text-align:center;margin:0 auto 34px;color:#cbd5e1}
+.plb-area-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.plb-area{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055);border-radius:18px;padding:20px 10px;text-align:center;font-weight:900;color:#fff}
+.plb-area small{display:block;color:#f8dd83;font-size:22px;margin-bottom:8px}
+.plb-final{padding:78px 0}
+.plb-final-box{background:linear-gradient(135deg,#0f1c2c,#182d44);color:#fff;border-radius:28px;padding:48px;text-align:center;box-shadow:0 18px 45px rgba(15,28,44,.18);border:1px solid rgba(212,175,55,.2)}
+.plb-final-box h2{margin:0 0 14px;color:#fff;font-size:clamp(24px,3.5vw,38px);letter-spacing:-.05em}
+.plb-final-box p{margin:0 auto 28px;max-width:680px;color:#d6deea;line-height:1.75}
 .prelogin-locked{display:none!important}
 .action-btns .download-book-btn,.action-btns .download-answer-btn,.action-btns .download-report-btn{background:#020b14!important;color:#fff!important;border:2px solid #d4af37!important}
 .btn-action-dark{background:#0d1b2a!important;color:#fff!important;border:2px solid #c9a84c!important}
@@ -96,29 +125,20 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   body.report-print-mode .res-video-btn,
   body.report-print-mode .res-card-toggle{display:none!important}
   body.report-print-mode .print-only{display:flex!important}
-  body.report-print-mode #printCover{
-    display:flex!important;
-    min-height:100vh!important;
-    page-break-after:always!important;
-    break-after:page!important
-  }
+  body.report-print-mode #printCover{display:flex!important;min-height:100vh!important;page-break-after:always!important;break-after:page!important}
   body.report-print-mode #page2{display:block!important;padding:0!important;margin:0!important}
   body.report-print-mode .p2-header{display:none!important}
   body.report-print-mode #allAnswerPrint{display:none!important}
   body.report-print-mode #result-area{display:block!important;box-shadow:none!important;border:none!important;margin:0!important;padding:0!important;page-break-before:auto!important;page-break-after:auto!important;break-before:auto!important;break-after:auto!important}
   body.report-print-mode .result-body{padding:0!important}
   body.report-print-mode .result-header{background:transparent!important;padding:0 0 10px!important;border-bottom:2px solid #0d1b2a!important;margin-bottom:14px!important}
-  body.report-print-mode .result-header h2,
-  body.report-print-mode .result-header p,
-  body.report-print-mode .result-header strong{color:#111!important}
+  body.report-print-mode .result-header h2,body.report-print-mode .result-header p,body.report-print-mode .result-header strong{color:#111!important}
   body.report-print-mode .result-icon{display:none!important}
   body.report-print-mode .diagnosis-grid{display:block!important;break-inside:auto!important;margin-bottom:12px!important}
   body.report-print-mode .chart-container{height:auto!important;min-height:0!important;margin:0 0 12px!important;padding:10px!important;border:1px solid #ccc!important;break-inside:avoid!important;page-break-inside:avoid!important}
   body.report-print-mode .diag-card{margin-bottom:12px!important;padding:14px!important;border:1px solid #ccc!important;break-inside:avoid!important;page-break-inside:avoid!important}
   body.report-print-mode .diag-card.prediction{background:#fff!important;border:1px solid #0d1b2a!important}
-  body.report-print-mode .diag-card.prediction h3,
-  body.report-print-mode .diag-card.prediction p,
-  body.report-print-mode .diag-card.prediction .highlight-msg{color:#111!important}
+  body.report-print-mode .diag-card.prediction h3,body.report-print-mode .diag-card.prediction p,body.report-print-mode .diag-card.prediction .highlight-msg{color:#111!important}
   body.report-print-mode .result-list-box{border:none!important;background:transparent!important;padding:0!important;margin-top:14px!important}
   body.report-print-mode .res-card{border:1px solid #ccc!important;margin-bottom:12px!important;break-inside:avoid!important;page-break-inside:avoid!important}
   body.report-print-mode .res-card-header{background:#f9f9f9!important;border-bottom:1px dashed #ccc!important;padding:10px!important}
@@ -126,19 +146,23 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   body.report-print-mode .res-badge{border:1px solid #c0392b!important;color:#c0392b!important;background:transparent!important}
   body.report-print-mode canvas{max-width:100%!important;height:auto!important}
   body.report-print-mode .diff-chart-container{height:auto!important;min-height:220px!important;break-inside:avoid!important;page-break-inside:avoid!important}
-  body.report-print-mode .chart-container,
-  body.report-print-mode .diff-chart-container,
-  body.report-print-mode .diag-card,
-  body.report-print-mode .res-card{overflow:visible!important}
+  body.report-print-mode .chart-container,body.report-print-mode .diff-chart-container,body.report-print-mode .diag-card,body.report-print-mode .res-card{overflow:visible!important}
   @page{margin:14mm}
+}
+@media(max-width:820px){
+  .plb-cards,.plb-ad-grid{grid-template-columns:1fr}
+  .plb-cta-row{display:grid}
+  .plb-cta{width:100%}
+  .plb-final-box{padding:36px 22px}
 }
 @media(max-width:760px){
   #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
   #gfieldIntro .grand{order:-1}
   #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
-  .pre-login-grid{grid-template-columns:1fr}
-  .pre-login-actions{grid-template-columns:1fr}
-  .pre-login-brief{margin:18px 12px;padding:22px}
+  .plb-area-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  .plb-area-grid{grid-template-columns:1fr}
 }
 </style>`;
 
@@ -152,7 +176,69 @@ const ROOT_ANSWER_SOURCE_FALLBACK_URL='https://docssam1.github.io/Hyper-Focus-an
 function replaceIntroWording(){document.querySelectorAll('#gfieldIntroScene3 *').forEach(function(el){if(el.children.length===0&&el.textContent){el.textContent=el.textContent.replace(/대표\\s*유형/g,'심화 대표 유형').replace(/빠르게\\s*점검합니다/g,'약점유형을 진단합니다')}})}
 function runTypes(){if(window.gfieldIntroTypesStarted)return;window.gfieldIntroTypesStarted=true;const box=document.getElementById('gfieldIntroTypeTunnel');if(!box)return;box.innerHTML='';for(let i=0;i<32;i++){const el=document.createElement('div');el.className='type-line';el.textContent=TYPE_TEXTS[i%TYPE_TEXTS.length];const side=i%4;let x,y;if(side===0){x=(-92-Math.random()*28)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===1){x=(68+Math.random()*38)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===2){x=(Math.random()*130-65)+'vw';y=(-68-Math.random()*18)+'vh'}else{x=(Math.random()*130-65)+'vw';y=(50+Math.random()*28)+'vh'}el.style.setProperty('--x',x);el.style.setProperty('--y',y);el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.09)+'s';box.appendChild(el)}}
 function patchActions(){document.querySelectorAll('.login-card .quick-download-actions').forEach(el=>el.remove());const top=document.querySelector('.action-btns');if(top&&!top.dataset.downloadPatched){top.dataset.downloadPatched='1';top.innerHTML='<a class="video-btn btn-youtube" href="#" onclick="return false">설명회 영상</a><a class="video-btn btn-youtube" href="#" onclick="return false">풀이 영상 전체보기</a><button class="video-btn download-book-btn" type="button" onclick="downloadBookPdf()">교재 다운로드</button><button class="video-btn download-answer-btn" type="button" onclick="downloadAnswerPdf()">전체 답안 인쇄</button><button class="video-btn download-report-btn" type="button" onclick="downloadReportPdf()">종합 리포트 인쇄</button><a class="video-btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank" rel="noopener">신청/문의하기</a>'}document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark" onclick="downloadBookPdf()">교재 다운로드</button><button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">전체 답안 인쇄</button><button class="btn-action btn-action-outline" onclick="downloadReportPdf()">종합 리포트 인쇄</button>'})}
-function patchPreLogin(){const login=document.querySelector('.login-card');if(!login)return;let brief=document.getElementById('preLoginBrief');if(!brief){brief=document.createElement('section');brief.id='preLoginBrief';brief.className='pre-login-brief';brief.innerHTML='<div class="eyebrow">PREMIER HYPER FOCUS</div><h2>프리미어 합격 가능성을 먼저 가늠합니다.</h2><p>소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p><div class="pre-login-grid"><div><b>1. 54개 대표 유형 점검</b><span>쌓기나무, 전개도, 경우의 수, 논리 조건 등 프리미어 대비 핵심 유형을 확인합니다.</span></div><div><b>2. 약점과 보완 방향 확인</b><span>맞고 틀림만 보지 않고 어떤 사고력 유형에서 흔들리는지 확인합니다.</span></div><div><b>3. 합격 가능성 예측</b><span>진단 결과를 바탕으로 현재 위치와 다음 보완 방향을 함께 확인합니다.</span></div></div><p>상담이 필요하면 신청서를 남겨 주세요. 바로 진단을 시작하려면 로그인 입력창으로 이동합니다.</p><div class="pre-login-actions"><a class="pre-login-consult" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a><button type="button" class="pre-login-start">로그인해서 진단 시작하기</button></div>';login.parentNode.insertBefore(brief,login);brief.querySelector('.pre-login-start').onclick=function(){window.gfieldPreLoginStarted=true;brief.style.display='none';login.classList.remove('prelogin-locked');login.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){const first=login.querySelector('input,button,select,textarea');if(first&&typeof first.focus==='function'){first.focus({preventScroll:true})}},450);};}if(window.gfieldPreLoginStarted){brief.style.display='none';login.classList.remove('prelogin-locked')}else{brief.style.display='block';login.classList.add('prelogin-locked')}}
+function gotoLogin(){const login=document.querySelector('.login-card');const brief=document.getElementById('preLoginBrief');if(!login||!brief)return;window.gfieldPreLoginStarted=true;brief.style.display='none';login.classList.remove('prelogin-locked');login.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){const first=login.querySelector('input,button,select,textarea');if(first&&typeof first.focus==='function')first.focus({preventScroll:true})},450)}
+function patchPreLogin(){
+  const login=document.querySelector('.login-card');
+  if(!login)return;
+  let brief=document.getElementById('preLoginBrief');
+  if(!brief){
+    brief=document.createElement('div');
+    brief.id='preLoginBrief';
+    brief.innerHTML=
+      '<section class="plb-hero"><div class="plb-wrap"><div class="plb-eyebrow">SOMA PREMIER HYPER FOCUS</div>'+
+      '<h1>프리미어 합격을 위한<br><strong>약점 유형 진단 프로그램</strong></h1>'+
+      '<p>소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p>'+
+      '<div class="plb-cta-row">'+
+        '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>'+
+        '<button type="button" class="plb-cta dark plb-start-btn">로그인해서 진단 시작하기</button>'+
+      '</div>'+
+      '<div class="plb-subnote">상담 신청서를 남겨주시면 순서대로 확인 후 연락드립니다.</div></div></section>'+
+      '<section class="plb-section"><div class="plb-wrap">'+
+        '<h2>한 번의 점검이 아니라,<br>회차별 변화를 보는 진단입니다.</h2>'+
+        '<p class="plb-lead">문항의 정답 여부만 보는 것이 아니라, 어떤 사고력 영역에서 시간이 걸리고 어떤 유형이 반복적으로 흔들리는지 확인합니다.</p>'+
+        '<div class="plb-cards">'+
+          '<div class="plb-card"><div class="plb-num">01</div><h3>54개 대표 유형 점검</h3><p>공간 지각, 평면 지각, 수와 연산, 논리 추리, 경우의 수, 문제 해결, 지문 이해 영역의 대표 유형을 확인합니다.</p></div>'+
+          '<div class="plb-card"><div class="plb-num">02</div><h3>최대 3회 진단 가능</h3><p>1회성 체크가 아니라 최대 3회까지 진단하며, 아이의 보완 흐름을 회차별로 확인할 수 있습니다.</p></div>'+
+          '<div class="plb-card"><div class="plb-num">03</div><h3>이전 회차 비교 분석</h3><p>이전 회차에서 해결된 문항과 새롭게 틀린 문항을 비교하여, 다음 학습 방향을 더 정확하게 잡습니다.</p></div>'+
+        '</div></div></section>'+
+      '<section class="plb-section plb-ad"><div class="plb-wrap plb-ad-grid">'+
+        '<div><div class="plb-eyebrow">REPORT PREVIEW</div>'+
+          '<h2>누적 진단 리포트 미리보기</h2>'+
+          '<p>2회차 이후에는 이전 회차와의 변화 흐름, 보완된 유형, 다시 흔들리는 유형을 함께 확인할 수 있습니다. 결과는 영역별 강약점과 오답 분석으로 정리됩니다.</p></div>'+
+        '<div class="plb-video-card"><video autoplay muted loop playsinline preload="auto" src="./assets/premier-report-ad-fast.mp4"></video></div>'+
+      '</div></section>'+
+      '<section class="plb-section plb-areas"><div class="plb-wrap">'+
+        '<h2>7개 핵심 사고력 영역 진단</h2>'+
+        '<p class="plb-lead">프리미어 대비에서 자주 흔들리는 대표 사고력 영역을 나누어 확인합니다.</p>'+
+        '<div class="plb-area-grid">'+
+          '<div class="plb-area"><small>01</small>공간 지각</div>'+
+          '<div class="plb-area"><small>02</small>평면 지각</div>'+
+          '<div class="plb-area"><small>03</small>수와 연산</div>'+
+          '<div class="plb-area"><small>04</small>논리 추리</div>'+
+          '<div class="plb-area"><small>05</small>경우의 수</div>'+
+          '<div class="plb-area"><small>06</small>문제 해결</div>'+
+          '<div class="plb-area"><small>07</small>지문 이해</div>'+
+        '</div></div></section>'+
+      '<section class="plb-final"><div class="plb-wrap"><div class="plb-final-box">'+
+        '<h2>프로그램 상담이 필요하신가요?</h2>'+
+        '<p>아이의 현재 준비 상황과 목표 반, 보완이 필요한 유형을 남겨주시면 확인 후 상담 안내를 드립니다.</p>'+
+        '<div class="plb-cta-row" style="justify-content:center">'+
+          '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>'+
+          '<button type="button" class="plb-cta dark plb-start-btn">로그인해서 진단 시작하기</button>'+
+        '</div></div></div></section>';
+    login.parentNode.insertBefore(brief,login);
+    brief.querySelectorAll('.plb-start-btn').forEach(function(btn){
+      btn.addEventListener('click',gotoLogin);
+    });
+  }
+  if(window.gfieldPreLoginStarted){
+    brief.style.display='none';
+    login.classList.remove('prelogin-locked');
+  }else{
+    brief.style.display='block';
+    login.classList.add('prelogin-locked');
+  }
+}
 function loadScript(src){return new Promise(function(resolve,reject){if(document.querySelector('script[src="'+src+'"]'))return resolve();const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=function(){reject(new Error('스크립트를 불러오지 못했습니다: '+src))};document.head.appendChild(s);})}
 async function ensureHtml2Pdf(){if(!window.html2pdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')}
 async function ensureJsPdf(){if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')}
