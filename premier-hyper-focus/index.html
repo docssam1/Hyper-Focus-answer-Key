@@ -177,9 +177,18 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
   #gfieldIntro .grand{order:-1}
   #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
+  #gfieldIntro .records{width:min(96vw,430px)!important}
+  #gfieldIntro .gnum{font-size:clamp(58px,18vw,88px)!important}
+  #gfieldIntro .recordTitle{font-size:12px!important}
   .plb-area-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
+  #gfieldIntro .records{width:min(97vw,360px)!important}
+  #gfieldIntro .record{padding:8px 9px!important}
+  #gfieldIntro .year{grid-template-columns:64px 1fr 28px!important;font-size:10px!important}
+  #gfieldIntro .gnum{font-size:clamp(52px,19vw,76px)!important}
+  #gfieldIntro .gunit{font-size:18px!important}
+  #gfieldIntro .total{font-size:11px!important}
   .plb-area-grid{grid-template-columns:1fr}
 }
 </style>`;
@@ -336,6 +345,11 @@ setInterval(readyPatch,350);readyPatch();
     return r.text();
   });
   html = html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="' + LOGO_URL + '" alt="GFIELD">');
+  html = html.replaceAll('대표 유형으로<br>빠르게 점검합니다','심화 대표 유형으로<br>약점유형을 진단합니다');
+  html = html.replaceAll('대표 유형','심화 대표 유형');
+  html = html.replaceAll('빠르게 점검합니다','약점유형을 진단합니다');
+  html = html.replaceAll('영재 미래반','위즈 TOPCLASS');
+  html = html.replaceAll('소마 프리미어','소마 프리미어(대치)');
   html = html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
   html = html.replace(/대표\s*유형/g,'심화 대표 유형');
   html = html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
@@ -347,8 +361,12 @@ setInterval(readyPatch,350);readyPatch();
   html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
   html = html.replace(/let c=5;/g,"let c=3;");
   html = html.replace(/let n=5;/g,"let n=3;");
+  html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2600,5600,8100,10800,13300]");
+  html = html.replace(/let c=3;/g,"let c=5;");
+  html = html.replace(/let n=3;/g,"let n=5;");
   html = html.split("},900);").join("},850);");
   html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
+  html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),15200\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),17200)");
   /* sessionStorage 제거 — 소개 화면을 본 기록을 저장하지 않음 */
   html = html.replace(/sessionStorage\.setItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*,\s*['"]1['"]\s*\)\s*;?/g,'');
   html = html.replace(/sessionStorage\.getItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*\)\s*===\s*['"]1['"]/g,'false');
