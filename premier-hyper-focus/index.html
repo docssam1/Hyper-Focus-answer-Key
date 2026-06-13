@@ -81,6 +81,49 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 .pdf-report-clone .result-actions,.pdf-report-clone .res-video-btn,.pdf-report-clone .res-card-toggle,.pdf-report-clone .btn-action,.pdf-report-clone .tab-bar,.pdf-report-clone .attempt-menu,.pdf-report-clone .action-btns,.pdf-report-clone .helper-text,.pdf-report-clone .submit-area{display:none!important}
 .pdf-report-clone canvas{max-width:100%!important;height:auto!important}
 .login-card .quick-download-actions{display:none!important}
+@media print{
+  body.report-print-mode #page1,
+  body.report-print-mode #printCover,
+  body.report-print-mode .print-only,
+  body.report-print-mode .action-btns,
+  body.report-print-mode .helper-text,
+  body.report-print-mode .attempt-menu,
+  body.report-print-mode .tab-bar,
+  body.report-print-mode .checklist-section,
+  body.report-print-mode .submit-area,
+  body.report-print-mode .result-actions,
+  body.report-print-mode .res-video-btn,
+  body.report-print-mode .res-card-toggle{display:none!important}
+  body.report-print-mode #page2{display:block!important;padding:0!important;margin:0!important}
+  body.report-print-mode .p2-header{display:none!important}
+  body.report-print-mode #allAnswerPrint{display:none!important}
+  body.report-print-mode #result-area{display:block!important;box-shadow:none!important;border:none!important;margin:0!important;padding:0!important;page-break-before:auto!important;page-break-after:auto!important;break-before:auto!important;break-after:auto!important}
+  body.report-print-mode .result-body{padding:0!important}
+  body.report-print-mode .result-header{background:transparent!important;padding:0 0 10px!important;border-bottom:2px solid #0d1b2a!important;margin-bottom:14px!important}
+  body.report-print-mode .result-header h2,
+  body.report-print-mode .result-header p,
+  body.report-print-mode .result-header strong{color:#111!important}
+  body.report-print-mode .result-icon{display:none!important}
+  body.report-print-mode .diagnosis-grid{display:block!important;break-inside:auto!important;margin-bottom:12px!important}
+  body.report-print-mode .chart-container{height:auto!important;min-height:0!important;margin:0 0 12px!important;padding:10px!important;border:1px solid #ccc!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  body.report-print-mode .diag-card{margin-bottom:12px!important;padding:14px!important;border:1px solid #ccc!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  body.report-print-mode .diag-card.prediction{background:#fff!important;border:1px solid #0d1b2a!important}
+  body.report-print-mode .diag-card.prediction h3,
+  body.report-print-mode .diag-card.prediction p,
+  body.report-print-mode .diag-card.prediction .highlight-msg{color:#111!important}
+  body.report-print-mode .result-list-box{border:none!important;background:transparent!important;padding:0!important;margin-top:14px!important}
+  body.report-print-mode .res-card{border:1px solid #ccc!important;margin-bottom:12px!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  body.report-print-mode .res-card-header{background:#f9f9f9!important;border-bottom:1px dashed #ccc!important;padding:10px!important}
+  body.report-print-mode .res-card-body{display:block!important;padding:10px!important}
+  body.report-print-mode .res-badge{border:1px solid #c0392b!important;color:#c0392b!important;background:transparent!important}
+  body.report-print-mode canvas{max-width:100%!important;height:auto!important}
+  body.report-print-mode .diff-chart-container{height:auto!important;min-height:220px!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  body.report-print-mode .chart-container,
+  body.report-print-mode .diff-chart-container,
+  body.report-print-mode .diag-card,
+  body.report-print-mode .res-card{overflow:visible!important}
+  @page{margin:14mm}
+}
 @media(max-width:760px){
   #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
   #gfieldIntro .grand{order:-1}
@@ -127,7 +170,7 @@ async function loadImage(src){return await new Promise(function(resolve,reject){
 async function downloadBookPdf(){return withDownloadLock('book','downloadBookPdf','교재 PDF 생성중...',async function(){if(!ensureStudentInfo())return;await ensureJsPdf();const urls=BOOK_IMAGE_URLS.slice();if(!urls.length){alert('이미지 목록을 찾지 못했습니다.');return}const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});const pageWidth=210;const pageHeight=297;const watermark=stampText();const watermarkImage=createWatermarkImage(watermark);for(let i=0;i<urls.length;i++){const img=await loadImage(urls[i]);if(i>0)pdf.addPage('a4','portrait');const box=fitContain(img.naturalWidth,img.naturalHeight,pageWidth,pageHeight);const x=(pageWidth-box.width)/2;const y=(pageHeight-box.height)/2;pdf.addImage(img,'JPEG',x,y,box.width,box.height,undefined,'FAST');addPdfWatermarkImage(pdf,pageWidth,pageHeight,watermarkImage)}pdf.save(sanitizeFilename('프리미어_교재_'+watermark)+'.pdf')})}
 async function waitForPrintDialog(task){await new Promise(function(resolve){const done=function(){window.removeEventListener('afterprint',done);resolve()};window.addEventListener('afterprint',done,{once:true});task()})}
 async function downloadAnswerPdf(){return withDownloadLock('answer','downloadAnswerPdf','답안 인쇄 준비중...',async function(){if(!ensureStudentInfo())return;if(typeof printAllAnswers!=='function'){alert('답안 인쇄 함수를 찾지 못했습니다.');return}await waitForPrintDialog(function(){printAllAnswers()})})}
-async function downloadReportPdf(){return withDownloadLock('report','downloadReportPdf','리포트 인쇄 준비중...',async function(){if(!ensureStudentInfo())return;const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none'){alert('진단 결과가 아직 생성되지 않았습니다.');return}document.querySelectorAll('#resultListBox .res-card').forEach(function(card){card.classList.add('open')});document.querySelectorAll('#resultListBox .res-card-body').forEach(function(body){body.style.display='block'});await waitForPrintDialog(function(){window.print()})})}
+async function downloadReportPdf(){return withDownloadLock('report','downloadReportPdf','리포트 인쇄 준비중...',async function(){if(!ensureStudentInfo())return;const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none'){alert('진단 결과가 아직 생성되지 않았습니다.');return}document.querySelectorAll('#resultListBox .res-card').forEach(function(card){card.classList.add('open')});document.querySelectorAll('#resultListBox .res-card-body').forEach(function(body){body.style.display='block'});document.body.classList.add('report-print-mode');try{await waitForPrintDialog(function(){window.print()})}finally{document.body.classList.remove('report-print-mode')}})}
 function escapeHtml(value){return String(value).replace(/[&<>"]/g,function(ch){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[ch]})}
 window.BOOK_IMAGE_URLS=BOOK_IMAGE_URLS;
 window.downloadBookPdf=downloadBookPdf;
