@@ -1,0 +1,269 @@
+name: Fix Premier Hyper Focus Page
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/fix-premier-hyper-focus-page.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Patch index page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, requests
+
+          root = Path('premier-hyper-focus')
+          index_path = root / 'index.html'
+          html = index_path.read_text(encoding='utf-8')
+
+          # 1) Put logo inside GitHub repo and connect intro logo to local asset.
+          assets = root / 'assets'
+          assets.mkdir(parents=True, exist_ok=True)
+          logo_path = assets / 'gfield-logo.png'
+          if not logo_path.exists():
+              file_id = '1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL'
+              url = f'https://drive.google.com/uc?export=download&id={file_id}'
+              session = requests.Session()
+              r = session.get(url, stream=True)
+              r.raise_for_status()
+              token = None
+              for k, v in r.cookies.items():
+                  if k.startswith('download_warning'):
+                      token = v
+                      break
+              if token:
+                  r = session.get(url + f'&confirm={token}', stream=True)
+                  r.raise_for_status()
+              logo_path.write_bytes(r.content)
+
+          html = re.sub(r'<img class="intro-logo"[^>]*>', '<img class="intro-logo" src="assets/gfield-logo.png" alt="GFIELD">', html)
+
+          # 2) Intro speed / smoothness / type tunnel crowding fixes.
+          html = html.replace('transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1),filter 1s ease;', 'transition:opacity .62s ease,transform .62s cubic-bezier(.16,1,.3,1),filter .62s ease;')
+          html = html.replace('filter:blur(10px);', 'filter:blur(6px);')
+          html = html.replace('animation:introSuck 3.2s linear infinite;', 'animation:introSuck 2.45s linear infinite;')
+          html = html.replace('opacity:.7}', 'opacity:.52}')
+          html = html.replace('0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.35);opacity:0}14%{opacity:.85}76%{opacity:.52}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}', '0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.18);opacity:0}14%{opacity:.70}58%{opacity:.40}78%{opacity:0}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}')
+          html = re.sub(r'const\s+times\s*=\s*\[[^\]]+\];', "const times = [0, 1800, 5100, 6900, 8800, 10300];", html)
+          html = html.replace('setTimeout(()=>window.gfieldIntroGoDiagnosis(),20300);', 'setTimeout(()=>window.gfieldIntroGoDiagnosis(),14100);')
+          html = html.replace('setTimeout(()=>window.gfieldIntroGoDiagnosis(),20300)', 'setTimeout(()=>window.gfieldIntroGoDiagnosis(),14100)')
+          html = html.replace('},900);', '},650);')
+
+          old_loop = """for(let i=0;i<44;i++){
+            const el = document.createElement('div');
+            el.className = 'type-line';
+            el.textContent = typeTexts[i % typeTexts.length];
+            el.style.setProperty('--x',(Math.random()*160-80)+'vw');
+            el.style.setProperty('--y',(Math.random()*120-60)+'vh');
+            el.style.setProperty('--r',(Math.random()*90-45)+'deg');
+            el.style.animationDelay = (i*.075)+'s';
+            box.appendChild(el);
+        }"""
+          new_loop = """for(let i=0;i<28;i++){
+            const el = document.createElement('div');
+            el.className = 'type-line';
+            el.textContent = typeTexts[i % typeTexts.length];
+            const side = i % 4;
+            const x = side === 0 ? (-86 - Math.random()*28) : (side === 1 ? (58 + Math.random()*44) : (Math.random()*120 - 60));
+            const y = side === 2 ? (-64 - Math.random()*22) : (side === 3 ? (42 + Math.random()*30) : (Math.random()*96 - 48));
+            el.style.setProperty('--x', x + 'vw');
+            el.style.setProperty('--y', y + 'vh');
+            el.style.setProperty('--r',(Math.random()*70-35)+'deg');
+            el.style.animationDelay = (i*.105)+'s';
+            box.appendChild(el);
+        }"""
+          html = html.replace(old_loop, new_loop)
+          html = re.sub(r'for\(let i=0;i<44;i\+\+\)\{const el=document\.createElement\(\'div\'\);el\.className=\'type-line\';el\.textContent=typeTexts\[i%typeTexts\.length\];el\.style\.setProperty\(\'--x\',\(Math\.random\(\)\*160-80\)\+\'vw\'\);el\.style\.setProperty\(\'--y\',\(Math\.random\(\)\*120-60\)\+\'vh\'\);el\.style\.setProperty\(\'--r\',\(Math\.random\(\)\*90-45\)\+\'deg\'\);el\.style\.animationDelay=\(i\*\.075\)\+\'s\';box\.appendChild\(el\)\}', "for(let i=0;i<28;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];const side=i%4;const x=side===0?(-86-Math.random()*28):(side===1?(58+Math.random()*44):(Math.random()*120-60));const y=side===2?(-64-Math.random()*22):(side===3?(42+Math.random()*30):(Math.random()*96-48));el.style.setProperty('--x',x+'vw');el.style.setProperty('--y',y+'vh');el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.105)+'s';box.appendChild(el)}", html)
+
+          # 3) CSS for download buttons and PDF/save layouts.
+          css = r'''
+
+        .btn-action-dark { background: var(--navy); color: #fff; border: 2px solid var(--navy); }
+        .btn-action-dark:hover { background: #000; color: #fff; }
+        .download-area { display: none; }
+        .pdf-page { position: relative; width: 210mm; min-height: 297mm; background: #fff; color: #111; padding: 14mm; box-sizing: border-box; page-break-after: always; overflow: visible; }
+        .pdf-page.book-page { padding: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .pdf-page.book-page img { width: 210mm; height: 297mm; object-fit: contain; display: block; }
+        .pdf-watermark, .pdf-global-watermark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-32deg); width: 190mm; text-align: center; font-size: 34pt; font-weight: 900; color: #777; opacity: 0.035; pointer-events: none; z-index: 50; line-height: 1.25; white-space: nowrap; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        .pdf-global-watermark { display: none; }
+        .answer-download-title { font-family: 'Noto Serif KR', serif; font-size: 20pt; font-weight: 800; color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 8px; margin-bottom: 12px; }
+        .answer-download-meta { font-size: 10pt; color: #555; margin-bottom: 12px; }
+        .answer-row { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ddd; border-left: 4px solid var(--gold); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; background: #fff; }
+        .answer-row h4 { margin: 0 0 5px; font-size: 10.5pt; color: var(--navy); line-height: 1.45; }
+        .answer-row .answer { font-size: 10pt; font-weight: 800; color: var(--red); margin-bottom: 4px; }
+        .answer-row p { margin: 3px 0; font-size: 8.6pt; line-height: 1.5; color: #333; }
+        .report-print-title { display:none; }
+
+        @media print {
+            body.pdf-book-mode, body.pdf-answer-mode, body.pdf-report-mode { background: white !important; }
+            body.pdf-book-mode > *:not(#bookDownloadArea),
+            body.pdf-answer-mode > *:not(#answerDownloadArea),
+            body.pdf-report-mode #page1,
+            body.pdf-report-mode .action-btns,
+            body.pdf-report-mode .helper-text,
+            body.pdf-report-mode .attempt-menu,
+            body.pdf-report-mode .tab-bar,
+            body.pdf-report-mode .checklist-section,
+            body.pdf-report-mode .submit-area,
+            body.pdf-report-mode .result-actions,
+            body.pdf-report-mode .res-video-btn,
+            body.pdf-report-mode .res-card-toggle,
+            body.pdf-report-mode #gfieldIntro { display: none !important; }
+            body.pdf-book-mode #bookDownloadArea,
+            body.pdf-answer-mode #answerDownloadArea { display:block !important; position:absolute; left:0; top:0; width:100%; z-index:999999; }
+            body.pdf-report-mode #page2 { display:block !important; padding:0 !important; margin:0 !important; }
+            body.pdf-report-mode .p2-header { display:none !important; }
+            body.pdf-report-mode #result-area { display:block !important; box-shadow:none !important; border:none !important; margin:0 !important; padding:0 !important; }
+            body.pdf-report-mode .result-header { background: #fff !important; border-bottom: 2px solid var(--navy) !important; padding: 0 0 12px 0 !important; margin-bottom: 12px !important; break-inside: avoid; page-break-inside: avoid; }
+            body.pdf-report-mode .result-header h2,
+            body.pdf-report-mode .result-header p,
+            body.pdf-report-mode .result-header strong { color: #111 !important; }
+            body.pdf-report-mode .result-icon { display:none !important; }
+            body.pdf-report-mode .result-body { padding: 10mm 12mm !important; }
+            body.pdf-report-mode .report-print-title { display:block !important; font-family:'Noto Serif KR',serif; font-size:20pt; font-weight:800; color:var(--navy); margin:0 0 12px; border-bottom:2px solid var(--navy); padding-bottom:8px; }
+            body.pdf-report-mode .diagnosis-grid { display:block !important; margin-bottom:12px !important; break-inside:auto !important; }
+            body.pdf-report-mode .chart-container { height: 220px !important; margin: 0 0 10px !important; break-inside: avoid !important; page-break-inside: avoid !important; padding: 8px !important; }
+            body.pdf-report-mode .diagnosis-text-container { display:block !important; }
+            body.pdf-report-mode .diag-card { padding: 10px !important; margin-bottom: 8px !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+            body.pdf-report-mode .diag-card.prediction { background:#fff !important; border:1px solid var(--navy) !important; }
+            body.pdf-report-mode .diag-card.prediction h3,
+            body.pdf-report-mode .diag-card.prediction p,
+            body.pdf-report-mode .diag-card.prediction .highlight-msg { color:#111 !important; }
+            body.pdf-report-mode .result-list-box { background: transparent !important; border:none !important; padding:0 !important; margin-top: 8px !important; }
+            body.pdf-report-mode .res-card { break-inside: avoid !important; page-break-inside: avoid !important; margin-bottom: 8px !important; }
+            body.pdf-report-mode .res-card-body { display:block !important; }
+            body.pdf-report-mode .pdf-global-watermark { display:block !important; position:fixed !important; left:50% !important; top:50% !important; }
+            @page { size: A4 portrait; margin: 0; }
+        }
+          '''
+          if '.btn-action-dark' not in html:
+              html = html.replace('        /* ── 인쇄 전용 표지 및 스타일 ── */', css + '\n        /* ── 인쇄 전용 표지 및 스타일 ── */')
+
+          # 4) Report print title and buttons.
+          if 'report-print-title' in html and '종합 진단 결과 분석</div>\n                <div class="diagnosis-grid">' not in html:
+              html = html.replace('<div class="result-body">\n                <div class="diagnosis-grid">', '<div class="result-body">\n                <div class="report-print-title">종합 진단 결과 분석</div>\n                <div class="diagnosis-grid">')
+
+          old_actions = '''<div class="result-actions">
+                    <button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button>
+                    <button class="btn-action btn-action-outline" onclick="window.print()">📄 진단 결과 PDF 저장 / 인쇄</button>
+                    <button class="btn-action btn-action-fill" onclick="window.open('https://open.kakao.com/me/gfield', '_blank')">💬 지필드 카톡 맞춤 상담</button>
+                </div>'''
+          new_actions = '''<div class="result-actions">
+                    <button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button>
+                    <button class="btn-action btn-action-dark" onclick="downloadBookPdf()">📘 교재 다운로드</button>
+                    <button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">🧾 전체 답안 다운로드</button>
+                    <button class="btn-action btn-action-outline" onclick="downloadDiagnosisReport()">📊 종합 진단 결과 분석</button>
+                    <button class="btn-action btn-action-fill" onclick="window.open('https://open.kakao.com/me/gfield', '_blank')">💬 지필드 카톡 맞춤 상담</button>
+                </div>'''
+          html = html.replace(old_actions, new_actions)
+          html = html.replace('📄 진단 결과 PDF 저장 / 인쇄', '📊 종합 진단 결과 분석')
+
+          # 5) Hidden areas.
+          if 'id="bookDownloadArea"' not in html:
+              html = html.replace('</div>\n\n<script>\n    // 모든 문항 데이터를 포함하는 배열', '</div>\n\n<div id="bookDownloadArea" class="download-area"></div>\n<div id="answerDownloadArea" class="download-area"></div>\n\n<script>\n    // 모든 문항 데이터를 포함하는 배열')
+
+          # 6) Download functions.
+          js = r'''
+
+    function getDownloadUserInfo() {
+        const name = (document.getElementById('studentName')?.value || '학생').trim() || '학생';
+        const code = (document.getElementById('authCode')?.value || '승인번호').trim() || '승인번호';
+        return { name, code, watermark: `${name} · ${code}` };
+    }
+
+    function collectAllItemsSorted() {
+        const items = [];
+        data.forEach(cat => {
+            cat.items.forEach(item => items.push({ ...item, categoryTitle: cat.categoryTitle, shortName: cat.shortName }));
+        });
+        return items.sort((a, b) => a.id - b.id);
+    }
+
+    function runPdfPrintMode(mode, afterMs = 900) {
+        document.body.classList.add(mode);
+        setTimeout(() => {
+            window.print();
+            setTimeout(() => document.body.classList.remove(mode), afterMs);
+        }, 250);
+    }
+
+    function downloadBookPdf() {
+        const { watermark } = getDownloadUserInfo();
+        const area = document.getElementById('bookDownloadArea');
+        const pages = Array.from({ length: 29 }, (_, i) => `assets/book/page-${String(i + 1).padStart(2, '0')}.jpg`);
+        area.innerHTML = pages.map((src, idx) => `
+            <section class="pdf-page book-page">
+                <img src="${src}" alt="교재 ${idx + 1}쪽">
+                <div class="pdf-watermark">${watermark}</div>
+            </section>
+        `).join('');
+        runPdfPrintMode('pdf-book-mode', 1200);
+    }
+
+    function downloadAnswerPdf() {
+        const { name, code, watermark } = getDownloadUserInfo();
+        const area = document.getElementById('answerDownloadArea');
+        const items = collectAllItemsSorted();
+        area.innerHTML = `
+            <section class="pdf-page">
+                <div class="pdf-watermark">${watermark}</div>
+                <div class="answer-download-title">프리미어 하이퍼 포커스 전체 답안</div>
+                <div class="answer-download-meta">${name} 학생 · 승인번호 ${code} · 1번부터 54번까지 번호순 정리</div>
+                ${items.map(item => `
+                    <div class="answer-row">
+                        <h4>${item.id}. ${item.text}</h4>
+                        <div class="answer">정답: ${item.ans || '-'}</div>
+                        <p><strong>유형:</strong> ${item.shortName || item.categoryTitle}</p>
+                        <p><strong>풀이 핵심:</strong> ${item.tTip || ''}</p>
+                        ${item.mTip ? `<p><strong>지도 포인트:</strong> ${item.mTip}</p>` : ''}
+                    </div>
+                `).join('')}
+            </section>
+        `;
+        runPdfPrintMode('pdf-answer-mode', 1200);
+    }
+
+    function downloadDiagnosisReport() {
+        document.querySelectorAll('#resultListBox .res-card').forEach(card => card.classList.add('open'));
+        const { watermark } = getDownloadUserInfo();
+        let wm = document.getElementById('reportPdfWatermark');
+        if (!wm) {
+            wm = document.createElement('div');
+            wm.id = 'reportPdfWatermark';
+            wm.className = 'pdf-global-watermark';
+            document.body.appendChild(wm);
+        }
+        wm.textContent = watermark;
+        runPdfPrintMode('pdf-report-mode', 1200);
+    }
+          '''
+          if 'function downloadBookPdf()' not in html:
+              idx = html.find('</script>\n\n<script id="gfield-intro-restore-script">')
+              if idx == -1:
+                  idx = html.rfind('</script>')
+              html = html[:idx] + js + '\n' + html[idx:]
+
+          index_path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit patched page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add premier-hyper-focus/index.html premier-hyper-focus/assets/gfield-logo.png
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Fix premier intro and PDF download buttons [skip ci]"
+            git push
+          fi
