@@ -1,0 +1,59 @@
+name: Restore Premier Diagnosis Index
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/restore-diagnosis-index.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download diagnosis HTML from Google Drive
+        run: |
+          python - <<'PY'
+          import requests
+          from pathlib import Path
+
+          file_id = "1n4VmxQF48CIbQdP3Wq84GntwYCYHj056"
+          url = f"https://drive.google.com/uc?export=download&id={file_id}"
+          session = requests.Session()
+          response = session.get(url, stream=True)
+          response.raise_for_status()
+
+          token = None
+          for key, value in response.cookies.items():
+              if key.startswith("download_warning"):
+                  token = value
+                  break
+          if token:
+              response = session.get(url + f"&confirm={token}", stream=True)
+              response.raise_for_status()
+
+          text = response.content.decode("utf-8-sig", errors="replace")
+          if "프리미어 합격 진단 리포트" not in text or "진단 시작하기" not in text:
+              raise SystemExit("Downloaded file does not look like the diagnosis page")
+
+          Path("premier-hyper-focus").mkdir(parents=True, exist_ok=True)
+          Path("premier-hyper-focus/index.html").write_text(text, encoding="utf-8")
+          print("Restored premier-hyper-focus/index.html from diagnosis HTML")
+          PY
+
+      - name: Commit restored diagnosis page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add premier-hyper-focus/index.html
+          if git diff --cached --quiet; then
+            echo "No changes to restore."
+          else
+            git commit -m "Restore premier diagnosis index page [skip ci]"
+            git push
+          fi
