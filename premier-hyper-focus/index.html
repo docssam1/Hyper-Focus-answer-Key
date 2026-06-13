@@ -39,14 +39,15 @@ function readyPatch(){replaceIntroWording();forceCountdown321();patchActions();c
 setInterval(readyPatch,500);setInterval(forceCountdown321,50);readyPatch();
 })();
 <\/script>`;
+  const SCOREBOARD_DATA="const recordData={left:[{title:'생각하는 황소 경시합격',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'대치 소마 프리미어',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'대치 필즈 더 클래식 TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'영재원 & 성대경시',years:[['교육청 영재원',89],['대학부설 영재원',78],['성대경시 대상',13]],total:180}],grand:400};";
   let html=await fetch(BASE_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('base fetch failed '+r.status);return r.text();});
   html=html.replace('<div id="gfieldIntro"><div class="intro-bg"></div><button class="intro-skip" type="button" onclick="gfieldIntroGoDiagnosis()">SKIP</button>','<div id="gfieldIntro"><div class="intro-bg"></div><div class="intro-flash" id="gfieldIntroFlash"></div><button class="intro-skip" type="button" onclick="gfieldIntroGoDiagnosis()">SKIP</button>');
   html=html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="'+LOGO_URL+'" alt="GFIELD">');
   html=html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
   html=html.replace(/대표\s*유형/g,'심화 대표 유형');html=html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');html=html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');html=html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
+  html=html.replace(/const recordData=\{left:\[[\s\S]*?\],grand:400\};/,SCOREBOARD_DATA);
   html=html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,'const scenes=[\'gfieldIntroScene0\',\'gfieldIntroScene1\',\'gfieldIntroScene2\',\'gfieldIntroScene3\',\'gfieldIntroScene4\',\'gfieldIntroScene5\'],times=[0,2300,5000,7200,9600,11800]');
   html=html.replace(/let c=5;/g,'let c=3;');html=html.replace(/let n=5;/g,'let n=3;');html=html.replace(/\},900\);/g,'},850);');html=html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,'setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)');
-  html=html.replace(/const recordData=\{left:\[\{title:'[^']+'/,'const recordData={left:[{title:\'필즈 TOPCLASS\'');html=html.replace(/right:\[\{title:'[^']+'/,'right:[{title:\'소마 프리미어(대치)\'');
   html=html.replace('</head>',PATCH_CSS+'</head>');html=html.replace('</body>',PATCH_JS+'<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();document.write(html);document.close();
 })().catch(err=>{document.getElementById('boot').style.display='none';document.open();document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">페이지 로딩 오류: '+err.message+'</body>');document.close();});
