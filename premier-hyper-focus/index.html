@@ -26,17 +26,26 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   const PATCH_JS=`
 <script id="premier-phase1-js">
 (function(){
+function replaceIntroWording(){
+  document.querySelectorAll('#gfieldIntroScene3 *').forEach(function(el){
+    if(el.children.length===0 && el.textContent){
+      el.textContent=el.textContent.replace(/대표\s*유형/g,'심화 대표 유형').replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
+    }
+  });
+}
 function readyPatch(){
+  replaceIntroWording();
   var logo=document.querySelector('#gfieldIntro .intro-logo');if(logo){logo.src='${LOGO_URL}';}
   var login=document.querySelector('.login-card');if(login&&!login.querySelector('.quick-download-actions')){login.insertAdjacentHTML('beforeend','<div class="quick-download-actions"><button class="dark" type="button">📘 교재 다운로드</button><button class="light" type="button">🧾 전체 답안 다운로드</button></div>');}
   document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark">📘 교재 다운로드</button><button class="btn-action btn-action-outline">🧾 전체 답안 다운로드</button><button class="btn-action btn-action-outline">📊 종합 진단 결과 분석</button>';});
 }
-setInterval(readyPatch,700);readyPatch();
+setInterval(readyPatch,500);readyPatch();
 })();
 <\/script>`;
   let html=await fetch(BASE_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('base fetch failed '+r.status);return r.text();});
   html=html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="'+LOGO_URL+'" alt="GFIELD">');
-  html=html.replace(/대표\s*유형으로\s*빠르게\s*점검합니다/g,'심화 대표 유형으로 약점유형을 진단합니다');
+  html=html.replace(/대표\s*유형/g,'심화 대표 유형');
+  html=html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
   html=html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');
   html=html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
   html=html.replace('transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1),filter 1s ease;','transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1),filter .82s ease;');
