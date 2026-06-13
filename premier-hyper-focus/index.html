@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지필드 영재교육 - 프리미어 합격 진단 리포트</title>
+<title>吏?꾨뱶 ?곸옱援먯쑁 - ?꾨━誘몄뼱 ?⑷꺽 吏꾨떒 由ы룷??/title>
 <style>
 html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}
 #boot{position:fixed;inset:0;display:grid;place-items:center;background:#02050b}
@@ -17,12 +17,12 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 (async function(){
   const BASE_URL = "https://raw.githubusercontent.com/docssam1/Hyper-Focus-answer-Key/ebcbacd3ef208a8ba2de36babc35a3858e08e23d/premier-hyper-focus/index.html";
   const LOGO_URL = "https://lh3.googleusercontent.com/d/1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL";
-  const SCOREBOARD_DATA = "const recordData={left:[{title:'생각하는 황소 경시합격',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'대치 소마 프리미어',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'대치 필즈 더 클래식 TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'영재원 & 성대경시',years:[['교육청 영재원',89],['대학부설 영재원',78],['성대경시 대상',13]],total:180}],grand:400};";
+  const SCOREBOARD_DATA = "const recordData={left:[{title:'?앷컖?섎뒗 ?⑹냼 寃쎌떆?⑷꺽',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'?移??뚮쭏 ?꾨━誘몄뼱',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'?移??꾩쫰 ???대옒??TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'?곸옱??& ?깅?寃쎌떆',years:[['援먯쑁泥??곸옱??,89],['??숇????곸옱??,78],['?깅?寃쎌떆 ???,13]],total:180}],grand:400};";
 
   const PATCH_CSS = `
 <style id="premier-phase1-css">
 #G_FIELD_PAGE_READY_MARKER{display:none}
-#gfieldIntro .intro-scene{transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1),filter .82s ease!important;filter:blur(5px)}
+#gfieldIntro .intro-scene{transition:opacity .62s ease,transform .62s cubic-bezier(.22,1,.36,1),filter .62s ease!important;filter:blur(3px)}
 #gfieldIntro .records{width:min(1180px,94vw)!important;display:grid!important;grid-template-columns:1fr minmax(150px,210px) 1fr!important;gap:12px!important;align-items:center!important}
 #gfieldIntro .stack{display:flex!important;flex-direction:column!important;gap:9px!important}
 #gfieldIntro .record{padding:9px 11px!important;border-radius:14px!important;min-height:0!important}
@@ -46,7 +46,7 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 #gfieldIntroScene3:before{content:"";position:absolute;left:25%;right:25%;top:31%;bottom:31%;z-index:2;background:radial-gradient(circle at center,rgba(2,5,11,.74),rgba(2,5,11,.38) 58%,transparent 82%);pointer-events:none}
 #gfieldIntroScene3>div:not(.type-tunnel){position:relative;z-index:3}
 
-/* ══ 고급 소개 화면 (intro-preview 이식) ══ */
+/* ?먥븧 怨좉툒 ?뚭컻 ?붾㈃ (intro-preview ?댁떇) ?먥븧 */
 #preLoginBrief{font-family:'Noto Sans KR',system-ui,sans-serif;word-break:keep-all;background:#02050b;color:#fff}
 #preLoginBrief *{box-sizing:border-box}
 .plb-wrap{max-width:1120px;margin:0 auto;padding:0 22px}
@@ -64,7 +64,7 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 .plb-cta:hover{transform:translateY(-2px)}
 .plb-subnote{margin-top:14px;color:#b9c5d6;font-size:14px}
 
-/* 공통 섹션 */
+/* 怨듯넻 ?뱀뀡 */
 .plb-section{padding:78px 0}
 .plb-section-dark{background:#07101d}
 .plb-section-navy{background:#0a1628}
@@ -74,19 +74,19 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 .plb-section-dark .plb-lead{color:#cbd5e1}
 .plb-section-navy .plb-lead{color:#cbd5e1;text-align:center;margin:0 auto 34px}
 
-/* 3칸 카드 */
+/* 3移?移대뱶 */
 .plb-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
 .plb-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:26px}
 .plb-num{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;background:#0f1c2c;color:#f8dd83;border-radius:10px;font-weight:900;margin-bottom:18px;font-size:15px}
 .plb-card h3{margin:0 0 10px;font-size:22px;color:#e8edf4}
 .plb-card p{margin:0;color:#8ea0b8;line-height:1.7}
 
-/* 영상 섹션 */
+/* ?곸긽 ?뱀뀡 */
 .plb-ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
 .plb-video-card{position:relative;border:1px solid rgba(248,221,131,.25);border-radius:24px;overflow:hidden;background:#050a12;box-shadow:0 22px 60px rgba(0,0,0,.32);min-height:280px}
 .plb-video-card video{display:block;width:100%;height:100%;min-height:280px;object-fit:cover}
 
-/* 리포트 샘플 섹션 */
+/* 由ы룷???섑뵆 ?뱀뀡 */
 .plb-report-top{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:34px}
 .plb-report-top p{max-width:460px;color:#8ea0b8;line-height:1.7;margin:0}
 .plb-report-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
@@ -96,21 +96,21 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 .plb-report-cap b{color:#d4af37;font-size:15px}
 .plb-report-cap span{font-weight:900;color:#e8edf4;font-size:18px}
 
-/* 7개 영역 */
+/* 7媛??곸뿭 */
 .plb-area-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
 .plb-area{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055);border-radius:18px;padding:20px 10px;text-align:center;font-weight:900;color:#fff;font-size:15px}
 .plb-area small{display:block;color:#f8dd83;font-size:22px;margin-bottom:8px;font-style:normal}
 
-/* 하단 CTA */
+/* ?섎떒 CTA */
 .plb-final{padding:78px 0;background:#02050b}
 .plb-final-box{background:linear-gradient(135deg,#0f1c2c,#182d44);color:#fff;border-radius:28px;padding:48px;text-align:center;box-shadow:0 18px 45px rgba(15,28,44,.18);border:1px solid rgba(212,175,55,.2)}
 .plb-final-box h2{margin:0 0 14px;color:#fff;font-size:clamp(24px,3.5vw,38px);letter-spacing:-.05em}
 .plb-final-box p{margin:0 auto 28px;max-width:680px;color:#d6deea;line-height:1.75}
 
-/* 로그인 잠금 */
+/* 濡쒓렇???좉툑 */
 .prelogin-locked{display:none!important}
 
-/* 기존 기능 유지 */
+/* 湲곗〈 湲곕뒫 ?좎? */
 .action-btns .download-book-btn,.action-btns .download-answer-btn,.action-btns .download-report-btn{background:#020b14!important;color:#fff!important;border:2px solid #d4af37!important}
 .btn-action-dark{background:#0d1b2a!important;color:#fff!important;border:2px solid #c9a84c!important}
 .btn-action-dark:hover{background:#c9a84c!important;color:#0d1b2a!important}
@@ -174,26 +174,31 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   .plb-final-box{padding:36px 22px}
 }
 @media(max-width:760px){
-  #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
-  #gfieldIntro .grand{order:-1}
-  #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
-  .plb-area-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:520px){
-  .plb-area-grid{grid-template-columns:1fr}
+  #gfieldIntro .records{width:92vw!important;max-width:92vw!important;grid-template-columns:1fr!important;gap:7px!important;transform:scale(.9);transform-origin:center center;}
+  #gfieldIntro .record{padding:7px 9px!important;border-radius:12px!important;}
+  #gfieldIntro .recordTitle{font-size:12px!important;margin-bottom:4px!important;}
+  #gfieldIntro .year{grid-template-columns:62px 1fr 28px!important;gap:5px!important;font-size:10px!important;margin:2px 0!important;}
+  #gfieldIntro .bar{height:6px!important;}
+  #gfieldIntro .ynum{font-size:10px!important;}
+  #gfieldIntro .total{font-size:12px!important;margin-top:4px!important;padding-top:4px!important;}
+  #gfieldIntro .grand{padding:10px 8px!important;}
+  #gfieldIntro .gnum{font-size:clamp(52px,18vw,82px)!important;}
+  #gfieldIntro .gunit{font-size:18px!important;}
+  .plb-cards,.plb-ad-grid,.plb-report-grid,.plb-area-grid{grid-template-columns:1fr!important;}
+  .plb-hero{min-height:68vh!important;}
 }
 </style>`;
 
   const PATCH_JS = `
 <script id="premier-phase1-js">
 (function(){
-const TYPE_TEXTS=['쌓기나무와 입체도형','전개도와 주사위','색종이 접기와 펀칭','도형 개수 세기','수와 연산 퍼즐','논리표 조건 추론','최단 거리 가짓수','양팔저울 무게 비교','규칙 찾기','암호 풀기','거울과 디지털 수','달력과 시계','조건에 알맞은 수','평면도형 분할','입체도형 관찰','도형 회전','경우의 수','분수 조건','나머지 규칙','도형 겹치기','거리와 위치','쌍과 짝짓기','색칠 논리','입체 단면','수 배열','문장제 추론','숫자 카드'];
+const TYPE_TEXTS=['?볤린?섎Т? ?낆껜?꾪삎','?꾧컻?꾩? 二쇱궗??,'?됱쥌???묎린? ?移?,'?꾪삎 媛쒖닔 ?멸린','?섏? ?곗궛 ?쇱쫹','?쇰━??議곌굔 異붾줎','理쒕떒 嫄곕━ 媛吏볦닔','?묓뙏???臾닿쾶 鍮꾧탳','洹쒖튃 李얘린','?뷀샇 ?湲?,'嫄곗슱怨??붿?????,'?щ젰怨??쒓퀎','議곌굔???뚮쭪? ??,'?됰㈃?꾪삎 遺꾪븷','?낆껜?꾪삎 愿李?,'?꾪삎 ?뚯쟾','寃쎌슦????,'遺꾩닔 議곌굔','?섎㉧吏 洹쒖튃','?꾪삎 寃뱀튂湲?,'嫄곕━? ?꾩튂','?띻낵 吏앹쭞湲?,'?됱튌 ?쇰━','?낆껜 ?⑤㈃','??諛곗뿴','臾몄옣??異붾줎','?レ옄 移대뱶'];
 const BOOK_IMAGE_URLS=${JSON.stringify(Array.from({length:29},(_,i)=>`./assets/book/book_${String(i+1).padStart(3,"0")}.jpg`))};
 const ROOT_ANSWER_SOURCE_URL='../index.html?v=shared-answer-data';
 const ROOT_ANSWER_SOURCE_FALLBACK_URL='https://docssam1.github.io/Hyper-Focus-answer-Key/?v=shared-answer-data';
-function replaceIntroWording(){document.querySelectorAll('#gfieldIntroScene3 *').forEach(function(el){if(el.children.length===0&&el.textContent){el.textContent=el.textContent.replace(/대표\\s*유형/g,'심화 대표 유형').replace(/빠르게\\s*점검합니다/g,'약점유형을 진단합니다')}})}
+function replaceIntroWording(){document.querySelectorAll('#gfieldIntroScene3 *').forEach(function(el){if(el.children.length===0&&el.textContent){el.textContent=el.textContent.replace(/???\s*?좏삎/g,'?ы솕 ????좏삎').replace(/鍮좊Ⅴ寃?\s*?먭??⑸땲??g,'?쎌젏?좏삎??吏꾨떒?⑸땲??)}})}
 function runTypes(){if(window.gfieldIntroTypesStarted)return;window.gfieldIntroTypesStarted=true;const box=document.getElementById('gfieldIntroTypeTunnel');if(!box)return;box.innerHTML='';for(let i=0;i<32;i++){const el=document.createElement('div');el.className='type-line';el.textContent=TYPE_TEXTS[i%TYPE_TEXTS.length];const side=i%4;let x,y;if(side===0){x=(-92-Math.random()*28)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===1){x=(68+Math.random()*38)+'vw';y=(Math.random()*110-55)+'vh'}else if(side===2){x=(Math.random()*130-65)+'vw';y=(-68-Math.random()*18)+'vh'}else{x=(Math.random()*130-65)+'vw';y=(50+Math.random()*28)+'vh'}el.style.setProperty('--x',x);el.style.setProperty('--y',y);el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.09)+'s';box.appendChild(el)}}
-function patchActions(){document.querySelectorAll('.login-card .quick-download-actions').forEach(el=>el.remove());const top=document.querySelector('.action-btns');if(top&&!top.dataset.downloadPatched){top.dataset.downloadPatched='1';top.innerHTML='<a class="video-btn btn-youtube" href="#" onclick="return false">설명회 영상</a><a class="video-btn btn-youtube" href="#" onclick="return false">풀이 영상 전체보기</a><button class="video-btn download-book-btn" type="button" onclick="downloadBookPdf()">교재 다운로드</button><button class="video-btn download-answer-btn" type="button" onclick="downloadAnswerPdf()">전체 답안 인쇄</button><button class="video-btn download-report-btn" type="button" onclick="downloadReportPdf()">종합 리포트 인쇄</button><a class="video-btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank" rel="noopener">신청/문의하기</a>'}document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">오답 상세 한 번에 보기</button><button class="btn-action btn-action-dark" onclick="downloadBookPdf()">교재 다운로드</button><button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">전체 답안 인쇄</button><button class="btn-action btn-action-outline" onclick="downloadReportPdf()">종합 리포트 인쇄</button>'})}
+function patchActions(){document.querySelectorAll('.login-card .quick-download-actions').forEach(el=>el.remove());const top=document.querySelector('.action-btns');if(top&&!top.dataset.downloadPatched){top.dataset.downloadPatched='1';top.innerHTML='<a class="video-btn btn-youtube" href="#" onclick="return false">?ㅻ챸???곸긽</a><a class="video-btn btn-youtube" href="#" onclick="return false">????곸긽 ?꾩껜蹂닿린</a><button class="video-btn download-book-btn" type="button" onclick="downloadBookPdf()">援먯옱 ?ㅼ슫濡쒕뱶</button><button class="video-btn download-answer-btn" type="button" onclick="downloadAnswerPdf()">?꾩껜 ?듭븞 ?몄뇙</button><button class="video-btn download-report-btn" type="button" onclick="downloadReportPdf()">醫낇빀 由ы룷???몄뇙</button><a class="video-btn btn-kakao" href="https://open.kakao.com/me/gfield" target="_blank" rel="noopener">?좎껌/臾몄쓽?섍린</a>'}document.querySelectorAll('.result-actions').forEach(function(box){if(box.dataset.phase1Patched)return;box.dataset.phase1Patched='1';box.innerHTML='<button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">?ㅻ떟 ?곸꽭 ??踰덉뿉 蹂닿린</button><button class="btn-action btn-action-dark" onclick="downloadBookPdf()">援먯옱 ?ㅼ슫濡쒕뱶</button><button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">?꾩껜 ?듭븞 ?몄뇙</button><button class="btn-action btn-action-outline" onclick="downloadReportPdf()">醫낇빀 由ы룷???몄뇙</button>'})}
 function goLoginFromIntro(){
   window.gfieldPreLoginStarted=true;
   const intro=document.getElementById('preLoginBrief');
@@ -218,28 +223,28 @@ function patchPreLogin(){
     brief.innerHTML=
       '<section class="plb-hero"><div class="plb-wrap">'+
         '<div class="plb-eyebrow">SOMA PREMIER HYPER FOCUS</div>'+
-        '<h1>프리미어 합격을 위한<br><strong>약점 유형 진단 프로그램</strong></h1>'+
-        '<p>소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p>'+
+        '<h1>?꾨━誘몄뼱 ?⑷꺽???꾪븳<br><strong>?쎌젏 ?좏삎 吏꾨떒 ?꾨줈洹몃옩</strong></h1>'+
+        '<p>?뚮쭏 ?꾨━誘몄뼱 以鍮?怨쇱젙?먯꽌 ?먯＜ ?붾뱾由щ뒗 ?ш퀬???좏삎???먭??섍퀬, ?꾩씠???꾩옱 ?쎌젏怨?蹂댁셿 諛⑺뼢, ?꾨━誘몄뼱 ?⑷꺽 媛?μ꽦???④퍡 ?뺤씤?섎뒗 吏꾨떒 ?꾨줈洹몃옩?낅땲??</p>'+
         '<div class="plb-cta-row">'+
-          '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>'+
-          '<button type="button" class="plb-cta dark plb-go-login">로그인해서 진단 시작하기</button>'+
+          '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">?꾨줈洹몃옩 ?곷떞 ?좎껌?섍린</a>'+
+          '<button type="button" class="plb-cta dark plb-go-login">濡쒓렇?명빐??吏꾨떒 ?쒖옉?섍린</button>'+
         '</div>'+
-        '<div class="plb-subnote">상담 신청서를 남겨주시면 순서대로 확인 후 연락드립니다.</div>'+
+        '<div class="plb-subnote">?곷떞 ?좎껌?쒕? ?④꺼二쇱떆硫??쒖꽌?濡??뺤씤 ???곕씫?쒕┰?덈떎.</div>'+
       '</div></section>'+
       '<section class="plb-section"><div class="plb-wrap">'+
-        '<h2>한 번의 점검이 아니라,<br>회차별 변화를 보는 진단입니다.</h2>'+
-        '<p class="plb-lead">문항의 정답 여부만 보는 것이 아니라, 어떤 사고력 영역에서 시간이 걸리고 어떤 유형이 반복적으로 흔들리는지 확인합니다.</p>'+
+        '<h2>??踰덉쓽 ?먭????꾨땲??<br>?뚯감蹂?蹂?붾? 蹂대뒗 吏꾨떒?낅땲??</h2>'+
+        '<p class="plb-lead">臾명빆???뺣떟 ?щ?留?蹂대뒗 寃껋씠 ?꾨땲?? ?대뼡 ?ш퀬???곸뿭?먯꽌 ?쒓컙??嫄몃━怨??대뼡 ?좏삎??諛섎났?곸쑝濡??붾뱾由щ뒗吏 ?뺤씤?⑸땲??</p>'+
         '<div class="plb-cards">'+
-          '<div class="plb-card"><div class="plb-num">01</div><h3>54개 대표 유형 점검</h3><p>공간 지각, 평면 지각, 수와 연산, 논리 추리, 경우의 수, 문제 해결, 지문 이해 영역의 대표 유형을 확인합니다.</p></div>'+
-          '<div class="plb-card"><div class="plb-num">02</div><h3>최대 3회 진단 가능</h3><p>1회성 체크가 아니라 최대 3회까지 진단하며, 아이의 보완 흐름을 회차별로 확인할 수 있습니다.</p></div>'+
-          '<div class="plb-card"><div class="plb-num">03</div><h3>이전 회차 비교 분석</h3><p>이전 회차에서 해결된 문항과 새롭게 틀린 문항을 비교하여, 다음 학습 방향을 더 정확하게 잡습니다.</p></div>'+
+          '<div class="plb-card"><div class="plb-num">01</div><h3>54媛?????좏삎 ?먭?</h3><p>怨듦컙 吏媛? ?됰㈃ 吏媛? ?섏? ?곗궛, ?쇰━ 異붾━, 寃쎌슦???? 臾몄젣 ?닿껐, 吏臾??댄빐 ?곸뿭??????좏삎???뺤씤?⑸땲??</p></div>'+
+          '<div class="plb-card"><div class="plb-num">02</div><h3>理쒕? 3??吏꾨떒 媛??/h3><p>1?뚯꽦 泥댄겕媛 ?꾨땲??理쒕? 3?뚭퉴吏 吏꾨떒?섎ŉ, ?꾩씠??蹂댁셿 ?먮쫫???뚯감蹂꾨줈 ?뺤씤?????덉뒿?덈떎.</p></div>'+
+          '<div class="plb-card"><div class="plb-num">03</div><h3>?댁쟾 ?뚯감 鍮꾧탳 遺꾩꽍</h3><p>?댁쟾 ?뚯감?먯꽌 ?닿껐??臾명빆怨??덈∼寃??由?臾명빆??鍮꾧탳?섏뿬, ?ㅼ쓬 ?숈뒿 諛⑺뼢?????뺥솗?섍쾶 ?≪뒿?덈떎.</p></div>'+
         '</div>'+
       '</div></section>'+
       '<section class="plb-section plb-section-dark"><div class="plb-wrap plb-ad-grid">'+
         '<div>'+
           '<div class="plb-eyebrow">REPORT PREVIEW</div>'+
-          '<h2>누적 진단 리포트 미리보기</h2>'+
-          '<p class="plb-lead">회차별 변화와 보완 방향을 한눈에 확인합니다.</p>'+
+          '<h2>?꾩쟻 吏꾨떒 由ы룷??誘몃━蹂닿린</h2>'+
+          '<p class="plb-lead">?뚯감蹂?蹂?붿? 蹂댁셿 諛⑺뼢???쒕늿???뺤씤?⑸땲??</p>'+
         '</div>'+
         '<div class="plb-video-card">'+
           '<video autoplay muted loop playsinline preload="auto" src="./assets/premier-report-ad-fast.mp4"></video>'+
@@ -249,36 +254,36 @@ function patchPreLogin(){
         '<div class="plb-report-top">'+
           '<div>'+
             '<div class="plb-eyebrow">REPORT SAMPLE</div>'+
-            '<h2>진단 후 제공되는<br>리포트 미리보기</h2>'+
+            '<h2>吏꾨떒 ???쒓났?섎뒗<br>由ы룷??誘몃━蹂닿린</h2>'+
           '</div>'+
-          '<p class="plb-lead">영역별 강약점과 회차별 변화를 한 화면에서 확인할 수 있습니다.</p>'+
+          '<p class="plb-lead">?곸뿭蹂?媛뺤빟?먭낵 ?뚯감蹂?蹂?붾? ???붾㈃?먯꽌 ?뺤씤?????덉뒿?덈떎.</p>'+
         '</div>'+
         '<div class="plb-report-grid">'+
-          '<div class="plb-report-item"><img alt="개인별 진단 리포트" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE"><div class="plb-report-cap"><b>01</b><span>개인별 진단 리포트</span></div></div>'+
-          '<div class="plb-report-item"><img alt="영역별 강약점 분석" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi48xQbJOwciTrlVjaL3PxJgVfp5BwEYZoeoSuhqkPU8N1mTSiap_auNnCiOc19nyGUR8zxH-0OkK5gKBsRFvzFopPvwkb8KKOX3ZtPMAaF6I7p1oCo5XST0nFgLS7nvCfNoJgiTiYPs-G4fLS8IWvb0C7YMb6LFzlcX6T4rDI6nuwgGqXbAlW5p3wkaOYYklah9CtY9FW7r5SwIZiFBUV2cG2Xtra-wVH7Ay8o3ZdglxkcB-mc8CrVNl-uAcEh6jUrzt2wW9zTtU"><div class="plb-report-cap"><b>02</b><span>영역별 강약점 분석</span></div></div>'+
-          '<div class="plb-report-item"><img alt="이전 회차 대비 변화도" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0f9OQ3Ta9io3fOYVqiwHSE4fciTaFcaP5lD55h3xARloV12jEH5TxrVfaf9MIYiJtkjCwGudShW1owXq2x_x6M1XVgT3C_vN7Mz-jVYj4YOT67kycg3FCuYzBNd-i22FKsvQYzGhFLaiIf1h2zH0euBAxffFIsa1HRaTiHNNawQpxXiRaAqZkGgMzRCrezLJNkmxNfl-SkBu38CHtiGVecycSBGSSZNM2IWYkzWtBD441p0xqPCbdpDJknokoyOv2-MO72riDIA"><div class="plb-report-cap"><b>03</b><span>이전 회차 대비 변화도</span></div></div>'+
-          '<div class="plb-report-item"><img alt="오답 문항 상세 분석" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtVFCzhou0lDx6TD8d2mN1nE"><div class="plb-report-cap"><b>04</b><span>오답 문항 상세 분석</span></div></div>'+
+          '<div class="plb-report-item"><img alt="媛쒖씤蹂?吏꾨떒 由ы룷?? src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE"><div class="plb-report-cap"><b>01</b><span>媛쒖씤蹂?吏꾨떒 由ы룷??/span></div></div>'+
+          '<div class="plb-report-item"><img alt="?곸뿭蹂?媛뺤빟??遺꾩꽍" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi48xQbJOwciTrlVjaL3PxJgVfp5BwEYZoeoSuhqkPU8N1mTSiap_auNnCiOc19nyGUR8zxH-0OkK5gKBsRFvzFopPvwkb8KKOX3ZtPMAaF6I7p1oCo5XST0nFgLS7nvCfNoJgiTiYPs-G4fLS8IWvb0C7YMb6LFzlcX6T4rDI6nuwgGqXbAlW5p3wkaOYYklah9CtY9FW7r5SwIZiFBUV2cG2Xtra-wVH7Ay8o3ZdglxkcB-mc8CrVNl-uAcEh6jUrzt2wW9zTtU"><div class="plb-report-cap"><b>02</b><span>?곸뿭蹂?媛뺤빟??遺꾩꽍</span></div></div>'+
+          '<div class="plb-report-item"><img alt="?댁쟾 ?뚯감 ?鍮?蹂?붾룄" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0f9OQ3Ta9io3fOYVqiwHSE4fciTaFcaP5lD55h3xARloV12jEH5TxrVfaf9MIYiJtkjCwGudShW1owXq2x_x6M1XVgT3C_vN7Mz-jVYj4YOT67kycg3FCuYzBNd-i22FKsvQYzGhFLaiIf1h2zH0euBAxffFIsa1HRaTiHNNawQpxXiRaAqZkGgMzRCrezLJNkmxNfl-SkBu38CHtiGVecycSBGSSZNM2IWYkzWtBD441p0xqPCbdpDJknokoyOv2-MO72riDIA"><div class="plb-report-cap"><b>03</b><span>?댁쟾 ?뚯감 ?鍮?蹂?붾룄</span></div></div>'+
+          '<div class="plb-report-item"><img alt="?ㅻ떟 臾명빆 ?곸꽭 遺꾩꽍" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtVFCzhou0lDx6TD8d2mN1nE"><div class="plb-report-cap"><b>04</b><span>?ㅻ떟 臾명빆 ?곸꽭 遺꾩꽍</span></div></div>'+
         '</div>'+
       '</div></section>'+
       '<section class="plb-section plb-section-navy"><div class="plb-wrap">'+
-        '<h2 style="text-align:center">7개 핵심 사고력 영역 진단</h2>'+
-        '<p class="plb-lead" style="text-align:center;margin:0 auto 34px">프리미어 대비에서 자주 흔들리는 대표 사고력 영역을 나누어 확인합니다.</p>'+
+        '<h2 style="text-align:center">7媛??듭떖 ?ш퀬???곸뿭 吏꾨떒</h2>'+
+        '<p class="plb-lead" style="text-align:center;margin:0 auto 34px">?꾨━誘몄뼱 ?鍮꾩뿉???먯＜ ?붾뱾由щ뒗 ????ш퀬???곸뿭???섎늻???뺤씤?⑸땲??</p>'+
         '<div class="plb-area-grid">'+
-          '<div class="plb-area"><small>01</small>공간 지각</div>'+
-          '<div class="plb-area"><small>02</small>평면 지각</div>'+
-          '<div class="plb-area"><small>03</small>수와 연산</div>'+
-          '<div class="plb-area"><small>04</small>논리 추리</div>'+
-          '<div class="plb-area"><small>05</small>경우의 수</div>'+
-          '<div class="plb-area"><small>06</small>문제 해결</div>'+
-          '<div class="plb-area"><small>07</small>지문 이해</div>'+
+          '<div class="plb-area"><small>01</small>怨듦컙 吏媛?/div>'+
+          '<div class="plb-area"><small>02</small>?됰㈃ 吏媛?/div>'+
+          '<div class="plb-area"><small>03</small>?섏? ?곗궛</div>'+
+          '<div class="plb-area"><small>04</small>?쇰━ 異붾━</div>'+
+          '<div class="plb-area"><small>05</small>寃쎌슦????/div>'+
+          '<div class="plb-area"><small>06</small>臾몄젣 ?닿껐</div>'+
+          '<div class="plb-area"><small>07</small>吏臾??댄빐</div>'+
         '</div>'+
       '</div></section>'+
       '<section class="plb-final"><div class="plb-wrap"><div class="plb-final-box">'+
-        '<h2>프로그램 상담이 필요하신가요?</h2>'+
-        '<p>아이의 현재 준비 상황과 목표 반, 보완이 필요한 유형을 남겨주시면 확인 후 상담 안내를 드립니다.</p>'+
+        '<h2>?꾨줈洹몃옩 ?곷떞???꾩슂?섏떊媛??</h2>'+
+        '<p>?꾩씠???꾩옱 以鍮??곹솴怨?紐⑺몴 諛? 蹂댁셿???꾩슂???좏삎???④꺼二쇱떆硫??뺤씤 ???곷떞 ?덈궡瑜??쒕┰?덈떎.</p>'+
         '<div class="plb-cta-row" style="justify-content:center">'+
-          '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>'+
-          '<button type="button" class="plb-cta dark plb-go-login">로그인해서 진단 시작하기</button>'+
+          '<a class="plb-cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">?꾨줈洹몃옩 ?곷떞 ?좎껌?섍린</a>'+
+          '<button type="button" class="plb-cta dark plb-go-login">濡쒓렇?명빐??吏꾨떒 ?쒖옉?섍린</button>'+
         '</div>'+
       '</div></div></section>';
     login.parentNode.insertBefore(brief,login);
@@ -294,12 +299,12 @@ function patchPreLogin(){
     login.classList.add('prelogin-locked');
   }
 }
-function loadScript(src){return new Promise(function(resolve,reject){if(document.querySelector('script[src="'+src+'"]'))return resolve();const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=function(){reject(new Error('스크립트를 불러오지 못했습니다: '+src))};document.head.appendChild(s);})}
+function loadScript(src){return new Promise(function(resolve,reject){if(document.querySelector('script[src="'+src+'"]'))return resolve();const s=document.createElement('script');s.src=src;s.onload=resolve;s.onerror=function(){reject(new Error('?ㅽ겕由쏀듃瑜?遺덈윭?ㅼ? 紐삵뻽?듬땲?? '+src))};document.head.appendChild(s);})}
 async function ensureHtml2Pdf(){if(!window.html2pdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')}
 async function ensureJsPdf(){if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')}
 function sanitizeFilename(text){return String(text).replace(/[\\\\/:*?"<>|]/g,'_').replace(/\\s+/g,' ').trim()}
-function stampText(){const n=(document.getElementById('studentName')?.value||'학생이름').trim()||'학생이름';const c=(document.getElementById('authCode')?.value||'승인번호').trim()||'승인번호';return n+' · '+c}
-function ensureStudentInfo(){const name=(document.getElementById('studentName')?.value||'').trim();const code=(document.getElementById('authCode')?.value||'').trim();if(!name||!code){alert('학생 이름과 승인번호를 먼저 입력해 주세요.');return false}return true}
+function stampText(){const n=(document.getElementById('studentName')?.value||'?숈깮?대쫫').trim()||'?숈깮?대쫫';const c=(document.getElementById('authCode')?.value||'?뱀씤踰덊샇').trim()||'?뱀씤踰덊샇';return n+' 쨌 '+c}
+function ensureStudentInfo(){const name=(document.getElementById('studentName')?.value||'').trim();const code=(document.getElementById('authCode')?.value||'').trim();if(!name||!code){alert('?숈깮 ?대쫫怨??뱀씤踰덊샇瑜?癒쇱? ?낅젰??二쇱꽭??');return false}return true}
 function fitContain(sw,sh,tw,th){const sr=sw/sh;const tr=tw/th;return sr>tr?{width:tw,height:tw/sr}:{width:th*sr,height:th}}
 const DOWNLOAD_LOCKS={book:false,answer:false,report:false};
 function setBusyButtons(fnName,busy,label){document.querySelectorAll('button[onclick="'+fnName+'()"]').forEach(function(btn){if(busy){if(!btn.dataset.originalLabel)btn.dataset.originalLabel=btn.textContent.trim();btn.textContent=label;btn.disabled=true;btn.classList.add('download-busy')}else{if(btn.dataset.originalLabel)btn.textContent=btn.dataset.originalLabel;btn.disabled=false;btn.classList.remove('download-busy')}})}
@@ -309,18 +314,18 @@ function addPdfWatermarkImage(pdf,pageWidth,pageHeight,dataUrl){pdf.addImage(dat
 function createExportRoot(){const old=document.getElementById('pdfExportRoot');if(old)old.remove();const root=document.createElement('div');root.id='pdfExportRoot';root.className='pdf-export-root';document.body.appendChild(root);return root}
 function cloneWithCanvas(node){const clone=node.cloneNode(true);const sourceCanvases=node.querySelectorAll('canvas');const targetCanvases=clone.querySelectorAll('canvas');sourceCanvases.forEach(function(sourceCanvas,index){const targetCanvas=targetCanvases[index];if(!targetCanvas)return;targetCanvas.width=sourceCanvas.width;targetCanvas.height=sourceCanvas.height;const ctx=targetCanvas.getContext('2d');if(ctx)ctx.drawImage(sourceCanvas,0,0)});return clone}
 let SHARED_ANSWER_DATA=null
-function extractSharedAnswerData(html){const startToken='const data = [';const endToken='const selectedSet';const start=html.indexOf(startToken);const end=html.indexOf(endToken,start);if(start<0||end<0)throw new Error('공통 답안 데이터를 찾지 못했습니다.');const arrayCode=html.slice(start+'const data = '.length,end).trim().replace(/;\s*$/,'');return Function('"use strict"; return ('+arrayCode+');')()}
-async function loadSharedAnswerData(){if(Array.isArray(SHARED_ANSWER_DATA)&&SHARED_ANSWER_DATA.length)return SHARED_ANSWER_DATA;const sources=[ROOT_ANSWER_SOURCE_URL,ROOT_ANSWER_SOURCE_FALLBACK_URL];let lastError=null;for(const source of sources){try{const response=await fetch(source,{cache:'no-store'});if(!response.ok)throw new Error('공통 답안 페이지를 불러오지 못했습니다.');const html=await response.text();SHARED_ANSWER_DATA=extractSharedAnswerData(html);if(Array.isArray(SHARED_ANSWER_DATA)&&SHARED_ANSWER_DATA.length)return SHARED_ANSWER_DATA}catch(error){lastError=error}}throw lastError||new Error('공통 답안 데이터를 찾지 못했습니다.')}
+function extractSharedAnswerData(html){const startToken='const data = [';const endToken='const selectedSet';const start=html.indexOf(startToken);const end=html.indexOf(endToken,start);if(start<0||end<0)throw new Error('怨듯넻 ?듭븞 ?곗씠?곕? 李얠? 紐삵뻽?듬땲??');const arrayCode=html.slice(start+'const data = '.length,end).trim().replace(/;\s*$/,'');return Function('"use strict"; return ('+arrayCode+');')()}
+async function loadSharedAnswerData(){if(Array.isArray(SHARED_ANSWER_DATA)&&SHARED_ANSWER_DATA.length)return SHARED_ANSWER_DATA;const sources=[ROOT_ANSWER_SOURCE_URL,ROOT_ANSWER_SOURCE_FALLBACK_URL];let lastError=null;for(const source of sources){try{const response=await fetch(source,{cache:'no-store'});if(!response.ok)throw new Error('怨듯넻 ?듭븞 ?섏씠吏瑜?遺덈윭?ㅼ? 紐삵뻽?듬땲??');const html=await response.text();SHARED_ANSWER_DATA=extractSharedAnswerData(html);if(Array.isArray(SHARED_ANSWER_DATA)&&SHARED_ANSWER_DATA.length)return SHARED_ANSWER_DATA}catch(error){lastError=error}}throw lastError||new Error('怨듯넻 ?듭븞 ?곗씠?곕? 李얠? 紐삵뻽?듬땲??')}
 async function getDataSource(){if(typeof data!=='undefined'&&Array.isArray(data)&&data.length)return data;if(Array.isArray(window.data)&&window.data.length)return window.data;return await loadSharedAnswerData()}
 async function getAnswerItems(){const source=await getDataSource();const items=[];source.forEach(function(cat){(cat.items||[]).forEach(function(item){items.push({id:item.id,text:item.text||'',ans:item.ans||'',tTip:item.tTip||'',mTip:item.mTip||'',categoryNum:cat.categoryNum||'',categoryTitle:cat.categoryTitle||''})})});return items.sort(function(a,b){return a.id-b.id})}
-async function buildAnswerExportNode(){const source=await getDataSource();const name=(document.getElementById('studentName')?.value||'학생').trim()||'학생';const phone=(document.getElementById('parentPhone')?.value||'').trim();const code=(document.getElementById('authCode')?.value||'승인번호 미입력').trim()||'승인번호 미입력';const items=await getAnswerItems();const root=createExportRoot();const sheet=document.createElement('section');sheet.className='pdf-sheet';let html='<div class="pdf-watermark"><span>'+escapeHtml(stampText())+'</span></div>';html+='<section class="answer-print-cover"><div class="brand">PREMIER HYPER FOCUS</div><h1>소마 프리미어<br>전체 답안·해설</h1><div class="meta"><div><strong>'+escapeHtml(name)+'</strong> 학생</div><div>승인번호: <strong>'+escapeHtml(code)+'</strong></div>'+(phone?'<div>연락처: '+escapeHtml(phone)+'</div>':'')+'<div>총 '+items.length+'문제 답안과 해설</div></div></section>';source.forEach(function(cat){const catItems=(cat.items||[]).slice().sort(function(a,b){return a.id-b.id});html+='<section class="answer-print-section"><h2>유형 '+escapeHtml(cat.categoryNum||'')+'. '+escapeHtml(cat.categoryTitle||'')+'</h2>';catItems.forEach(function(item){html+='<article class="answer-print-item"><h3>'+String(item.id).padStart(2,'0')+'번. '+escapeHtml(item.text||'')+'</h3><p class="answer-line">정답: '+escapeHtml(item.ans||'')+'</p><p><strong>해설 핵심:</strong> '+escapeHtml(item.tTip||'')+'</p><p><strong>지도 포인트:</strong> '+escapeHtml(item.mTip||'')+'</p></article>'});html+='</section>'});sheet.innerHTML=html;root.appendChild(sheet);return root}
-function buildReportExportNode(){const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none')return null;const root=createExportRoot();root.style.position='absolute';root.style.left='0';root.style.top='0';root.style.width='794px';root.style.opacity='1';root.style.pointerEvents='none';root.style.zIndex='999999';root.style.background='#fff';const sheet=document.createElement('section');sheet.className='pdf-sheet report-sheet';const title=(document.getElementById('reportTitle')?.textContent||'프리미어 하이퍼 포커스 종합 리포트').trim();const student=(document.getElementById('resName')?.textContent||'').trim();const wrongCount=(document.getElementById('resCount')?.textContent||'').trim();const diagnosis=document.getElementById('diagnosisContent');const resultList=document.getElementById('resultListBox');const chart=document.getElementById('diagnosisChart');const header=document.createElement('div');header.className='export-header';header.innerHTML='<h1>'+escapeHtml(title)+'</h1><p>'+escapeHtml(stampText())+' · 생성일 '+escapeHtml(new Date().toLocaleDateString('ko-KR'))+'</p>';sheet.appendChild(header);const summary=document.createElement('div');summary.className='export-card';summary.innerHTML='<h3>리포트 요약</h3><p><strong>'+escapeHtml(student)+'</strong> 학생의 현재 오답 수는 <strong>'+escapeHtml(wrongCount)+'</strong>개입니다.</p><p>이 리포트는 화면 인쇄가 아니라 PDF 파일로 바로 저장됩니다.</p>';sheet.appendChild(summary);if(chart&&typeof chart.toDataURL==='function'){const chartCard=document.createElement('div');chartCard.className='export-card export-chart';chartCard.innerHTML='<h3>진단 차트</h3><img src="'+chart.toDataURL('image/png')+'" alt="진단 차트" />';sheet.appendChild(chartCard)}if(diagnosis&&diagnosis.textContent.trim()){const diagnosisCard=document.createElement('div');diagnosisCard.className='export-card';const paragraphs=Array.from(diagnosis.querySelectorAll('p,li')).map(function(el){return '<p>'+escapeHtml((el.textContent||'').trim())+'</p>'}).join('');diagnosisCard.innerHTML='<h3>진단 분석</h3>'+(paragraphs||'<p>'+escapeHtml(diagnosis.textContent.trim())+'</p>');sheet.appendChild(diagnosisCard)}if(resultList&&resultList.textContent.trim()){const resultsCard=document.createElement('div');resultsCard.className='export-card export-results';resultsCard.innerHTML='<h3>오답 상세</h3>';const cards=Array.from(resultList.querySelectorAll('.res-card')).slice(0,50);cards.forEach(function(card){const item=document.createElement('div');item.style.border='1px solid #e5e7eb';item.style.borderRadius='10px';item.style.padding='12px';item.style.marginBottom='10px';const titleText=(card.querySelector('.res-card-title')?.textContent||'').trim();const bodyText=(card.querySelector('.res-card-body')?.textContent||'').trim().split(/\s+/).join(' ');item.innerHTML='<p><strong>'+escapeHtml(titleText)+'</strong></p><p>'+escapeHtml(bodyText)+'</p>';resultsCard.appendChild(item)});sheet.appendChild(resultsCard)}const watermark=document.createElement('div');watermark.className='pdf-watermark';watermark.innerHTML='<span>'+escapeHtml(stampText())+'</span>';sheet.appendChild(watermark);root.appendChild(sheet);return root}
+async function buildAnswerExportNode(){const source=await getDataSource();const name=(document.getElementById('studentName')?.value||'?숈깮').trim()||'?숈깮';const phone=(document.getElementById('parentPhone')?.value||'').trim();const code=(document.getElementById('authCode')?.value||'?뱀씤踰덊샇 誘몄엯??).trim()||'?뱀씤踰덊샇 誘몄엯??;const items=await getAnswerItems();const root=createExportRoot();const sheet=document.createElement('section');sheet.className='pdf-sheet';let html='<div class="pdf-watermark"><span>'+escapeHtml(stampText())+'</span></div>';html+='<section class="answer-print-cover"><div class="brand">PREMIER HYPER FOCUS</div><h1>?뚮쭏 ?꾨━誘몄뼱<br>?꾩껜 ?듭븞쨌?댁꽕</h1><div class="meta"><div><strong>'+escapeHtml(name)+'</strong> ?숈깮</div><div>?뱀씤踰덊샇: <strong>'+escapeHtml(code)+'</strong></div>'+(phone?'<div>?곕씫泥? '+escapeHtml(phone)+'</div>':'')+'<div>珥?'+items.length+'臾몄젣 ?듭븞怨??댁꽕</div></div></section>';source.forEach(function(cat){const catItems=(cat.items||[]).slice().sort(function(a,b){return a.id-b.id});html+='<section class="answer-print-section"><h2>?좏삎 '+escapeHtml(cat.categoryNum||'')+'. '+escapeHtml(cat.categoryTitle||'')+'</h2>';catItems.forEach(function(item){html+='<article class="answer-print-item"><h3>'+String(item.id).padStart(2,'0')+'踰? '+escapeHtml(item.text||'')+'</h3><p class="answer-line">?뺣떟: '+escapeHtml(item.ans||'')+'</p><p><strong>?댁꽕 ?듭떖:</strong> '+escapeHtml(item.tTip||'')+'</p><p><strong>吏???ъ씤??</strong> '+escapeHtml(item.mTip||'')+'</p></article>'});html+='</section>'});sheet.innerHTML=html;root.appendChild(sheet);return root}
+function buildReportExportNode(){const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none')return null;const root=createExportRoot();root.style.position='absolute';root.style.left='0';root.style.top='0';root.style.width='794px';root.style.opacity='1';root.style.pointerEvents='none';root.style.zIndex='999999';root.style.background='#fff';const sheet=document.createElement('section');sheet.className='pdf-sheet report-sheet';const title=(document.getElementById('reportTitle')?.textContent||'?꾨━誘몄뼱 ?섏씠???ъ빱??醫낇빀 由ы룷??).trim();const student=(document.getElementById('resName')?.textContent||'').trim();const wrongCount=(document.getElementById('resCount')?.textContent||'').trim();const diagnosis=document.getElementById('diagnosisContent');const resultList=document.getElementById('resultListBox');const chart=document.getElementById('diagnosisChart');const header=document.createElement('div');header.className='export-header';header.innerHTML='<h1>'+escapeHtml(title)+'</h1><p>'+escapeHtml(stampText())+' 쨌 ?앹꽦??'+escapeHtml(new Date().toLocaleDateString('ko-KR'))+'</p>';sheet.appendChild(header);const summary=document.createElement('div');summary.className='export-card';summary.innerHTML='<h3>由ы룷???붿빟</h3><p><strong>'+escapeHtml(student)+'</strong> ?숈깮???꾩옱 ?ㅻ떟 ?섎뒗 <strong>'+escapeHtml(wrongCount)+'</strong>媛쒖엯?덈떎.</p><p>??由ы룷?몃뒗 ?붾㈃ ?몄뇙媛 ?꾨땲??PDF ?뚯씪濡?諛붾줈 ??λ맗?덈떎.</p>';sheet.appendChild(summary);if(chart&&typeof chart.toDataURL==='function'){const chartCard=document.createElement('div');chartCard.className='export-card export-chart';chartCard.innerHTML='<h3>吏꾨떒 李⑦듃</h3><img src="'+chart.toDataURL('image/png')+'" alt="吏꾨떒 李⑦듃" />';sheet.appendChild(chartCard)}if(diagnosis&&diagnosis.textContent.trim()){const diagnosisCard=document.createElement('div');diagnosisCard.className='export-card';const paragraphs=Array.from(diagnosis.querySelectorAll('p,li')).map(function(el){return '<p>'+escapeHtml((el.textContent||'').trim())+'</p>'}).join('');diagnosisCard.innerHTML='<h3>吏꾨떒 遺꾩꽍</h3>'+(paragraphs||'<p>'+escapeHtml(diagnosis.textContent.trim())+'</p>');sheet.appendChild(diagnosisCard)}if(resultList&&resultList.textContent.trim()){const resultsCard=document.createElement('div');resultsCard.className='export-card export-results';resultsCard.innerHTML='<h3>?ㅻ떟 ?곸꽭</h3>';const cards=Array.from(resultList.querySelectorAll('.res-card')).slice(0,50);cards.forEach(function(card){const item=document.createElement('div');item.style.border='1px solid #e5e7eb';item.style.borderRadius='10px';item.style.padding='12px';item.style.marginBottom='10px';const titleText=(card.querySelector('.res-card-title')?.textContent||'').trim();const bodyText=(card.querySelector('.res-card-body')?.textContent||'').trim().split(/\s+/).join(' ');item.innerHTML='<p><strong>'+escapeHtml(titleText)+'</strong></p><p>'+escapeHtml(bodyText)+'</p>';resultsCard.appendChild(item)});sheet.appendChild(resultsCard)}const watermark=document.createElement('div');watermark.className='pdf-watermark';watermark.innerHTML='<span>'+escapeHtml(stampText())+'</span>';sheet.appendChild(watermark);root.appendChild(sheet);return root}
 async function exportHtmlToPdf(element,filename){await ensureHtml2Pdf();await new Promise(function(resolve){requestAnimationFrame(function(){setTimeout(resolve,120)})});const opt={margin:[6,6,6,6],filename,image:{type:'jpeg',quality:.96},html2canvas:{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#ffffff',scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy']}};await html2pdf().set(opt).from(element).save();setTimeout(function(){element.remove()},50)}
-async function loadImage(src){return await new Promise(function(resolve,reject){const img=new Image();img.crossOrigin='anonymous';img.decoding='async';img.onload=function(){resolve(img)};img.onerror=function(){reject(new Error('이미지를 불러오지 못했습니다: '+src))};img.src=src})}
-async function downloadBookPdf(){return withDownloadLock('book','downloadBookPdf','교재 PDF 생성중...',async function(){if(!ensureStudentInfo())return;await ensureJsPdf();const urls=BOOK_IMAGE_URLS.slice();if(!urls.length){alert('이미지 목록을 찾지 못했습니다.');return}const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});const pageWidth=210;const pageHeight=297;const watermark=stampText();const watermarkImage=createWatermarkImage(watermark);for(let i=0;i<urls.length;i++){const img=await loadImage(urls[i]);if(i>0)pdf.addPage('a4','portrait');const box=fitContain(img.naturalWidth,img.naturalHeight,pageWidth,pageHeight);const x=(pageWidth-box.width)/2;const y=(pageHeight-box.height)/2;pdf.addImage(img,'JPEG',x,y,box.width,box.height,undefined,'FAST');addPdfWatermarkImage(pdf,pageWidth,pageHeight,watermarkImage)}pdf.save(sanitizeFilename('프리미어_교재_'+watermark)+'.pdf')})}
+async function loadImage(src){return await new Promise(function(resolve,reject){const img=new Image();img.crossOrigin='anonymous';img.decoding='async';img.onload=function(){resolve(img)};img.onerror=function(){reject(new Error('?대?吏瑜?遺덈윭?ㅼ? 紐삵뻽?듬땲?? '+src))};img.src=src})}
+async function downloadBookPdf(){return withDownloadLock('book','downloadBookPdf','援먯옱 PDF ?앹꽦以?..',async function(){if(!ensureStudentInfo())return;await ensureJsPdf();const urls=BOOK_IMAGE_URLS.slice();if(!urls.length){alert('?대?吏 紐⑸줉??李얠? 紐삵뻽?듬땲??');return}const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});const pageWidth=210;const pageHeight=297;const watermark=stampText();const watermarkImage=createWatermarkImage(watermark);for(let i=0;i<urls.length;i++){const img=await loadImage(urls[i]);if(i>0)pdf.addPage('a4','portrait');const box=fitContain(img.naturalWidth,img.naturalHeight,pageWidth,pageHeight);const x=(pageWidth-box.width)/2;const y=(pageHeight-box.height)/2;pdf.addImage(img,'JPEG',x,y,box.width,box.height,undefined,'FAST');addPdfWatermarkImage(pdf,pageWidth,pageHeight,watermarkImage)}pdf.save(sanitizeFilename('?꾨━誘몄뼱_援먯옱_'+watermark)+'.pdf')})}
 async function waitForPrintDialog(task){await new Promise(function(resolve){const done=function(){window.removeEventListener('afterprint',done);resolve()};window.addEventListener('afterprint',done,{once:true});task()})}
-async function downloadAnswerPdf(){return withDownloadLock('answer','downloadAnswerPdf','답안 인쇄 준비중...',async function(){if(!ensureStudentInfo())return;if(typeof printAllAnswers!=='function'){alert('답안 인쇄 함수를 찾지 못했습니다.');return}await waitForPrintDialog(function(){printAllAnswers()})})}
-async function downloadReportPdf(){return withDownloadLock('report','downloadReportPdf','리포트 인쇄 준비중...',async function(){if(!ensureStudentInfo())return;const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none'){alert('진단 결과가 아직 생성되지 않았습니다.');return}document.querySelectorAll('#resultListBox .res-card').forEach(function(card){card.classList.add('open')});document.querySelectorAll('#resultListBox .res-card-body').forEach(function(body){body.style.display='block'});document.body.classList.add('report-print-mode');try{await waitForPrintDialog(function(){window.print()})}finally{document.body.classList.remove('report-print-mode')}})}
+async function downloadAnswerPdf(){return withDownloadLock('answer','downloadAnswerPdf','?듭븞 ?몄뇙 以鍮꾩쨷...',async function(){if(!ensureStudentInfo())return;if(typeof printAllAnswers!=='function'){alert('?듭븞 ?몄뇙 ?⑥닔瑜?李얠? 紐삵뻽?듬땲??');return}await waitForPrintDialog(function(){printAllAnswers()})})}
+async function downloadReportPdf(){return withDownloadLock('report','downloadReportPdf','由ы룷???몄뇙 以鍮꾩쨷...',async function(){if(!ensureStudentInfo())return;const resultArea=document.getElementById('result-area');if(!resultArea||getComputedStyle(resultArea).display==='none'){alert('吏꾨떒 寃곌낵媛 ?꾩쭅 ?앹꽦?섏? ?딆븯?듬땲??');return}document.querySelectorAll('#resultListBox .res-card').forEach(function(card){card.classList.add('open')});document.querySelectorAll('#resultListBox .res-card-body').forEach(function(body){body.style.display='block'});document.body.classList.add('report-print-mode');try{await waitForPrintDialog(function(){window.print()})}finally{document.body.classList.remove('report-print-mode')}})}
 function escapeHtml(value){return String(value).replace(/[&<>"]/g,function(ch){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[ch]})}
 window.BOOK_IMAGE_URLS=BOOK_IMAGE_URLS;
 window.downloadBookPdf=downloadBookPdf;
@@ -336,20 +341,20 @@ setInterval(readyPatch,350);readyPatch();
     return r.text();
   });
   html = html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="' + LOGO_URL + '" alt="GFIELD">');
-  html = html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
-  html = html.replace(/대표\s*유형/g,'심화 대표 유형');
-  html = html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
-  html = html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');
-  html = html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
+  html = html.replace(/???s*?좏삎??br>鍮좊Ⅴ寃?s*?먭??⑸땲??g,'?ы솕 ????좏삎?쇰줈<br>?쎌젏?좏삎??吏꾨떒?⑸땲??);
+  html = html.replace(/???s*?좏삎/g,'?ы솕 ????좏삎');
+  html = html.replace(/鍮좊Ⅴ寃?s*?먭??⑸땲??g,'?쎌젏?좏삎??吏꾨떒?⑸땲??);
+  html = html.replace(/?곸옱\s*?대옒??g,'?꾩쫰 TOPCLASS');
+  html = html.replace(/?뚮쭏\s*?꾨━誘몄뼱/g,'?뚮쭏 ?꾨━誘몄뼱(?移?');
   const rs = html.indexOf("const recordData=");
   const re = rs > -1 ? html.indexOf(";", rs) : -1;
   if (rs > -1 && re > -1) html = html.slice(0, rs) + SCOREBOARD_DATA + html.slice(re + 1);
-  html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
+  html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,1900,4200,6000,8000,9800]");
   html = html.replace(/let c=5;/g,"let c=3;");
   html = html.replace(/let n=5;/g,"let n=3;");
-  html = html.split("},900);").join("},850);");
-  html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
-  /* sessionStorage 제거 — 소개 화면을 본 기록을 저장하지 않음 */
+  html = html.split("},900);").join("},700);");
+  html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),12600)");
+  /* sessionStorage ?쒓굅 ???뚭컻 ?붾㈃??蹂?湲곕줉????ν븯吏 ?딆쓬 */
   html = html.replace(/sessionStorage\.setItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*,\s*['"]1['"]\s*\)\s*;?/g,'');
   html = html.replace(/sessionStorage\.getItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*\)\s*===\s*['"]1['"]/g,'false');
   html = html.replace("</head>", PATCH_CSS + "</head>");
@@ -360,9 +365,10 @@ setInterval(readyPatch,350);readyPatch();
 })().catch(function(err){
   document.getElementById('boot').style.display='none';
   document.open();
-  document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">페이지 로딩 오류: '+err.message+'</body>');
+  document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">?섏씠吏 濡쒕뵫 ?ㅻ쪟: '+err.message+'</body>');
   document.close();
 });
 </script>
 </body>
 </html>
+
