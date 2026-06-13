@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>지필드 영재교육 — 프리미어 합격 진단 리포트</title>
 <style>
-html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,#14213d,#02050b 68%)}#boot h1{font-size:clamp(28px,6vw,64px);letter-spacing:-.06em;margin:0 0 12px}#boot p{color:#d4af37;font-weight:800;letter-spacing:.1em}.spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.25);border-top-color:#d4af37;border-radius:50%;animation:s 1s linear infinite;margin:24px auto 0}@keyframes s{to{transform:rotate(360deg)}}
+html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;text-align:center;background:#02050b}#boot h1,#boot p{display:none}.spin{width:28px;height:28px;border:2px solid rgba(255,255,255,.12);border-top-color:rgba(212,175,55,.7);border-radius:50%;animation:s .8s linear infinite;margin:0 auto}@keyframes s{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-<div id="boot"><div><h1>프리미어 하이퍼 포커스</h1><p>진단 페이지를 불러오는 중입니다</p><div class="spin"></div></div></div>
+<div id="boot"><div><h1></h1><p></p><div class="spin"></div></div></div>
 <script>
 (async function(){
   const BASE_URL='https://raw.githubusercontent.com/docssam1/Hyper-Focus-answer-Key/ebcbacd3ef208a8ba2de36babc35a3858e08e23d/premier-hyper-focus/index.html';
@@ -48,7 +48,7 @@ setInterval(readyPatch,500);readyPatch();
   html=html.replace(/const recordData=\{left:\[\{title:'[^']+'/,'const recordData={left:[{title:\'필즈 TOPCLASS\'');html=html.replace(/right:\[\{title:'[^']+'/,'right:[{title:\'소마 프리미어(대치)\'');
   html=html.replace('</head>',PATCH_CSS+'</head>');html=html.replace('</body>',PATCH_JS+'<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();document.write(html);document.close();
-})().catch(err=>{document.getElementById('boot').innerHTML='<div><h1>페이지 로딩 오류</h1><p>'+err.message+'</p></div>'});
+})().catch(err=>{document.getElementById('boot').style.display='none';document.open();document.write('<!doctype html><meta charset="utf-8"><body style="font-family:sans-serif;padding:30px">페이지 로딩 오류: '+err.message+'</body>');document.close();});
 </script>
 </body>
 </html>
