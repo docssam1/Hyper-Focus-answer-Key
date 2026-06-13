@@ -1,4 +1,4 @@
-name: Restore Premier Diagnosis Index With Intro
+name: Run Premier Hyper Focus Patch
 
 on:
   workflow_dispatch:
@@ -10,83 +10,169 @@ permissions:
   contents: write
 
 jobs:
-  restore:
+  patch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download diagnosis HTML and inject intro
+      - name: Patch page directly
         run: |
           python - <<'PY'
-          import requests
           from pathlib import Path
+          import re, requests
 
-          file_id = "1n4VmxQF48CIbQdP3Wq84GntwYCYHj056"
-          url = f"https://drive.google.com/uc?export=download&id={file_id}"
-          session = requests.Session()
-          r = session.get(url, stream=True)
-          r.raise_for_status()
-          token = None
-          for k, v in r.cookies.items():
-              if k.startswith("download_warning"):
-                  token = v
-                  break
-          if token:
-              r = session.get(url + f"&confirm={token}", stream=True)
+          root = Path('premier-hyper-focus')
+          index = root / 'index.html'
+          html = index.read_text(encoding='utf-8')
+
+          # 로고를 GitHub 내부 파일로 저장하고 인트로에서 사용
+          assets = root / 'assets'
+          assets.mkdir(parents=True, exist_ok=True)
+          logo = assets / 'gfield-logo.png'
+          if not logo.exists() or logo.stat().st_size < 1000:
+              fid = '1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL'
+              session = requests.Session()
+              url = f'https://drive.google.com/uc?export=download&id={fid}'
+              r = session.get(url, stream=True)
               r.raise_for_status()
-          html = r.content.decode("utf-8-sig", errors="replace")
-          if "프리미어 합격 진단 리포트" not in html or "진단 시작하기" not in html:
-              raise SystemExit("Downloaded file is not the diagnosis page")
+              token = next((v for k, v in r.cookies.items() if k.startswith('download_warning')), None)
+              if token:
+                  r = session.get(url + '&confirm=' + token, stream=True)
+                  r.raise_for_status()
+              logo.write_bytes(r.content)
+          html = re.sub(r'<img class="intro-logo"[^>]*>', '<img class="intro-logo" src="assets/gfield-logo.png" alt="GFIELD">', html)
 
-          intro_css = r'''
-          <style id="gfield-intro-restore-style">
-          body.intro-active{background:#02050b!important;overflow:hidden}body.intro-active>*:not(#gfieldIntro){display:none!important}
-          #gfieldIntro{position:fixed;inset:0;z-index:99999;height:100dvh;min-height:100vh;overflow:hidden;background:#02050b;color:#fff;font-family:'Noto Sans KR',sans-serif}#gfieldIntro[hidden]{display:none!important}
-          #gfieldIntro .intro-bg{position:absolute;inset:0;background:radial-gradient(circle at 16% 10%,rgba(22,65,124,.62),transparent 34%),radial-gradient(circle at 82% 16%,rgba(212,175,55,.22),transparent 30%),radial-gradient(circle at 50% 88%,rgba(124,58,237,.18),transparent 36%),linear-gradient(135deg,#02050b,#07111f 60%,#010205)}
-          #gfieldIntro .intro-bg:before{content:"";position:absolute;inset:0;background-image:linear-gradient(to right,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(circle at center,#000,transparent 82%)}
-          #gfieldIntro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}#gfieldIntro:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(2,5,11,.04),rgba(2,5,11,.54) 55%,rgba(2,5,11,.94));pointer-events:none}
-          #gfieldIntro .intro-skip{position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;z-index:50;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);backdrop-filter:blur(14px);color:white;border-radius:999px;padding:10px 16px;font-size:12px;font-weight:900;letter-spacing:.14em;cursor:pointer}
-          #gfieldIntro .intro-scene{position:absolute;inset:0;z-index:10;display:grid;place-items:center;text-align:center;padding:calc(28px + env(safe-area-inset-top)) 24px 28px;opacity:0;transform:translateY(26px) scale(.975);filter:blur(10px);transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1),filter 1s ease;pointer-events:none}#gfieldIntro .intro-scene.on{opacity:1;transform:none;filter:none;pointer-events:auto}
-          #gfieldIntro .gold{color:#d4af37;text-shadow:0 0 32px rgba(212,175,55,.34)}#gfieldIntro .kicker{font-size:12px;font-weight:900;letter-spacing:.32em;color:#f8dd83}#gfieldIntro .intro-title{font-size:clamp(44px,9vw,118px);font-weight:900;line-height:.9;letter-spacing:-.085em}#gfieldIntro .intro-subtitle{font-size:clamp(25px,5vw,60px);font-weight:900;line-height:1.14;letter-spacing:-.068em}#gfieldIntro .mt{margin-top:22px}#gfieldIntro .intro-logo{width:min(130px,30vw);opacity:.95;margin-bottom:20px}
-          #gfieldIntro .records{width:min(1120px,calc(100% - 32px));margin:0 auto;display:grid;grid-template-columns:1fr minmax(270px,.8fr) 1fr;gap:16px;align-items:center;justify-items:center}#gfieldIntro .stack{display:grid;gap:12px;width:100%;max-width:330px;margin:0 auto}#gfieldIntro .record{width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(2,6,23,.52);backdrop-filter:blur(16px);border-radius:26px;padding:18px;text-align:left;box-shadow:0 24px 70px rgba(0,0,0,.36);opacity:0;transform:translateY(16px) scale(.97);transition:.52s cubic-bezier(.22,1,.36,1)}#gfieldIntro .record.on{opacity:1;transform:translateY(0) scale(1);border-color:rgba(212,175,55,.38)}#gfieldIntro .record.pop{animation:introPop .36s cubic-bezier(.22,1,.36,1)}@keyframes introPop{0%{transform:scale(1)}45%{transform:scale(1.055);box-shadow:0 0 60px rgba(212,175,55,.24)}100%{transform:scale(1)}}
-          #gfieldIntro .recordTitle{display:flex;justify-content:space-between;gap:10px;font-size:15px;font-weight:900;letter-spacing:-.045em}#gfieldIntro .recordTitle small{font-size:10px;color:#d4af37;letter-spacing:.08em}#gfieldIntro .year{display:grid;grid-template-columns:52px 1fr 46px;gap:8px;align-items:center;margin-top:8px;color:#cbd5e1;font-size:12px}#gfieldIntro .bar{height:6px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden}#gfieldIntro .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#60a5fa,#d4af37);border-radius:999px;transition:.55s cubic-bezier(.22,1,.36,1)}#gfieldIntro .ynum{text-align:right;color:white;font-weight:900}#gfieldIntro .total{text-align:right;margin-top:12px;color:#d4af37;font-weight:900;letter-spacing:-.06em}#gfieldIntro .total b{font-size:34px}
-          #gfieldIntro .grand{width:100%;max-width:360px;min-height:330px;border:1px solid rgba(212,175,55,.28);border-radius:36px;background:radial-gradient(circle at 50% 45%,rgba(212,175,55,.24),transparent 64%),rgba(0,0,0,.26);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 100px rgba(212,175,55,.13);position:relative;overflow:hidden}#gfieldIntro .grand:before{content:"";position:absolute;inset:14px;border-radius:28px;border:1px solid rgba(255,255,255,.08)}#gfieldIntro .glabel,#gfieldIntro .gnum,#gfieldIntro .gunit,#gfieldIntro .gnote{position:relative}#gfieldIntro .glabel{color:#e5e7eb;font-size:15px;font-weight:900}#gfieldIntro .gnum{margin-top:8px;font-size:clamp(86px,12vw,152px);line-height:.82;font-weight:900;letter-spacing:-.095em;transition:.34s cubic-bezier(.22,1,.36,1)}#gfieldIntro .gnum.hit{transform:scale(1.1);color:#d4af37;text-shadow:0 0 52px rgba(212,175,55,.38)}#gfieldIntro .gunit{margin-top:10px;font-size:28px;font-weight:900;color:#d4af37}#gfieldIntro .gnote{margin-top:12px;color:#cbd5e1;font-size:12px;line-height:1.55}
-          #gfieldIntro .type-tunnel{position:absolute;inset:0;perspective:760px;overflow:hidden}#gfieldIntro .type-line{position:absolute;left:50%;top:50%;white-space:nowrap;color:rgba(255,255,255,.78);font-weight:900;letter-spacing:-.04em;font-size:clamp(16px,3.5vw,40px);text-shadow:0 12px 32px rgba(0,0,0,.6);animation:introSuck 3.2s linear infinite;filter:blur(1.2px);opacity:.7}#gfieldIntro .type-line:nth-child(2n){color:rgba(248,221,131,.72);filter:blur(2px)}#gfieldIntro .type-line:nth-child(3n){opacity:.45;filter:blur(3.2px)}@keyframes introSuck{0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.35);opacity:0}14%{opacity:.85}76%{opacity:.52}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}}
-          #gfieldIntro .count-num{font-size:clamp(90px,24vw,220px);font-weight:900;color:#f8dd83;line-height:.8;text-shadow:0 0 68px rgba(212,175,55,.42);animation:introCountPop .7s ease}#gfieldIntro .count-label{font-size:clamp(20px,4vw,38px);font-weight:900;margin-bottom:16px}@keyframes introCountPop{0%{transform:scale(.65);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}@media(max-width:960px){#gfieldIntro .records{grid-template-columns:1fr}#gfieldIntro .grand{order:-1;min-height:250px}#gfieldIntro .record{padding:14px;border-radius:20px}#gfieldIntro .intro-scene{padding:70px 16px 28px}#gfieldIntro .intro-title{font-size:clamp(42px,15vw,86px)}#gfieldIntro .intro-subtitle{font-size:clamp(26px,9vw,46px)}#gfieldIntro .type-line{font-size:clamp(15px,5.2vw,30px)}}
-          </style>
+          # 인트로 속도/부드러움 조정
+          replacements = {
+              'transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1),filter 1s ease;':'transition:opacity .62s ease,transform .62s cubic-bezier(.16,1,.3,1),filter .62s ease;',
+              'filter:blur(10px);':'filter:blur(6px);',
+              'animation:introSuck 3.2s linear infinite;':'animation:introSuck 2.45s linear infinite;',
+              'opacity:.7}':'opacity:.52}',
+              'setTimeout(()=>window.gfieldIntroGoDiagnosis(),20300);':'setTimeout(()=>window.gfieldIntroGoDiagnosis(),14100);',
+              'setTimeout(()=>window.gfieldIntroGoDiagnosis(),20300)':'setTimeout(()=>window.gfieldIntroGoDiagnosis(),14100)',
+              '},900);':'},650);'
+          }
+          for a,b in replacements.items():
+              html = html.replace(a,b)
+          html = re.sub(r'const\s+times\s*=\s*\[[^\]]+\];', 'const times = [0, 1800, 5100, 6900, 8800, 10300];', html)
+          html = html.replace('0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.35);opacity:0}14%{opacity:.85}76%{opacity:.52}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}', '0%{transform:translate3d(var(--x),var(--y),260px) rotateX(62deg) rotateZ(var(--r)) scale(1.18);opacity:0}14%{opacity:.70}58%{opacity:.40}78%{opacity:0}100%{transform:translate3d(-50%,-50%,-540px) rotateX(78deg) rotateZ(calc(var(--r) + 90deg)) scale(.04);opacity:0;filter:blur(7px)}')
+
+          # 유형 터널 중앙 뭉침 완화: 개수 감소 + 사방 분산
+          html = re.sub(
+              r"for\(let i=0;i<44;i\+\+\)\{const el=document\.createElement\('div'\);el\.className='type-line';el\.textContent=typeTexts\[i%typeTexts\.length\];el\.style\.setProperty\('--x',\(Math\.random\(\)\*160-80\)\+'vw'\);el\.style\.setProperty\('--y',\(Math\.random\(\)\*120-60\)\+'vh'\);el\.style\.setProperty\('--r',\(Math\.random\(\)\*90-45\)\+'deg'\);el\.style\.animationDelay=\(i\*\.075\)\+'s';box\.appendChild\(el\)\}",
+              "for(let i=0;i<28;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];const side=i%4;const x=side===0?(-86-Math.random()*28):(side===1?(58+Math.random()*44):(Math.random()*120-60));const y=side===2?(-64-Math.random()*22):(side===3?(42+Math.random()*30):(Math.random()*96-48));el.style.setProperty('--x',x+'vw');el.style.setProperty('--y',y+'vh');el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.105)+'s';box.appendChild(el)}",
+              html
+          )
+          html = re.sub(
+              r"for\(let i=0;i<44;i\+\+\)\{\s*const el = document\.createElement\('div'\);\s*el\.className = 'type-line';\s*el\.textContent = typeTexts\[i % typeTexts\.length\];\s*el\.style\.setProperty\('--x',\(Math\.random\(\)\*160-80\)\+'vw'\);\s*el\.style\.setProperty\('--y',\(Math\.random\(\)\*120-60\)\+'vh'\);\s*el\.style\.setProperty\('--r',\(Math\.random\(\)\*90-45\)\+'deg'\);\s*el\.style\.animationDelay = \(i\*\.075\)\+'s';\s*box\.appendChild\(el\);\s*\}",
+              "for(let i=0;i<28;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];const side=i%4;const x=side===0?(-86-Math.random()*28):(side===1?(58+Math.random()*44):(Math.random()*120-60));const y=side===2?(-64-Math.random()*22):(side===3?(42+Math.random()*30):(Math.random()*96-48));el.style.setProperty('--x',x+'vw');el.style.setProperty('--y',y+'vh');el.style.setProperty('--r',(Math.random()*70-35)+'deg');el.style.animationDelay=(i*.105)+'s';box.appendChild(el)}",
+              html, flags=re.S
+          )
+
+          css = r'''
+
+        .btn-action-dark { background: var(--navy); color: #fff; border: 2px solid var(--navy); }
+        .btn-action-dark:hover { background: #000; color: #fff; }
+        .download-area { display: none; }
+        .pdf-page { position: relative; width: 210mm; min-height: 297mm; background: #fff; color: #111; padding: 14mm; box-sizing: border-box; page-break-after: always; overflow: hidden; }
+        .pdf-page.book-page { padding: 0; display: flex; align-items: center; justify-content: center; }
+        .pdf-page.book-page img { width: 210mm; height: 297mm; object-fit: contain; display: block; }
+        .pdf-watermark, .pdf-global-watermark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-32deg); width: 190mm; text-align: center; font-size: 34pt; font-weight: 900; color: #777; opacity: 0.035; pointer-events: none; z-index: 50; line-height: 1.25; white-space: nowrap; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        .pdf-global-watermark { display: none; }
+        .answer-download-title { font-family: 'Noto Serif KR', serif; font-size: 20pt; font-weight: 800; color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 8px; margin-bottom: 12px; }
+        .answer-download-meta { font-size: 10pt; color: #555; margin-bottom: 12px; }
+        .answer-row { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ddd; border-left: 4px solid var(--gold); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; background: #fff; }
+        .answer-row h4 { margin: 0 0 5px; font-size: 10.5pt; color: var(--navy); line-height: 1.45; }
+        .answer-row .answer { font-size: 10pt; font-weight: 800; color: var(--red); margin-bottom: 4px; }
+        .answer-row p { margin: 3px 0; font-size: 8.6pt; line-height: 1.5; color: #333; }
+        .report-print-title { display:none; }
+
+        @media print {
+            body.pdf-book-mode, body.pdf-answer-mode, body.pdf-report-mode { background: white !important; }
+            body.pdf-book-mode > *:not(#bookDownloadArea),
+            body.pdf-answer-mode > *:not(#answerDownloadArea),
+            body.pdf-report-mode #page1,
+            body.pdf-report-mode .action-btns,
+            body.pdf-report-mode .helper-text,
+            body.pdf-report-mode .attempt-menu,
+            body.pdf-report-mode .tab-bar,
+            body.pdf-report-mode .checklist-section,
+            body.pdf-report-mode .submit-area,
+            body.pdf-report-mode .result-actions,
+            body.pdf-report-mode .res-video-btn,
+            body.pdf-report-mode .res-card-toggle,
+            body.pdf-report-mode #gfieldIntro { display: none !important; }
+            body.pdf-book-mode #bookDownloadArea,
+            body.pdf-answer-mode #answerDownloadArea { display:block !important; position:absolute; left:0; top:0; width:100%; z-index:999999; }
+            body.pdf-report-mode #page2 { display:block !important; padding:0 !important; margin:0 !important; }
+            body.pdf-report-mode .p2-header { display:none !important; }
+            body.pdf-report-mode #result-area { display:block !important; box-shadow:none !important; border:none !important; margin:0 !important; padding:0 !important; }
+            body.pdf-report-mode .result-header { background: #fff !important; border-bottom: 2px solid var(--navy) !important; padding: 0 0 12px 0 !important; margin-bottom: 12px !important; break-inside: avoid; page-break-inside: avoid; }
+            body.pdf-report-mode .result-header h2,
+            body.pdf-report-mode .result-header p,
+            body.pdf-report-mode .result-header strong { color: #111 !important; }
+            body.pdf-report-mode .result-icon { display:none !important; }
+            body.pdf-report-mode .result-body { padding: 10mm 12mm !important; }
+            body.pdf-report-mode .report-print-title { display:block !important; font-family:'Noto Serif KR',serif; font-size:20pt; font-weight:800; color:var(--navy); margin:0 0 12px; border-bottom:2px solid var(--navy); padding-bottom:8px; }
+            body.pdf-report-mode .diagnosis-grid { display:block !important; margin-bottom:12px !important; break-inside:auto !important; }
+            body.pdf-report-mode .chart-container { height: 220px !important; margin: 0 0 10px !important; break-inside: avoid !important; page-break-inside: avoid !important; padding: 8px !important; }
+            body.pdf-report-mode .diagnosis-text-container { display:block !important; }
+            body.pdf-report-mode .diag-card { padding: 10px !important; margin-bottom: 8px !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+            body.pdf-report-mode .diag-card.prediction { background:#fff !important; border:1px solid var(--navy) !important; }
+            body.pdf-report-mode .diag-card.prediction h3,
+            body.pdf-report-mode .diag-card.prediction p,
+            body.pdf-report-mode .diag-card.prediction .highlight-msg { color:#111 !important; }
+            body.pdf-report-mode .result-list-box { background: transparent !important; border:none !important; padding:0 !important; margin-top: 8px !important; }
+            body.pdf-report-mode .res-card { break-inside: avoid !important; page-break-inside: avoid !important; margin-bottom: 8px !important; }
+            body.pdf-report-mode .res-card-body { display:block !important; }
+            body.pdf-report-mode .pdf-global-watermark { display:block !important; position:fixed !important; left:50% !important; top:50% !important; }
+            @page { size: A4 portrait; margin: 0; }
+        }
           '''
+          if '.btn-action-dark' not in html:
+              html = html.replace('        /* ── 인쇄 전용 표지 및 스타일 ── */', css + '\n        /* ── 인쇄 전용 표지 및 스타일 ── */')
 
-          intro_html = r'''
-          <div id="gfieldIntro"><div class="intro-bg"></div><video id="gfieldIntroVideo" autoplay muted playsinline preload="auto" poster="https://drive.google.com/uc?export=view&id=1PXJ2SfpDHl2xoWNrzluxPWlPuHS0UbfE"><source src="https://drive.google.com/uc?export=download&id=1D36lFjE2Ha1u7N2FV5H0tGgIQlsleL3u" type="video/mp4"></video><button class="intro-skip" type="button" onclick="gfieldIntroGoDiagnosis()">SKIP</button><section class="intro-scene on" id="gfieldIntroScene0"><div><img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD"><h1 class="intro-subtitle">실적으로 입증된<br>성공하는 공부습관을<br>만드는<br><span class="gold">지필드 영재교육</span></h1></div></section><section class="intro-scene" id="gfieldIntroScene1"><div style="width:100%"><div class="records"><div class="stack" id="gfieldIntroLeftStack"></div><div class="grand"><div class="glabel">연도별 누적 실적</div><div class="gnum" id="gfieldIntroGrandNum">0</div><div class="gunit">명</div><div class="gnote">대표 실적은 일부입니다.<br>가운데 숫자는 실제 전체 누적 실적입니다.</div></div><div class="stack" id="gfieldIntroRightStack"></div></div></div></section><section class="intro-scene" id="gfieldIntroScene2"><div><p class="kicker gold">PREMIER DIAGNOSIS</p><h2 class="intro-subtitle mt">소마 프리미어 합격을 위한<br>대표 심화 유형 진단</h2></div></section><section class="intro-scene" id="gfieldIntroScene3"><div class="type-tunnel" id="gfieldIntroTypeTunnel"></div><div style="position:relative;z-index:2"><p class="kicker gold">REPRESENTATIVE TYPES</p><h2 class="intro-subtitle mt">대표 유형을<br>빠르게 점검합니다</h2></div></section><section class="intro-scene" id="gfieldIntroScene4"><div><p class="kicker gold">G-FIELD SPECIAL PROGRAM</p><h2 class="intro-title mt">프리미어<br><span class="gold">하이퍼 포커스</span></h2></div></section><section class="intro-scene" id="gfieldIntroScene5"><div><div class="count-label">진단 시작까지</div><div class="count-num" id="gfieldIntroCountNum">5</div></div></section></div>
+          if 'report-print-title' not in html:
+              html = html.replace('<div class="result-body">\n                <div class="diagnosis-grid">', '<div class="result-body">\n                <div class="report-print-title">종합 진단 결과 분석</div>\n                <div class="diagnosis-grid">')
+
+          html = re.sub(r'<div class="result-actions">.*?지필드 카톡 맞춤 상담</button>\s*</div>', '''<div class="result-actions">
+                    <button class="btn-action btn-action-outline" onclick="toggleAllAccordions()">📂 오답 상세 한 번에 보기</button>
+                    <button class="btn-action btn-action-dark" onclick="downloadBookPdf()">📘 교재 다운로드</button>
+                    <button class="btn-action btn-action-outline" onclick="downloadAnswerPdf()">🧾 전체 답안 다운로드</button>
+                    <button class="btn-action btn-action-outline" onclick="downloadDiagnosisReport()">📊 종합 진단 결과 분석</button>
+                    <button class="btn-action btn-action-fill" onclick="window.open('https://open.kakao.com/me/gfield', '_blank')">💬 지필드 카톡 맞춤 상담</button>
+                </div>''', html, flags=re.S)
+          html = html.replace('📄 진단 결과 PDF 저장 / 인쇄', '📊 종합 진단 결과 분석')
+
+          if 'id="bookDownloadArea"' not in html:
+              html = html.replace('</body>', '<div id="bookDownloadArea" class="download-area"></div>\n<div id="answerDownloadArea" class="download-area"></div>\n</body>')
+
+          js = r'''
+<script id="premier-download-fixes">
+function getDownloadUserInfo(){const name=(document.getElementById('studentName')?.value||'학생').trim()||'학생';const code=(document.getElementById('authCode')?.value||'승인번호').trim()||'승인번호';return {name,code,watermark:`${name} · ${code}`};}
+function collectAllItemsSorted(){const items=[];data.forEach(cat=>cat.items.forEach(item=>items.push({...item,categoryTitle:cat.categoryTitle,shortName:cat.shortName})));return items.sort((a,b)=>a.id-b.id);}
+function runPdfPrintMode(mode,afterMs=1200){document.body.classList.add(mode);setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove(mode),afterMs);},250);}
+function chunkArray(arr,size){const out=[];for(let i=0;i<arr.length;i+=size)out.push(arr.slice(i,i+size));return out;}
+function downloadBookPdf(){const {watermark}=getDownloadUserInfo();const area=document.getElementById('bookDownloadArea');const pages=Array.from({length:29},(_,i)=>`assets/book/page-${String(i+1).padStart(2,'0')}.jpg`);area.innerHTML=pages.map((src,idx)=>`<section class="pdf-page book-page"><img src="${src}" alt="교재 ${idx+1}쪽"><div class="pdf-watermark">${watermark}</div></section>`).join('');runPdfPrintMode('pdf-book-mode');}
+function downloadAnswerPdf(){const {name,code,watermark}=getDownloadUserInfo();const area=document.getElementById('answerDownloadArea');const pages=chunkArray(collectAllItemsSorted(),12);area.innerHTML=pages.map((items,pageIdx)=>`<section class="pdf-page"><div class="pdf-watermark">${watermark}</div><div class="answer-download-title">프리미어 하이퍼 포커스 전체 답안</div><div class="answer-download-meta">${name} 학생 · 승인번호 ${code} · 1번부터 54번까지 번호순 정리 · ${pageIdx+1}/${pages.length}</div>${items.map(item=>`<div class="answer-row"><h4>${item.id}. ${item.text}</h4><div class="answer">정답: ${item.ans||'-'}</div><p><strong>유형:</strong> ${item.shortName||item.categoryTitle}</p><p><strong>풀이 핵심:</strong> ${item.tTip||''}</p>${item.mTip?`<p><strong>지도 포인트:</strong> ${item.mTip}</p>`:''}</div>`).join('')}</section>`).join('');runPdfPrintMode('pdf-answer-mode');}
+function downloadDiagnosisReport(){document.querySelectorAll('#resultListBox .res-card').forEach(card=>card.classList.add('open'));const {watermark}=getDownloadUserInfo();let wm=document.getElementById('reportPdfWatermark');if(!wm){wm=document.createElement('div');wm.id='reportPdfWatermark';wm.className='pdf-global-watermark';document.body.appendChild(wm);}wm.textContent=watermark;runPdfPrintMode('pdf-report-mode');}
+</script>
           '''
+          if 'premier-download-fixes' not in html:
+              html = html.replace('</body>', js + '\n</body>')
 
-          intro_js = r'''
-          <script id="gfield-intro-restore-script">
-          (function(){document.body.classList.add('intro-active');const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2600,7600,10300,13200,15600];const recordData={left:[{title:'영재 클래스',years:[['2023',6],['2024',4],['2025',6]],total:40},{title:'생각하는 황소 경시',years:[['2021',15],['2022',14],['2023',18],['2024',15]],total:62}],right:[{title:'테마 프리미어',years:[['2023',6],['2024',4],['2025',4]],total:87},{title:'영재원ㆍ특목 경시',years:[['대비',8],['누적',12]],total:120}],grand:400};const typeTexts=['쌓기나무와 입체도형','전개도와 주사위','색종이 접기와 펀칭','도형 개수 세기','수와 연산 퍼즐','논리표 조건 추론','최단 거리 가짓수','양팔저울 무게 비교','규칙 찾기','암호 풀기','거울과 디지털 수','달력과 시계','조건에 알맞은 수','평면도형 분할','입체도형 관찰'];function showScene(n){scenes.forEach((id,i)=>{const el=document.getElementById(id);if(el)el.classList.toggle('on',i===n)});if(n===1)runRecords();if(n===3)runTypes();if(n===5)runCountdown()}function panel(item){const max=Math.max(...item.years.map(y=>y[1]),1);return `<div class="record"><div class="recordTitle"><span>${item.title}</span><small>RECORD</small></div>${item.years.map(y=>`<div class="year" data-count="${y[1]}" data-max="${max}"><span>${y[0]}</span><div class="bar"><span></span></div><b class="ynum">0</b></div>`).join('')}<div class="total"><b data-total="${item.total}">0</b><span>명</span></div></div>`}function countTo(el,target,duration=700){if(!el)return;const start=performance.now(),from=parseInt((el.textContent||'0').replace(/[^0-9]/g,''),10)||0,diff=target-from;function frame(now){const p=Math.min((now-start)/duration,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(from+diff*e).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(frame)}requestAnimationFrame(frame)}function runRecords(){if(window.gfieldIntroRecordsStarted)return;window.gfieldIntroRecordsStarted=true;const left=document.getElementById('gfieldIntroLeftStack'),right=document.getElementById('gfieldIntroRightStack');if(!left||!right)return;left.innerHTML=recordData.left.map(panel).join('');right.innerHTML=recordData.right.map(panel).join('');[...document.querySelectorAll('#gfieldIntro .record')].forEach((card,i)=>{setTimeout(()=>{card.classList.add('on','pop');card.querySelectorAll('.year').forEach((row,j)=>{setTimeout(()=>{const c=+row.dataset.count,m=+row.dataset.max;row.querySelector('.bar span').style.width=Math.max(18,Math.round(c/m*100))+'%';countTo(row.querySelector('.ynum'),c,430)},j*135)});setTimeout(()=>countTo(card.querySelector('[data-total]'),+card.querySelector('[data-total]').dataset.total,720),420);setTimeout(()=>card.classList.remove('pop'),500)},i*360)});setTimeout(()=>countTo(document.getElementById('gfieldIntroGrandNum'),recordData.grand,1850),680);setTimeout(()=>document.getElementById('gfieldIntroGrandNum')?.classList.add('hit'),2600);setTimeout(()=>document.getElementById('gfieldIntroGrandNum')?.classList.remove('hit'),3200)}function runTypes(){if(window.gfieldIntroTypesStarted)return;window.gfieldIntroTypesStarted=true;const box=document.getElementById('gfieldIntroTypeTunnel');if(!box)return;for(let i=0;i<44;i++){const el=document.createElement('div');el.className='type-line';el.textContent=typeTexts[i%typeTexts.length];el.style.setProperty('--x',(Math.random()*160-80)+'vw');el.style.setProperty('--y',(Math.random()*120-60)+'vh');el.style.setProperty('--r',(Math.random()*90-45)+'deg');el.style.animationDelay=(i*.075)+'s';box.appendChild(el)}}function runCountdown(){if(window.gfieldIntroCountStarted)return;window.gfieldIntroCountStarted=true;let n=5;const countNum=document.getElementById('gfieldIntroCountNum');countNum.textContent=n;const timer=setInterval(()=>{n--;if(n<=0){clearInterval(timer);window.gfieldIntroGoDiagnosis();return}countNum.textContent=n;countNum.style.animation='none';countNum.offsetHeight;countNum.style.animation='introCountPop .7s ease'},900)}window.gfieldIntroGoDiagnosis=function(){const intro=document.getElementById('gfieldIntro');if(intro)intro.hidden=true;document.body.classList.remove('intro-active');window.scrollTo(0,0)};times.forEach((t,i)=>setTimeout(()=>showScene(i),t));setTimeout(()=>window.gfieldIntroGoDiagnosis(),20300);const video=document.getElementById('gfieldIntroVideo');if(video)video.addEventListener('error',()=>{video.style.display='none'})})();
-          </script>
-          '''
-
-          if 'gfield-intro-restore-style' not in html:
-              html = html.replace('</head>', intro_css + '\n</head>')
-          if 'id="gfieldIntro"' not in html:
-              html = html.replace('<body>', '<body>\n' + intro_html)
-          if 'gfield-intro-restore-script' not in html:
-              html = html.replace('</body>', intro_js + '\n</body>')
-
-          Path("premier-hyper-focus").mkdir(parents=True, exist_ok=True)
-          Path("premier-hyper-focus/index.html").write_text(html, encoding="utf-8")
-          print("Restored diagnosis index with intro")
+          index.write_text(html, encoding='utf-8')
           PY
 
-      - name: Commit restored diagnosis page with intro
+      - name: Commit patch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add premier-hyper-focus/index.html
+          git add premier-hyper-focus/index.html premier-hyper-focus/assets/gfield-logo.png
           if git diff --cached --quiet; then
             echo "No changes."
           else
-            git commit -m "Restore diagnosis page with intro [skip ci]"
+            git commit -m "Apply premier page download and intro fixes [skip ci]"
             git push
           fi
