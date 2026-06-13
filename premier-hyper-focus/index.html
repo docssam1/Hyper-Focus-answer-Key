@@ -83,8 +83,6 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
 .login-card .quick-download-actions{display:none!important}
 @media print{
   body.report-print-mode #page1,
-  body.report-print-mode #printCover,
-  body.report-print-mode .print-only,
   body.report-print-mode .action-btns,
   body.report-print-mode .helper-text,
   body.report-print-mode .attempt-menu,
@@ -94,6 +92,13 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   body.report-print-mode .result-actions,
   body.report-print-mode .res-video-btn,
   body.report-print-mode .res-card-toggle{display:none!important}
+  body.report-print-mode .print-only{display:flex!important}
+  body.report-print-mode #printCover{
+    display:flex!important;
+    min-height:100vh!important;
+    page-break-after:always!important;
+    break-after:page!important
+  }
   body.report-print-mode #page2{display:block!important;padding:0!important;margin:0!important}
   body.report-print-mode .p2-header{display:none!important}
   body.report-print-mode #allAnswerPrint{display:none!important}
