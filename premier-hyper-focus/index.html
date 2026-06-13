@@ -216,7 +216,6 @@ function patchPreLogin(){
     brief=document.createElement('div');
     brief.id='preLoginBrief';
     brief.innerHTML=
-      /* ── 1. 히어로 ── */
       '<section class="plb-hero"><div class="plb-wrap">'+
         '<div class="plb-eyebrow">SOMA PREMIER HYPER FOCUS</div>'+
         '<h1>프리미어 합격을 위한<br><strong>약점 유형 진단 프로그램</strong></h1>'+
@@ -227,7 +226,6 @@ function patchPreLogin(){
         '</div>'+
         '<div class="plb-subnote">상담 신청서를 남겨주시면 순서대로 확인 후 연락드립니다.</div>'+
       '</div></section>'+
-      /* ── 2. 3칸 카드 ── */
       '<section class="plb-section"><div class="plb-wrap">'+
         '<h2>한 번의 점검이 아니라,<br>회차별 변화를 보는 진단입니다.</h2>'+
         '<p class="plb-lead">문항의 정답 여부만 보는 것이 아니라, 어떤 사고력 영역에서 시간이 걸리고 어떤 유형이 반복적으로 흔들리는지 확인합니다.</p>'+
@@ -237,7 +235,6 @@ function patchPreLogin(){
           '<div class="plb-card"><div class="plb-num">03</div><h3>이전 회차 비교 분석</h3><p>이전 회차에서 해결된 문항과 새롭게 틀린 문항을 비교하여, 다음 학습 방향을 더 정확하게 잡습니다.</p></div>'+
         '</div>'+
       '</div></section>'+
-      /* ── 3. 리포트 미리보기 영상 ── */
       '<section class="plb-section plb-section-dark"><div class="plb-wrap plb-ad-grid">'+
         '<div>'+
           '<div class="plb-eyebrow">REPORT PREVIEW</div>'+
@@ -248,7 +245,6 @@ function patchPreLogin(){
           '<video autoplay muted loop playsinline preload="auto" src="./assets/premier-report-ad-fast.mp4"></video>'+
         '</div>'+
       '</div></section>'+
-      /* ── 4. 리포트 샘플 이미지 4장 ── */
       '<section class="plb-section"><div class="plb-wrap">'+
         '<div class="plb-report-top">'+
           '<div>'+
@@ -264,7 +260,6 @@ function patchPreLogin(){
           '<div class="plb-report-item"><img alt="오답 문항 상세 분석" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtVFCzhou0lDx6TD8d2mN1nE"><div class="plb-report-cap"><b>04</b><span>오답 문항 상세 분석</span></div></div>'+
         '</div>'+
       '</div></section>'+
-      /* ── 5. 7개 영역 ── */
       '<section class="plb-section plb-section-navy"><div class="plb-wrap">'+
         '<h2 style="text-align:center">7개 핵심 사고력 영역 진단</h2>'+
         '<p class="plb-lead" style="text-align:center;margin:0 auto 34px">프리미어 대비에서 자주 흔들리는 대표 사고력 영역을 나누어 확인합니다.</p>'+
@@ -278,7 +273,6 @@ function patchPreLogin(){
           '<div class="plb-area"><small>07</small>지문 이해</div>'+
         '</div>'+
       '</div></section>'+
-      /* ── 6. 하단 CTA ── */
       '<section class="plb-final"><div class="plb-wrap"><div class="plb-final-box">'+
         '<h2>프로그램 상담이 필요하신가요?</h2>'+
         '<p>아이의 현재 준비 상황과 목표 반, 보완이 필요한 유형을 남겨주시면 확인 후 상담 안내를 드립니다.</p>'+
@@ -342,19 +336,22 @@ setInterval(readyPatch,350);readyPatch();
     return r.text();
   });
   html = html.replace('<img class="intro-logo" src="https://drive.google.com/uc?export=view&id=1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL" alt="GFIELD">','<img class="intro-logo" src="' + LOGO_URL + '" alt="GFIELD">');
-  html = html.replace(/대표\\s*유형을<br>빠르게\\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
-  html = html.replace(/대표\\s*유형/g,'심화 대표 유형');
-  html = html.replace(/빠르게\\s*점검합니다/g,'약점유형을 진단합니다');
-  html = html.replace(/영재\\s*클래스/g,'필즈 TOPCLASS');
-  html = html.replace(/테마\\s*프리미어/g,'소마 프리미어(대치)');
+  html = html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
+  html = html.replace(/대표\s*유형/g,'심화 대표 유형');
+  html = html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
+  html = html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');
+  html = html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
   const rs = html.indexOf("const recordData=");
   const re = rs > -1 ? html.indexOf(";", rs) : -1;
   if (rs > -1 && re > -1) html = html.slice(0, rs) + SCOREBOARD_DATA + html.slice(re + 1);
-  html = html.replace(/const scenes=\\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\\],times=\\[[^\\]]+\\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
+  html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
   html = html.replace(/let c=5;/g,"let c=3;");
   html = html.replace(/let n=5;/g,"let n=3;");
   html = html.split("},900);").join("},850);");
-  html = html.replace(/setTimeout\\(\\(\\)=>window\\.gfieldIntroGoDiagnosis\\(\\),20300\\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
+  html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
+  /* sessionStorage 제거 — 소개 화면을 본 기록을 저장하지 않음 */
+  html = html.replace(/sessionStorage\.setItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*,\s*['"]1['"]\s*\)\s*;?/g,'');
+  html = html.replace(/sessionStorage\.getItem\s*\(\s*['"]gfieldPreLoginBriefDone['"]\s*\)\s*===\s*['"]1['"]/g,'false');
   html = html.replace("</head>", PATCH_CSS + "</head>");
   html = html.replace("</body>", PATCH_JS + '<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();
