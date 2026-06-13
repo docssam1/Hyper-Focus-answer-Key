@@ -174,20 +174,21 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   .plb-final-box{padding:36px 22px}
 }
 @media(max-width:760px){
-  #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
-  #gfieldIntro .grand{order:-1}
-  #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
-  #gfieldIntro .records{width:min(96vw,430px)!important}
-  #gfieldIntro .gnum{font-size:clamp(58px,18vw,88px)!important}
-  #gfieldIntro .recordTitle{font-size:12px!important}
+  #gfieldIntro .records{width:min(96vw,720px)!important;grid-template-columns:1fr minmax(120px,180px) 1fr!important;gap:8px!important;align-items:stretch!important}
+  #gfieldIntro .year{grid-template-columns:56px 1fr 28px!important;font-size:10px!important}
+  #gfieldIntro .gnum{font-size:clamp(52px,14vw,82px)!important}
+  #gfieldIntro .gunit{font-size:18px!important}
+  #gfieldIntro .recordTitle{font-size:11px!important}
+  #gfieldIntro .record{padding:8px 9px!important}
+  #gfieldIntro .grand{order:0!important}
   .plb-area-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
-  #gfieldIntro .records{width:min(97vw,360px)!important}
+  #gfieldIntro .records{width:min(97vw,420px)!important;grid-template-columns:1fr minmax(112px,148px) 1fr!important}
   #gfieldIntro .record{padding:8px 9px!important}
-  #gfieldIntro .year{grid-template-columns:64px 1fr 28px!important;font-size:10px!important}
-  #gfieldIntro .gnum{font-size:clamp(52px,19vw,76px)!important}
-  #gfieldIntro .gunit{font-size:18px!important}
+  #gfieldIntro .year{grid-template-columns:52px 1fr 24px!important;font-size:9px!important;gap:5px!important}
+  #gfieldIntro .gnum{font-size:clamp(44px,16vw,68px)!important}
+  #gfieldIntro .gunit{font-size:16px!important}
   #gfieldIntro .total{font-size:11px!important}
   .plb-area-grid{grid-template-columns:1fr}
 }
@@ -349,18 +350,16 @@ setInterval(readyPatch,350);readyPatch();
   html = html.replaceAll('대표 유형','심화 대표 유형');
   html = html.replaceAll('빠르게 점검합니다','약점유형을 진단합니다');
   html = html.replaceAll('영재 미래반','위즈 TOPCLASS');
-  html = html.replaceAll('소마 프리미어','소마 프리미어(대치)');
+  html = html.replaceAll('소마 프리미어(대치)','소마 프리미어');
   html = html.replace(/대표\s*유형을<br>빠르게\s*점검합니다/g,'심화 대표 유형으로<br>약점유형을 진단합니다');
   html = html.replace(/대표\s*유형/g,'심화 대표 유형');
   html = html.replace(/빠르게\s*점검합니다/g,'약점유형을 진단합니다');
   html = html.replace(/영재\s*클래스/g,'필즈 TOPCLASS');
-  html = html.replace(/테마\s*프리미어/g,'소마 프리미어(대치)');
+  html = html.replace(/테마\s*프리미어/g,'소마 프리미어');
   const rs = html.indexOf("const recordData=");
   const re = rs > -1 ? html.indexOf(";", rs) : -1;
   if (rs > -1 && re > -1) html = html.slice(0, rs) + SCOREBOARD_DATA + html.slice(re + 1);
   html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2300,5000,7200,9600,11800]");
-  html = html.replace(/let c=5;/g,"let c=3;");
-  html = html.replace(/let n=5;/g,"let n=3;");
   html = html.replace(/const scenes=\['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'\],times=\[[^\]]+\]/,"const scenes=['gfieldIntroScene0','gfieldIntroScene1','gfieldIntroScene2','gfieldIntroScene3','gfieldIntroScene4','gfieldIntroScene5'],times=[0,2600,5600,8100,10800,13300]");
   html = html.replace(/let c=3;/g,"let c=5;");
   html = html.replace(/let n=3;/g,"let n=5;");
