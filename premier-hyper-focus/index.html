@@ -134,11 +134,33 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   @page{margin:14mm}
 }
 @media(max-width:760px){
-  #gfieldIntro .records{grid-template-columns:1fr!important;gap:8px!important}
-  #gfieldIntro .grand{order:-1}
-  #gfieldIntro .year{grid-template-columns:72px 1fr 32px!important}
-  .pre-login-grid{grid-template-columns:1fr}
-  .pre-login-brief{margin:18px 12px;padding:22px}
+  #gfieldIntro .records{width:min(96vw,720px)!important;grid-template-columns:1fr minmax(120px,180px) 1fr!important;gap:8px!important;align-items:stretch!important}
+  #gfieldIntro .year{grid-template-columns:56px 1fr 28px!important;font-size:10px!important}
+  #gfieldIntro .gnum{font-size:clamp(52px,14vw,82px)!important}
+  #gfieldIntro .gunit{font-size:18px!important}
+  #gfieldIntro .recordTitle{font-size:11px!important}
+  #gfieldIntro .record{padding:8px 9px!important}
+  #gfieldIntro .grand{order:0!important}
+  .plb-area-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  #gfieldIntro .records{width:min(97vw,420px)!important;grid-template-columns:1fr minmax(112px,148px) 1fr!important}
+  #gfieldIntro .record{padding:8px 9px!important}
+  #gfieldIntro .year{grid-template-columns:52px 1fr 24px!important;font-size:9px!important;gap:5px!important}
+  #gfieldIntro .gnum{font-size:clamp(44px,16vw,68px)!important}
+  #gfieldIntro .gunit{font-size:16px!important}
+  #gfieldIntro .total{font-size:11px!important}
+  .plb-area-grid{grid-template-columns:1fr}
+  #resultListBox .res-card-header{display:grid!important;grid-template-columns:auto auto!important;align-items:start!important;justify-content:start!important;column-gap:10px!important;row-gap:8px!important}
+  #resultListBox .res-card-header > :nth-child(n+3){grid-column:1 / -1!important;width:100%!important}
+  #resultListBox .res-card-title,
+  #resultListBox .res-card-header p,
+  #resultListBox .res-card-body,
+  #resultListBox .res-card td,
+  #resultListBox .res-card th{min-width:0!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:break-word!important;line-height:1.5!important;writing-mode:horizontal-tb!important}
+  #resultListBox .res-card-toggle,
+  #resultListBox .res-video-btn,
+  #resultListBox .btn-action{grid-column:1 / -1!important;justify-self:end!important;margin-top:2px!important}
 }
 </style>`;
 
