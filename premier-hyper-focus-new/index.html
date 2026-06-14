@@ -3,255 +3,959 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>프리미어 하이퍼 포커스 New</title>
+<title>프리미어 하이퍼 포커스</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#060c16;
-  --panel:#0b1626;
-  --panel-2:#101f34;
-  --line:rgba(212,175,55,.24);
+  --bg:#07101c;
+  --bg-2:#0c1a2d;
+  --panel:#0f1d31;
+  --panel-2:#132742;
   --gold:#d4af37;
   --gold-2:#f8dd83;
+  --line:rgba(248,221,131,.24);
   --text:#f8fafc;
-  --muted:#cbd5e1;
-  --ink:#122033;
-  --cream:#f8f5ee;
-  --danger:#cf3f30;
+  --muted:#c8d2df;
+  --cream:#f7f3ea;
+  --ink:#142133;
+  --shadow:0 28px 80px rgba(0,0,0,.34);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:"Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--text)}
-body[data-view="promo"]{background:linear-gradient(180deg,#08111d,#0e1b2c 32%,#f7f2e8 32%,#f7f2e8)}
-body[data-view="login"],body[data-view="app"]{background:#07111d}
-.hidden{display:none!important}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-
-#introScreen{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:
-radial-gradient(circle at 50% 42%,rgba(212,175,55,.18),transparent 24%),
-radial-gradient(circle at 20% 16%,rgba(59,130,246,.12),transparent 18%),
-linear-gradient(180deg,#040812,#07101c 50%,#050913)}
-#introScreen::before{content:"";position:absolute;inset:0;background-image:
-linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-background-size:42px 42px;opacity:.55}
-.intro-inner{position:relative;z-index:2;width:min(1080px,100%);padding:24px}
-.intro-orb{position:absolute;inset:auto auto 10% 12%;width:240px;height:240px;border-radius:999px;background:radial-gradient(circle,rgba(248,221,131,.2),rgba(248,221,131,.06) 45%,transparent 72%);filter:blur(8px);animation:introFloat 6s ease-in-out infinite}
-.intro-orb.orb-2{left:auto;right:8%;bottom:auto;top:12%;width:180px;height:180px;background:radial-gradient(circle,rgba(59,130,246,.16),rgba(59,130,246,.06) 44%,transparent 72%);animation-delay:-2s}
-.intro-stage{position:relative;min-height:78vh;display:grid;place-items:center}
-.intro-phase{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:translateY(22px) scale(.98);transition:opacity .65s ease,transform .65s ease;pointer-events:none}
-.intro-phase.active{opacity:1;transform:translateY(0) scale(1)}
-.intro-phase-inner{text-align:center;max-width:920px;margin:0 auto}
-.intro-kicker{display:inline-block;padding:8px 16px;border:1px solid rgba(248,221,131,.48);border-radius:999px;color:var(--gold-2);font-size:12px;font-weight:900;letter-spacing:.18em}
-.intro-title{margin:22px 0 14px;font-size:clamp(40px,7vw,96px);line-height:1.02;letter-spacing:-.08em}
-.intro-title strong{display:block;color:var(--gold-2)}
-.intro-copy{margin:0 auto;max-width:760px;color:#d7e1ef;font-size:clamp(16px,2vw,24px);line-height:1.65}
-.intro-count{margin-top:30px;font-size:clamp(64px,11vw,160px);font-weight:900;color:#fff;letter-spacing:-.08em}
-.intro-glow-line{width:min(720px,86vw);height:1px;margin:28px auto;background:linear-gradient(90deg,transparent,rgba(248,221,131,.82),transparent)}
-.intro-stat-board{width:min(920px,100%);padding:28px;border:1px solid rgba(248,221,131,.22);border-radius:34px;background:linear-gradient(180deg,rgba(11,22,38,.92),rgba(11,22,38,.72));box-shadow:0 20px 70px rgba(0,0,0,.32)}
-.intro-stat-head{display:flex;justify-content:space-between;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:18px}
-.intro-stat-head h2{margin:0;font-size:clamp(26px,4vw,44px);letter-spacing:-.06em}
-.intro-stat-head p{margin:0;color:#b5c4d7;line-height:1.7}
-.intro-stat-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
-.intro-bars{display:grid;gap:12px}
-.intro-bar{display:grid;grid-template-columns:84px 1fr 54px;gap:12px;align-items:center}
-.intro-bar label{color:#dbe4f0;font-weight:800}
-.intro-bar-track{height:14px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
-.intro-bar-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#68a8ff,#f1cb50);transform-origin:left center;animation:introGrow 1.2s ease forwards}
-.intro-bar strong{color:var(--gold-2);text-align:right}
-.intro-stat-stack{display:grid;gap:14px}
-.intro-stat-card{padding:18px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);text-align:left}
-.intro-stat-card b{display:block;font-size:30px;line-height:1;color:#fff}
-.intro-stat-card span{display:block;margin-top:8px;color:#b3c2d5;line-height:1.65}
-.intro-final-box{width:min(900px,100%);padding:34px;border-radius:34px;border:1px solid rgba(248,221,131,.24);background:linear-gradient(180deg,rgba(9,18,32,.88),rgba(9,18,32,.66));box-shadow:0 20px 70px rgba(0,0,0,.32);text-align:left}
-.intro-final-box h2{margin:0 0 12px;font-size:clamp(30px,4vw,54px);line-height:1.08;letter-spacing:-.06em}
-.intro-final-box p{margin:0;color:#d7e1ef;font-size:clamp(16px,2vw,21px);line-height:1.76}
-.intro-chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.intro-chip{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#eef2f7;font-size:14px;font-weight:800}
-.intro-progress{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:22px}
-.intro-progress span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform-origin:left center;animation:introLoad 2.4s linear forwards}
-.intro-skip{position:absolute;top:22px;right:22px;z-index:3;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:12px 20px;font-weight:900;cursor:pointer}
-@keyframes introFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-16px)}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Noto Sans KR",system-ui,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(212,175,55,.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(89,148,255,.10), transparent 24%),
+    linear-gradient(180deg, #050b15 0%, #0a1627 34%, #f7f3ea 34%, #f7f3ea 100%);
+  word-break:keep-all;
 }
-@keyframes introGrow{
+a{color:inherit}
+button{font:inherit}
+.hidden{display:none !important}
+.wrap{width:min(1180px, calc(100% - 32px));margin:0 auto}
+
+#introScreen{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(212,175,55,.16), transparent 22%),
+    radial-gradient(circle at 18% 16%, rgba(92,155,255,.10), transparent 20%),
+    linear-gradient(180deg, #030711 0%, #07111d 60%, #050912 100%);
+}
+#introScreen::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.32;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size:36px 36px;
+}
+.intro-noise{
+  position:absolute;
+  inset:auto auto -80px -40px;
+  width:280px;
+  height:280px;
+  border-radius:999px;
+  background:radial-gradient(circle, rgba(248,221,131,.18), rgba(248,221,131,.04) 52%, transparent 72%);
+  filter:blur(10px);
+  animation:floatOrb 7s ease-in-out infinite;
+}
+.intro-noise.alt{
+  inset:40px -60px auto auto;
+  width:220px;
+  height:220px;
+  background:radial-gradient(circle, rgba(89,148,255,.16), rgba(89,148,255,.04) 50%, transparent 70%);
+  animation-delay:-2.4s;
+}
+.intro-skip{
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:4;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  border-radius:999px;
+  min-height:48px;
+  padding:0 18px;
+  font-weight:800;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+}
+.intro-inner{
+  position:relative;
+  z-index:2;
+  width:min(1120px, calc(100% - 28px));
+  margin:0 auto;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+}
+.intro-stage{
+  position:relative;
+  width:100%;
+  min-height:78vh;
+}
+.intro-scene{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  opacity:0;
+  transform:translateY(24px) scale(.985);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+}
+.intro-scene.active{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.intro-card{
+  width:min(940px, 100%);
+  padding:32px 26px;
+}
+.intro-chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(248,221,131,.54);
+  color:var(--gold-2);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.intro-title{
+  margin:18px 0 12px;
+  font-size:clamp(42px, 8vw, 94px);
+  line-height:1.02;
+  letter-spacing:-.08em;
+}
+.intro-title strong{
+  display:block;
+  color:var(--gold-2);
+}
+.intro-copy{
+  width:min(760px, 100%);
+  margin:0 auto;
+  color:#dbe5f2;
+  font-size:clamp(16px, 2vw, 24px);
+  line-height:1.7;
+}
+.intro-count{
+  margin-top:24px;
+  font-size:clamp(68px, 13vw, 160px);
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.08em;
+}
+.intro-line{
+  width:min(700px, 86vw);
+  height:1px;
+  margin:24px auto 0;
+  background:linear-gradient(90deg, transparent, rgba(248,221,131,.88), transparent);
+}
+.intro-board{
+  width:min(980px, 100%);
+  padding:30px;
+  border-radius:34px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(10,20,34,.94), rgba(10,20,34,.72));
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.intro-board-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:end;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.intro-board-head h2{
+  margin:0;
+  font-size:clamp(28px, 4vw, 48px);
+  line-height:1.1;
+  letter-spacing:-.06em;
+}
+.intro-board-head p{
+  margin:0;
+  color:#bdd0e7;
+  line-height:1.7;
+}
+.intro-board-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:20px;
+}
+.metric-list{display:grid;gap:12px}
+.metric-row{
+  display:grid;
+  grid-template-columns:78px 1fr 48px;
+  gap:10px;
+  align-items:center;
+}
+.metric-row b{font-size:14px;color:#eef4fb}
+.metric-row strong{font-size:14px;color:var(--gold-2);text-align:right}
+.metric-track{
+  height:14px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.09);
+}
+.metric-track span{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, #69a8ff, #f1cb50);
+  transform-origin:left center;
+  animation:growBar 1s ease forwards;
+}
+.metric-summary{
+  display:grid;
+  gap:14px;
+}
+.metric-box{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+.metric-box strong{
+  display:block;
+  font-size:34px;
+  line-height:1;
+  color:#fff;
+}
+.metric-box span{
+  display:block;
+  margin-top:8px;
+  color:#bdd0e7;
+  line-height:1.68;
+}
+.intro-final{
+  width:min(920px, 100%);
+  padding:32px 28px;
+  border-radius:32px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(10,18,30,.95), rgba(11,22,38,.78));
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.intro-final h2{
+  margin:0 0 12px;
+  font-size:clamp(30px, 4vw, 54px);
+  line-height:1.08;
+  letter-spacing:-.06em;
+}
+.intro-final p{
+  margin:0;
+  color:#d8e2ee;
+  line-height:1.8;
+  font-size:clamp(16px, 2vw, 21px);
+}
+.intro-tags{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.intro-tags span{
+  display:inline-flex;
+  min-height:38px;
+  align-items:center;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  color:#edf2f8;
+  font-size:14px;
+  font-weight:800;
+}
+.intro-progress{
+  margin-top:20px;
+  height:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.intro-progress span{
+  display:block;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, var(--gold), var(--gold-2));
+  transform-origin:left center;
+  animation:loadBar 2.1s linear forwards;
+}
+
+#promoScreen{padding-bottom:80px}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(18px);
+  background:rgba(5,10,18,.64);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.topbar-inner{
+  width:min(1180px, calc(100% - 32px));
+  margin:0 auto;
+  min-height:74px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.brand small{
+  color:var(--gold-2);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+.brand strong{
+  font-size:20px;
+  letter-spacing:-.04em;
+}
+.top-actions,
+.cta-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:56px;
+  padding:0 22px;
+  border-radius:16px;
+  text-decoration:none;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+  border:0;
+}
+.cta.primary{
+  background:linear-gradient(135deg, var(--gold), var(--gold-2));
+  color:#111;
+  box-shadow:0 16px 44px rgba(0,0,0,.28);
+}
+.cta.secondary{
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+}
+.hero{
+  padding:92px 0 56px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.04fr .96fr;
+  gap:34px;
+  align-items:center;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(248,221,131,.6);
+  color:var(--gold-2);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.hero h1{
+  margin:18px 0 14px;
+  font-size:clamp(42px, 7vw, 82px);
+  line-height:1.03;
+  letter-spacing:-.08em;
+}
+.hero h1 strong{color:var(--gold-2)}
+.hero p{
+  margin:0;
+  color:#d8e2ef;
+  font-size:clamp(17px, 2vw, 23px);
+  line-height:1.72;
+  max-width:720px;
+}
+.hero-note{
+  margin-top:18px;
+  color:#b8c8da;
+  font-size:14px;
+  line-height:1.7;
+}
+.hero-stats{
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-top:26px;
+  padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.hero-stats div{min-width:92px}
+.hero-stats strong{
+  display:block;
+  font-size:38px;
+  line-height:1;
+  color:var(--gold-2);
+}
+.hero-stats span{
+  display:block;
+  margin-top:6px;
+  color:#a8bacf;
+  font-size:13px;
+}
+.report-stage{
+  position:relative;
+  min-height:540px;
+  display:grid;
+  place-items:center;
+  perspective:1400px;
+}
+.report-stage::before{
+  content:"";
+  position:absolute;
+  width:min(84%, 480px);
+  aspect-ratio:1;
+  border-radius:40px;
+  border:1px solid rgba(248,221,131,.28);
+  transform:rotate(8deg);
+  box-shadow:0 0 80px rgba(212,175,55,.18), inset 0 0 48px rgba(248,221,131,.06);
+}
+.report-stage::after{
+  content:"";
+  position:absolute;
+  width:min(78%, 420px);
+  height:min(78%, 420px);
+  border-radius:999px;
+  background:radial-gradient(circle, rgba(248,221,131,.18), rgba(248,221,131,.04) 42%, transparent 72%);
+  filter:blur(18px);
+}
+.report-card-3d{
+  position:relative;
+  width:min(74%, 370px);
+  transform-style:preserve-3d;
+  animation:spinReport 10s linear infinite;
+  filter:drop-shadow(0 34px 58px rgba(0,0,0,.56));
+}
+.report-card-3d:hover{
+  animation-play-state:paused;
+}
+.report-card-3d::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:3%;
+  width:26px;
+  height:94%;
+  border-radius:10px;
+  background:linear-gradient(90deg, #6b5414, #f8dd83, #5d470f);
+  transform:translateX(-50%) rotateY(90deg) translateZ(185px);
+}
+.report-card-face{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(248,221,131,.55);
+  backface-visibility:hidden;
+}
+.report-card-face img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/4.2;
+  object-fit:cover;
+  object-position:top center;
+}
+.report-card-front{
+  transform:translateZ(13px);
+}
+.report-card-back{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:28px;
+  background:linear-gradient(135deg, #07111f, #102039 58%, #07111f);
+  transform:rotateY(180deg) translateZ(13px);
+}
+.report-card-back strong{
+  display:block;
+  color:var(--gold-2);
+  font-size:20px;
+  line-height:1.7;
+  letter-spacing:.16em;
+}
+.report-card-back span{
+  display:block;
+  margin-top:10px;
+  color:#d5deea;
+  line-height:1.7;
+}
+
+.section{
+  padding:56px 0;
+}
+.paper{
+  color:var(--ink);
+}
+.section-title{
+  margin:0 0 14px;
+  font-size:clamp(30px, 4vw, 50px);
+  line-height:1.12;
+  letter-spacing:-.06em;
+}
+.section-lead{
+  margin:0;
+  max-width:760px;
+  color:#5b6a7b;
+  font-size:18px;
+  line-height:1.8;
+}
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin-top:28px;
+}
+.feature-card{
+  background:#fff;
+  border:1px solid #e6dfd2;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 14px 32px rgba(18,32,51,.06);
+}
+.feature-card .num{
+  display:inline-flex;
+  width:34px;
+  height:34px;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:var(--ink);
+  color:var(--gold-2);
+  font-weight:900;
+}
+.feature-card h3{
+  margin:14px 0 8px;
+  font-size:22px;
+}
+.feature-card p{
+  margin:0;
+  color:#677688;
+  line-height:1.74;
+}
+
+.video-shell{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:28px;
+  align-items:center;
+  background:#091220;
+  color:#fff;
+  border-radius:30px;
+  border:1px solid var(--line);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+.video-shell h3{
+  margin:12px 0 12px;
+  font-size:clamp(30px, 4vw, 46px);
+  line-height:1.08;
+  letter-spacing:-.06em;
+}
+.video-shell p{
+  margin:0;
+  color:#c9d4e2;
+  line-height:1.8;
+}
+.video-shell ul{
+  list-style:none;
+  margin:18px 0 0;
+  padding:0;
+  display:grid;
+  gap:8px;
+}
+.video-shell li{
+  color:var(--gold-2);
+  font-weight:700;
+}
+.video-shell li::before{
+  content:"•";
+  margin-right:8px;
+  color:var(--gold);
+}
+.video-card{
+  border-radius:22px;
+  padding:8px;
+  background:linear-gradient(135deg, rgba(212,175,55,.64), rgba(255,255,255,.06));
+  box-shadow:0 24px 60px rgba(0,0,0,.34);
+}
+.video-card video{
+  display:block;
+  width:100%;
+  border-radius:16px;
+  background:#000;
+}
+
+.sample-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:14px;
+  margin-top:24px;
+}
+.sample-card{
+  margin:0;
+  padding:8px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid #e6dfd2;
+  box-shadow:0 12px 28px rgba(18,32,51,.06);
+}
+.sample-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/4.1;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:12px;
+  background:#e7eaef;
+}
+.sample-card figcaption{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:13px 6px 6px;
+  font-size:14px;
+  font-weight:800;
+}
+.sample-card span{
+  color:#9b7a13;
+}
+
+.areas-shell{
+  padding:34px;
+  border-radius:30px;
+  border:1px solid var(--line);
+  background:#091220;
+  color:#fff;
+}
+.areas-shell h3{
+  margin:0 0 10px;
+  text-align:center;
+  font-size:clamp(28px, 4vw, 44px);
+}
+.areas-shell p{
+  margin:0 auto 24px;
+  max-width:740px;
+  text-align:center;
+  color:#cad5e2;
+  line-height:1.8;
+}
+.areas-grid{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:12px;
+}
+.area-card{
+  text-align:center;
+  padding:18px 10px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+}
+.area-card small{
+  display:block;
+  margin-bottom:8px;
+  color:var(--gold-2);
+  font-size:22px;
+}
+.area-card b{
+  font-size:14px;
+}
+
+#loginScreen{
+  padding:24px 0 90px;
+}
+.login-shell{
+  width:min(560px, 100%);
+  margin:0 auto;
+  padding:34px;
+  border-radius:28px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, #0b1727, #12243a);
+  box-shadow:var(--shadow);
+}
+.login-shell h2{
+  margin:14px 0 10px;
+  font-size:clamp(34px, 5vw, 42px);
+  line-height:1.08;
+  letter-spacing:-.06em;
+}
+.login-shell p{
+  margin:0 0 20px;
+  color:#c8d3e1;
+  line-height:1.76;
+}
+.field{
+  margin-bottom:16px;
+}
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#f3f4f6;
+  font-size:14px;
+  font-weight:800;
+}
+.field input{
+  width:100%;
+  height:54px;
+  padding:0 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+.field input:focus{
+  border-color:rgba(248,221,131,.72);
+  box-shadow:0 0 0 3px rgba(248,221,131,.14);
+}
+.error{
+  min-height:22px;
+  color:#ffb4a8;
+  font-size:14px;
+  font-weight:700;
+}
+.loading-note{
+  display:none;
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  color:#dbe4ef;
+  line-height:1.72;
+}
+.login-shell.is-loading .loading-note{
+  display:block;
+}
+.login-shell.is-loading .cta,
+.login-shell.is-loading input{
+  pointer-events:none;
+  opacity:.82;
+}
+.loading-inline{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+}
+.loading-inline::after{
+  content:"";
+  width:14px;
+  height:14px;
+  border-radius:999px;
+  border:2px solid currentColor;
+  border-right-color:transparent;
+  animation:spin .7s linear infinite;
+}
+
+.final-cta{
+  padding:18px 0 0;
+}
+.final-box{
+  border-radius:28px;
+  padding:46px 28px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(135deg, #0b1728, #142742);
+  box-shadow:var(--shadow);
+}
+.final-box h2{
+  margin:0 0 14px;
+  font-size:clamp(28px, 4vw, 44px);
+}
+.final-box p{
+  margin:0 auto 26px;
+  max-width:720px;
+  color:#d5deea;
+  line-height:1.8;
+}
+.footer{
+  padding:34px 0 44px;
+  text-align:center;
+  color:#8090a4;
+  font-size:13px;
+}
+
+@keyframes floatOrb{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+@keyframes growBar{
   from{transform:scaleX(.08)}
   to{transform:scaleX(1)}
 }
-@keyframes introLoad{
-  from{transform:scaleX(.16)}
+@keyframes loadBar{
+  from{transform:scaleX(.12)}
   to{transform:scaleX(1)}
 }
-
-#promoScreen{padding-bottom:64px}
-.promo-hero{padding:88px 0 44px}
-.eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid rgba(248,221,131,.6);color:var(--gold-2);font-size:12px;font-weight:900;letter-spacing:.18em}
-.promo-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center;margin-top:28px}
-.promo-title{margin:18px 0 16px;font-size:clamp(42px,7vw,82px);line-height:1.04;letter-spacing:-.08em}
-.promo-title strong{color:var(--gold-2)}
-.promo-copy{margin:0;max-width:700px;color:#d7e1ef;font-size:clamp(17px,2vw,23px);line-height:1.68}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.cta{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:16px 24px;border-radius:16px;text-decoration:none;font-weight:900;font-size:18px;cursor:pointer;border:0}
-.cta.primary{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;box-shadow:0 18px 48px rgba(0,0,0,.28)}
-.cta.secondary{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18)}
-.mini-stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
-.mini-stats div{min-width:96px}
-.mini-stats b{display:block;font-size:36px;line-height:1;color:var(--gold-2)}
-.mini-stats span{font-size:13px;color:#9fb0c6}
-
-.report-stage{position:relative;min-height:520px;display:grid;place-items:center;perspective:1400px}
-.orbit-ring{position:absolute;width:min(86%,460px);aspect-ratio:1;border:1px solid rgba(212,175,55,.46);border-radius:38px;transform:rotate(8deg);box-shadow:0 0 70px rgba(212,175,55,.18),inset 0 0 48px rgba(212,175,55,.08)}
-.report-stage::after{content:"";position:absolute;width:min(80%,420px);height:min(80%,420px);border-radius:999px;background:radial-gradient(circle,rgba(248,221,131,.2),rgba(212,175,55,.06) 42%,transparent 72%);filter:blur(18px)}
-.report-card-3d{position:relative;width:min(76%,370px);transform-style:preserve-3d;animation:spinReport 9s linear infinite;filter:drop-shadow(0 34px 54px rgba(0,0,0,.6))}
-.report-card-3d::before{content:"";position:absolute;left:50%;top:3%;width:28px;height:94%;border-radius:10px;background:linear-gradient(90deg,#6d5616,#f8dd83,#5a4510);transform:translateX(-50%) rotateY(90deg) translateZ(185px)}
-.report-card-3d::after{content:"G-FIELD\A PREMIER REPORT";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:900;letter-spacing:.16em;line-height:1.6;color:var(--gold-2);border-radius:18px;border:1px solid rgba(248,221,131,.55);background:linear-gradient(135deg,#07111e,#101d30 55%,#07111e);transform:rotateY(180deg) translateZ(14px);backface-visibility:hidden}
-.report-card-3d img{display:block;width:100%;border-radius:18px;border:1px solid rgba(248,221,131,.58);transform:translateZ(14px);backface-visibility:hidden}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
 @keyframes spinReport{
   0%{transform:rotateY(-18deg) rotateX(6deg)}
-  18%{transform:rotateY(28deg) rotateX(4deg) translateY(-10px)}
+  18%{transform:rotateY(26deg) rotateX(4deg) translateY(-10px)}
   40%{transform:rotateY(166deg) rotateX(5deg) translateY(-4px)}
-  58%{transform:rotateY(202deg) rotateX(4deg) translateY(-12px)}
+  58%{transform:rotateY(204deg) rotateX(4deg) translateY(-12px)}
   82%{transform:rotateY(338deg) rotateX(6deg) translateY(-4px)}
   100%{transform:rotateY(342deg) rotateX(6deg)}
 }
 
-.section{padding:52px 0}
-.paper{background:var(--cream);color:#142131}
-.paper .section-title{font-size:clamp(30px,4vw,50px);line-height:1.12;letter-spacing:-.06em;margin:0 0 14px;color:var(--ink)}
-.paper .lead{margin:0;color:#5e6c7c;font-size:18px;line-height:1.78;max-width:760px}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
-.feature-card{background:#fff;border:1px solid #e5dfd3;border-radius:22px;padding:24px;box-shadow:0 14px 30px rgba(18,32,51,.06)}
-.feature-card b{display:block;margin:12px 0 8px;font-size:22px;color:var(--ink)}
-.feature-card p{margin:0;color:#677586;line-height:1.7}
-.feature-num{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;background:var(--ink);color:var(--gold-2);font-weight:900}
-
-.video-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;background:#091220;color:#fff;border-radius:28px;border:1px solid var(--line);padding:28px}
-.video-shell h3{margin:10px 0 12px;font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.06em}
-.video-shell p{margin:0;color:#cbd5e1;line-height:1.75}
-.video-shell ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-.video-shell li{color:var(--gold-2)}
-.video-shell li::before{content:"▸";margin-right:8px;color:var(--gold)}
-.video-card{overflow:hidden;border-radius:22px;padding:8px;background:linear-gradient(135deg,rgba(212,175,55,.64),rgba(255,255,255,.06));box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.video-card video{display:block;width:100%;border-radius:16px;background:#000}
-
-.samples-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-.sample-card{margin:0;background:#fff;border:1px solid #e5dfd3;border-radius:18px;padding:8px;overflow:hidden}
-.sample-card img{display:block;width:100%;height:210px;object-fit:cover;object-position:top;border-radius:12px;background:#e5e7eb}
-.sample-card figcaption{display:flex;gap:10px;align-items:center;padding:13px 6px 6px;font-size:14px;font-weight:800;color:var(--ink)}
-.sample-card span{color:#9a7a14}
-
-.areas-section{background:#091220;color:#fff;border-radius:30px;padding:34px;border:1px solid var(--line)}
-.areas-section h3{margin:0 0 10px;font-size:clamp(28px,4vw,44px);text-align:center}
-.areas-section p{margin:0 auto 24px;max-width:720px;text-align:center;color:#cbd5e1;line-height:1.7}
-.areas-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
-.area-card{text-align:center;padding:18px 10px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05)}
-.area-card small{display:block;margin-bottom:8px;color:var(--gold-2);font-size:22px}
-.area-card b{font-size:14px}
-
-#loginScreen{padding:56px 0 76px}
-.login-shell{max-width:540px;margin:0 auto;background:linear-gradient(180deg,#0c1828,#12243a);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 28px 70px rgba(0,0,0,.28)}
-.login-shell h2{margin:14px 0 10px;font-size:40px;line-height:1.08;letter-spacing:-.06em}
-.login-shell p{margin:0 0 24px;color:#cbd5e1;line-height:1.72}
-.field{margin-bottom:16px}
-.field label{display:block;margin-bottom:7px;font-size:14px;font-weight:800;color:#f3f4f6}
-.field input{width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-size:16px;outline:none}
-.field input:focus{border-color:rgba(248,221,131,.72);box-shadow:0 0 0 3px rgba(248,221,131,.14)}
-.error{min-height:22px;color:#ffb4a8;font-size:14px;font-weight:700}
-
-#appScreen{padding:24px 0 40px}
-.app-topbar{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:16px}
-.app-title{font-size:30px;font-weight:900;letter-spacing:-.04em}
-.app-meta{color:#cbd5e1;font-size:14px}
-.app-actions{display:flex;gap:10px;flex-wrap:wrap}
-.app-btn{min-height:46px;padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-weight:900;cursor:pointer}
-.app-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;border:0}
-.app-note{margin-bottom:14px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.06);color:#dbe4f0;line-height:1.65}
-.app-frame-wrap{position:relative}
-.app-frame{width:100%;min-height:1880px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#fff}
-.app-loading{position:absolute;inset:0;display:grid;place-items:center;padding:22px;border-radius:22px;background:linear-gradient(180deg,rgba(5,12,21,.84),rgba(9,18,32,.72));backdrop-filter:blur(8px);z-index:2}
-.app-loading.hidden{display:none!important}
-.app-loading-card{width:min(520px,100%);padding:28px;border-radius:26px;border:1px solid rgba(248,221,131,.22);background:linear-gradient(180deg,rgba(11,22,38,.94),rgba(12,30,52,.84));box-shadow:0 24px 70px rgba(0,0,0,.34);text-align:center}
-.app-loading-card b{display:block;font-size:24px;letter-spacing:-.05em}
-.app-loading-card p{margin:10px 0 0;color:#d2dcea;line-height:1.75}
-.app-loading-dots{display:inline-flex;gap:10px;margin-bottom:16px}
-.app-loading-dots span{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));animation:loadingPulse 1.2s ease-in-out infinite}
-.app-loading-dots span:nth-child(2){animation-delay:.18s}
-.app-loading-dots span:nth-child(3){animation-delay:.36s}
-@keyframes loadingPulse{
-  0%,100%{transform:translateY(0);opacity:.4}
-  50%{transform:translateY(-6px);opacity:1}
+@media (max-width: 980px){
+  .hero-grid,
+  .video-shell,
+  .intro-board-grid{
+    grid-template-columns:1fr;
+  }
+  .report-stage{
+    min-height:400px;
+    order:-1;
+  }
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+  .sample-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .areas-grid{
+    grid-template-columns:repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 900px){
-  .promo-grid,.video-shell{grid-template-columns:1fr}
-  .report-stage{min-height:380px;order:-1}
-  .feature-grid{grid-template-columns:1fr}
-  .samples-grid{grid-template-columns:1fr 1fr}
-  .areas-grid{grid-template-columns:1fr 1fr}
-  .intro-stat-grid{grid-template-columns:1fr}
-  .intro-stage{min-height:82vh}
-}
-@media (max-width: 560px){
-  .cta-row,.app-actions{display:grid}
-  .samples-grid,.areas-grid{grid-template-columns:1fr}
-  .intro-skip{top:14px;right:14px}
-  .login-shell{padding:24px}
-  .intro-inner{padding:18px}
-  .intro-bar{grid-template-columns:70px 1fr 40px;gap:8px}
-  .intro-final-box{text-align:center}
+@media (max-width: 720px){
+  body{
+    background:
+      radial-gradient(circle at top left, rgba(212,175,55,.14), transparent 24%),
+      linear-gradient(180deg, #050b15 0%, #0a1627 30%, #f7f3ea 30%, #f7f3ea 100%);
+  }
+  .topbar-inner,
+  .wrap{
+    width:min(100% - 24px, 1180px);
+  }
+  .topbar-inner{
+    padding:12px 0;
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .top-actions,
+  .cta-row{
+    width:100%;
+    display:grid;
+  }
+  .cta{
+    width:100%;
+  }
+  .hero{
+    padding:76px 0 46px;
+  }
+  .sample-grid{
+    grid-template-columns:1fr;
+  }
+  .areas-grid{
+    grid-template-columns:1fr;
+  }
+  .intro-card,
+  .intro-board,
+  .intro-final,
+  .video-shell,
+  .areas-shell,
+  .login-shell,
+  .final-box{
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .metric-row{
+    grid-template-columns:68px 1fr 40px;
+    gap:8px;
+  }
 }
 </style>
 </head>
-<body data-view="intro">
-  <section id="introScreen">
+<body>
+  <section id="introScreen" aria-label="인트로">
     <button class="intro-skip" type="button" id="skipIntroBtn">SKIP</button>
+    <div class="intro-noise"></div>
+    <div class="intro-noise alt"></div>
     <div class="intro-inner">
-      <div class="intro-orb"></div>
-      <div class="intro-orb orb-2"></div>
       <div class="intro-stage">
-        <section class="intro-phase active" data-phase="1">
-          <div class="intro-phase-inner">
-            <div class="intro-kicker">PREMIER HYPER FOCUS</div>
+        <section class="intro-scene active" data-scene="1">
+          <div class="intro-card">
+            <div class="intro-chip">PREMIER HYPER FOCUS</div>
             <h1 class="intro-title">프리미어 합격을 위한<strong>심화 대표 유형 진단</strong></h1>
-            <p class="intro-copy">54개 핵심 유형과 누적 진단 리포트, 교재 다운로드까지 한 흐름으로 이어지는 프리미어 전용 진단 페이지입니다.</p>
-            <div class="intro-glow-line"></div>
+            <p class="intro-copy">54개 핵심 유형, 회차별 결과 비교, 교재 PDF 워터마크 다운로드까지 한 흐름으로 이어지는 프리미어 전용 진단 페이지입니다.</p>
+            <div class="intro-line"></div>
             <div class="intro-count" id="introCount">3</div>
           </div>
         </section>
-        <section class="intro-phase" data-phase="2">
-          <div class="intro-stat-board">
-            <div class="intro-stat-head">
+
+        <section class="intro-scene" data-scene="2">
+          <div class="intro-board">
+            <div class="intro-board-head">
               <div>
-                <div class="intro-kicker">ACCUMULATED RECORD</div>
-                <h2>누적 데이터 기반으로<br>핵심 약점을 빠르게 확인합니다.</h2>
+                <div class="intro-chip">ACCUMULATED CHECK</div>
+                <h2>대표 사고력 영역을<br>빠르게 점검합니다.</h2>
               </div>
-              <p>공간 지각부터 경우의 수, 논리추론까지<br>흔들리는 유형을 바로 볼 수 있게 구성합니다.</p>
+              <p>공간지각부터 논리추론, 경우의 수까지<br>자주 흔들리는 유형을 먼저 확인합니다.</p>
             </div>
-            <div class="intro-stat-grid">
-              <div class="intro-bars">
-                <div class="intro-bar"><label>공간</label><div class="intro-bar-track"><span class="intro-bar-fill" style="width:78%"></span></div><strong>78</strong></div>
-                <div class="intro-bar"><label>평면</label><div class="intro-bar-track"><span class="intro-bar-fill" style="width:86%"></span></div><strong>86</strong></div>
-                <div class="intro-bar"><label>논리</label><div class="intro-bar-track"><span class="intro-bar-fill" style="width:72%"></span></div><strong>72</strong></div>
-                <div class="intro-bar"><label>경우</label><div class="intro-bar-track"><span class="intro-bar-fill" style="width:81%"></span></div><strong>81</strong></div>
+            <div class="intro-board-grid">
+              <div class="metric-list">
+                <div class="metric-row"><b>공간지각</b><div class="metric-track"><span style="width:78%"></span></div><strong>78</strong></div>
+                <div class="metric-row"><b>평면도형</b><div class="metric-track"><span style="width:86%"></span></div><strong>86</strong></div>
+                <div class="metric-row"><b>논리추론</b><div class="metric-track"><span style="width:74%"></span></div><strong>74</strong></div>
+                <div class="metric-row"><b>경우의 수</b><div class="metric-track"><span style="width:82%"></span></div><strong>82</strong></div>
               </div>
-              <div class="intro-stat-stack">
-                <div class="intro-stat-card"><b>54</b><span>대표 기출 유형을 영역별로 나눠 점검합니다.</span></div>
-                <div class="intro-stat-card"><b>3회</b><span>회차별 변화 흐름과 보완 결과를 누적으로 비교합니다.</span></div>
+              <div class="metric-summary">
+                <div class="metric-box">
+                  <strong>54</strong>
+                  <span>대표 기출 유형을 영역별로 나누어 확인합니다.</span>
+                </div>
+                <div class="metric-box">
+                  <strong>3회</strong>
+                  <span>회차별 변화와 보완 흐름까지 이어서 비교합니다.</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="intro-phase" data-phase="3">
-          <div class="intro-final-box">
-            <div class="intro-kicker">REPORT + BOOK DOWNLOAD</div>
-            <h2>진단 후에는 결과 리포트와<br>교재 다운로드까지 바로 이어집니다.</h2>
-            <p>학생 이름과 승인번호를 바탕으로 진단 화면에 진입하고, 교재 PDF에는 워터마크를 넣어 저장합니다. 답안과 리포트도 같은 흐름으로 이어서 확인할 수 있습니다.</p>
-            <div class="intro-chip-row">
-              <span class="intro-chip">학생 정보 연결</span>
-              <span class="intro-chip">교재 PDF 워터마크</span>
-              <span class="intro-chip">답안·리포트 출력</span>
+
+        <section class="intro-scene" data-scene="3">
+          <div class="intro-final">
+            <div class="intro-chip">REPORT + BOOK DOWNLOAD</div>
+            <h2>진단 이후에는 결과 리포트와<br>교재 PDF까지 바로 이어집니다.</h2>
+            <p>학생 이름과 승인번호 기준으로 진단 페이지에 자동 진입하고, 교재 PDF에는 중앙 워터마크와 하단 꼬리말이 함께 저장되도록 연결해 두었습니다.</p>
+            <div class="intro-tags">
+              <span>학생 정보 연동</span>
+              <span>교재 PDF 워터마크</span>
+              <span>리포트 확인 연결</span>
             </div>
             <div class="intro-progress"><span></span></div>
           </div>
@@ -261,27 +965,49 @@ background-size:42px 42px;opacity:.55}
   </section>
 
   <main id="promoScreen" class="hidden">
-    <section class="promo-hero">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <small>G-FIELD GIFTED EDUCATION</small>
+          <strong>PREMIER HYPER FOCUS</strong>
+        </div>
+        <div class="top-actions">
+          <a class="cta secondary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>
+          <button class="cta primary" type="button" data-show-login>로그인해서 진단 시작하기</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">G-FIELD GIFTED EDUCATION</div>
-        <div class="promo-grid">
+        <div class="hero-grid">
           <div>
-            <h1 class="promo-title">지필드 영재교육<br><strong>프리미어 합격 체크리스트</strong></h1>
-            <p class="promo-copy">소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p>
-            <div class="cta-row">
+            <div class="eyebrow">PREMIER HYPER FOCUS</div>
+            <h1>지필드 영재교육<br><strong>프리미어 합격 체크리스트</strong></h1>
+            <p>54개 핵심 유형과 회차별 진단 리포트로 프리미어 준비 상태를 정밀 점검합니다. 진단 이후에는 기존 결과 페이지로 바로 연결되어 교재 다운로드와 결과 확인을 이어서 진행할 수 있습니다.</p>
+            <div class="cta-row" style="margin-top:28px">
               <a class="cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>
-              <button class="cta secondary" type="button" id="showLoginBtn">로그인해서 진단 시작하기</button>
+              <button class="cta secondary" type="button" data-show-login>로그인해서 진단 시작하기</button>
             </div>
-            <div class="mini-stats">
-              <div><b>54</b><span>핵심 유형</span></div>
-              <div><b>3</b><span>누적 진단</span></div>
-              <div><b>7</b><span>사고력 영역</span></div>
+            <div class="hero-note">태블릿 또는 PC 사용을 권장합니다. 모바일에서도 확인 가능하지만, 리포트와 교재 확인은 넓은 화면에서 더 안정적으로 보입니다.</div>
+            <div class="hero-stats">
+              <div><strong>54</strong><span>핵심 유형</span></div>
+              <div><strong>3</strong><span>누적 진단</span></div>
+              <div><strong>7</strong><span>사고력 영역</span></div>
             </div>
           </div>
+
           <div class="report-stage" aria-label="3D 리포트 표지">
-            <div class="orbit-ring"></div>
             <div class="report-card-3d">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="프리미어 진단 리포트 표지">
+              <div class="report-card-face report-card-front">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="프리미어 리포트 표지">
+              </div>
+              <div class="report-card-face report-card-back">
+                <div>
+                  <strong>G-FIELD<br>PREMIER REPORT</strong>
+                  <span>결과 리포트와 교재 흐름을 한 번에 이어주는 프리미어 진단 페이지</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -290,12 +1016,24 @@ background-size:42px 42px;opacity:.55}
 
     <section class="section paper">
       <div class="wrap">
-        <h2 class="section-title">한 번의 점수가 아니라<br>회차별 변화까지 보는 진단입니다.</h2>
-        <p class="lead">문항의 정답 여부만 보지 않고, 어떤 사고력 영역에서 시간이 걸리고 어떤 유형에서 반복적으로 흔들리는지 확인합니다.</p>
+        <h2 class="section-title">한 번의 채점이 아니라<br>회차별 변화까지 보는 진단입니다.</h2>
+        <p class="section-lead">문항 정오만 보는 것이 아니라 어떤 유형에서 시간이 걸리고, 어떤 사고력 영역에서 반복적으로 흔들리는지까지 확인합니다.</p>
         <div class="feature-grid">
-          <article class="feature-card"><div class="feature-num">01</div><b>54개 핵심 유형</b><p>쌓기나무, 전개도, 경우의 수, 논리 조건 등 프리미어 대비 핵심 유형을 점검합니다.</p></article>
-          <article class="feature-card"><div class="feature-num">02</div><b>3회 누적 진단</b><p>한 번으로 끝나는 진단이 아니라 회차별 변화를 비교해 보완 흐름을 확인합니다.</p></article>
-          <article class="feature-card"><div class="feature-num">03</div><b>회차별 변화 비교</b><p>보완된 유형과 다시 흔들린 유형을 나눠 다음 학습 방향을 정리합니다.</p></article>
+          <article class="feature-card">
+            <div class="num">01</div>
+            <h3>54개 기출 유형</h3>
+            <p>쌓기나무, 전개도, 경우의 수, 논리 조건 등 프리미어 대비 핵심 유형을 빠르게 점검합니다.</p>
+          </article>
+          <article class="feature-card">
+            <div class="num">02</div>
+            <h3>3회 누적 진단</h3>
+            <p>한 번의 결과로 끝나지 않고 회차별 변화를 이어서 보며 보완 방향을 확인합니다.</p>
+          </article>
+          <article class="feature-card">
+            <div class="num">03</div>
+            <h3>회차별 변화 비교</h3>
+            <p>보완된 유형과 다시 흔들리는 유형을 함께 보며 다음 학습 우선순위를 정리합니다.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -305,12 +1043,12 @@ background-size:42px 42px;opacity:.55}
         <div class="video-shell">
           <div>
             <div class="eyebrow">REPORT PREVIEW</div>
-            <h3>누적 진단 리포트 미리보기</h3>
-            <p>2회차 이후에는 이전 회차와의 변화 흐름, 보완된 유형, 다시 흔들리는 유형을 함께 확인할 수 있습니다. 결과는 영역별 강약점과 오답 분석으로 정리됩니다.</p>
+            <h3>리포트 미리보기 영상</h3>
+            <p>종합 리포트에서는 영역별 분석, 회차별 변화, 문항별 오답 포인트까지 한 번에 이어집니다. 소개용 영상으로 실제 결과 화면 분위기를 먼저 확인할 수 있습니다.</p>
             <ul>
-              <li>정답률과 수행률 변화</li>
-              <li>영역별 약점 흐름</li>
-              <li>문항별 오답 상세 분석</li>
+              <li>영역별 강약점 흐름 확인</li>
+              <li>회차별 변화 비교 연결</li>
+              <li>문항별 오답 분석 구조 확인</li>
             </ul>
           </div>
           <div class="video-card">
@@ -323,21 +1061,33 @@ background-size:42px 42px;opacity:.55}
     <section class="section paper">
       <div class="wrap">
         <h2 class="section-title">리포트 샘플 4장</h2>
-        <p class="lead">학생명과 승인번호는 제외하고, 결과 리포트의 구성만 미리 확인할 수 있도록 배치했습니다.</p>
-        <div class="samples-grid">
-          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="개인별 리포트 커버"><figcaption><span>01</span>개인별 리포트 커버</figcaption></figure>
-          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi48xQbJOwciTrlVjaL3PxJgVfp5BwEYZoeoSuhqkPU8N1mTSiap_auNnCiOc19nyGUR8zxH-0OkK5gKBsRFvzFopPvwkb8KKOX3ZtPMAaF6I7p1oCo5XST0nFgLS7nvCfNoJgiTiYPs-G4fLS8IWvb0C7YMb6LFzlcX6T4rDI6nuwgGqXbAlW5p3wkaOYYklah9CtY9FW7r5SwIZiFBUV2cG2Xtra-wVH7Ay8o3ZdglxkcB-mc8CrVNl-uAcEh6jUrzt2wW9zTtU" alt="종합 진단 결과 및 분석"><figcaption><span>02</span>종합 진단 결과 및 분석</figcaption></figure>
-          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0f9OQ3Ta9io3fOYVqiwHSE4fciTaFcaP5lD55h3xARloV12jEH5TxrVfaf9MIYiJtkjCwGudShW1owXq2x_x6M1XVgT3C_vN7Mz-jVYj4YOT67kycg3FCuYzBNd-i22FKsvQYzGhFLaiIf1h2zH0euBAxffFIsa1HRaTiHNNawQpxXiRaAqZkGgMzRCrezLJNkmxNfl-SkBu38CHtiGVecycSBGSSZNM2IWYkzWtBD441p0xqPCbdpDJknokoyOv2-MO72riDIA" alt="회차별 변화도 차트"><figcaption><span>03</span>회차별 변화도 차트</figcaption></figure>
-          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtZRou0lDx6TD8d2mN1nE" alt="문항별 오답 분석"><figcaption><span>04</span>문항별 오답 분석</figcaption></figure>
+        <p class="section-lead">학생 이름과 승인번호는 노출하지 않고, 결과 화면의 구성만 미리 확인할 수 있도록 배치했습니다.</p>
+        <div class="sample-grid">
+          <figure class="sample-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="리포트 표지">
+            <figcaption><span>01</span>리포트 표지</figcaption>
+          </figure>
+          <figure class="sample-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi48xQbJOwciTrlVjaL3PxJgVfp5BwEYZoeoSuhqkPU8N1mTSiap_auNnCiOc19nyGUR8zxH-0OkK5gKBsRFvzFopPvwkb8KKOX3ZtPMAaF6I7p1oCo5XST0nFgLS7nvCfNoJgiTiYPs-G4fLS8IWvb0C7YMb6LFzlcX6T4rDI6nuwgGqXbAlW5p3wkaOYYklah9CtY9FW7r5SwIZiFBUV2cG2Xtra-wVH7Ay8o3ZdglxkcB-mc8CrVNl-uAcEh6jUrzt2wW9zTtU" alt="영역별 분석 차트">
+            <figcaption><span>02</span>영역별 분석 차트</figcaption>
+          </figure>
+          <figure class="sample-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0f9OQ3Ta9io3fOYVqiwHSE4fciTaFcaP5lD55h3xARloV12jEH5TxrVfaf9MIYiJtkjCwGudShW1owXq2x_x6M1XVgT3C_vN7Mz-jVYj4YOT67kycg3FCuYzBNd-i22FKsvQYzGhFLaiIf1h2zH0euBAxffFIsa1HRaTiHNNawQpxXiRaAqZkGgMzRCrezLJNkmxNfl-SkBu38CHtiGVecycSBGSSZNM2IWYkzWtBD441p0xqPCbdpDJknokoyOv2-MO72riDIA" alt="회차별 변화도">
+            <figcaption><span>03</span>회차별 변화도</figcaption>
+          </figure>
+          <figure class="sample-card">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtVFCzhou0lDx6TD8d2mN1nE" alt="문항별 오답 분석">
+            <figcaption><span>04</span>문항별 오답 분석</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="wrap">
-        <div class="areas-section">
-          <h3>7개 핵심 사고력 영역</h3>
-          <p>프리미어 준비 과정에서 자주 흔들리는 핵심 영역을 나눠서 확인합니다.</p>
+        <div class="areas-shell">
+          <h3>7개 사고력 영역 진단</h3>
+          <p>프리미어 준비 과정에서 자주 흔들리는 대표 사고력 영역을 나누어 점검합니다.</p>
           <div class="areas-grid">
             <div class="area-card"><small>01</small><b>공간지각</b></div>
             <div class="area-card"><small>02</small><b>평면도형</b></div>
@@ -350,164 +1100,123 @@ background-size:42px 42px;opacity:.55}
         </div>
       </div>
     </section>
-  </main>
 
-  <section id="loginScreen" class="hidden">
-    <div class="wrap">
-      <div class="login-shell">
-        <div class="eyebrow">LOGIN</div>
-        <h2>진단 시작 정보를 입력해 주세요.</h2>
-        <p>로그인 후에는 새 페이지 안에서 진단 엔진을 불러오고, 교재 다운로드와 답안/리포트 출력 버튼까지 이어서 사용합니다.</p>
-        <div class="field">
-          <label for="studentNameInput">학생 이름</label>
-          <input id="studentNameInput" type="text" placeholder="학생 이름">
-        </div>
-        <div class="field">
-          <label for="parentPhoneInput">학부모 연락처</label>
-          <input id="parentPhoneInput" type="text" placeholder="010-0000-0000">
-        </div>
-        <div class="field">
-          <label for="authCodeInput">승인번호</label>
-          <input id="authCodeInput" type="password" placeholder="승인번호">
-        </div>
-        <div class="error" id="loginError"></div>
-        <div class="cta-row">
-          <button class="cta primary" type="button" id="enterDiagnosisBtn">진단 페이지 열기</button>
-          <button class="cta secondary" type="button" id="backPromoBtn">홍보 페이지로 돌아가기</button>
+    <section id="loginScreen" class="hidden">
+      <div class="wrap">
+        <div class="login-shell" id="loginShell">
+          <div class="eyebrow">LOGIN</div>
+          <h2>로그인 후 바로 진단으로 연결합니다.</h2>
+          <p>학생 이름과 승인번호를 입력하면 기존 진단 페이지로 자동 진입합니다. 진단 이후 교재 다운로드, 답안 확인, 결과 리포트 확인은 연결된 기존 페이지에서 이어집니다.</p>
+          <p style="margin-top:-6px;color:#f8dd83;font-weight:700">태블릿 또는 PC 사용 권장</p>
+
+          <div class="field">
+            <label for="studentNameInput">학생 이름</label>
+            <input id="studentNameInput" type="text" placeholder="학생 이름">
+          </div>
+          <div class="field">
+            <label for="parentPhoneInput">연락처</label>
+            <input id="parentPhoneInput" type="text" placeholder="010-0000-0000">
+          </div>
+          <div class="field">
+            <label for="authCodeInput">승인번호</label>
+            <input id="authCodeInput" type="password" placeholder="승인번호" value="777200">
+          </div>
+
+          <div class="error" id="loginError"></div>
+
+          <div class="cta-row">
+            <button class="cta primary" type="button" id="enterDiagnosisBtn">로그인해서 진단 시작하기</button>
+            <button class="cta secondary" type="button" id="backPromoBtn">소개 페이지로 돌아가기</button>
+          </div>
+
+          <div class="loading-note" id="loadingNote">기존 진단 페이지로 연결 중입니다. 새 페이지가 열리면 교재 다운로드와 결과 확인을 그대로 이어서 진행하시면 됩니다.</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="appScreen" class="hidden">
-    <div class="wrap">
-      <div class="app-topbar">
-        <div>
-          <div class="app-title">프리미어 하이퍼 포커스 진단</div>
-          <div class="app-meta" id="appMeta"></div>
-        </div>
-        <div class="app-actions">
-          <button class="app-btn gold" type="button" id="bookDownloadBtn" disabled>교재 다운로드</button>
-          <button class="app-btn" type="button" id="answerPrintBtn" disabled>전체 답안 인쇄</button>
-          <button class="app-btn" type="button" id="reportPrintBtn" disabled>종합 리포트 인쇄</button>
-        </div>
-      </div>
-      <div class="app-note" id="appNote">진단 엔진을 불러오는 중입니다. 첫 로딩에는 몇 초 정도 걸릴 수 있습니다.</div>
-      <div class="app-frame-wrap">
-        <div class="app-loading" id="appLoading">
-          <div class="app-loading-card">
-            <div class="app-loading-dots"><span></span><span></span><span></span></div>
-            <b>진단 엔진 연결 중입니다.</b>
-            <p id="appLoadingText">학생 정보와 진단 화면을 연결하고 있습니다. 첫 로딩에는 몇 초 정도 걸릴 수 있습니다.</p>
+    <section class="section final-cta">
+      <div class="wrap">
+        <div class="final-box">
+          <h2>우리 아이의 프리미어 준비 상태를 지금 확인해 보세요.</h2>
+          <p>소개 페이지를 둘러본 뒤 바로 로그인해 진단으로 넘어갈 수 있도록 구성했습니다. 상담이 필요하면 신청 버튼으로 연결되고, 바로 시작하려면 로그인 화면으로 이동하면 됩니다.</p>
+          <div class="cta-row" style="justify-content:center">
+            <a class="cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>
+            <button class="cta secondary" type="button" data-show-login>로그인해서 진단 시작하기</button>
           </div>
         </div>
-        <iframe id="diagnosisFrame" class="app-frame" title="프리미어 진단 엔진"></iframe>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <footer class="footer">G-FIELD Gifted Education · Premier Hyper Focus</footer>
+  </main>
 
 <script>
-const state = {
-  introDone: false,
-  diagnosisBooted: false,
-  frameReady: false,
-  frameSyncStarted: false,
-  user: { name: "", phone: "", code: "" }
-};
-
 const DIAGNOSIS_URL = "../premier-hyper-focus/index.snapshot-5eb1f38.html?v=embedded-new";
-const BOOK_IMAGE_URLS = Array.from({ length: 29 }, (_, index) => `../premier-hyper-focus/assets/book/book_${String(index + 1).padStart(3, "0")}.jpg`);
-const ROOT_ANSWER_SOURCE_URL = "../index.html?v=shared-answer-data";
-const ROOT_ANSWER_SOURCE_FALLBACK_URL = "https://docssam1.github.io/Hyper-Focus-answer-Key/?v=shared-answer-data";
-const ACTION_BUSY_LABELS = {
-  downloadBookPdf: "교재 PDF 생성중...",
-  downloadAnswerPdf: "답안 준비중...",
-  downloadReportPdf: "리포트 준비중..."
-};
-
+const introScenes = Array.from(document.querySelectorAll(".intro-scene"));
+const introCount = document.getElementById("introCount");
 const introScreen = document.getElementById("introScreen");
 const promoScreen = document.getElementById("promoScreen");
 const loginScreen = document.getElementById("loginScreen");
-const appScreen = document.getElementById("appScreen");
-const introCount = document.getElementById("introCount");
-const introPhases = Array.from(document.querySelectorAll(".intro-phase"));
+const loginShell = document.getElementById("loginShell");
+const loadingNote = document.getElementById("loadingNote");
 const loginError = document.getElementById("loginError");
-const appMeta = document.getElementById("appMeta");
-const appNote = document.getElementById("appNote");
-const appLoading = document.getElementById("appLoading");
-const appLoadingText = document.getElementById("appLoadingText");
-const diagnosisFrame = document.getElementById("diagnosisFrame");
-const FRAME_ACTION_LABELS = {
-  downloadBookPdf: "교재 다운로드",
-  downloadAnswerPdf: "전체 답안",
-  downloadReportPdf: "종합 리포트"
-};
-const ACTION_BUTTON_IDS = {
-  downloadBookPdf: "bookDownloadBtn",
-  downloadAnswerPdf: "answerPrintBtn",
-  downloadReportPdf: "reportPrintBtn"
-};
-let SHARED_ANSWER_DATA = null;
+const showLoginButtons = Array.from(document.querySelectorAll("[data-show-login]"));
+let introFinished = false;
+let introTimers = [];
 
-function setView(view){
-  document.body.dataset.view = view;
-  introScreen.classList.toggle("hidden", view !== "intro");
-  promoScreen.classList.toggle("hidden", view !== "promo");
-  loginScreen.classList.toggle("hidden", view !== "login");
-  appScreen.classList.toggle("hidden", view !== "app");
+function clearIntroTimers(){
+  introTimers.forEach((timer) => window.clearTimeout(timer));
+  introTimers = [];
 }
 
-function finishIntro(){
-  if (state.introDone) return;
-  state.introDone = true;
-  setView("promo");
-  window.scrollTo({ top: 0, behavior: "instant" });
-}
-
-function showIntroPhase(phaseNumber){
-  introPhases.forEach((phase) => {
-    phase.classList.toggle("active", phase.dataset.phase === String(phaseNumber));
+function showIntroScene(sceneNumber){
+  introScenes.forEach((scene) => {
+    scene.classList.toggle("active", scene.dataset.scene === String(sceneNumber));
   });
 }
 
+function finishIntro(){
+  if (introFinished) return;
+  introFinished = true;
+  clearIntroTimers();
+  introScreen.classList.add("hidden");
+  promoScreen.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
 function runIntro(){
-  const introTimeline = [
-    { phase: 1, count: "3", wait: 950 },
-    { phase: 2, count: "2", wait: 1200 },
-    { phase: 3, count: "1", wait: 1200 }
+  const phases = [
+    { scene: 1, count: "3", wait: 980 },
+    { scene: 2, count: "2", wait: 1180 },
+    { scene: 3, count: "1", wait: 1180 }
   ];
-  let index = 0;
-  let timer = null;
 
-  const step = () => {
-    const current = introTimeline[index];
-    if (!current){
-      finishIntro();
-      return;
-    }
-    showIntroPhase(current.phase);
-    introCount.textContent = current.count;
-    timer = setTimeout(() => {
-      index += 1;
-      if (index >= introTimeline.length){
-        timer = setTimeout(finishIntro, 1150);
-        return;
+  let elapsed = 0;
+  phases.forEach((phase, index) => {
+    introTimers.push(window.setTimeout(() => {
+      showIntroScene(phase.scene);
+      introCount.textContent = phase.count;
+      if (index === phases.length - 1){
+        introTimers.push(window.setTimeout(finishIntro, 1140));
       }
-      step();
-    }, current.wait);
-  };
-
-  step();
-  document.getElementById("skipIntroBtn").addEventListener("click", () => {
-    if (timer) clearTimeout(timer);
-    finishIntro();
-  }, { once: true });
+    }, elapsed));
+    elapsed += phase.wait;
+  });
 }
 
 function showLogin(){
-  setView("login");
+  promoScreen.classList.remove("hidden");
+  loginScreen.classList.remove("hidden");
+  window.setTimeout(() => {
+    loginScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+    const firstInput = document.getElementById("studentNameInput");
+    if (firstInput) firstInput.focus({ preventScroll: true });
+  }, 40);
+}
+
+function hideLogin(){
+  loginScreen.classList.add("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
-  setTimeout(() => document.getElementById("studentNameInput").focus(), 120);
 }
 
 function readLogin(){
@@ -525,457 +1234,29 @@ function validateLogin(user){
   return "";
 }
 
-function updateMeta(){
-  appMeta.textContent = `${state.user.name} · ${state.user.code}`;
-}
-
-function setActionButtonsEnabled(enabled){
-  Object.values(ACTION_BUTTON_IDS).forEach((id) => {
-    const button = document.getElementById(id);
-    if (!button) return;
-    button.disabled = !enabled;
-  });
-}
-
-function setEngineLoading(loading, message){
-  if (message){
-    appNote.textContent = message;
-    appLoadingText.textContent = message;
-  }
-  appLoading.classList.toggle("hidden", !loading);
-}
-
-function patchFrameUi(frameDocument){
-  if (!frameDocument || frameDocument.getElementById("codexFrameCleanupStyle")) return;
-  const style = frameDocument.createElement("style");
-  style.id = "codexFrameCleanupStyle";
-  style.textContent = `
-    .action-btns .download-book-btn,
-    .action-btns .download-answer-btn,
-    .action-btns .download-report-btn{display:none!important}
-    .result-actions button[onclick="downloadBookPdf()"],
-    .result-actions button[onclick="downloadAnswerPdf()"],
-    .result-actions button[onclick="downloadReportPdf()"]{display:none!important}
-    .login-card{max-width:720px!important}
-    #page2,.page2,.container{scroll-margin-top:18px}
-  `;
-  frameDocument.head.appendChild(style);
-}
-
-function loadDiagnosisFrame(){
-  if (state.diagnosisBooted) return;
-  state.diagnosisBooted = true;
-  diagnosisFrame.src = DIAGNOSIS_URL;
-}
-
-function syncFrameUserInfo(){
-  const frameWindow = diagnosisFrame.contentWindow;
-  const frameDocument = diagnosisFrame.contentDocument;
-  if (!frameWindow || !frameDocument) return false;
-  patchFrameUi(frameDocument);
-
-  const loginCard = frameDocument.querySelector(".login-card");
-  if (!loginCard){
-    const readySignal = frameDocument.querySelector(".action-btns, .result-actions, #page2");
-    if (readySignal){
-      state.frameReady = true;
-      setActionButtonsEnabled(true);
-      setEngineLoading(false, "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.");
-      return true;
-    }
-    return false;
-  }
-
-  const intro = frameDocument.getElementById("gfieldIntro");
-  if (intro) intro.style.display = "none";
-  const brief = frameDocument.getElementById("preLoginBrief");
-  if (brief) brief.style.display = "none";
-  const briefRecovery = frameDocument.getElementById("preLoginBriefRecovery");
-  if (briefRecovery) briefRecovery.style.display = "none";
-
-  loginCard.classList.remove("prelogin-locked");
-  loginCard.style.display = "";
-  loginCard.hidden = false;
-
-  const studentInput = frameDocument.getElementById("studentName");
-  const phoneInput = frameDocument.getElementById("parentPhone");
-  const codeInput = frameDocument.getElementById("authCode");
-  if (!studentInput || !codeInput) return false;
-
-  studentInput.value = state.user.name;
-  if (phoneInput) phoneInput.value = state.user.phone;
-  codeInput.value = state.user.code;
-
-  studentInput.dispatchEvent(new Event("input", { bubbles: true }));
-  if (phoneInput) phoneInput.dispatchEvent(new Event("input", { bubbles: true }));
-  codeInput.dispatchEvent(new Event("input", { bubbles: true }));
-
-  const submitButton = loginCard.querySelector("button");
-  if (!submitButton) return false;
-  submitButton.click();
-  state.frameReady = true;
-  setActionButtonsEnabled(true);
-  setEngineLoading(false, "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.");
-  return true;
-}
-
 function bootDiagnosis(){
   const user = readLogin();
   const error = validateLogin(user);
   loginError.textContent = error;
   if (error) return;
 
-  state.user = user;
-  updateMeta();
-  setView("app");
-  setEngineLoading(true, "진단 페이지로 바로 이동하고 있습니다.");
+  loginShell.classList.add("is-loading");
+  loadingNote.innerHTML = '<span class="loading-inline">진단 페이지로 이동 중입니다</span>';
+  document.getElementById("enterDiagnosisBtn").disabled = true;
+
   const nextUrl = `${DIAGNOSIS_URL}&autostart=1&name=${encodeURIComponent(user.name)}&phone=${encodeURIComponent(user.phone)}&code=${encodeURIComponent(user.code)}`;
   window.setTimeout(() => {
     window.location.href = nextUrl;
-  }, 180);
+  }, 240);
 }
 
-function setActionButtonBusy(name, busy){
-  const button = document.getElementById(ACTION_BUTTON_IDS[name]);
-  if (!button) return;
-  if (busy){
-    if (!button.dataset.originalText) button.dataset.originalText = button.textContent.trim();
-    button.disabled = true;
-    button.textContent = ACTION_BUSY_LABELS[name] || "생성중...";
-    return;
-  }
-  button.disabled = false;
-  if (button.dataset.originalText) button.textContent = button.dataset.originalText;
-}
-
-function sanitizeFilename(text){
-  return String(text).replace(/[\\/:*?"<>|]/g, "_").replace(/\s+/g, " ").trim();
-}
-
-function loadScript(src){
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다: ${src}`));
-    document.head.appendChild(script);
-  });
-}
-
-async function ensureJsPdf(){
-  if (!window.jspdf){
-    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
-  }
-}
-
-async function ensureHtml2Pdf(){
-  if (!window.html2pdf){
-    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js");
-  }
-}
-
-function fitContain(sourceWidth, sourceHeight, targetWidth, targetHeight){
-  const sourceRatio = sourceWidth / sourceHeight;
-  const targetRatio = targetWidth / targetHeight;
-  return sourceRatio > targetRatio
-    ? { width: targetWidth, height: targetWidth / sourceRatio }
-    : { width: targetHeight * sourceRatio, height: targetHeight };
-}
-
-async function loadImage(src){
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.decoding = "async";
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error(`이미지를 불러오지 못했습니다: ${src}`));
-    img.src = src;
-  });
-}
-
-function stampText(){
-  const name = (state.user.name || "학생이름").trim() || "학생이름";
-  const code = (state.user.code || "승인번호").trim() || "승인번호";
-  return `${name} · ${code}`;
-}
-
-function formatSavedAt(){
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, "0");
-  const dd = String(now.getDate()).padStart(2, "0");
-  const hh = String(now.getHours()).padStart(2, "0");
-  const mi = String(now.getMinutes()).padStart(2, "0");
-  return `${yyyy}.${mm}.${dd} ${hh}:${mi}`;
-}
-
-function createWatermarkImage(text){
-  const canvas = document.createElement("canvas");
-  canvas.width = 1240;
-  canvas.height = 1754;
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.translate(canvas.width / 2, canvas.height / 2);
-  ctx.rotate(-Math.PI / 180 * 28);
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "rgba(143,145,155,0.07)";
-  ctx.font = '800 92px "Noto Sans KR", sans-serif';
-  ctx.fillText(text, 0, 0);
-  return canvas.toDataURL("image/png");
-}
-
-function addPdfWatermarkImage(pdf, pageWidth, pageHeight, dataUrl){
-  pdf.addImage(dataUrl, "PNG", 0, 0, pageWidth, pageHeight, undefined, "FAST");
-}
-
-function addPdfFooter(pdf, pageWidth, pageHeight, text){
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(8);
-  pdf.setTextColor(132, 140, 150);
-  pdf.text(text, pageWidth / 2, pageHeight - 6, { align: "center" });
-}
-
-function escapeHtml(value){
-  return String(value).replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
-}
-
-function createExportRoot(){
-  const oldRoot = document.getElementById("pdfExportRoot");
-  if (oldRoot) oldRoot.remove();
-  const root = document.createElement("div");
-  root.id = "pdfExportRoot";
-  root.style.position = "absolute";
-  root.style.left = "0";
-  root.style.top = "0";
-  root.style.width = "794px";
-  root.style.opacity = "1";
-  root.style.pointerEvents = "none";
-  root.style.background = "#fff";
-  root.style.zIndex = "-1";
-  document.body.appendChild(root);
-  return root;
-}
-
-function extractSharedAnswerData(html){
-  const startToken = "const data = [";
-  const endToken = "const selectedSet";
-  const start = html.indexOf(startToken);
-  const end = html.indexOf(endToken, start);
-  if (start < 0 || end < 0) throw new Error("공통 답안 데이터를 찾지 못했습니다.");
-  const arrayCode = html.slice(start + "const data = ".length, end).trim().replace(/;\s*$/, "");
-  return Function(`"use strict"; return (${arrayCode});`)();
-}
-
-async function loadSharedAnswerData(){
-  if (Array.isArray(SHARED_ANSWER_DATA) && SHARED_ANSWER_DATA.length) return SHARED_ANSWER_DATA;
-  const sources = [ROOT_ANSWER_SOURCE_URL, ROOT_ANSWER_SOURCE_FALLBACK_URL];
-  let lastError = null;
-  for (const source of sources){
-    try {
-      const response = await fetch(source, { cache: "no-store" });
-      if (!response.ok) throw new Error("공통 답안 페이지를 불러오지 못했습니다.");
-      const html = await response.text();
-      SHARED_ANSWER_DATA = extractSharedAnswerData(html);
-      if (Array.isArray(SHARED_ANSWER_DATA) && SHARED_ANSWER_DATA.length) return SHARED_ANSWER_DATA;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError || new Error("공통 답안 데이터를 찾지 못했습니다.");
-}
-
-async function getAnswerItems(){
-  const source = await loadSharedAnswerData();
-  const items = [];
-  source.forEach((category) => {
-    (category.items || []).forEach((item) => {
-      items.push({
-        id: item.id,
-        text: item.text || "",
-        ans: item.ans || "",
-        tTip: item.tTip || "",
-        mTip: item.mTip || "",
-        categoryNum: category.categoryNum || "",
-        categoryTitle: category.categoryTitle || ""
-      });
-    });
-  });
-  return items.sort((a, b) => a.id - b.id);
-}
-
-async function buildAnswerExportNode(){
-  const items = await getAnswerItems();
-  const root = createExportRoot();
-  const sheet = document.createElement("section");
-  sheet.style.position = "relative";
-  sheet.style.background = "#fff";
-  sheet.style.color = "#111";
-  sheet.style.padding = "22px";
-  sheet.style.fontFamily = '"Noto Sans KR", system-ui, sans-serif';
-
-  let html = `<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-28deg);opacity:.035;color:#8f959d;font-weight:800;font-size:42px;letter-spacing:.08em;white-space:nowrap;">${escapeHtml(stampText())}</div>`;
-  html += `<section style="padding:22px;border:1px solid #e5e7eb;border-radius:18px;margin-bottom:18px;">
-    <div style="font-size:12px;font-weight:900;letter-spacing:.18em;color:#8a6b00;">PREMIER HYPER FOCUS</div>
-    <h1 style="margin:10px 0 12px;font-size:34px;line-height:1.2;color:#0f172a;">소마 프리미어<br>전체 답안·해설</h1>
-    <div style="font-size:14px;line-height:1.9;color:#334155;">
-      <div><strong>${escapeHtml(state.user.name || "학생")}</strong> 학생</div>
-      <div>승인번호: <strong>${escapeHtml(state.user.code || "승인번호")}</strong></div>
-      ${state.user.phone ? `<div>연락처: ${escapeHtml(state.user.phone)}</div>` : ""}
-      <div>총 ${items.length}문제 답안과 해설</div>
-    </div>
-  </section>`;
-
-  let currentCategory = "";
-  items.forEach((item) => {
-    const categoryKey = `${item.categoryNum}.${item.categoryTitle}`;
-    if (categoryKey !== currentCategory){
-      currentCategory = categoryKey;
-      html += `<section style="page-break-inside:avoid;break-inside:avoid;margin-bottom:14px;"><h2 style="margin:18px 0 12px;font-size:21px;color:#0f172a;border-bottom:2px solid #0f172a;padding-bottom:8px;">유형 ${escapeHtml(item.categoryNum)}. ${escapeHtml(item.categoryTitle)}</h2></section>`;
-    }
-    html += `<article style="page-break-inside:avoid;break-inside:avoid;border:1px solid #e5e7eb;border-radius:14px;padding:14px 16px;margin-bottom:12px;">
-      <h3 style="margin:0 0 8px;font-size:16px;line-height:1.6;color:#111827;">${String(item.id).padStart(2, "0")}번. ${escapeHtml(item.text)}</h3>
-      <p style="margin:0 0 7px;font-size:14px;line-height:1.7;color:#1f2937;"><strong>정답:</strong> ${escapeHtml(item.ans)}</p>
-      <p style="margin:0 0 6px;font-size:13px;line-height:1.75;color:#334155;"><strong>해설 핵심:</strong> ${escapeHtml(item.tTip)}</p>
-      <p style="margin:0;font-size:13px;line-height:1.75;color:#334155;"><strong>지도 포인트:</strong> ${escapeHtml(item.mTip)}</p>
-    </article>`;
-  });
-
-  sheet.innerHTML = html;
-  root.appendChild(sheet);
-  return root;
-}
-
-async function exportHtmlToPdf(element, filename){
-  await ensureHtml2Pdf();
-  await new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 120)));
-  const options = {
-    margin: [6, 6, 6, 6],
-    filename,
-    image: { type: "jpeg", quality: 0.96 },
-    html2canvas: { scale: 2, useCORS: true, allowTaint: true, backgroundColor: "#ffffff", scrollY: 0 },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-    pagebreak: { mode: ["css", "legacy"] }
-  };
-  await html2pdf().set(options).from(element).save();
-  setTimeout(() => element.remove(), 50);
-}
-
-async function downloadBookPdfDirect(){
-  setActionButtonBusy("downloadBookPdf", true);
-  try {
-    if (!state.user.name || !state.user.code){
-      alert("학생 이름과 승인번호를 먼저 입력해 주세요.");
-      return;
-    }
-    await ensureJsPdf();
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4", compress: true });
-    const pageWidth = 210;
-    const pageHeight = 297;
-    const watermark = stampText();
-    const watermarkImage = createWatermarkImage(watermark);
-    const footerText = `${watermark} · 저장 ${formatSavedAt()}`;
-
-    for (let index = 0; index < BOOK_IMAGE_URLS.length; index += 1){
-      const img = await loadImage(BOOK_IMAGE_URLS[index]);
-      if (index > 0) pdf.addPage("a4", "portrait");
-      const box = fitContain(img.naturalWidth, img.naturalHeight, pageWidth, pageHeight);
-      const x = (pageWidth - box.width) / 2;
-      const y = (pageHeight - box.height) / 2;
-      pdf.addImage(img, "JPEG", x, y, box.width, box.height, undefined, "FAST");
-      addPdfWatermarkImage(pdf, pageWidth, pageHeight, watermarkImage);
-      addPdfFooter(pdf, pageWidth, pageHeight, footerText);
-    }
-
-    pdf.save(`${sanitizeFilename(`프리미어_교재_${watermark}`)}.pdf`);
-  } catch (error) {
-    alert("교재 PDF 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-  } finally {
-    setActionButtonBusy("downloadBookPdf", false);
-  }
-}
-
-async function downloadAnswerPdfDirect(){
-  setActionButtonBusy("downloadAnswerPdf", true);
-  try {
-    if (!state.user.name || !state.user.code){
-      alert("학생 이름과 승인번호를 먼저 입력해 주세요.");
-      return;
-    }
-    const exportNode = await buildAnswerExportNode();
-    const filename = `${sanitizeFilename(`프리미어_전체답안_${stampText()}`)}.pdf`;
-    await exportHtmlToPdf(exportNode, filename);
-  } catch (error) {
-    alert("답안 PDF 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-  } finally {
-    setActionButtonBusy("downloadAnswerPdf", false);
-  }
-}
-
-function clickFrameActionFallback(name){
-  const frameDocument = diagnosisFrame.contentDocument;
-  if (!frameDocument) return false;
-
-  const exactButton = frameDocument.querySelector(`button[onclick="${name}()"]`);
-  if (exactButton){
-    exactButton.click();
-    return true;
-  }
-
-  const label = FRAME_ACTION_LABELS[name];
-  if (!label) return false;
-
-  const matchedButton = Array.from(frameDocument.querySelectorAll("button")).find((button) => {
-    return (button.textContent || "").includes(label);
-  });
-
-  if (!matchedButton) return false;
-  matchedButton.click();
-  return true;
-}
-
-function callFrameAction(name){
-  if (!state.frameReady){
-    alert("진단 엔진 연결이 아직 끝나지 않았습니다. 잠시 후 다시 시도해 주세요.");
-    return;
-  }
-  setActionButtonBusy(name, true);
-  try {
-    syncFrameUserInfo();
-    const frameWindow = diagnosisFrame.contentWindow;
-    if (frameWindow && typeof frameWindow[name] === "function"){
-      frameWindow[name]();
-      setTimeout(() => setActionButtonBusy(name, false), 2200);
-      return;
-    }
-    if (clickFrameActionFallback(name)){
-      setTimeout(() => setActionButtonBusy(name, false), 2200);
-      return;
-    }
-  } catch (error) {}
-  setActionButtonBusy(name, false);
-  alert("진단 엔진이 아직 준비되지 않았습니다. 잠시 후 다시 시도해 주세요.");
-}
-
-document.getElementById("showLoginBtn").addEventListener("click", showLogin);
-document.getElementById("backPromoBtn").addEventListener("click", () => setView("promo"));
+document.getElementById("skipIntroBtn").addEventListener("click", finishIntro);
 document.getElementById("enterDiagnosisBtn").addEventListener("click", bootDiagnosis);
-document.getElementById("bookDownloadBtn").addEventListener("click", downloadBookPdfDirect);
-document.getElementById("answerPrintBtn").addEventListener("click", downloadAnswerPdfDirect);
-document.getElementById("reportPrintBtn").addEventListener("click", () => callFrameAction("downloadReportPdf"));
+document.getElementById("backPromoBtn").addEventListener("click", hideLogin);
 document.getElementById("authCodeInput").addEventListener("keydown", (event) => {
   if (event.key === "Enter") bootDiagnosis();
 });
-diagnosisFrame.addEventListener("load", () => {
-  if (document.body.dataset.view === "app"){
-    setEngineLoading(true, "진단 엔진이 로드되었습니다. 로그인 정보를 연결하는 중입니다.");
-  }
-});
+showLoginButtons.forEach((button) => button.addEventListener("click", showLogin));
 
 runIntro();
 </script>
