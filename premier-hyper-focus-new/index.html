@@ -3,43 +3,548 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지필드 영재교육 - 프리미어 합격 진단 안내</title>
+<title>프리미어 하이퍼 포커스 New</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#d4af37;--gold2:#f8dd83;--bg:#02050b;--panel:#07111f;--text:#fff;--muted:#cbd5e1}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 20% 10%,rgba(212,175,55,.18),transparent 30%),linear-gradient(135deg,#02050b,#07111f 58%,#02050b);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}body{overflow-x:hidden}.page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}.card{width:min(980px,100%);border:1px solid rgba(212,175,55,.38);border-radius:28px;padding:34px;background:linear-gradient(135deg,rgba(4,12,24,.97),rgba(12,22,42,.94));box-shadow:0 24px 80px rgba(0,0,0,.38)}.eyebrow{color:var(--gold2);font-weight:900;letter-spacing:.16em;font-size:13px;margin-bottom:10px}.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(248,221,131,.35);border-radius:999px;padding:8px 12px;color:var(--gold2);background:rgba(212,175,55,.08);font-weight:800;font-size:13px;margin-bottom:18px}h1{font-size:clamp(32px,6vw,64px);line-height:1.08;margin:0 0 16px;letter-spacing:-.07em}p{color:var(--muted);font-size:clamp(16px,2.5vw,20px);line-height:1.75;margin:0 0 22px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.box{border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:18px;background:rgba(255,255,255,.045)}.box b{display:block;color:var(--gold2);font-size:17px;margin-bottom:9px}.box span{display:block;color:#d6dee9;line-height:1.55;font-size:15px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:24px}a,button{border:0;border-radius:16px;padding:18px 18px;font-size:18px;font-weight:900;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer}.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111}.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.24);color:#fff}.note{font-size:13px;color:#94a3b8;margin-top:14px}.intro{animation:fade .45s ease both}.brief{display:none;animation:fade .45s ease both}.show-brief .intro{display:none}.show-brief .brief{display:block}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@media(max-width:760px){.page{padding:16px}.card{padding:24px;border-radius:22px}.grid,.actions{grid-template-columns:1fr}a,button{font-size:16px}}
+:root{
+  --bg:#060c16;
+  --panel:#0b1626;
+  --panel-2:#101f34;
+  --line:rgba(212,175,55,.24);
+  --gold:#d4af37;
+  --gold-2:#f8dd83;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --ink:#122033;
+  --cream:#f8f5ee;
+  --danger:#cf3f30;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:"Noto Sans KR",system-ui,sans-serif;background:var(--bg);color:var(--text)}
+body[data-view="promo"]{background:linear-gradient(180deg,#08111d,#0e1b2c 32%,#f7f2e8 32%,#f7f2e8)}
+body[data-view="login"],body[data-view="app"]{background:#07111d}
+.hidden{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+#introScreen{position:fixed;inset:0;z-index:50;display:grid;place-items:center;overflow:hidden;background:
+radial-gradient(circle at 50% 42%,rgba(212,175,55,.18),transparent 24%),
+radial-gradient(circle at 20% 16%,rgba(59,130,246,.12),transparent 18%),
+linear-gradient(180deg,#040812,#07101c 50%,#050913)}
+#introScreen::before{content:"";position:absolute;inset:0;background-image:
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:42px 42px;opacity:.55}
+.intro-inner{position:relative;z-index:2;text-align:center;padding:24px}
+.intro-kicker{display:inline-block;padding:8px 16px;border:1px solid rgba(248,221,131,.48);border-radius:999px;color:var(--gold-2);font-size:12px;font-weight:900;letter-spacing:.18em}
+.intro-title{margin:22px 0 14px;font-size:clamp(40px,7vw,96px);line-height:1.02;letter-spacing:-.08em}
+.intro-title strong{display:block;color:var(--gold-2)}
+.intro-copy{margin:0 auto;max-width:760px;color:#d7e1ef;font-size:clamp(16px,2vw,24px);line-height:1.65}
+.intro-count{margin-top:30px;font-size:clamp(64px,11vw,160px);font-weight:900;color:#fff;letter-spacing:-.08em}
+.intro-skip{position:absolute;top:22px;right:22px;z-index:3;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:12px 20px;font-weight:900;cursor:pointer}
+
+#promoScreen{padding-bottom:64px}
+.promo-hero{padding:88px 0 44px}
+.eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid rgba(248,221,131,.6);color:var(--gold-2);font-size:12px;font-weight:900;letter-spacing:.18em}
+.promo-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center;margin-top:28px}
+.promo-title{margin:18px 0 16px;font-size:clamp(42px,7vw,82px);line-height:1.04;letter-spacing:-.08em}
+.promo-title strong{color:var(--gold-2)}
+.promo-copy{margin:0;max-width:700px;color:#d7e1ef;font-size:clamp(17px,2vw,23px);line-height:1.68}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:16px 24px;border-radius:16px;text-decoration:none;font-weight:900;font-size:18px;cursor:pointer;border:0}
+.cta.primary{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;box-shadow:0 18px 48px rgba(0,0,0,.28)}
+.cta.secondary{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.mini-stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.mini-stats div{min-width:96px}
+.mini-stats b{display:block;font-size:36px;line-height:1;color:var(--gold-2)}
+.mini-stats span{font-size:13px;color:#9fb0c6}
+
+.report-stage{position:relative;min-height:520px;display:grid;place-items:center;perspective:1400px}
+.orbit-ring{position:absolute;width:min(86%,460px);aspect-ratio:1;border:1px solid rgba(212,175,55,.46);border-radius:38px;transform:rotate(8deg);box-shadow:0 0 70px rgba(212,175,55,.18),inset 0 0 48px rgba(212,175,55,.08)}
+.report-stage::after{content:"";position:absolute;width:min(80%,420px);height:min(80%,420px);border-radius:999px;background:radial-gradient(circle,rgba(248,221,131,.2),rgba(212,175,55,.06) 42%,transparent 72%);filter:blur(18px)}
+.report-card-3d{position:relative;width:min(76%,370px);transform-style:preserve-3d;animation:spinReport 9s linear infinite;filter:drop-shadow(0 34px 54px rgba(0,0,0,.6))}
+.report-card-3d::before{content:"";position:absolute;left:50%;top:3%;width:28px;height:94%;border-radius:10px;background:linear-gradient(90deg,#6d5616,#f8dd83,#5a4510);transform:translateX(-50%) rotateY(90deg) translateZ(185px)}
+.report-card-3d::after{content:"G-FIELD\A PREMIER REPORT";white-space:pre;position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:900;letter-spacing:.16em;line-height:1.6;color:var(--gold-2);border-radius:18px;border:1px solid rgba(248,221,131,.55);background:linear-gradient(135deg,#07111e,#101d30 55%,#07111e);transform:rotateY(180deg) translateZ(14px);backface-visibility:hidden}
+.report-card-3d img{display:block;width:100%;border-radius:18px;border:1px solid rgba(248,221,131,.58);transform:translateZ(14px);backface-visibility:hidden}
+@keyframes spinReport{
+  0%{transform:rotateY(-18deg) rotateX(6deg)}
+  18%{transform:rotateY(28deg) rotateX(4deg) translateY(-10px)}
+  40%{transform:rotateY(166deg) rotateX(5deg) translateY(-4px)}
+  58%{transform:rotateY(202deg) rotateX(4deg) translateY(-12px)}
+  82%{transform:rotateY(338deg) rotateX(6deg) translateY(-4px)}
+  100%{transform:rotateY(342deg) rotateX(6deg)}
+}
+
+.section{padding:52px 0}
+.paper{background:var(--cream);color:#142131}
+.paper .section-title{font-size:clamp(30px,4vw,50px);line-height:1.12;letter-spacing:-.06em;margin:0 0 14px;color:var(--ink)}
+.paper .lead{margin:0;color:#5e6c7c;font-size:18px;line-height:1.78;max-width:760px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.feature-card{background:#fff;border:1px solid #e5dfd3;border-radius:22px;padding:24px;box-shadow:0 14px 30px rgba(18,32,51,.06)}
+.feature-card b{display:block;margin:12px 0 8px;font-size:22px;color:var(--ink)}
+.feature-card p{margin:0;color:#677586;line-height:1.7}
+.feature-num{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;background:var(--ink);color:var(--gold-2);font-weight:900}
+
+.video-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;background:#091220;color:#fff;border-radius:28px;border:1px solid var(--line);padding:28px}
+.video-shell h3{margin:10px 0 12px;font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.06em}
+.video-shell p{margin:0;color:#cbd5e1;line-height:1.75}
+.video-shell ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.video-shell li{color:var(--gold-2)}
+.video-shell li::before{content:"▸";margin-right:8px;color:var(--gold)}
+.video-card{overflow:hidden;border-radius:22px;padding:8px;background:linear-gradient(135deg,rgba(212,175,55,.64),rgba(255,255,255,.06));box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.video-card video{display:block;width:100%;border-radius:16px;background:#000}
+
+.samples-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.sample-card{margin:0;background:#fff;border:1px solid #e5dfd3;border-radius:18px;padding:8px;overflow:hidden}
+.sample-card img{display:block;width:100%;height:210px;object-fit:cover;object-position:top;border-radius:12px;background:#e5e7eb}
+.sample-card figcaption{display:flex;gap:10px;align-items:center;padding:13px 6px 6px;font-size:14px;font-weight:800;color:var(--ink)}
+.sample-card span{color:#9a7a14}
+
+.areas-section{background:#091220;color:#fff;border-radius:30px;padding:34px;border:1px solid var(--line)}
+.areas-section h3{margin:0 0 10px;font-size:clamp(28px,4vw,44px);text-align:center}
+.areas-section p{margin:0 auto 24px;max-width:720px;text-align:center;color:#cbd5e1;line-height:1.7}
+.areas-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.area-card{text-align:center;padding:18px 10px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05)}
+.area-card small{display:block;margin-bottom:8px;color:var(--gold-2);font-size:22px}
+.area-card b{font-size:14px}
+
+#loginScreen{padding:56px 0 76px}
+.login-shell{max-width:540px;margin:0 auto;background:linear-gradient(180deg,#0c1828,#12243a);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 28px 70px rgba(0,0,0,.28)}
+.login-shell h2{margin:14px 0 10px;font-size:40px;line-height:1.08;letter-spacing:-.06em}
+.login-shell p{margin:0 0 24px;color:#cbd5e1;line-height:1.72}
+.field{margin-bottom:16px}
+.field label{display:block;margin-bottom:7px;font-size:14px;font-weight:800;color:#f3f4f6}
+.field input{width:100%;height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-size:16px;outline:none}
+.field input:focus{border-color:rgba(248,221,131,.72);box-shadow:0 0 0 3px rgba(248,221,131,.14)}
+.error{min-height:22px;color:#ffb4a8;font-size:14px;font-weight:700}
+
+#appScreen{padding:24px 0 40px}
+.app-topbar{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.app-title{font-size:30px;font-weight:900;letter-spacing:-.04em}
+.app-meta{color:#cbd5e1;font-size:14px}
+.app-actions{display:flex;gap:10px;flex-wrap:wrap}
+.app-btn{min-height:46px;padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-weight:900;cursor:pointer}
+.app-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;border:0}
+.app-note{margin-bottom:14px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.06);color:#dbe4f0;line-height:1.65}
+.app-frame{width:100%;min-height:1400px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#fff}
+
+@media (max-width: 900px){
+  .promo-grid,.video-shell{grid-template-columns:1fr}
+  .report-stage{min-height:380px;order:-1}
+  .feature-grid{grid-template-columns:1fr}
+  .samples-grid{grid-template-columns:1fr 1fr}
+  .areas-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 560px){
+  .cta-row,.app-actions{display:grid}
+  .samples-grid,.areas-grid{grid-template-columns:1fr}
+  .intro-skip{top:14px;right:14px}
+  .login-shell{padding:24px}
+}
 </style>
 </head>
-<body>
-<main class="page">
-  <section class="card intro" id="introCard">
-    <div class="eyebrow">G-FIELD PREMIER HYPER FOCUS</div>
-    <div class="badge">소마 프리미어 대비 · 54개 대표 유형 진단</div>
-    <h1>프리미어 합격 진단을 시작합니다.</h1>
-    <p>지필드 영재교육의 누적 합격 데이터를 바탕으로, 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 먼저 점검합니다.</p>
-    <div class="grid">
-      <div class="box"><b>400+ 합격 데이터</b><span>생각하는 황소, 소마 프리미어, 필즈 TOP CLASS, 영재원 데이터를 바탕으로 봅니다.</span></div>
-      <div class="box"><b>54개 핵심 유형</b><span>쌓기나무, 전개도, 경우의 수, 논리 조건 등 대표 유형을 확인합니다.</span></div>
-      <div class="box"><b>약점 유형 리포트</b><span>맞고 틀림보다 어떤 유형에서 흔들리는지 확인합니다.</span></div>
+<body data-view="intro">
+  <section id="introScreen">
+    <button class="intro-skip" type="button" id="skipIntroBtn">SKIP</button>
+    <div class="intro-inner">
+      <div class="intro-kicker">PREMIER HYPER FOCUS</div>
+      <h1 class="intro-title">프리미어 합격을 위한<strong>심화 대표 유형 진단</strong></h1>
+      <p class="intro-copy">3회 누적 진단 리포트와 교재 다운로드까지 한 흐름으로 이어지는 새 페이지입니다.</p>
+      <div class="intro-count" id="introCount">3</div>
     </div>
-    <div class="actions"><button class="primary" type="button" id="showBrief">소개 화면 보기</button><a class="secondary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a></div>
   </section>
-  <section class="card brief" id="briefCard">
-    <div class="eyebrow">PREMIER HYPER FOCUS</div>
-    <div class="badge">진단 전 안내</div>
-    <h1>프리미어 합격 가능성을 먼저 가늠합니다.</h1>
-    <p>소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p>
-    <div class="grid">
-      <div class="box"><b>1. 대표 유형 점검</b><span>쌓기나무, 전개도, 경우의 수, 논리 조건 등 프리미어 대비 핵심 유형을 확인합니다.</span></div>
-      <div class="box"><b>2. 보완 방향 확인</b><span>정답률만 보지 않고 어떤 사고력 유형에서 시간이 걸리는지 확인합니다.</span></div>
-      <div class="box"><b>3. 합격 가능성 예측</b><span>진단 결과를 바탕으로 현재 위치와 다음 보완 방향을 제안합니다.</span></div>
+
+  <main id="promoScreen" class="hidden">
+    <section class="promo-hero">
+      <div class="wrap">
+        <div class="eyebrow">G-FIELD GIFTED EDUCATION</div>
+        <div class="promo-grid">
+          <div>
+            <h1 class="promo-title">지필드 영재교육<br><strong>프리미어 합격 체크리스트</strong></h1>
+            <p class="promo-copy">소마 프리미어 준비 과정에서 자주 흔들리는 사고력 유형을 점검하고, 아이의 현재 약점과 보완 방향, 프리미어 합격 가능성을 함께 확인하는 진단 프로그램입니다.</p>
+            <div class="cta-row">
+              <a class="cta primary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a>
+              <button class="cta secondary" type="button" id="showLoginBtn">로그인해서 진단 시작하기</button>
+            </div>
+            <div class="mini-stats">
+              <div><b>54</b><span>핵심 유형</span></div>
+              <div><b>3</b><span>누적 진단</span></div>
+              <div><b>7</b><span>사고력 영역</span></div>
+            </div>
+          </div>
+          <div class="report-stage" aria-label="3D 리포트 표지">
+            <div class="orbit-ring"></div>
+            <div class="report-card-3d">
+              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="프리미어 진단 리포트 표지">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper">
+      <div class="wrap">
+        <h2 class="section-title">한 번의 점수가 아니라<br>회차별 변화까지 보는 진단입니다.</h2>
+        <p class="lead">문항의 정답 여부만 보지 않고, 어떤 사고력 영역에서 시간이 걸리고 어떤 유형에서 반복적으로 흔들리는지 확인합니다.</p>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-num">01</div><b>54개 핵심 유형</b><p>쌓기나무, 전개도, 경우의 수, 논리 조건 등 프리미어 대비 핵심 유형을 점검합니다.</p></article>
+          <article class="feature-card"><div class="feature-num">02</div><b>3회 누적 진단</b><p>한 번으로 끝나는 진단이 아니라 회차별 변화를 비교해 보완 흐름을 확인합니다.</p></article>
+          <article class="feature-card"><div class="feature-num">03</div><b>회차별 변화 비교</b><p>보완된 유형과 다시 흔들린 유형을 나눠 다음 학습 방향을 정리합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="video-shell">
+          <div>
+            <div class="eyebrow">REPORT PREVIEW</div>
+            <h3>누적 진단 리포트 미리보기</h3>
+            <p>2회차 이후에는 이전 회차와의 변화 흐름, 보완된 유형, 다시 흔들리는 유형을 함께 확인할 수 있습니다. 결과는 영역별 강약점과 오답 분석으로 정리됩니다.</p>
+            <ul>
+              <li>정답률과 수행률 변화</li>
+              <li>영역별 약점 흐름</li>
+              <li>문항별 오답 상세 분석</li>
+            </ul>
+          </div>
+          <div class="video-card">
+            <video autoplay muted loop playsinline preload="auto" src="../premier-hyper-focus/assets/premier-report-ad-fast.mp4"></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper">
+      <div class="wrap">
+        <h2 class="section-title">리포트 샘플 4장</h2>
+        <p class="lead">학생명과 승인번호는 제외하고, 결과 리포트의 구성만 미리 확인할 수 있도록 배치했습니다.</p>
+        <div class="samples-grid">
+          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkqj4hGZfL2B1T_5rkNPit3qjJ1Z6Fm3MSaUxw2LQ64yvrANnkWR6i8qa78SjObf_8tgmbrvBaW9QGeVf3-y81X2j4AjvCspw-TIrcGwbXlKGbWIu8AiVEg2cRU8sMYmZ5eZwkZDvb70c-Mbzvhx4XxQjem93m6dltNujj_PUBbjZAe_HCblWg40aVZhCKZ8o2RwXO9bQLPgjKR94XSBAwsd-OWGWEmTUB_Bz0gMb7sqUAATs1XYj7zcBgk8JH35SQGqbju3XOnTE" alt="개인별 리포트 커버"><figcaption><span>01</span>개인별 리포트 커버</figcaption></figure>
+          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi48xQbJOwciTrlVjaL3PxJgVfp5BwEYZoeoSuhqkPU8N1mTSiap_auNnCiOc19nyGUR8zxH-0OkK5gKBsRFvzFopPvwkb8KKOX3ZtPMAaF6I7p1oCo5XST0nFgLS7nvCfNoJgiTiYPs-G4fLS8IWvb0C7YMb6LFzlcX6T4rDI6nuwgGqXbAlW5p3wkaOYYklah9CtY9FW7r5SwIZiFBUV2cG2Xtra-wVH7Ay8o3ZdglxkcB-mc8CrVNl-uAcEh6jUrzt2wW9zTtU" alt="종합 진단 결과 및 분석"><figcaption><span>02</span>종합 진단 결과 및 분석</figcaption></figure>
+          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0f9OQ3Ta9io3fOYVqiwHSE4fciTaFcaP5lD55h3xARloV12jEH5TxrVfaf9MIYiJtkjCwGudShW1owXq2x_x6M1XVgT3C_vN7Mz-jVYj4YOT67kycg3FCuYzBNd-i22FKsvQYzGhFLaiIf1h2zH0euBAxffFIsa1HRaTiHNNawQpxXiRaAqZkGgMzRCrezLJNkmxNfl-SkBu38CHtiGVecycSBGSSZNM2IWYkzWtBD441p0xqPCbdpDJknokoyOv2-MO72riDIA" alt="회차별 변화도 차트"><figcaption><span>03</span>회차별 변화도 차트</figcaption></figure>
+          <figure class="sample-card"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_MiJafbiMPWzXy3UX339bRqxvaACp-5TJ1ejG8mbe6dhGLZ3cO6Lf2HTc9FWfQJBm1CqPagxlEV6zlaEQnb-QVP51MisA_RliiqR121o_Y7zF1lBK_dOP0HHqeUNC46mAvu8BlIv4hlryCRbHNuah1DaUTGmPGhuRpxKavtjtEIbjNKU-9kU-vBLfHrAfkeOoId8yH8ChPG7yeb3y7IBfYL2uPTUMQXGVeNHTw_l6KBfbYPPuJawtZRou0lDx6TD8d2mN1nE" alt="문항별 오답 분석"><figcaption><span>04</span>문항별 오답 분석</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="areas-section">
+          <h3>7개 핵심 사고력 영역</h3>
+          <p>프리미어 준비 과정에서 자주 흔들리는 핵심 영역을 나눠서 확인합니다.</p>
+          <div class="areas-grid">
+            <div class="area-card"><small>01</small><b>공간지각</b></div>
+            <div class="area-card"><small>02</small><b>평면도형</b></div>
+            <div class="area-card"><small>03</small><b>수 규칙</b></div>
+            <div class="area-card"><small>04</small><b>논리추론</b></div>
+            <div class="area-card"><small>05</small><b>경우의 수</b></div>
+            <div class="area-card"><small>06</small><b>문제해결</b></div>
+            <div class="area-card"><small>07</small><b>지문이해</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="loginScreen" class="hidden">
+    <div class="wrap">
+      <div class="login-shell">
+        <div class="eyebrow">LOGIN</div>
+        <h2>진단 시작 정보를 입력해 주세요.</h2>
+        <p>로그인 후에는 새 페이지 안에서 진단 엔진을 불러오고, 교재 다운로드와 답안/리포트 출력 버튼까지 이어서 사용합니다.</p>
+        <div class="field">
+          <label for="studentNameInput">학생 이름</label>
+          <input id="studentNameInput" type="text" placeholder="학생 이름">
+        </div>
+        <div class="field">
+          <label for="parentPhoneInput">학부모 연락처</label>
+          <input id="parentPhoneInput" type="text" placeholder="010-0000-0000">
+        </div>
+        <div class="field">
+          <label for="authCodeInput">승인번호</label>
+          <input id="authCodeInput" type="password" placeholder="승인번호">
+        </div>
+        <div class="error" id="loginError"></div>
+        <div class="cta-row">
+          <button class="cta primary" type="button" id="enterDiagnosisBtn">진단 페이지 열기</button>
+          <button class="cta secondary" type="button" id="backPromoBtn">홍보 페이지로 돌아가기</button>
+        </div>
+      </div>
     </div>
-    <div class="actions"><a class="secondary" href="https://naver.me/xy7bsjyb" target="_blank" rel="noopener">프로그램 상담 신청하기</a><a class="primary" id="startDiagnosis" href="../premier-hyper-focus/?v=diagnosis-from-new-intro">로그인해서 진단 시작하기</a></div>
-    <div class="note">학생명과 승인번호는 진단 페이지에서만 입력합니다.</div>
   </section>
-</main>
+
+  <section id="appScreen" class="hidden">
+    <div class="wrap">
+      <div class="app-topbar">
+        <div>
+          <div class="app-title">프리미어 하이퍼 포커스 진단</div>
+          <div class="app-meta" id="appMeta"></div>
+        </div>
+        <div class="app-actions">
+          <button class="app-btn gold" type="button" id="bookDownloadBtn" disabled>교재 다운로드</button>
+          <button class="app-btn" type="button" id="answerPrintBtn" disabled>전체 답안 인쇄</button>
+          <button class="app-btn" type="button" id="reportPrintBtn" disabled>종합 리포트 인쇄</button>
+        </div>
+      </div>
+      <div class="app-note" id="appNote">진단 엔진을 불러오는 중입니다. 첫 로딩에는 몇 초 정도 걸릴 수 있습니다.</div>
+      <iframe id="diagnosisFrame" class="app-frame" title="프리미어 진단 엔진"></iframe>
+    </div>
+  </section>
+
 <script>
-document.getElementById('showBrief').addEventListener('click',function(){document.body.classList.add('show-brief');window.scrollTo({top:0,behavior:'smooth'});});
-document.getElementById('startDiagnosis').addEventListener('click',function(){try{sessionStorage.setItem('gfieldPreLoginBriefDone','1')}catch(e){}});
+const state = {
+  introDone: false,
+  diagnosisBooted: false,
+  frameReady: false,
+  frameSyncStarted: false,
+  user: { name: "", phone: "", code: "" }
+};
+
+const DIAGNOSIS_URL = "../premier-hyper-focus/index.snapshot-5eb1f38.html?v=embedded-new";
+
+const introScreen = document.getElementById("introScreen");
+const promoScreen = document.getElementById("promoScreen");
+const loginScreen = document.getElementById("loginScreen");
+const appScreen = document.getElementById("appScreen");
+const introCount = document.getElementById("introCount");
+const loginError = document.getElementById("loginError");
+const appMeta = document.getElementById("appMeta");
+const appNote = document.getElementById("appNote");
+const diagnosisFrame = document.getElementById("diagnosisFrame");
+const FRAME_ACTION_LABELS = {
+  downloadBookPdf: "교재 다운로드",
+  downloadAnswerPdf: "전체 답안",
+  downloadReportPdf: "종합 리포트"
+};
+const ACTION_BUTTON_IDS = {
+  downloadBookPdf: "bookDownloadBtn",
+  downloadAnswerPdf: "answerPrintBtn",
+  downloadReportPdf: "reportPrintBtn"
+};
+
+function setView(view){
+  document.body.dataset.view = view;
+  introScreen.classList.toggle("hidden", view !== "intro");
+  promoScreen.classList.toggle("hidden", view !== "promo");
+  loginScreen.classList.toggle("hidden", view !== "login");
+  appScreen.classList.toggle("hidden", view !== "app");
+}
+
+function finishIntro(){
+  if (state.introDone) return;
+  state.introDone = true;
+  setView("promo");
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function runIntro(){
+  const steps = ["3", "2", "1"];
+  let index = 0;
+  introCount.textContent = steps[index];
+  const timer = setInterval(() => {
+    index += 1;
+    if (index >= steps.length){
+      clearInterval(timer);
+      setTimeout(finishIntro, 700);
+      return;
+    }
+    introCount.textContent = steps[index];
+  }, 900);
+  document.getElementById("skipIntroBtn").addEventListener("click", () => {
+    clearInterval(timer);
+    finishIntro();
+  }, { once: true });
+}
+
+function showLogin(){
+  setView("login");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  setTimeout(() => document.getElementById("studentNameInput").focus(), 120);
+}
+
+function readLogin(){
+  return {
+    name: document.getElementById("studentNameInput").value.trim(),
+    phone: document.getElementById("parentPhoneInput").value.trim(),
+    code: document.getElementById("authCodeInput").value.trim()
+  };
+}
+
+function validateLogin(user){
+  if (!user.name) return "학생 이름을 입력해 주세요.";
+  if (!user.code) return "승인번호를 입력해 주세요.";
+  if (!user.code.startsWith("777200")) return "승인번호 형식을 다시 확인해 주세요.";
+  return "";
+}
+
+function updateMeta(){
+  appMeta.textContent = `${state.user.name} · ${state.user.code}`;
+}
+
+function setActionButtonsEnabled(enabled){
+  Object.values(ACTION_BUTTON_IDS).forEach((id) => {
+    const button = document.getElementById(id);
+    if (!button) return;
+    button.disabled = !enabled;
+  });
+}
+
+function loadDiagnosisFrame(){
+  if (state.diagnosisBooted) return;
+  state.diagnosisBooted = true;
+  diagnosisFrame.src = DIAGNOSIS_URL;
+}
+
+function syncFrameUserInfo(){
+  const frameWindow = diagnosisFrame.contentWindow;
+  const frameDocument = diagnosisFrame.contentDocument;
+  if (!frameWindow || !frameDocument) return false;
+
+  const loginCard = frameDocument.querySelector(".login-card");
+  if (!loginCard) return false;
+
+  const intro = frameDocument.getElementById("gfieldIntro");
+  if (intro) intro.style.display = "none";
+  const brief = frameDocument.getElementById("preLoginBrief");
+  if (brief) brief.style.display = "none";
+  const briefRecovery = frameDocument.getElementById("preLoginBriefRecovery");
+  if (briefRecovery) briefRecovery.style.display = "none";
+
+  loginCard.classList.remove("prelogin-locked");
+  loginCard.style.display = "";
+  loginCard.hidden = false;
+
+  const studentInput = frameDocument.getElementById("studentName");
+  const phoneInput = frameDocument.getElementById("parentPhone");
+  const codeInput = frameDocument.getElementById("authCode");
+  if (!studentInput || !codeInput) return false;
+
+  studentInput.value = state.user.name;
+  if (phoneInput) phoneInput.value = state.user.phone;
+  codeInput.value = state.user.code;
+
+  studentInput.dispatchEvent(new Event("input", { bubbles: true }));
+  if (phoneInput) phoneInput.dispatchEvent(new Event("input", { bubbles: true }));
+  codeInput.dispatchEvent(new Event("input", { bubbles: true }));
+
+  const submitButton = loginCard.querySelector("button");
+  if (!submitButton) return false;
+  submitButton.click();
+  state.frameReady = true;
+  setActionButtonsEnabled(true);
+  appNote.textContent = "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.";
+  return true;
+}
+
+function bootDiagnosis(){
+  const user = readLogin();
+  const error = validateLogin(user);
+  loginError.textContent = error;
+  if (error) return;
+
+  state.user = user;
+  updateMeta();
+  state.frameReady = false;
+  setActionButtonsEnabled(false);
+  setView("app");
+  loadDiagnosisFrame();
+  appNote.textContent = "진단 엔진을 불러오고 로그인 정보를 전달하는 중입니다.";
+
+  let tries = 0;
+  const poll = setInterval(() => {
+    tries += 1;
+    try {
+      if (syncFrameUserInfo()){
+        clearInterval(poll);
+      }
+    } catch (errorSync) {
+      if (tries > 50){
+        clearInterval(poll);
+        appNote.textContent = "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.";
+      }
+    }
+    if (tries > 50){
+      clearInterval(poll);
+      appNote.textContent = "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.";
+    }
+  }, 500);
+}
+
+function setActionButtonBusy(name, busy){
+  const button = document.getElementById(ACTION_BUTTON_IDS[name]);
+  if (!button) return;
+  if (busy){
+    if (!button.dataset.originalText) button.dataset.originalText = button.textContent.trim();
+    button.disabled = true;
+    button.textContent = "생성중...";
+    return;
+  }
+  button.disabled = false;
+  if (button.dataset.originalText) button.textContent = button.dataset.originalText;
+}
+
+function clickFrameActionFallback(name){
+  const frameDocument = diagnosisFrame.contentDocument;
+  if (!frameDocument) return false;
+
+  const exactButton = frameDocument.querySelector(`button[onclick="${name}()"]`);
+  if (exactButton){
+    exactButton.click();
+    return true;
+  }
+
+  const label = FRAME_ACTION_LABELS[name];
+  if (!label) return false;
+
+  const matchedButton = Array.from(frameDocument.querySelectorAll("button")).find((button) => {
+    return (button.textContent || "").includes(label);
+  });
+
+  if (!matchedButton) return false;
+  matchedButton.click();
+  return true;
+}
+
+function callFrameAction(name){
+  if (!state.frameReady){
+    alert("진단 엔진 연결이 아직 끝나지 않았습니다. 잠시 후 다시 시도해 주세요.");
+    return;
+  }
+  setActionButtonBusy(name, true);
+  try {
+    syncFrameUserInfo();
+    const frameWindow = diagnosisFrame.contentWindow;
+    if (frameWindow && typeof frameWindow[name] === "function"){
+      frameWindow[name]();
+      setTimeout(() => setActionButtonBusy(name, false), 2200);
+      return;
+    }
+    if (clickFrameActionFallback(name)){
+      setTimeout(() => setActionButtonBusy(name, false), 2200);
+      return;
+    }
+  } catch (error) {}
+  setActionButtonBusy(name, false);
+  alert("진단 엔진이 아직 준비되지 않았습니다. 잠시 후 다시 시도해 주세요.");
+}
+
+document.getElementById("showLoginBtn").addEventListener("click", showLogin);
+document.getElementById("backPromoBtn").addEventListener("click", () => setView("promo"));
+document.getElementById("enterDiagnosisBtn").addEventListener("click", bootDiagnosis);
+document.getElementById("bookDownloadBtn").addEventListener("click", () => callFrameAction("downloadBookPdf"));
+document.getElementById("answerPrintBtn").addEventListener("click", () => callFrameAction("downloadAnswerPdf"));
+document.getElementById("reportPrintBtn").addEventListener("click", () => callFrameAction("downloadReportPdf"));
+document.getElementById("authCodeInput").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") bootDiagnosis();
+});
+diagnosisFrame.addEventListener("load", () => {
+  if (document.body.dataset.view === "app"){
+    appNote.textContent = "진단 엔진이 로드되었습니다. 로그인 정보를 연결하는 중입니다.";
+  }
+});
+
+runIntro();
 </script>
 </body>
 </html>
