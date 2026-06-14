@@ -417,6 +417,8 @@ const state = {
 
 const DIAGNOSIS_URL = "../premier-hyper-focus/index.snapshot-5eb1f38.html?v=embedded-new";
 const BOOK_IMAGE_URLS = Array.from({ length: 29 }, (_, index) => `../premier-hyper-focus/assets/book/book_${String(index + 1).padStart(3, "0")}.jpg`);
+const ROOT_ANSWER_SOURCE_URL = "../index.html?v=shared-answer-data";
+const ROOT_ANSWER_SOURCE_FALLBACK_URL = "https://docssam1.github.io/Hyper-Focus-answer-Key/?v=shared-answer-data";
 const ACTION_BUSY_LABELS = {
   downloadBookPdf: "교재 PDF 생성중...",
   downloadAnswerPdf: "답안 준비중...",
@@ -445,6 +447,7 @@ const ACTION_BUTTON_IDS = {
   downloadAnswerPdf: "answerPrintBtn",
   downloadReportPdf: "reportPrintBtn"
 };
+let SHARED_ANSWER_DATA = null;
 
 function setView(view){
   document.body.dataset.view = view;
@@ -624,30 +627,12 @@ function bootDiagnosis(){
 
   state.user = user;
   updateMeta();
-  state.frameReady = false;
-  setActionButtonsEnabled(false);
   setView("app");
-  loadDiagnosisFrame();
-  setEngineLoading(true, "진단 엔진을 크게 불러오고 학생 정보를 연결하는 중입니다.");
-
-  let tries = 0;
-  const poll = setInterval(() => {
-    tries += 1;
-    try {
-      if (syncFrameUserInfo()){
-        clearInterval(poll);
-      }
-    } catch (errorSync) {
-      if (tries > 50){
-        clearInterval(poll);
-        setEngineLoading(false, "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.");
-      }
-    }
-    if (tries > 50){
-      clearInterval(poll);
-      setEngineLoading(false, "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.");
-    }
-  }, 500);
+  setEngineLoading(true, "진단 페이지로 바로 이동하고 있습니다.");
+  const nextUrl = `${DIAGNOSIS_URL}&autostart=1&name=${encodeURIComponent(user.name)}&phone=${encodeURIComponent(user.phone)}&code=${encodeURIComponent(user.code)}`;
+  window.setTimeout(() => {
+    window.location.href = nextUrl;
+  }, 180);
 }
 
 function setActionButtonBusy(name, busy){
@@ -684,6 +669,12 @@ function loadScript(src){
 async function ensureJsPdf(){
   if (!window.jspdf){
     await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js");
+  }
+}
+
+async function ensureHtml2Pdf(){
+  if (!window.html2pdf){
+    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js");
   }
 }
 
@@ -749,6 +740,131 @@ function addPdfFooter(pdf, pageWidth, pageHeight, text){
   pdf.text(text, pageWidth / 2, pageHeight - 6, { align: "center" });
 }
 
+function escapeHtml(value){
+  return String(value).replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
+}
+
+function createExportRoot(){
+  const oldRoot = document.getElementById("pdfExportRoot");
+  if (oldRoot) oldRoot.remove();
+  const root = document.createElement("div");
+  root.id = "pdfExportRoot";
+  root.style.position = "absolute";
+  root.style.left = "0";
+  root.style.top = "0";
+  root.style.width = "794px";
+  root.style.opacity = "1";
+  root.style.pointerEvents = "none";
+  root.style.background = "#fff";
+  root.style.zIndex = "-1";
+  document.body.appendChild(root);
+  return root;
+}
+
+function extractSharedAnswerData(html){
+  const startToken = "const data = [";
+  const endToken = "const selectedSet";
+  const start = html.indexOf(startToken);
+  const end = html.indexOf(endToken, start);
+  if (start < 0 || end < 0) throw new Error("공통 답안 데이터를 찾지 못했습니다.");
+  const arrayCode = html.slice(start + "const data = ".length, end).trim().replace(/;\s*$/, "");
+  return Function(`"use strict"; return (${arrayCode});`)();
+}
+
+async function loadSharedAnswerData(){
+  if (Array.isArray(SHARED_ANSWER_DATA) && SHARED_ANSWER_DATA.length) return SHARED_ANSWER_DATA;
+  const sources = [ROOT_ANSWER_SOURCE_URL, ROOT_ANSWER_SOURCE_FALLBACK_URL];
+  let lastError = null;
+  for (const source of sources){
+    try {
+      const response = await fetch(source, { cache: "no-store" });
+      if (!response.ok) throw new Error("공통 답안 페이지를 불러오지 못했습니다.");
+      const html = await response.text();
+      SHARED_ANSWER_DATA = extractSharedAnswerData(html);
+      if (Array.isArray(SHARED_ANSWER_DATA) && SHARED_ANSWER_DATA.length) return SHARED_ANSWER_DATA;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error("공통 답안 데이터를 찾지 못했습니다.");
+}
+
+async function getAnswerItems(){
+  const source = await loadSharedAnswerData();
+  const items = [];
+  source.forEach((category) => {
+    (category.items || []).forEach((item) => {
+      items.push({
+        id: item.id,
+        text: item.text || "",
+        ans: item.ans || "",
+        tTip: item.tTip || "",
+        mTip: item.mTip || "",
+        categoryNum: category.categoryNum || "",
+        categoryTitle: category.categoryTitle || ""
+      });
+    });
+  });
+  return items.sort((a, b) => a.id - b.id);
+}
+
+async function buildAnswerExportNode(){
+  const items = await getAnswerItems();
+  const root = createExportRoot();
+  const sheet = document.createElement("section");
+  sheet.style.position = "relative";
+  sheet.style.background = "#fff";
+  sheet.style.color = "#111";
+  sheet.style.padding = "22px";
+  sheet.style.fontFamily = '"Noto Sans KR", system-ui, sans-serif';
+
+  let html = `<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-28deg);opacity:.035;color:#8f959d;font-weight:800;font-size:42px;letter-spacing:.08em;white-space:nowrap;">${escapeHtml(stampText())}</div>`;
+  html += `<section style="padding:22px;border:1px solid #e5e7eb;border-radius:18px;margin-bottom:18px;">
+    <div style="font-size:12px;font-weight:900;letter-spacing:.18em;color:#8a6b00;">PREMIER HYPER FOCUS</div>
+    <h1 style="margin:10px 0 12px;font-size:34px;line-height:1.2;color:#0f172a;">소마 프리미어<br>전체 답안·해설</h1>
+    <div style="font-size:14px;line-height:1.9;color:#334155;">
+      <div><strong>${escapeHtml(state.user.name || "학생")}</strong> 학생</div>
+      <div>승인번호: <strong>${escapeHtml(state.user.code || "승인번호")}</strong></div>
+      ${state.user.phone ? `<div>연락처: ${escapeHtml(state.user.phone)}</div>` : ""}
+      <div>총 ${items.length}문제 답안과 해설</div>
+    </div>
+  </section>`;
+
+  let currentCategory = "";
+  items.forEach((item) => {
+    const categoryKey = `${item.categoryNum}.${item.categoryTitle}`;
+    if (categoryKey !== currentCategory){
+      currentCategory = categoryKey;
+      html += `<section style="page-break-inside:avoid;break-inside:avoid;margin-bottom:14px;"><h2 style="margin:18px 0 12px;font-size:21px;color:#0f172a;border-bottom:2px solid #0f172a;padding-bottom:8px;">유형 ${escapeHtml(item.categoryNum)}. ${escapeHtml(item.categoryTitle)}</h2></section>`;
+    }
+    html += `<article style="page-break-inside:avoid;break-inside:avoid;border:1px solid #e5e7eb;border-radius:14px;padding:14px 16px;margin-bottom:12px;">
+      <h3 style="margin:0 0 8px;font-size:16px;line-height:1.6;color:#111827;">${String(item.id).padStart(2, "0")}번. ${escapeHtml(item.text)}</h3>
+      <p style="margin:0 0 7px;font-size:14px;line-height:1.7;color:#1f2937;"><strong>정답:</strong> ${escapeHtml(item.ans)}</p>
+      <p style="margin:0 0 6px;font-size:13px;line-height:1.75;color:#334155;"><strong>해설 핵심:</strong> ${escapeHtml(item.tTip)}</p>
+      <p style="margin:0;font-size:13px;line-height:1.75;color:#334155;"><strong>지도 포인트:</strong> ${escapeHtml(item.mTip)}</p>
+    </article>`;
+  });
+
+  sheet.innerHTML = html;
+  root.appendChild(sheet);
+  return root;
+}
+
+async function exportHtmlToPdf(element, filename){
+  await ensureHtml2Pdf();
+  await new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 120)));
+  const options = {
+    margin: [6, 6, 6, 6],
+    filename,
+    image: { type: "jpeg", quality: 0.96 },
+    html2canvas: { scale: 2, useCORS: true, allowTaint: true, backgroundColor: "#ffffff", scrollY: 0 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    pagebreak: { mode: ["css", "legacy"] }
+  };
+  await html2pdf().set(options).from(element).save();
+  setTimeout(() => element.remove(), 50);
+}
+
 async function downloadBookPdfDirect(){
   setActionButtonBusy("downloadBookPdf", true);
   try {
@@ -781,6 +897,23 @@ async function downloadBookPdfDirect(){
     alert("교재 PDF 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
   } finally {
     setActionButtonBusy("downloadBookPdf", false);
+  }
+}
+
+async function downloadAnswerPdfDirect(){
+  setActionButtonBusy("downloadAnswerPdf", true);
+  try {
+    if (!state.user.name || !state.user.code){
+      alert("학생 이름과 승인번호를 먼저 입력해 주세요.");
+      return;
+    }
+    const exportNode = await buildAnswerExportNode();
+    const filename = `${sanitizeFilename(`프리미어_전체답안_${stampText()}`)}.pdf`;
+    await exportHtmlToPdf(exportNode, filename);
+  } catch (error) {
+    alert("답안 PDF 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+  } finally {
+    setActionButtonBusy("downloadAnswerPdf", false);
   }
 }
 
@@ -833,7 +966,7 @@ document.getElementById("showLoginBtn").addEventListener("click", showLogin);
 document.getElementById("backPromoBtn").addEventListener("click", () => setView("promo"));
 document.getElementById("enterDiagnosisBtn").addEventListener("click", bootDiagnosis);
 document.getElementById("bookDownloadBtn").addEventListener("click", downloadBookPdfDirect);
-document.getElementById("answerPrintBtn").addEventListener("click", () => callFrameAction("downloadAnswerPdf"));
+document.getElementById("answerPrintBtn").addEventListener("click", downloadAnswerPdfDirect);
 document.getElementById("reportPrintBtn").addEventListener("click", () => callFrameAction("downloadReportPdf"));
 document.getElementById("authCodeInput").addEventListener("keydown", (event) => {
   if (event.key === "Enter") bootDiagnosis();
