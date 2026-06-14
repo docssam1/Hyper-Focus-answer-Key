@@ -18,6 +18,7 @@ html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:sys
   const BASE_URL = "https://raw.githubusercontent.com/docssam1/Hyper-Focus-answer-Key/ebcbacd3ef208a8ba2de36babc35a3858e08e23d/premier-hyper-focus/index.html";
   const LOGO_URL = "https://lh3.googleusercontent.com/d/1c2yx_O6sKcTF9-YoTKxnQ2lWOqfWiUCL";
   const SCOREBOARD_DATA = "const recordData={left:[{title:'생각하는 황소 경시합격',years:[['2021',15],['2022',14],['2023',18],['2024',29],['2025',20],['2026',12]],total:108},{title:'대치 소마 프리미어',years:[['2020',10],['2021',11],['2022',5],['2023',12],['2024',7],['2025',8],['2026',8]],total:61}],right:[{title:'대치 필즈 더 클래식 TOP CLASS',years:[['2021',8],['2023',13],['2024',17],['2025',10]],total:48},{title:'영재원 & 성대경시',years:[['교육청 영재원',89],['대학부설 영재원',78],['성대경시 대상',13]],total:180}],grand:400};";
+  const RECOVERY_JS = '<script src="./intro-recovery.js?v=20260614"></' + 'script>';
   const PATCH_CSS = `
 <style id="premier-phase1-css">
 #G_FIELD_PAGE_READY_MARKER{display:none}
@@ -344,7 +345,7 @@ setInterval(readyPatch,350);readyPatch();
   html = html.split("},900);").join("},850);");
   html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>{ if (window.gfieldIntroGoBrief) { window.gfieldIntroGoBrief(); } else if (window.gfieldIntroGoDiagnosis) { window.gfieldIntroGoDiagnosis(); } },15200)");
   html = html.replace("</head>", PATCH_CSS + "</head>");
-  html = html.replace("</body>", PATCH_JS + '<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
+  html = html.replace("</body>", PATCH_JS + RECOVERY_JS + '<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();
   document.write(html);
   document.close();
