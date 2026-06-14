@@ -168,7 +168,21 @@ background-size:42px 42px;opacity:.55}
 .app-btn{min-height:46px;padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;font-weight:900;cursor:pointer}
 .app-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;border:0}
 .app-note{margin-bottom:14px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.06);color:#dbe4f0;line-height:1.65}
-.app-frame{width:100%;min-height:1400px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#fff}
+.app-frame-wrap{position:relative}
+.app-frame{width:100%;min-height:1880px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:#fff}
+.app-loading{position:absolute;inset:0;display:grid;place-items:center;padding:22px;border-radius:22px;background:linear-gradient(180deg,rgba(5,12,21,.84),rgba(9,18,32,.72));backdrop-filter:blur(8px);z-index:2}
+.app-loading.hidden{display:none!important}
+.app-loading-card{width:min(520px,100%);padding:28px;border-radius:26px;border:1px solid rgba(248,221,131,.22);background:linear-gradient(180deg,rgba(11,22,38,.94),rgba(12,30,52,.84));box-shadow:0 24px 70px rgba(0,0,0,.34);text-align:center}
+.app-loading-card b{display:block;font-size:24px;letter-spacing:-.05em}
+.app-loading-card p{margin:10px 0 0;color:#d2dcea;line-height:1.75}
+.app-loading-dots{display:inline-flex;gap:10px;margin-bottom:16px}
+.app-loading-dots span{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));animation:loadingPulse 1.2s ease-in-out infinite}
+.app-loading-dots span:nth-child(2){animation-delay:.18s}
+.app-loading-dots span:nth-child(3){animation-delay:.36s}
+@keyframes loadingPulse{
+  0%,100%{transform:translateY(0);opacity:.4}
+  50%{transform:translateY(-6px);opacity:1}
+}
 
 @media (max-width: 900px){
   .promo-grid,.video-shell{grid-template-columns:1fr}
@@ -379,7 +393,16 @@ background-size:42px 42px;opacity:.55}
         </div>
       </div>
       <div class="app-note" id="appNote">진단 엔진을 불러오는 중입니다. 첫 로딩에는 몇 초 정도 걸릴 수 있습니다.</div>
-      <iframe id="diagnosisFrame" class="app-frame" title="프리미어 진단 엔진"></iframe>
+      <div class="app-frame-wrap">
+        <div class="app-loading" id="appLoading">
+          <div class="app-loading-card">
+            <div class="app-loading-dots"><span></span><span></span><span></span></div>
+            <b>진단 엔진 연결 중입니다.</b>
+            <p id="appLoadingText">학생 정보와 진단 화면을 연결하고 있습니다. 첫 로딩에는 몇 초 정도 걸릴 수 있습니다.</p>
+          </div>
+        </div>
+        <iframe id="diagnosisFrame" class="app-frame" title="프리미어 진단 엔진"></iframe>
+      </div>
     </div>
   </section>
 
@@ -409,6 +432,8 @@ const introPhases = Array.from(document.querySelectorAll(".intro-phase"));
 const loginError = document.getElementById("loginError");
 const appMeta = document.getElementById("appMeta");
 const appNote = document.getElementById("appNote");
+const appLoading = document.getElementById("appLoading");
+const appLoadingText = document.getElementById("appLoadingText");
 const diagnosisFrame = document.getElementById("diagnosisFrame");
 const FRAME_ACTION_LABELS = {
   downloadBookPdf: "교재 다운로드",
@@ -509,6 +534,31 @@ function setActionButtonsEnabled(enabled){
   });
 }
 
+function setEngineLoading(loading, message){
+  if (message){
+    appNote.textContent = message;
+    appLoadingText.textContent = message;
+  }
+  appLoading.classList.toggle("hidden", !loading);
+}
+
+function patchFrameUi(frameDocument){
+  if (!frameDocument || frameDocument.getElementById("codexFrameCleanupStyle")) return;
+  const style = frameDocument.createElement("style");
+  style.id = "codexFrameCleanupStyle";
+  style.textContent = `
+    .action-btns .download-book-btn,
+    .action-btns .download-answer-btn,
+    .action-btns .download-report-btn{display:none!important}
+    .result-actions button[onclick="downloadBookPdf()"],
+    .result-actions button[onclick="downloadAnswerPdf()"],
+    .result-actions button[onclick="downloadReportPdf()"]{display:none!important}
+    .login-card{max-width:720px!important}
+    #page2,.page2,.container{scroll-margin-top:18px}
+  `;
+  frameDocument.head.appendChild(style);
+}
+
 function loadDiagnosisFrame(){
   if (state.diagnosisBooted) return;
   state.diagnosisBooted = true;
@@ -519,6 +569,7 @@ function syncFrameUserInfo(){
   const frameWindow = diagnosisFrame.contentWindow;
   const frameDocument = diagnosisFrame.contentDocument;
   if (!frameWindow || !frameDocument) return false;
+  patchFrameUi(frameDocument);
 
   const loginCard = frameDocument.querySelector(".login-card");
   if (!loginCard){
@@ -526,7 +577,7 @@ function syncFrameUserInfo(){
     if (readySignal){
       state.frameReady = true;
       setActionButtonsEnabled(true);
-      appNote.textContent = "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.";
+      setEngineLoading(false, "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.");
       return true;
     }
     return false;
@@ -561,7 +612,7 @@ function syncFrameUserInfo(){
   submitButton.click();
   state.frameReady = true;
   setActionButtonsEnabled(true);
-  appNote.textContent = "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.";
+  setEngineLoading(false, "진단 엔진이 연결되었습니다. 아래 화면에서 바로 이어서 사용할 수 있습니다.");
   return true;
 }
 
@@ -577,7 +628,7 @@ function bootDiagnosis(){
   setActionButtonsEnabled(false);
   setView("app");
   loadDiagnosisFrame();
-  appNote.textContent = "진단 엔진을 불러오고 로그인 정보를 전달하는 중입니다.";
+  setEngineLoading(true, "진단 엔진을 크게 불러오고 학생 정보를 연결하는 중입니다.");
 
   let tries = 0;
   const poll = setInterval(() => {
@@ -589,12 +640,12 @@ function bootDiagnosis(){
     } catch (errorSync) {
       if (tries > 50){
         clearInterval(poll);
-        appNote.textContent = "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.";
+        setEngineLoading(false, "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.");
       }
     }
     if (tries > 50){
       clearInterval(poll);
-      appNote.textContent = "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.";
+      setEngineLoading(false, "진단 엔진 자동 연결이 지연되고 있습니다. 아래 프레임이 보이면 한 번만 직접 진행해 주세요.");
     }
   }, 500);
 }
@@ -789,7 +840,7 @@ document.getElementById("authCodeInput").addEventListener("keydown", (event) => 
 });
 diagnosisFrame.addEventListener("load", () => {
   if (document.body.dataset.view === "app"){
-    appNote.textContent = "진단 엔진이 로드되었습니다. 로그인 정보를 연결하는 중입니다.";
+    setEngineLoading(true, "진단 엔진이 로드되었습니다. 로그인 정보를 연결하는 중입니다.");
   }
 });
 
