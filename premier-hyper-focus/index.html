@@ -260,9 +260,6 @@ login.hidden=true;
 }
 window.scrollTo(0,0);
 }
-window.gfieldIntroGoBrief=function(){
-forcePreLoginView();
-};
 function guardPreLoginView(){
 if(window.__premierPreLoginGuardStarted)return;
 window.__premierPreLoginGuardStarted=true;
@@ -343,7 +340,6 @@ setInterval(readyPatch,350);readyPatch();
   html = html.replace(/let n=5;/g,"let n=3;");
   html = html.split("},900);").join("},850);");
   html = html.replace(/setTimeout\(\(\)=>window\.gfieldIntroGoDiagnosis\(\),20300\)/g,"setTimeout(()=>window.gfieldIntroGoDiagnosis(),15200)");
-  html = html.replace(/window\.gfieldIntroGoDiagnosis\(\)/g,"window.gfieldIntroGoBrief()");
   html = html.replace("</head>", PATCH_CSS + "</head>");
   html = html.replace("</body>", PATCH_JS + '<div id="G_FIELD_PAGE_READY_MARKER"></div></body>');
   document.open();
