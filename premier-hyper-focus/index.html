@@ -230,6 +230,39 @@ brief.style.display='block';
 login.classList.add('prelogin-locked');
 }
 }
+function forcePreLoginView(){
+window.gfieldPreLoginStarted=false;
+const page1=document.getElementById('page1');
+const page2=document.getElementById('page2');
+const login=document.querySelector('.login-card');
+if(page1){
+page1.style.display='block';
+page1.hidden=false;
+}
+if(page2){
+page2.style.display='none';
+page2.hidden=true;
+}
+patchActions();
+patchPreLogin();
+const brief=document.getElementById('preLoginBrief');
+if(brief)brief.style.display='block';
+if(login)login.classList.add('prelogin-locked');
+window.scrollTo(0,0);
+}
+function hookIntroGate(){
+if(window.__premierIntroGateHooked)return;
+if(typeof window.gfieldIntroGoDiagnosis!=='function')return;
+const original=window.gfieldIntroGoDiagnosis;
+window.gfieldIntroGoDiagnosis=function(){
+try{
+original.apply(this,arguments);
+}finally{
+setTimeout(forcePreLoginView,0);
+}
+};
+window.__premierIntroGateHooked=true;
+}
 function createWatermarkImage(text){const canvas=document.createElement('canvas');canvas.width=1240;canvas.height=1754;const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.translate(canvas.width/2,canvas.height/2);ctx.rotate(-Math.PI/180*28);ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='rgba(143,145,155,0.06)';ctx.font='800 84px "Noto Sans KR", sans-serif';ctx.fillText(text,0,0);return canvas.toDataURL('image/png')}
 function addPdfWatermarkImage(pdf,pageWidth,pageHeight,dataUrl){pdf.addImage(dataUrl,'PNG',0,0,pageWidth,pageHeight,undefined,'FAST')}
 function createExportRoot(){const old=document.getElementById('pdfExportRoot');if(old)old.remove();const root=document.createElement('div');root.id='pdfExportRoot';root.className='pdf-export-root';document.body.appendChild(root);return root}
@@ -252,7 +285,7 @@ window.BOOK_IMAGE_URLS=BOOK_IMAGE_URLS;
 window.downloadBookPdf=downloadBookPdf;
 window.downloadAnswerPdf=downloadAnswerPdf;
 window.downloadReportPdf=downloadReportPdf;
-function readyPatch(){replaceIntroWording();patchActions();patchPreLogin();const logo=document.querySelector('#gfieldIntro .intro-logo');if(logo)logo.src='${LOGO_URL}';if(document.querySelector('#gfieldIntroScene3.on'))runTypes()}
+function readyPatch(){replaceIntroWording();hookIntroGate();patchActions();patchPreLogin();const logo=document.querySelector('#gfieldIntro .intro-logo');if(logo)logo.src='${LOGO_URL}';if(document.querySelector('#gfieldIntroScene3.on'))runTypes()}
 setInterval(readyPatch,350);readyPatch();
 })();
 <\/script>`;
