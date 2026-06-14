@@ -102,15 +102,9 @@
     if (shouldForceBrief()) showBrief();
   }
 
-  function boot() {
+  window.addEventListener('load', () => {
     ensureBrief();
     setTimeout(showBrief, INTRO_TIMEOUT_MS);
     setInterval(tick, POLL_MS);
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    boot();
-  } else {
-    window.addEventListener('load', boot, { once: true });
-  }
+  });
 })();
