@@ -214,6 +214,8 @@ btn.onclick=function(){
 window.gfieldPreLoginStarted=true;
 brief.style.display='none';
 login.classList.remove('prelogin-locked');
+login.style.display='';
+login.hidden=false;
 login.scrollIntoView({behavior:'smooth',block:'center'});
 setTimeout(function(){
 const first=login.querySelector('input,button,select,textarea');
@@ -225,9 +227,13 @@ if(first&&typeof first.focus==='function')first.focus({preventScroll:true});
 if(window.gfieldPreLoginStarted){
 brief.style.display='none';
 login.classList.remove('prelogin-locked');
+login.style.display='';
+login.hidden=false;
 }else{
 brief.style.display='block';
 login.classList.add('prelogin-locked');
+login.style.display='none';
+login.hidden=true;
 }
 }
 function forcePreLoginView(){
@@ -247,8 +253,34 @@ patchActions();
 patchPreLogin();
 const brief=document.getElementById('preLoginBrief');
 if(brief)brief.style.display='block';
-if(login)login.classList.add('prelogin-locked');
+if(login){
+login.classList.add('prelogin-locked');
+login.style.display='none';
+login.hidden=true;
+}
 window.scrollTo(0,0);
+}
+function guardPreLoginView(){
+if(window.__premierPreLoginGuardStarted)return;
+window.__premierPreLoginGuardStarted=true;
+setInterval(function(){
+if(window.gfieldPreLoginStarted)return;
+const intro=document.getElementById('gfieldIntro');
+if(intro&&getComputedStyle(intro).display!=='none'&&intro.offsetParent!==null)return;
+const page2=document.getElementById('page2');
+const login=document.querySelector('.login-card');
+const brief=document.getElementById('preLoginBrief');
+if(page2){
+page2.style.display='none';
+page2.hidden=true;
+}
+if(brief)brief.style.display='block';
+if(login){
+login.classList.add('prelogin-locked');
+login.style.display='none';
+login.hidden=true;
+}
+},200);
 }
 function hookIntroGate(){
 if(window.__premierIntroGateHooked)return;
@@ -285,7 +317,7 @@ window.BOOK_IMAGE_URLS=BOOK_IMAGE_URLS;
 window.downloadBookPdf=downloadBookPdf;
 window.downloadAnswerPdf=downloadAnswerPdf;
 window.downloadReportPdf=downloadReportPdf;
-function readyPatch(){replaceIntroWording();hookIntroGate();patchActions();patchPreLogin();const logo=document.querySelector('#gfieldIntro .intro-logo');if(logo)logo.src='${LOGO_URL}';if(document.querySelector('#gfieldIntroScene3.on'))runTypes()}
+function readyPatch(){replaceIntroWording();hookIntroGate();guardPreLoginView();patchActions();patchPreLogin();const logo=document.querySelector('#gfieldIntro .intro-logo');if(logo)logo.src='${LOGO_URL}';if(document.querySelector('#gfieldIntroScene3.on'))runTypes()}
 setInterval(readyPatch,350);readyPatch();
 })();
 <\/script>`;
