@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지필드 영재교육 - 프리미어 합격 진단</title>
+<style>
+html,body{margin:0;min-height:100%;background:#02050b;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}
+.wrap{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+.card{max-width:680px;border:1px solid rgba(212,175,55,.35);border-radius:24px;padding:34px;background:linear-gradient(135deg,rgba(4,12,24,.98),rgba(12,22,42,.94));box-shadow:0 22px 70px rgba(0,0,0,.35)}
+.eyebrow{color:#d4af37;font-weight:900;letter-spacing:.14em;font-size:13px;margin-bottom:10px}
+h1{font-size:clamp(28px,5vw,48px);line-height:1.15;margin:0 0 14px;letter-spacing:-.06em}
+p{color:#cbd5e1;line-height:1.7;margin:0 0 20px}.spin{width:28px;height:28px;border:2px solid rgba(255,255,255,.16);border-top-color:#d4af37;border-radius:50%;animation:s .8s linear infinite;margin:18px auto}@keyframes s{to{transform:rotate(360deg)}}
+a{display:inline-flex;align-items:center;justify-content:center;border-radius:14px;padding:15px 18px;background:linear-gradient(135deg,#d4af37,#f8dd83);color:#111;font-weight:900;text-decoration:none}
+</style>
+<script>
+(function(){
+  try{sessionStorage.removeItem('gfieldPreLoginBriefDone');}catch(e){}
+  var target='../premier-hyper-focus/?v=middle-intro-reset';
+  setTimeout(function(){location.replace(target);},450);
+})();
+</script>
+</head>
+<body>
+<div class="wrap"><div class="card"><div class="eyebrow">PREMIER HYPER FOCUS</div><h1>프리미어 합격 진단으로 이동합니다.</h1><p>인트로 후 소개 화면이 먼저 보이도록 초기화하고 있습니다.</p><div class="spin"></div><a href="../premier-hyper-focus/?v=middle-intro-reset" onclick="try{sessionStorage.removeItem('gfieldPreLoginBriefDone')}catch(e){}">바로 이동하기</a></div></div>
+</body>
+</html>
